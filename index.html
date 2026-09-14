@@ -2,398 +2,654 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TijaraPro</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
-    background:#f5f7fb;
-    color:#172033;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+  min-height:100vh;
 }
-header{
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
-    color:white;
-    padding:22px 15px;
-    text-align:center;
-    box-shadow:0 4px 15px #0002;
+
+button,input,select,textarea{
+  font:inherit;
 }
-header h1{margin:0;font-size:27px}
-header p{margin:6px 0 0;opacity:.9}
-.version{
-    display:inline-block;
-    margin-top:8px;
-    background:#ffffff22;
-    padding:4px 10px;
-    border-radius:20px;
-    font-size:12px;
-}
-nav{
-    position:sticky;
-    top:0;
-    z-index:20;
-    background:white;
-    display:flex;
-    gap:7px;
-    overflow-x:auto;
-    padding:10px;
-    box-shadow:0 2px 8px #0001;
-}
-nav button{
-    border:0;
-    background:#eef2ff;
-    color:#1e3a8a;
-    padding:10px 13px;
-    border-radius:12px;
-    white-space:nowrap;
-    font-size:14px;
-    cursor:pointer;
-}
-nav button.active{
-    background:#2563eb;
-    color:white;
-}
-.container{
-    max-width:950px;
-    margin:auto;
-    padding:15px;
-}
-.section{display:none}
-.section.active{display:block}
-.card{
-    background:white;
-    border-radius:17px;
-    padding:16px;
-    margin-bottom:15px;
-    box-shadow:0 3px 12px #0000000d;
-}
-h2{
-    margin-top:0;
-    font-size:21px;
-}
-h3{margin-top:0}
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-.stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-.stat{
-    background:white;
-    padding:15px;
-    border-radius:16px;
-    box-shadow:0 3px 12px #0000000c;
-}
-.stat .icon{font-size:25px}
-.stat strong{
-    display:block;
-    font-size:20px;
-    margin-top:6px;
-}
-.stat small{color:#64748b}
-input,select,textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid #dbe2ea;
-    border-radius:11px;
-    font-size:15px;
-    margin-top:6px;
-    margin-bottom:10px;
-    background:white;
-}
-textarea{min-height:85px;resize:vertical}
-label{
-    font-size:13px;
-    color:#475569;
-    font-weight:600;
-}
+
 button{
-    font-family:inherit;
+  cursor:pointer;
+  border:none;
 }
+
+.container{
+  width:min(1100px,94%);
+  margin:auto;
+}
+
+header{
+  background:linear-gradient(135deg,#0f4c81,#1677c8);
+  color:white;
+  padding:22px 0;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.header-content{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:900;
+}
+
+.subtitle{
+  opacity:.9;
+  margin-top:5px;
+  font-size:14px;
+}
+
+.version{
+  background:rgba(255,255,255,.15);
+  padding:7px 11px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:white;
+  border-bottom:1px solid #e5eaf1;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.nav-scroll{
+  display:flex;
+  overflow-x:auto;
+  gap:7px;
+  padding:9px 0;
+}
+
+.nav-btn{
+  flex:0 0 auto;
+  background:#f0f4f8;
+  color:#334155;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.nav-btn.active{
+  background:#1677c8;
+  color:white;
+}
+
+main{
+  padding:20px 0 50px;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.page-title{
+  font-size:23px;
+  font-weight:900;
+  margin-bottom:16px;
+}
+
+.page-subtitle{
+  color:#64748b;
+  margin-top:-10px;
+  margin-bottom:18px;
+  font-size:14px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.stat-card{
+  background:white;
+  border:1px solid #e6ebf2;
+  border-radius:15px;
+  padding:17px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.stat-icon{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.stat-label{
+  color:#64748b;
+  font-size:13px;
+}
+
+.stat-value{
+  font-size:22px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e5eaf1;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.035);
+}
+
+.card-title{
+  font-size:18px;
+  font-weight:900;
+  margin-bottom:14px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-size:13px;
+  font-weight:700;
+  color:#475569;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d7dee8;
+  border-radius:10px;
+  background:white;
+  color:#172033;
+  outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:#1677c8;
+  box-shadow:0 0 0 3px rgba(22,119,200,.1);
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
 .btn{
-    border:0;
-    border-radius:11px;
-    padding:11px 14px;
-    cursor:pointer;
-    font-size:14px;
+  padding:11px 15px;
+  border-radius:10px;
+  font-weight:800;
+  margin:3px;
 }
-.primary{
-    background:#2563eb;
-    color:white;
+
+.btn-primary{
+  background:#1677c8;
+  color:white;
 }
-.success{
-    background:#16a34a;
-    color:white;
+
+.btn-success{
+  background:#16a36a;
+  color:white;
 }
-.danger{
-    background:#dc2626;
-    color:white;
+
+.btn-danger{
+  background:#dc3545;
+  color:white;
 }
-.warning{
-    background:#f59e0b;
-    color:white;
+
+.btn-warning{
+  background:#f59e0b;
+  color:white;
 }
-.gray{
-    background:#e2e8f0;
-    color:#334155;
+
+.btn-secondary{
+  background:#e9eef5;
+  color:#334155;
 }
-.full{width:100%}
+
+.btn-dark{
+  background:#273449;
+  color:white;
+}
+
+.btn-small{
+  padding:8px 10px;
+  font-size:12px;
+}
+
 .actions{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:12px;
 }
-.empty{
-    text-align:center;
-    color:#64748b;
-    padding:25px 10px;
+
+.search-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  margin-bottom:15px;
 }
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
+
 .product-card{
-    background:white;
-    border:2px solid #e5e7eb;
-    border-radius:15px;
-    overflow:hidden;
-    cursor:pointer;
-    position:relative;
-    min-height:175px;
+  background:white;
+  border:1px solid #e1e7ef;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 2px 7px rgba(0,0,0,.04);
 }
-.product-card:hover{border-color:#2563eb}
+
 .product-image{
-    width:100%;
-    height:105px;
-    object-fit:cover;
-    background:#eef2f7;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
+  height:135px;
+  background:#eef3f8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  overflow:hidden;
 }
-.product-info{padding:9px}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.product-body{
+  padding:12px;
+}
+
 .product-name{
-    font-weight:700;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+  font-weight:900;
+  margin-bottom:5px;
 }
-.price{
-    color:#2563eb;
-    font-weight:700;
-    margin-top:4px;
+
+.product-meta{
+  color:#64748b;
+  font-size:12px;
+  margin-bottom:5px;
 }
-.stock{
-    font-size:12px;
-    color:#64748b;
+
+.product-price{
+  color:#1677c8;
+  font-weight:900;
 }
-.qty-badge{
-    position:absolute;
-    top:7px;
-    left:7px;
-    background:#2563eb;
-    color:white;
-    border-radius:20px;
-    padding:4px 8px;
-    font-size:12px;
+
+.stock-badge{
+  display:inline-block;
+  background:#eaf7ef;
+  color:#148653;
+  border-radius:8px;
+  padding:4px 7px;
+  font-size:11px;
+  margin-top:6px;
 }
+
+.stock-low{
+  background:#fff5df;
+  color:#b56a00;
+}
+
+.stock-empty{
+  background:#ffe8eb;
+  color:#c92d3c;
+}
+
+.cart{
+  background:#f8fafc;
+  border:1px solid #e1e7ef;
+  border-radius:13px;
+  padding:12px;
+}
+
 .cart-item{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
-    border-bottom:1px solid #edf0f4;
-    padding:11px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  padding:10px 0;
+  border-bottom:1px solid #e5eaf1;
 }
-.cart-controls{
-    display:flex;
-    align-items:center;
-    gap:5px;
+
+.cart-item:last-child{
+  border-bottom:none;
 }
-.small-btn{
-    border:0;
-    width:31px;
-    height:31px;
-    border-radius:9px;
-    cursor:pointer;
-    background:#e2e8f0;
+
+.qty-controls{
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
-.total-box{
-    background:#eff6ff;
-    border-radius:14px;
-    padding:14px;
-    margin-top:12px;
+
+.qty-btn{
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  background:#e7edf5;
+  font-weight:900;
 }
-.total-row{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    padding:5px 0;
+
+.cart-total{
+  font-size:20px;
+  font-weight:900;
+  margin-top:12px;
 }
-.total-row.final{
-    font-size:20px;
-    font-weight:800;
-    color:#1d4ed8;
-    border-top:1px solid #bfdbfe;
-    margin-top:5px;
-    padding-top:10px;
+
+.summary-box{
+  background:#f7faff;
+  border:1px solid #dceafa;
+  border-radius:12px;
+  padding:14px;
+  margin-top:12px;
 }
-.invoice{
-    border:1px solid #e2e8f0;
-    border-radius:15px;
-    padding:14px;
-    margin-bottom:10px;
+
+.summary-line{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:6px 0;
 }
-.invoice-head{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    flex-wrap:wrap;
+
+.summary-line.total{
+  font-size:20px;
+  font-weight:900;
+  border-top:1px solid #d8e1eb;
+  margin-top:7px;
+  padding-top:12px;
 }
-.invoice-number{
-    font-weight:800;
-    color:#1d4ed8;
+
+.invoice-card,
+.customer-card,
+.return-card,
+.movement-card{
+  background:white;
+  border:1px solid #e1e7ef;
+  border-radius:14px;
+  padding:15px;
+  margin-bottom:10px;
 }
+
+.invoice-head,
+.customer-head,
+.movement-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+
 .badge{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:12px;
-    background:#e2e8f0;
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:800;
 }
-.badge.green{background:#dcfce7;color:#166534}
-.badge.orange{background:#ffedd5;color:#9a3412}
-.badge.red{background:#fee2e2;color:#991b1b}
-.customer-card{
-    border:1px solid #e2e8f0;
-    border-radius:15px;
-    padding:14px;
-    margin-bottom:10px;
+
+.badge-green{
+  background:#e5f7ee;
+  color:#118454;
 }
-.customer-top{
-    display:flex;
-    justify-content:space-between;
-    gap:8px;
+
+.badge-orange{
+  background:#fff1d8;
+  color:#aa6800;
 }
+
+.badge-red{
+  background:#ffe6e9;
+  color:#c12c3c;
+}
+
+.badge-blue{
+  background:#e5f1ff;
+  color:#1268ad;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+
+th,td{
+  padding:10px;
+  border-bottom:1px solid #e7ebf0;
+  text-align:right;
+  font-size:13px;
+}
+
+th{
+  background:#f6f8fb;
+  font-weight:900;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#64748b;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.quick-btn{
+  background:white;
+  border:1px solid #e0e7ef;
+  border-radius:13px;
+  padding:17px 10px;
+  font-weight:900;
+  color:#334155;
+}
+
+.quick-btn:hover{
+  border-color:#1677c8;
+}
+
 .modal{
-    position:fixed;
-    inset:0;
-    background:#0008;
-    z-index:100;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:15px;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:15px;
 }
-.modal.show{display:flex}
+
+.modal.show{
+  display:flex;
+}
+
 .modal-box{
-    background:white;
-    width:100%;
-    max-width:650px;
-    max-height:90vh;
-    overflow:auto;
-    border-radius:20px;
-    padding:18px;
+  background:white;
+  width:min(600px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:17px;
+  padding:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
 }
-.modal-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    border-bottom:1px solid #e2e8f0;
-    padding-bottom:10px;
-    margin-bottom:12px;
+
+.modal-title{
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:15px;
 }
+
 .close{
-    border:0;
-    background:#fee2e2;
-    color:#991b1b;
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    font-size:18px;
-    cursor:pointer;
+  float:left;
+  background:#edf1f5;
+  width:35px;
+  height:35px;
+  border-radius:9px;
+  font-size:18px;
 }
-.return-item{
-    border:1px solid #e2e8f0;
-    border-radius:13px;
-    padding:12px;
-    margin-bottom:8px;
+
+.movement-in{
+  border-right:5px solid #16a36a;
 }
-.return-item-top{
-    display:flex;
-    justify-content:space-between;
-    gap:8px;
+
+.movement-out{
+  border-right:5px solid #dc3545;
 }
-.return-qty{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-top:8px;
+
+.movement-adjust{
+  border-right:5px solid #f59e0b;
 }
-.return-qty input{
-    width:90px;
-    margin:0;
-    text-align:center;
+
+.movement-quantity{
+  font-size:20px;
+  font-weight:900;
 }
-.search-box{
-    position:relative;
+
+.in-text{
+  color:#14905d;
 }
-.notice{
-    padding:12px;
-    border-radius:12px;
-    background:#fef3c7;
-    color:#92400e;
-    margin-bottom:12px;
+
+.out-text{
+  color:#cf3040;
 }
-.success-box{
-    padding:12px;
-    border-radius:12px;
-    background:#dcfce7;
-    color:#166534;
-    margin-bottom:12px;
+
+.adjust-text{
+  color:#b56a00;
 }
-.danger-box{
-    padding:12px;
-    border-radius:12px;
-    background:#fee2e2;
-    color:#991b1b;
-    margin-bottom:12px;
+
+@media(max-width:800px){
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
-.preview{
-    background:#2563eb;
-    color:white;
-    padding:15px;
-    border-radius:15px;
-    text-align:center;
-    margin-top:10px;
+
+@media(max-width:600px){
+  .container{
+    width:94%;
+  }
+
+  .header-content{
+    align-items:flex-start;
+  }
+
+  .logo{
+    font-size:23px;
+  }
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .search-row{
+    grid-template-columns:1fr;
+  }
+
+  .quick-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .product-image{
+    height:110px;
+  }
+
+  .btn{
+    padding:10px 11px;
+  }
 }
-@media(min-width:700px){
-    .product-grid{grid-template-columns:repeat(4,1fr)}
-    .stats{grid-template-columns:repeat(4,1fr)}
+
+@media(max-width:380px){
+  .products-grid{
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+  }
+
+  .product-body{
+    padding:9px;
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
-@media(max-width:450px){
-    .container{padding:10px}
-    header h1{font-size:24px}
-}
+
 @media print{
-    body *{visibility:hidden}
-    #printArea,#printArea *{visibility:visible}
-    #printArea{
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
-        padding:20px;
-    }
+  body *{
+    visibility:hidden !important;
+  }
+
+  #invoicePrint,
+  #invoicePrint *{
+    visibility:visible !important;
+  }
+
+  #invoicePrint{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    display:block !important;
+  }
 }
 </style>
 </head>
@@ -401,2118 +657,2911 @@ button{
 <body>
 
 <header>
-    <h1>🛍️ TijaraPro</h1>
-    <p>نظام البيع وإدارة المحل</p>
-    <span class="version">الإصدار 1.9</span>
+  <div class="container header-content">
+    <div>
+      <div class="logo">🛍️ TijaraPro</div>
+      <div class="subtitle">نظام البيع وإدارة المحل</div>
+    </div>
+    <div class="version">v2.0</div>
+  </div>
 </header>
 
 <nav>
-    <button onclick="showSection('dashboard',this)" class="active">🏠 الرئيسية</button>
-    <button onclick="showSection('sales',this)">🛒 البيع السريع</button>
-    <button onclick="showSection('products',this)">📦 المنتجات</button>
-    <button onclick="showSection('invoices',this)">🧾 الفواتير</button>
-    <button onclick="showSection('returns',this)">🔄 المرتجعات</button>
-    <button onclick="showSection('customers',this)">👤 الزبائن</button>
+  <div class="container nav-scroll">
+    <button class="nav-btn active" onclick="showSection('dashboard',this)">🏠 الرئيسية</button>
+    <button class="nav-btn" onclick="showSection('sales',this)">🛒 البيع السريع</button>
+    <button class="nav-btn" onclick="showSection('products',this)">📦 المنتجات</button>
+    <button class="nav-btn" onclick="showSection('stock',this)">📊 المخزون</button>
+    <button class="nav-btn" onclick="showSection('invoices',this)">🧾 الفواتير</button>
+    <button class="nav-btn" onclick="showSection('returns',this)">🔄 المرتجعات</button>
+    <button class="nav-btn" onclick="showSection('customers',this)">👤 الزبائن</button>
+  </div>
 </nav>
 
-<div class="container">
+<main class="container">
 
-<!-- DASHBOARD -->
+<!-- ================= DASHBOARD ================= -->
+
 <section id="dashboard" class="section active">
 
-    <div class="card">
-        <h2>📊 لوحة التحكم</h2>
-        <p>مرحبًا بك في TijaraPro</p>
+  <div class="page-title">📊 لوحة التحكم</div>
+  <div class="page-subtitle">نظرة سريعة على نشاط المحل</div>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-label">مبيعات اليوم</div>
+      <div class="stat-value" id="todaySales">0 دج</div>
     </div>
 
-    <div class="stats">
-        <div class="stat">
-            <div class="icon">💰</div>
-            <small>مبيعات اليوم</small>
-            <strong id="todaySales">0 دج</strong>
-        </div>
-
-        <div class="stat">
-            <div class="icon">📦</div>
-            <small>عدد المنتجات</small>
-            <strong id="productCount">0</strong>
-        </div>
-
-        <div class="stat">
-            <div class="icon">🧾</div>
-            <small>فواتير اليوم</small>
-            <strong id="salesCount">0</strong>
-        </div>
-
-        <div class="stat">
-            <div class="icon">📈</div>
-            <small>ربح اليوم</small>
-            <strong id="todayProfit">0 دج</strong>
-        </div>
+    <div class="stat-card">
+      <div class="stat-icon">📦</div>
+      <div class="stat-label">عدد المنتجات</div>
+      <div class="stat-value" id="productCount">0</div>
     </div>
 
-    <div class="card">
-        <h3>⚡ وصول سريع</h3>
-        <div class="actions">
-            <button class="btn primary" onclick="goTo('sales')">🛒 بيع جديد</button>
-            <button class="btn success" onclick="goTo('products')">📦 إضافة منتج</button>
-            <button class="btn gray" onclick="goTo('customers')">👤 الزبائن</button>
-            <button class="btn warning" onclick="goTo('returns')">🔄 المرتجعات</button>
-        </div>
+    <div class="stat-card">
+      <div class="stat-icon">🧾</div>
+      <div class="stat-label">فواتير اليوم</div>
+      <div class="stat-value" id="salesCount">0</div>
     </div>
 
-    <div class="card">
-        <h3>🔎 البحث عن منتج</h3>
-        <input id="homeProductSearch" placeholder="اكتب اسم المنتج أو الباركود..." oninput="homeSearch()">
-        <div id="homeSearchResults"></div>
+    <div class="stat-card">
+      <div class="stat-icon">📈</div>
+      <div class="stat-label">ربح اليوم</div>
+      <div class="stat-value" id="todayProfit">0 دج</div>
     </div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ الوصول السريع</div>
+
+    <div class="quick-grid">
+      <button class="quick-btn" onclick="goTo('sales')">🛒 بيع جديد</button>
+      <button class="quick-btn" onclick="goTo('products')">📦 إضافة منتج</button>
+      <button class="quick-btn" onclick="goTo('stock')">📊 حركة المخزون</button>
+      <button class="quick-btn" onclick="goTo('invoices')">🧾 الفواتير</button>
+      <button class="quick-btn" onclick="goTo('returns')">🔄 المرتجعات</button>
+      <button class="quick-btn" onclick="goTo('customers')">👤 الزبائن</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔎 البحث عن منتج</div>
+
+    <input
+      id="homeProductSearch"
+      type="search"
+      placeholder="اكتب اسم المنتج أو الباركود..."
+      oninput="renderHomeProducts()"
+    >
+
+    <div id="homeProducts" style="margin-top:15px"></div>
+  </div>
+
 </section>
 
-<!-- SALES -->
+<!-- ================= SALES ================= -->
+
 <section id="sales" class="section">
 
-    <div class="card">
-        <h2>🛒 البيع السريع</h2>
+  <div class="page-title">🛒 البيع السريع</div>
+  <div class="page-subtitle">اضغط على المنتج لإضافته إلى السلة</div>
 
-        <input id="saleSearch"
-               placeholder="🔎 ابحث عن منتج..."
-               oninput="renderSaleProducts()">
+  <div class="card">
 
-        <input id="barcodeInput"
-               placeholder="📷 أدخل الباركود ثم اضغط Enter"
-               onkeydown="barcodeEnter(event)">
+    <div class="search-row">
+      <input
+        id="saleSearch"
+        type="search"
+        placeholder="🔎 ابحث عن منتج..."
+        oninput="renderSaleProducts()"
+      >
 
-        <p style="color:#64748b;font-size:13px">
-            اضغط على المنتج مرة لكل قطعة تريد بيعها
-        </p>
-
-        <div id="saleProductsGrid" class="product-grid"></div>
+      <input
+        id="barcodeInput"
+        type="text"
+        placeholder="📷 الباركود"
+        onkeydown="handleBarcode(event)"
+      >
     </div>
 
-    <div class="card">
-        <h3>🛒 السلة</h3>
-        <div id="cartList"></div>
+    <div id="saleProductsGrid" class="products-grid"></div>
 
-        <div id="cartEmpty" class="empty">
-            السلة فارغة
-        </div>
+  </div>
 
-        <div class="total-box">
-            <div class="total-row">
-                <span>المجموع الفرعي</span>
-                <strong id="checkoutSubtotal">0 دج</strong>
-            </div>
+  <div class="card">
 
-            <div class="total-row">
-                <span>الخصم</span>
-                <strong id="checkoutDiscount">0 دج</strong>
-            </div>
+    <div class="card-title">🛍️ السلة</div>
 
-            <div class="total-row final">
-                <span>الإجمالي</span>
-                <strong id="cartTotal">0 دج</strong>
-            </div>
-        </div>
+    <div id="cartList" class="cart">
+      <div class="empty">السلة فارغة</div>
     </div>
 
-    <div class="card">
-        <h3>💳 إتمام البيع</h3>
+    <div class="cart-total">
+      الإجمالي: <span id="cartTotal">0 دج</span>
+    </div>
 
+    <div class="form-grid" style="margin-top:15px">
+
+      <div class="form-group">
         <label>الزبون</label>
-        <select id="checkoutCustomer">
-            <option value="">زبون عادي</option>
+        <select id="saleCustomer">
+          <option value="">زبون عادي</option>
         </select>
+      </div>
 
-        <label>نوع الخصم</label>
-        <select id="discountType" onchange="updateCheckout()">
-            <option value="amount">مبلغ</option>
-            <option value="percent">نسبة مئوية %</option>
-        </select>
-
-        <label>قيمة الخصم</label>
-        <input id="discountInput"
-               type="number"
-               min="0"
-               value="0"
-               oninput="updateCheckout()">
-
+      <div class="form-group">
         <label>طريقة الدفع</label>
-        <select id="paymentMethod" onchange="updateCheckout()">
-            <option value="نقدي">💵 نقدي</option>
-            <option value="بطاقة">💳 بطاقة</option>
-            <option value="آجل">📒 آجل</option>
+        <select id="paymentMethod" onchange="updateSaleSummary()">
+          <option value="cash">💵 نقدي</option>
+          <option value="card">💳 بطاقة</option>
+          <option value="credit">📒 آجل</option>
         </select>
+      </div>
 
+      <div class="form-group">
+        <label>نوع الخصم</label>
+        <select id="discountType" onchange="updateSaleSummary()">
+          <option value="amount">خصم مبلغ</option>
+          <option value="percent">خصم %</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>قيمة الخصم</label>
+        <input id="discountValue" type="number" min="0" value="0" oninput="updateSaleSummary()">
+      </div>
+
+      <div class="form-group">
         <label>المبلغ المدفوع</label>
-        <input id="amountPaid"
-               type="number"
-               min="0"
-               value="0"
-               oninput="updateCheckout()">
+        <input id="amountPaid" type="number" min="0" value="0" oninput="updateSaleSummary()">
+      </div>
 
-        <div class="total-box">
-            <div class="total-row">
-                <span>المجموع</span>
-                <strong id="finalSubtotal">0 دج</strong>
-            </div>
-
-            <div class="total-row">
-                <span>الخصم</span>
-                <strong id="finalDiscount">0 دج</strong>
-            </div>
-
-            <div class="total-row final">
-                <span>المطلوب</span>
-                <strong id="finalTotal">0 دج</strong>
-            </div>
-
-            <div class="total-row">
-                <span id="paidLabel">الباقي</span>
-                <strong id="changeDue">0 دج</strong>
-            </div>
-        </div>
-
-        <button class="btn primary full" onclick="completeSale()">
-            ✅ إتمام البيع وإصدار الفاتورة
-        </button>
-
-        <button class="btn gray full" style="margin-top:8px" onclick="clearCart()">
-            🗑️ تفريغ السلة
-        </button>
     </div>
+
+    <div class="summary-box">
+
+      <div class="summary-line">
+        <span>المجموع الفرعي</span>
+        <strong id="saleSubtotal">0 دج</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>الخصم</span>
+        <strong id="saleDiscount">0 دج</strong>
+      </div>
+
+      <div class="summary-line total">
+        <span>المبلغ النهائي</span>
+        <strong id="saleFinalTotal">0 دج</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>الباقي</span>
+        <strong id="saleChange">0 دج</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>الدين</span>
+        <strong id="saleDue">0 دج</strong>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-success" onclick="completeSale()">✅ إتمام البيع</button>
+      <button class="btn btn-secondary" onclick="clearCart()">🗑️ تفريغ السلة</button>
+    </div>
+
+  </div>
+
 </section>
 
-<!-- PRODUCTS -->
+<!-- ================= PRODUCTS ================= -->
+
 <section id="products" class="section">
 
-    <div class="card">
-        <h2>📦 المنتجات</h2>
+  <div class="page-title">📦 المنتجات</div>
+  <div class="page-subtitle">إضافة وإدارة منتجات المحل</div>
 
-        <label>اسم المنتج</label>
-        <input id="productName" placeholder="مثال: قميص">
+  <div class="card">
 
+    <div class="card-title">➕ إضافة منتج</div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>اسم المنتج *</label>
+        <input id="productName" type="text" placeholder="مثال: قميص">
+      </div>
+
+      <div class="form-group">
         <label>الفئة</label>
-        <input id="productCategory" placeholder="مثال: ملابس">
+        <input id="productCategory" type="text" placeholder="مثال: ملابس">
+      </div>
 
+      <div class="form-group">
         <label>المقاس</label>
-        <input id="productSize" placeholder="مثال: L">
+        <input id="productSize" type="text" placeholder="مثال: L">
+      </div>
 
+      <div class="form-group">
         <label>الوحدة</label>
-        <input id="productUnit" placeholder="مثال: قطعة">
+        <input id="productUnit" type="text" placeholder="قطعة">
+      </div>
 
+      <div class="form-group">
         <label>سعر الشراء</label>
         <input id="buyPrice" type="number" min="0">
+      </div>
 
-        <label>سعر البيع</label>
+      <div class="form-group">
+        <label>سعر البيع *</label>
         <input id="sellPrice" type="number" min="0">
+      </div>
 
-        <label>المخزون</label>
-        <input id="stock" type="number" min="0">
+      <div class="form-group">
+        <label>المخزون الابتدائي</label>
+        <input id="productStock" type="number" min="0" value="0">
+      </div>
 
+      <div class="form-group">
         <label>الباركود</label>
-        <input id="productBarcode" placeholder="الباركود">
+        <input id="productBarcode" type="text">
+      </div>
 
+      <div class="form-group full">
         <label>صورة المنتج</label>
         <input id="productImage" type="file" accept="image/*">
+      </div>
 
-        <button class="btn success full" onclick="addProduct()">
-            ➕ إضافة المنتج
-        </button>
     </div>
 
-    <div class="card">
-        <input id="productsSearch"
-               placeholder="🔎 البحث في المنتجات..."
-               oninput="renderProducts()">
-
-        <div id="productsList"></div>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="addProduct()">➕ إضافة المنتج</button>
     </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="search-row">
+      <input
+        id="productSearch"
+        type="search"
+        placeholder="🔎 ابحث عن منتج..."
+        oninput="renderProducts()"
+      >
+
+      <select id="productCategoryFilter" onchange="renderProducts()">
+        <option value="">كل الفئات</option>
+      </select>
+    </div>
+
+    <div id="productsGrid" class="products-grid"></div>
+
+  </div>
+
 </section>
 
-<!-- INVOICES -->
+<!-- ================= STOCK ================= -->
+
+<section id="stock" class="section">
+
+  <div class="page-title">📊 حركة المخزون</div>
+  <div class="page-subtitle">متابعة كل دخول وخروج وتعديل للمخزون</div>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon">⬆️</div>
+      <div class="stat-label">إجمالي الدخول</div>
+      <div class="stat-value" id="stockInTotal">0</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">⬇️</div>
+      <div class="stat-label">إجمالي الخروج</div>
+      <div class="stat-value" id="stockOutTotal">0</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🔄</div>
+      <div class="stat-label">التعديلات</div>
+      <div class="stat-value" id="stockAdjustTotal">0</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📋</div>
+      <div class="stat-label">عدد الحركات</div>
+      <div class="stat-value" id="stockMovementCount">0</div>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>🔎 البحث</label>
+        <input
+          id="stockSearch"
+          type="search"
+          placeholder="اسم المنتج أو السبب أو المرجع..."
+          oninput="renderStockMovements()"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>نوع الحركة</label>
+        <select id="stockMovementFilter" onchange="renderStockMovements()">
+          <option value="">كل الحركات</option>
+          <option value="in">⬆️ دخول</option>
+          <option value="out">⬇️ خروج</option>
+          <option value="adjustment">🔄 تعديل</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="stockMovementsList"></div>
+
+</section>
+
+<!-- ================= INVOICES ================= -->
+
 <section id="invoices" class="section">
 
-    <div class="card">
-        <h2>🧾 الفواتير</h2>
+  <div class="page-title">🧾 الفواتير</div>
+  <div class="page-subtitle">جميع عمليات البيع المسجلة</div>
 
-        <input id="invoiceSearch"
-               placeholder="🔎 البحث برقم الفاتورة أو اسم الزبون..."
-               oninput="renderInvoices()">
+  <div class="card">
+    <input
+      id="invoiceSearch"
+      type="search"
+      placeholder="🔎 ابحث برقم الفاتورة أو اسم الزبون..."
+      oninput="renderInvoices()"
+    >
+  </div>
 
-        <div id="invoicesList"></div>
-    </div>
+  <div id="invoicesList"></div>
+
 </section>
 
-<!-- RETURNS -->
+<!-- ================= RETURNS ================= -->
+
 <section id="returns" class="section">
 
-    <div class="stats">
-        <div class="stat">
-            <div class="icon">🔄</div>
-            <small>عدد المرتجعات</small>
-            <strong id="returnCount">0</strong>
-        </div>
+  <div class="page-title">🔄 المرتجعات</div>
+  <div class="page-subtitle">إدارة المنتجات المرتجعة وإرجاعها إلى المخزون</div>
 
-        <div class="stat">
-            <div class="icon">💸</div>
-            <small>قيمة المرتجعات</small>
-            <strong id="returnTotal">0 دج</strong>
-        </div>
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon">🔄</div>
+      <div class="stat-label">عدد المرتجعات</div>
+      <div class="stat-value" id="returnCount">0</div>
     </div>
 
-    <div class="card" style="margin-top:15px">
-        <h2>🔄 سجل المرتجعات</h2>
-        <div id="returnsList"></div>
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-label">قيمة المرتجعات</div>
+      <div class="stat-value" id="returnTotal">0 دج</div>
     </div>
+
+  </div>
+
+  <div id="returnsList"></div>
+
 </section>
 
-<!-- CUSTOMERS -->
+<!-- ================= CUSTOMERS ================= -->
+
 <section id="customers" class="section">
 
-    <div class="stats">
-        <div class="stat">
-            <div class="icon">👥</div>
-            <small>عدد الزبائن</small>
-            <strong id="customerCount">0</strong>
-        </div>
+  <div class="page-title">👤 الزبائن</div>
+  <div class="page-subtitle">إدارة الزبائن والديون والمدفوعات</div>
 
-        <div class="stat">
-            <div class="icon">🛒</div>
-            <small>إجمالي المشتريات</small>
-            <strong id="customerSalesTotal">0 دج</strong>
-        </div>
+  <div class="card">
 
-        <div class="stat">
-            <div class="icon">📒</div>
-            <small>إجمالي الديون</small>
-            <strong id="customerDebtTotal">0 دج</strong>
-        </div>
+    <div class="card-title">➕ إضافة زبون</div>
 
-        <div class="stat">
-            <div class="icon">💵</div>
-            <small>إجمالي المدفوعات</small>
-            <strong id="customerPaymentsTotal">0 دج</strong>
-        </div>
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>الاسم *</label>
+        <input id="customerName" type="text">
+      </div>
+
+      <div class="form-group">
+        <label>الهاتف</label>
+        <input id="customerPhone" type="tel">
+      </div>
+
+      <div class="form-group">
+        <label>العنوان</label>
+        <input id="customerAddress" type="text">
+      </div>
+
+      <div class="form-group">
+        <label>ملاحظات</label>
+        <input id="customerNotes" type="text">
+      </div>
+
     </div>
 
-    <div class="card" style="margin-top:15px">
-        <h2>👤 الزبائن</h2>
-
-        <input id="customerSearch"
-               placeholder="🔎 ابحث بالاسم أو الهاتف..."
-               oninput="renderCustomers()">
-
-        <div id="customersList"></div>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="addCustomer()">➕ إضافة الزبون</button>
     </div>
 
-    <div class="card">
-        <h3 id="customerFormTitle">➕ إضافة زبون</h3>
+  </div>
 
-        <input id="customerName" placeholder="اسم الزبون">
-        <input id="customerPhone" placeholder="رقم الهاتف">
-        <input id="customerAddress" placeholder="العنوان">
-        <textarea id="customerNotes" placeholder="ملاحظات"></textarea>
+  <div class="card">
 
-        <button class="btn primary full" onclick="saveCustomer()">
-            💾 حفظ الزبون
-        </button>
+    <input
+      id="customerSearch"
+      type="search"
+      placeholder="🔎 ابحث باسم الزبون أو الهاتف..."
+      oninput="renderCustomers()"
+    >
 
-        <button id="cancelCustomerEdit"
-                class="btn gray full"
-                style="display:none;margin-top:8px"
-                onclick="cancelCustomerEdit()">
-            إلغاء التعديل
-        </button>
-    </div>
+  </div>
+
+  <div id="customersList"></div>
+
 </section>
 
+</main>
+
+<!-- ================= STOCK MODAL ================= -->
+
+<div id="stockModal" class="modal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeStockModal()">✕</button>
+
+    <div class="modal-title">📦 تعديل المخزون</div>
+
+    <div id="stockModalProductInfo" class="summary-box"></div>
+
+    <div class="form-group" style="margin-top:15px">
+      <label>المخزون الجديد *</label>
+      <input id="newStockValue" type="number" min="0" oninput="updateStockDifference()">
+    </div>
+
+    <div class="form-group" style="margin-top:12px">
+      <label>سبب التعديل *</label>
+      <textarea id="stockAdjustmentReason" placeholder="مثال: جرد المخزون، تلف، إضافة كمية..."></textarea>
+    </div>
+
+    <div id="stockDifference" class="summary-box"></div>
+
+    <div class="actions">
+      <button class="btn btn-success" onclick="confirmStockAdjustment()">✅ حفظ التعديل</button>
+      <button class="btn btn-secondary" onclick="closeStockModal()">إلغاء</button>
+    </div>
+
+  </div>
+
 </div>
 
-<!-- RETURN MODAL -->
+<!-- ================= RETURN MODAL ================= -->
+
 <div id="returnModal" class="modal">
-    <div class="modal-box">
 
-        <div class="modal-head">
-            <h2>🔄 إرجاع منتجات</h2>
-            <button class="close" onclick="closeReturnModal()">×</button>
-        </div>
+  <div class="modal-box">
 
-        <div id="returnInvoiceInfo"></div>
-        <div id="returnItems"></div>
+    <button class="close" onclick="closeReturnModal()">✕</button>
 
-        <div class="total-box">
-            <div class="total-row final">
-                <span>قيمة المرتجع</span>
-                <strong id="selectedReturnTotal">0 دج</strong>
-            </div>
-        </div>
+    <div class="modal-title">🔄 إرجاع منتجات</div>
 
-        <button class="btn warning full" onclick="confirmReturn()">
-            🔄 تأكيد الإرجاع
-        </button>
+    <div id="returnInvoiceInfo"></div>
 
-        <button class="btn gray full" style="margin-top:8px" onclick="closeReturnModal()">
-            إلغاء
-        </button>
+    <div id="returnItemsList"></div>
+
+    <div class="summary-box">
+      قيمة المرتجع:
+      <strong id="returnModalTotal">0 دج</strong>
     </div>
+
+    <div class="actions">
+      <button class="btn btn-success" onclick="confirmReturn()">✅ تأكيد المرتجع</button>
+      <button class="btn btn-secondary" onclick="closeReturnModal()">إلغاء</button>
+    </div>
+
+  </div>
+
 </div>
 
-<!-- CUSTOMER PROFILE MODAL -->
+<!-- ================= CUSTOMER MODAL ================= -->
+
 <div id="customerModal" class="modal">
-    <div class="modal-box">
 
-        <div class="modal-head">
-            <h2>👤 ملف الزبون</h2>
-            <button class="close" onclick="closeCustomerModal()">×</button>
-        </div>
+  <div class="modal-box">
 
-        <div id="customerProfile"></div>
-    </div>
+    <button class="close" onclick="closeCustomerModal()">✕</button>
+
+    <div class="modal-title">👤 ملف الزبون</div>
+
+    <div id="customerModalContent"></div>
+
+  </div>
+
 </div>
 
-<!-- PAYMENT MODAL -->
+<!-- ================= PAYMENT MODAL ================= -->
+
 <div id="paymentModal" class="modal">
-    <div class="modal-box">
 
-        <div class="modal-head">
-            <h2>💵 تسديد الدين</h2>
-            <button class="close" onclick="closePaymentModal()">×</button>
-        </div>
+  <div class="modal-box">
 
-        <div id="paymentInfo"></div>
+    <button class="close" onclick="closePaymentModal()">✕</button>
 
-        <label>مبلغ التسديد</label>
-        <input id="paymentAmount" type="number" min="0">
+    <div class="modal-title">💰 تسجيل دفعة</div>
 
-        <button class="btn success full" onclick="saveCustomerPayment()">
-            💵 تسجيل التسديد
-        </button>
+    <div id="paymentCustomerInfo"></div>
 
-        <button class="btn gray full" style="margin-top:8px" onclick="closePaymentModal()">
-            إلغاء
-        </button>
+    <div class="form-group" style="margin-top:15px">
+      <label>المبلغ</label>
+      <input id="paymentAmount" type="number" min="0">
     </div>
+
+    <div class="form-group" style="margin-top:12px">
+      <label>ملاحظة</label>
+      <input id="paymentNote" type="text">
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-success" onclick="saveCustomerPayment()">✅ تسجيل الدفعة</button>
+      <button class="btn btn-secondary" onclick="closePaymentModal()">إلغاء</button>
+    </div>
+
+  </div>
+
 </div>
 
-<div id="printArea"></div>
+<div id="invoicePrint" style="display:none"></div>
 
 <script>
-/* =========================
-   DATA
-========================= */
+/* =========================================================
+   TIJARAPRO v2.0
+   ========================================================= */
 
 let products = JSON.parse(localStorage.getItem("tijara_products") || "[]");
 let sales = JSON.parse(localStorage.getItem("tijara_sales") || "[]");
 let invoices = JSON.parse(localStorage.getItem("tijara_invoices") || "[]");
 let customers = JSON.parse(localStorage.getItem("tijara_customers") || "[]");
 let returns = JSON.parse(localStorage.getItem("tijara_returns") || "[]");
+let stockMovements = JSON.parse(localStorage.getItem("tijara_stock_movements") || "[]");
 
 let cart = [];
-let editingCustomerId = null;
-let paymentCustomerId = null;
+let currentStockProductId = null;
 let currentReturnInvoiceId = null;
+let currentCustomerId = null;
 
 
-/* =========================
-   HELPERS
-========================= */
+/* ================= HELPERS ================= */
 
 function money(n){
-    return Number(n || 0).toLocaleString("ar-DZ") + " دج";
-}
-
-function todayKey(){
-    const d = new Date();
-    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-}
-
-function saveData(){
-    localStorage.setItem("tijara_products",JSON.stringify(products));
-    localStorage.setItem("tijara_sales",JSON.stringify(sales));
-    localStorage.setItem("tijara_invoices",JSON.stringify(invoices));
-    localStorage.setItem("tijara_customers",JSON.stringify(customers));
-    localStorage.setItem("tijara_returns",JSON.stringify(returns));
+  return Number(n || 0).toLocaleString("ar-DZ") + " دج";
 }
 
 function escapeHTML(value){
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
-function showSection(id,button){
-    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-    const section=document.getElementById(id);
-    if(section) section.classList.add("active");
-
-    document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-    if(button) button.classList.add("active");
-
-    if(id==="sales"){
-        renderSaleProducts();
-        renderCart();
-        populateCustomerSelect();
-    }
-
-    if(id==="products") renderProducts();
-    if(id==="invoices") renderInvoices();
-    if(id==="returns") renderReturns();
-    if(id==="customers"){
-        renderCustomers();
-        refreshCustomerStats();
-    }
-
-    window.scrollTo({top:0,behavior:"smooth"});
+function todayKey(date){
+  const d = new Date(date);
+  return d.getFullYear() + "-" +
+    String(d.getMonth()+1).padStart(2,"0") + "-" +
+    String(d.getDate()).padStart(2,"0");
 }
 
-function goTo(id){
-    const button=[...document.querySelectorAll("nav button")]
-        .find(b=>b.getAttribute("onclick")?.includes("'"+id+"'"));
-
-    showSection(id,button);
+function isToday(date){
+  return todayKey(date) === todayKey(Date.now());
 }
 
 function formatDate(date){
-    return new Date(date).toLocaleString("ar-DZ");
+  return new Date(date).toLocaleString("ar-DZ");
 }
 
+function generateId(){
+  return Date.now() + Math.floor(Math.random()*100000);
+}
 
-/* =========================
-   NORMALIZE OLD DATA
-========================= */
+function saveData(){
+  localStorage.setItem("tijara_products",JSON.stringify(products));
+  localStorage.setItem("tijara_sales",JSON.stringify(sales));
+  localStorage.setItem("tijara_invoices",JSON.stringify(invoices));
+  localStorage.setItem("tijara_customers",JSON.stringify(customers));
+  localStorage.setItem("tijara_returns",JSON.stringify(returns));
+  localStorage.setItem("tijara_stock_movements",JSON.stringify(stockMovements));
+}
 
 function normalizeData(){
 
-    products = products.map(p=>({
-        id:p.id || Date.now()+Math.random(),
-        name:p.name || "",
-        category:p.category || "",
-        size:p.size || "",
-        unit:p.unit || "قطعة",
-        buy:Number(p.buy || p.buyPrice || 0),
-        sell:Number(p.sell || p.sellPrice || 0),
-        stock:Number(p.stock || 0),
-        barcode:p.barcode || "",
-        image:p.image || ""
-    }));
+  products = products.map(p => ({
+    id:p.id ?? generateId(),
+    name:p.name || "",
+    category:p.category || "",
+    size:p.size || "",
+    unit:p.unit || "قطعة",
+    buy:Number(p.buy || 0),
+    sell:Number(p.sell || 0),
+    stock:Number(p.stock || 0),
+    barcode:p.barcode || "",
+    image:p.image || ""
+  }));
 
-    customers = customers.map(c=>({
-        id:c.id || Date.now()+Math.random(),
-        name:c.name || "",
-        phone:c.phone || "",
-        address:c.address || "",
-        notes:c.notes || "",
-        payments:Array.isArray(c.payments) ? c.payments : []
-    }));
+  sales = sales.map(s => ({
+    ...s,
+    quantity:Number(s.quantity || 0),
+    price:Number(s.price || 0),
+    buy:Number(s.buy || 0)
+  }));
 
-    invoices = invoices.map(inv=>({
-        ...inv,
-        subtotal:Number(inv.subtotal ?? inv.total ?? 0),
-        discount:Number(inv.discount || 0),
-        total:Number(inv.total || 0),
-        paid:Number(inv.paid || 0),
-        change:Number(inv.change || 0),
-        due:Number(inv.due || 0),
-        profit:Number(inv.profit || 0),
-        returnedTotal:Number(inv.returnedTotal || 0),
-        returnedProfit:Number(inv.returnedProfit || 0),
-        createdAt:inv.createdAt || new Date(inv.date || Date.now()).getTime()
-    }));
+  invoices = invoices.map(i => ({
+    ...i,
+    items:Array.isArray(i.items) ? i.items : [],
+    subtotal:Number(i.subtotal || 0),
+    discount:Number(i.discount || 0),
+    total:Number(i.total || 0),
+    paid:Number(i.paid || 0),
+    change:Number(i.change || 0),
+    due:Number(i.due || 0),
+    profit:Number(i.profit || 0),
+    returnedTotal:Number(i.returnedTotal || 0),
+    returnedProfit:Number(i.returnedProfit || 0)
+  }));
 
-    returns = returns.map(r=>({
-        ...r,
-        total:Number(r.total || 0),
-        items:Array.isArray(r.items) ? r.items : []
-    }));
-}
+  customers = customers.map(c => ({
+    ...c,
+    payments:Array.isArray(c.payments) ? c.payments : []
+  }));
 
-normalizeData();
+  returns = returns.map(r => ({
+    ...r,
+    items:Array.isArray(r.items) ? r.items : [],
+    total:Number(r.total || 0),
+    returnedProfit:Number(r.returnedProfit || 0)
+  }));
 
+  stockMovements = stockMovements.map(m => ({
+    ...m,
+    quantity:Number(m.quantity || 0),
+    beforeStock:Number(m.beforeStock || 0),
+    afterStock:Number(m.afterStock || 0)
+  }));
 
-/* =========================
-   DASHBOARD
-========================= */
-
-function refreshDashboard(){
-
-    const today=todayKey();
-
-    const todayInvoices=invoices.filter(inv=>{
-        const d=new Date(inv.date || inv.createdAt);
-        const key=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-        return key===today;
-    });
-
-    const salesToday=todayInvoices.reduce((sum,i)=>sum+Number(i.total||0),0);
-
-    const profitToday=todayInvoices.reduce((sum,i)=>{
-        return sum+
-            Number(i.profit||0)-
-            Number(i.returnedProfit||0);
-    },0);
-
-    document.getElementById("todaySales").textContent=money(salesToday);
-    document.getElementById("productCount").textContent=products.length;
-    document.getElementById("salesCount").textContent=todayInvoices.length;
-    document.getElementById("todayProfit").textContent=money(profitToday);
+  saveData();
 }
 
 
-/* =========================
-   PRODUCTS
-========================= */
+/* ================= NAVIGATION ================= */
+
+function showSection(id,button){
+
+  document.querySelectorAll(".section").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+  const section = document.getElementById(id);
+
+  if(section){
+    section.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  refresh();
+}
+
+function goTo(id){
+
+  const button = Array.from(document.querySelectorAll(".nav-btn"))
+    .find(b => b.getAttribute("onclick")?.includes("'" + id + "'"));
+
+  showSection(id,button);
+}
+
+
+/* ================= STOCK MOVEMENTS ================= */
+
+function addStockMovement({
+  product,
+  type,
+  quantity,
+  beforeStock,
+  afterStock,
+  reason,
+  referenceId="",
+  referenceNumber="",
+  direction=""
+}){
+
+  if(!product || Number(quantity) <= 0){
+    return;
+  }
+
+  stockMovements.unshift({
+    id:generateId(),
+    productId:product.id,
+    productName:product.name,
+    barcode:product.barcode || "",
+    type,
+    direction,
+    quantity:Number(quantity),
+    beforeStock:Number(beforeStock),
+    afterStock:Number(afterStock),
+    reason:reason || "",
+    referenceId:referenceId || "",
+    referenceNumber:referenceNumber || "",
+    date:new Date().toISOString(),
+    createdAt:Date.now()
+  });
+}
+
+function getMovementTypeText(m){
+
+  if(m.type === "in"){
+    return {
+      text:"⬆️ دخول",
+      className:"in-text",
+      movementClass:"movement-in"
+    };
+  }
+
+  if(m.type === "out"){
+    return {
+      text:"⬇️ خروج",
+      className:"out-text",
+      movementClass:"movement-out"
+    };
+  }
+
+  return {
+    text:m.direction === "in" ? "⬆️ تعديل - دخول" : "⬇️ تعديل - خروج",
+    className:"adjust-text",
+    movementClass:"movement-adjust"
+  };
+}
+
+function renderStockMovements(){
+
+  const list = document.getElementById("stockMovementsList");
+  if(!list) return;
+
+  const search = (document.getElementById("stockSearch")?.value || "")
+    .trim()
+    .toLowerCase();
+
+  const filter = document.getElementById("stockMovementFilter")?.value || "";
+
+  let data = stockMovements.filter(m => {
+
+    const text = [
+      m.productName,
+      m.barcode,
+      m.reason,
+      m.referenceNumber
+    ].join(" ").toLowerCase();
+
+    const matchesSearch = !search || text.includes(search);
+    const matchesFilter = !filter || m.type === filter;
+
+    return matchesSearch && matchesFilter;
+  });
+
+  if(!data.length){
+
+    list.innerHTML = `
+      <div class="card empty">
+        📦 لا توجد حركات مخزون مسجلة.
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML = data.map(m=>{
+
+    const type = getMovementTypeText(m);
+
+    return `
+      <div class="movement-card ${type.movementClass}">
+
+        <div class="movement-head">
+
+          <div>
+            <div style="font-weight:900;font-size:17px">
+              ${escapeHTML(m.productName)}
+            </div>
+
+            <div style="color:#64748b;font-size:12px;margin-top:4px">
+              ${escapeHTML(m.reason || "بدون سبب")}
+            </div>
+          </div>
+
+          <div class="badge badge-blue">
+            ${type.text}
+          </div>
+
+        </div>
+
+        <div style="margin-top:12px">
+
+          <span class="movement-quantity ${type.className}">
+            ${m.type === "adjustment" && m.direction === "out" ? "-" : "+"}${m.quantity}
+          </span>
+
+          <span style="color:#64748b">
+            ${escapeHTML(products.find(p=>String(p.id)===String(m.productId))?.unit || "قطعة")}
+          </span>
+
+        </div>
+
+        <div class="summary-box" style="margin-top:10px">
+
+          <div class="summary-line">
+            <span>قبل الحركة</span>
+            <strong>${m.beforeStock}</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>بعد الحركة</span>
+            <strong>${m.afterStock}</strong>
+          </div>
+
+          ${
+            m.referenceNumber
+            ?
+            `
+            <div class="summary-line">
+              <span>المرجع</span>
+              <strong>${escapeHTML(m.referenceNumber)}</strong>
+            </div>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+        <div style="color:#64748b;font-size:12px;margin-top:8px">
+          🕒 ${formatDate(m.date)}
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+function updateStockStats(){
+
+  const inTotal = stockMovements
+    .filter(m=>m.type==="in")
+    .reduce((sum,m)=>sum+Number(m.quantity||0),0);
+
+  const outTotal = stockMovements
+    .filter(m=>m.type==="out")
+    .reduce((sum,m)=>sum+Number(m.quantity||0),0);
+
+  const adjustTotal = stockMovements
+    .filter(m=>m.type==="adjustment")
+    .reduce((sum,m)=>sum+Number(m.quantity||0),0);
+
+  document.getElementById("stockInTotal").textContent = inTotal.toLocaleString("ar-DZ");
+  document.getElementById("stockOutTotal").textContent = outTotal.toLocaleString("ar-DZ");
+  document.getElementById("stockAdjustTotal").textContent = adjustTotal.toLocaleString("ar-DZ");
+  document.getElementById("stockMovementCount").textContent = stockMovements.length.toLocaleString("ar-DZ");
+}
+
+
+/* ================= STOCK ADJUSTMENT ================= */
+
+function openStockModal(productId){
+
+  const product = products.find(p=>String(p.id)===String(productId));
+
+  if(!product) return;
+
+  currentStockProductId = product.id;
+
+  document.getElementById("stockModalProductInfo").innerHTML = `
+    <div class="summary-line">
+      <span>المنتج</span>
+      <strong>${escapeHTML(product.name)}</strong>
+    </div>
+
+    <div class="summary-line">
+      <span>المخزون الحالي</span>
+      <strong>${product.stock} ${escapeHTML(product.unit)}</strong>
+    </div>
+  `;
+
+  document.getElementById("newStockValue").value = product.stock;
+  document.getElementById("stockAdjustmentReason").value = "";
+
+  updateStockDifference();
+
+  document.getElementById("stockModal").classList.add("show");
+}
+
+function closeStockModal(){
+
+  currentStockProductId = null;
+
+  document.getElementById("stockModal").classList.remove("show");
+}
+
+function updateStockDifference(){
+
+  const product = products.find(p=>String(p.id)===String(currentStockProductId));
+
+  if(!product) return;
+
+  const newValue = Math.max(
+    0,
+    Number(document.getElementById("newStockValue").value || 0)
+  );
+
+  const difference = newValue - Number(product.stock || 0);
+
+  let html = "";
+
+  if(difference > 0){
+
+    html = `
+      <div class="summary-line">
+        <span>الفرق</span>
+        <strong class="in-text">⬆️ +${difference}</strong>
+      </div>
+      <div style="color:#64748b;font-size:12px">
+        سيتم تسجيل دخول ${difference} إلى المخزون.
+      </div>
+    `;
+
+  }else if(difference < 0){
+
+    html = `
+      <div class="summary-line">
+        <span>الفرق</span>
+        <strong class="out-text">⬇️ ${difference}</strong>
+      </div>
+      <div style="color:#64748b;font-size:12px">
+        سيتم تسجيل خروج ${Math.abs(difference)} من المخزون.
+      </div>
+    `;
+
+  }else{
+
+    html = `
+      <div class="summary-line">
+        <span>الفرق</span>
+        <strong>0</strong>
+      </div>
+      <div style="color:#64748b;font-size:12px">
+        لا يوجد تغيير في المخزون.
+      </div>
+    `;
+  }
+
+  document.getElementById("stockDifference").innerHTML = html;
+}
+
+function confirmStockAdjustment(){
+
+  const product = products.find(p=>String(p.id)===String(currentStockProductId));
+
+  if(!product) return;
+
+  const newStock = Math.max(
+    0,
+    Number(document.getElementById("newStockValue").value || 0)
+  );
+
+  const reason = document.getElementById("stockAdjustmentReason").value.trim();
+
+  if(!reason){
+    alert("⚠️ اكتب سبب تعديل المخزون.");
+    return;
+  }
+
+  const before = Number(product.stock || 0);
+  const difference = newStock - before;
+
+  if(difference === 0){
+
+    alert("ℹ️ لم يتم تغيير كمية المخزون.");
+    closeStockModal();
+    return;
+  }
+
+  product.stock = newStock;
+
+  addStockMovement({
+    product,
+    type:"adjustment",
+    direction:difference > 0 ? "in" : "out",
+    quantity:Math.abs(difference),
+    beforeStock:before,
+    afterStock:newStock,
+    reason
+  });
+
+  saveData();
+  closeStockModal();
+  refresh();
+
+  alert("✅ تم تعديل المخزون وتسجيل الحركة.");
+}
+
+
+/* ================= PRODUCTS ================= */
 
 function addProduct(){
 
-    const name=document.getElementById("productName").value.trim();
-    const category=document.getElementById("productCategory").value.trim();
-    const size=document.getElementById("productSize").value.trim();
-    const unit=document.getElementById("productUnit").value.trim() || "قطعة";
-    const buy=Number(document.getElementById("buyPrice").value || 0);
-    const sell=Number(document.getElementById("sellPrice").value || 0);
-    const stock=Number(document.getElementById("stock").value || 0);
-    const barcode=document.getElementById("productBarcode").value.trim();
-    const imageInput=document.getElementById("productImage");
+  const name = document.getElementById("productName").value.trim();
+  const category = document.getElementById("productCategory").value.trim();
+  const size = document.getElementById("productSize").value.trim();
+  const unit = document.getElementById("productUnit").value.trim() || "قطعة";
+  const buy = Number(document.getElementById("buyPrice").value || 0);
+  const sell = Number(document.getElementById("sellPrice").value || 0);
+  const stock = Math.max(0,Number(document.getElementById("productStock").value || 0));
+  const barcode = document.getElementById("productBarcode").value.trim();
+  const imageFile = document.getElementById("productImage").files[0];
 
-    if(!name){
-        alert("اكتب اسم المنتج");
-        return;
+  if(!name){
+    alert("⚠️ اكتب اسم المنتج.");
+    return;
+  }
+
+  if(sell <= 0){
+    alert("⚠️ أدخل سعر البيع.");
+    return;
+  }
+
+  const product = {
+    id:generateId(),
+    name,
+    category,
+    size,
+    unit,
+    buy,
+    sell,
+    stock,
+    barcode,
+    image:""
+  };
+
+  function finishAdd(){
+
+    products.unshift(product);
+
+    if(stock > 0){
+
+      addStockMovement({
+        product,
+        type:"in",
+        quantity:stock,
+        beforeStock:0,
+        afterStock:stock,
+        reason:"إضافة منتج جديد"
+      });
+
     }
 
-    if(sell<0 || buy<0 || stock<0){
-        alert("تحقق من الأسعار والمخزون");
-        return;
-    }
+    saveData();
 
-    const file=imageInput.files[0];
+    document.getElementById("productName").value="";
+    document.getElementById("productCategory").value="";
+    document.getElementById("productSize").value="";
+    document.getElementById("productUnit").value="";
+    document.getElementById("buyPrice").value="";
+    document.getElementById("sellPrice").value="";
+    document.getElementById("productStock").value="0";
+    document.getElementById("productBarcode").value="";
+    document.getElementById("productImage").value="";
 
-    function finish(image){
+    refresh();
 
-        products.push({
-            id:Date.now()+Math.random(),
-            name,
-            category,
-            size,
-            unit,
-            buy,
-            sell,
-            stock,
-            barcode,
-            image:image || ""
-        });
+    alert("✅ تمت إضافة المنتج.");
+  }
 
-        saveData();
+  if(imageFile){
 
-        document.getElementById("productName").value="";
-        document.getElementById("productCategory").value="";
-        document.getElementById("productSize").value="";
-        document.getElementById("productUnit").value="";
-        document.getElementById("buyPrice").value="";
-        document.getElementById("sellPrice").value="";
-        document.getElementById("stock").value="";
-        document.getElementById("productBarcode").value="";
-        document.getElementById("productImage").value="";
+    const reader = new FileReader();
 
-        renderProducts();
-        renderSaleProducts();
-        refreshDashboard();
+    reader.onload = function(e){
+      product.image = e.target.result;
+      finishAdd();
+    };
 
-        alert("✅ تمت إضافة المنتج");
-    }
+    reader.readAsDataURL(imageFile);
 
-    if(file){
-        const reader=new FileReader();
-        reader.onload=e=>finish(e.target.result);
-        reader.readAsDataURL(file);
-    }else{
-        finish("");
-    }
-}
-
-function renderProducts(){
-
-    const box=document.getElementById("productsList");
-    const search=(document.getElementById("productsSearch")?.value || "").trim().toLowerCase();
-
-    const filtered=products.filter(p=>{
-        return !search ||
-            p.name.toLowerCase().includes(search) ||
-            String(p.barcode||"").toLowerCase().includes(search);
-    });
-
-    if(!filtered.length){
-        box.innerHTML='<div class="empty">لا توجد منتجات</div>';
-        return;
-    }
-
-    box.innerHTML=filtered.map(p=>`
-        <div class="invoice">
-            <div class="invoice-head">
-                <div>
-                    <strong>${escapeHTML(p.name)}</strong>
-                    <div style="color:#64748b;font-size:13px">
-                        ${escapeHTML(p.category || "بدون فئة")}
-                        ${p.size ? " • "+escapeHTML(p.size) : ""}
-                    </div>
-                </div>
-
-                <span class="badge ${p.stock>0?"green":"red"}">
-                    المخزون: ${p.stock}
-                </span>
-            </div>
-
-            <div style="margin-top:8px">
-                شراء: <strong>${money(p.buy)}</strong>
-                &nbsp; | &nbsp;
-                بيع: <strong>${money(p.sell)}</strong>
-            </div>
-
-            ${p.barcode ? `<div style="font-size:12px;color:#64748b;margin-top:5px">باركود: ${escapeHTML(p.barcode)}</div>` : ""}
-
-            <div class="actions" style="margin-top:10px">
-                <button class="btn danger" onclick="deleteProduct(${p.id})">
-                    🗑️ حذف
-                </button>
-            </div>
-        </div>
-    `).join("");
+  }else{
+    finishAdd();
+  }
 }
 
 function deleteProduct(id){
 
-    const used=invoices.some(inv=>
-        Array.isArray(inv.items) &&
-        inv.items.some(item=>item.productId==id)
-    );
+  const product = products.find(p=>String(p.id)===String(id));
 
-    if(used){
-        alert("لا يمكن حذف هذا المنتج لأنه موجود في فواتير سابقة.");
-        return;
-    }
+  if(!product) return;
 
-    if(!confirm("هل تريد حذف المنتج؟")) return;
+  if(!confirm(`هل تريد حذف المنتج "${product.name}"؟`)){
+    return;
+  }
 
-    products=products.filter(p=>p.id!=id);
-    saveData();
+  products = products.filter(p=>String(p.id)!==String(id));
 
-    renderProducts();
-    renderSaleProducts();
-    refreshDashboard();
+  saveData();
+  refresh();
+
+  alert("🗑️ تم حذف المنتج.");
+}
+
+function productCardHTML(p, clickable=false){
+
+  let stockClass = "";
+
+  if(p.stock <= 0){
+    stockClass = "stock-empty";
+  }else if(p.stock <= 5){
+    stockClass = "stock-low";
+  }
+
+  const click = clickable
+    ? `onclick="addToCart(${p.id})" style="cursor:pointer"`
+    : "";
+
+  return `
+    <div class="product-card" ${click}>
+
+      <div class="product-image">
+        ${
+          p.image
+          ? `<img src="${p.image}" alt="">`
+          : `📦`
+        }
+      </div>
+
+      <div class="product-body">
+
+        <div class="product-name">
+          ${escapeHTML(p.name)}
+        </div>
+
+        ${
+          p.category
+          ?
+          `<div class="product-meta">${escapeHTML(p.category)}</div>`
+          :
+          ""
+        }
+
+        ${
+          p.size
+          ?
+          `<div class="product-meta">المقاس: ${escapeHTML(p.size)}</div>`
+          :
+          ""
+        }
+
+        <div class="product-price">
+          ${money(p.sell)}
+        </div>
+
+        <span class="stock-badge ${stockClass}">
+          المخزون: ${p.stock}
+        </span>
+
+      </div>
+
+    </div>
+  `;
+}
+
+function renderProducts(){
+
+  const grid = document.getElementById("productsGrid");
+  if(!grid) return;
+
+  const search = (document.getElementById("productSearch")?.value || "")
+    .trim()
+    .toLowerCase();
+
+  const category = document.getElementById("productCategoryFilter")?.value || "";
+
+  const data = products.filter(p=>{
+
+    const text = [
+      p.name,
+      p.category,
+      p.size,
+      p.barcode
+    ].join(" ").toLowerCase();
+
+    return (!search || text.includes(search))
+      && (!category || p.category === category);
+  });
+
+  if(!data.length){
+
+    grid.innerHTML = `
+      <div class="card empty" style="grid-column:1/-1">
+        لا توجد منتجات.
+      </div>
+    `;
+
+    return;
+  }
+
+  grid.innerHTML = data.map(p=>`
+    <div>
+
+      ${productCardHTML(p)}
+
+      <div class="actions">
+
+        <button
+          class="btn btn-warning btn-small"
+          onclick="openStockModal(${p.id})"
+        >
+          📦 تعديل المخزون
+        </button>
+
+        <button
+          class="btn btn-danger btn-small"
+          onclick="deleteProduct(${p.id})"
+        >
+          🗑️ حذف
+        </button>
+
+      </div>
+
+    </div>
+  `).join("");
+}
+
+function updateCategoryFilter(){
+
+  const select = document.getElementById("productCategoryFilter");
+
+  if(!select) return;
+
+  const current = select.value;
+
+  const categories = [...new Set(
+    products
+      .map(p=>p.category)
+      .filter(Boolean)
+  )].sort();
+
+  select.innerHTML =
+    `<option value="">كل الفئات</option>` +
+    categories.map(c=>
+      `<option value="${escapeHTML(c)}">${escapeHTML(c)}</option>`
+    ).join("");
+
+  select.value = current;
 }
 
 
-/* =========================
-   SALES
-========================= */
+/* ================= HOME PRODUCTS ================= */
+
+function renderHomeProducts(){
+
+  const box = document.getElementById("homeProducts");
+  if(!box) return;
+
+  const search = (document.getElementById("homeProductSearch")?.value || "")
+    .trim()
+    .toLowerCase();
+
+  const data = products
+    .filter(p=>{
+      const text = [p.name,p.category,p.barcode].join(" ").toLowerCase();
+      return !search || text.includes(search);
+    })
+    .slice(0,8);
+
+  if(!data.length){
+
+    box.innerHTML = `<div class="empty">لا توجد منتجات مطابقة.</div>`;
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="products-grid">
+      ${data.map(p=>productCardHTML(p,true)).join("")}
+    </div>
+  `;
+}
+
+
+/* ================= SALES / CART ================= */
 
 function renderSaleProducts(){
 
-    const grid=document.getElementById("saleProductsGrid");
-    const search=(document.getElementById("saleSearch")?.value || "").trim().toLowerCase();
+  const grid = document.getElementById("saleProductsGrid");
+  if(!grid) return;
 
-    const filtered=products.filter(p=>{
-        return !search ||
-            p.name.toLowerCase().includes(search) ||
-            String(p.barcode||"").toLowerCase().includes(search);
-    });
+  const search = (document.getElementById("saleSearch")?.value || "")
+    .trim()
+    .toLowerCase();
 
-    if(!filtered.length){
-        grid.innerHTML='<div class="empty">لا توجد منتجات مطابقة</div>';
-        return;
-    }
+  const data = products.filter(p=>{
 
-    grid.innerHTML=filtered.map(p=>{
+    const text = [
+      p.name,
+      p.category,
+      p.size,
+      p.barcode
+    ].join(" ").toLowerCase();
 
-        const cartItem=cart.find(c=>c.productId==p.id);
-        const qty=cartItem ? cartItem.quantity : 0;
+    return !search || text.includes(search);
+  });
 
-        return `
-            <div class="product-card"
-                 onclick="addToCart(${p.id})">
+  if(!data.length){
 
-                ${p.image
-                    ? `<img class="product-image" src="${p.image}" alt="">`
-                    : `<div class="product-image">📦</div>`
-                }
+    grid.innerHTML = `
+      <div class="empty" style="grid-column:1/-1">
+        لا توجد منتجات.
+      </div>
+    `;
 
-                ${qty>0 ? `<span class="qty-badge">×${qty}</span>` : ""}
+    return;
+  }
 
-                <div class="product-info">
-                    <div class="product-name">${escapeHTML(p.name)}</div>
-                    <div class="price">${money(p.sell)}</div>
-                    <div class="stock">المخزون: ${p.stock}</div>
-                </div>
-            </div>
-        `;
-    }).join("");
+  grid.innerHTML = data.map(p=>{
+
+    const disabled = p.stock <= 0;
+
+    return `
+      <div
+        style="${disabled ? "opacity:.55" : ""}"
+        onclick="${disabled ? "" : `addToCart(${p.id})`}"
+      >
+        ${productCardHTML(p,true)}
+      </div>
+    `;
+  }).join("");
 }
 
 function addToCart(productId){
 
-    const product=products.find(p=>p.id==productId);
+  const product = products.find(p=>String(p.id)===String(productId));
 
-    if(!product) return;
+  if(!product) return;
 
-    const existing=cart.find(c=>c.productId==productId);
+  if(product.stock <= 0){
+    alert("⚠️ هذا المنتج غير متوفر في المخزون.");
+    return;
+  }
 
-    if(existing){
-        if(existing.quantity>=product.stock){
-            alert("❌ لا توجد كمية كافية في المخزون");
-            return;
-        }
-        existing.quantity++;
-    }else{
+  const existing = cart.find(i=>String(i.productId)===String(product.id));
 
-        if(product.stock<=0){
-            alert("❌ المنتج غير متوفر في المخزون");
-            return;
-        }
+  if(existing){
 
-        cart.push({
-            productId:product.id,
-            name:product.name,
-            price:product.sell,
-            buy:product.buy,
-            image:product.image,
-            quantity:1
-        });
+    if(existing.quantity >= product.stock){
+      alert("⚠️ لا توجد كمية إضافية كافية.");
+      return;
     }
 
-    renderSaleProducts();
-    renderCart();
+    existing.quantity++;
+
+  }else{
+
+    cart.push({
+      productId:product.id,
+      name:product.name,
+      price:product.sell,
+      buy:product.buy,
+      image:product.image,
+      quantity:1
+    });
+  }
+
+  renderCart();
+  updateSaleSummary();
 }
 
-function increaseCart(id){
+function decreaseCart(productId){
 
-    const item=cart.find(c=>c.productId==id);
-    const product=products.find(p=>p.id==id);
+  const item = cart.find(i=>String(i.productId)===String(productId));
 
-    if(!item || !product) return;
+  if(!item) return;
 
-    if(item.quantity>=product.stock){
-        alert("❌ لا توجد كمية كافية");
-        return;
-    }
+  item.quantity--;
 
-    item.quantity++;
+  if(item.quantity <= 0){
+    cart = cart.filter(i=>String(i.productId)!==String(productId));
+  }
 
-    renderSaleProducts();
-    renderCart();
+  renderCart();
+  updateSaleSummary();
 }
 
-function decreaseCart(id){
+function removeFromCart(productId){
 
-    const item=cart.find(c=>c.productId==id);
+  cart = cart.filter(i=>String(i.productId)!==String(productId));
 
-    if(!item) return;
-
-    item.quantity--;
-
-    if(item.quantity<=0){
-        cart=cart.filter(c=>c.productId!=id);
-    }
-
-    renderSaleProducts();
-    renderCart();
-}
-
-function removeFromCart(id){
-    cart=cart.filter(c=>c.productId!=id);
-    renderSaleProducts();
-    renderCart();
+  renderCart();
+  updateSaleSummary();
 }
 
 function clearCart(){
-    cart=[];
-    renderSaleProducts();
-    renderCart();
+
+  cart = [];
+
+  renderCart();
+  updateSaleSummary();
 }
 
 function renderCart(){
 
-    const box=document.getElementById("cartList");
-    const empty=document.getElementById("cartEmpty");
+  const list = document.getElementById("cartList");
 
-    if(!cart.length){
-        box.innerHTML="";
-        empty.style.display="block";
-        updateCheckout();
-        return;
-    }
+  if(!list) return;
 
-    empty.style.display="none";
+  if(!cart.length){
 
-    box.innerHTML=cart.map(item=>`
-        <div class="cart-item">
-            <div>
-                <strong>${escapeHTML(item.name)}</strong>
-                <div style="font-size:12px;color:#64748b">
-                    ${money(item.price)} × ${item.quantity}
-                </div>
-            </div>
+    list.innerHTML = `<div class="empty">السلة فارغة</div>`;
+    return;
+  }
 
-            <div class="cart-controls">
-                <button class="small-btn" onclick="decreaseCart(${item.productId})">−</button>
-                <strong>${item.quantity}</strong>
-                <button class="small-btn" onclick="increaseCart(${item.productId})">+</button>
-                <button class="small-btn" onclick="removeFromCart(${item.productId})">🗑️</button>
-            </div>
+  list.innerHTML = cart.map(item=>`
+
+    <div class="cart-item">
+
+      <div style="flex:1">
+
+        <strong>${escapeHTML(item.name)}</strong>
+
+        <div style="font-size:12px;color:#64748b">
+          ${money(item.price)} × ${item.quantity}
         </div>
-    `).join("");
 
-    updateCheckout();
+      </div>
+
+      <div class="qty-controls">
+
+        <button
+          class="qty-btn"
+          onclick="addToCart(${item.productId})"
+        >
+          +
+        </button>
+
+        <strong>${item.quantity}</strong>
+
+        <button
+          class="qty-btn"
+          onclick="decreaseCart(${item.productId})"
+        >
+          −
+        </button>
+
+        <button
+          class="qty-btn"
+          onclick="removeFromCart(${item.productId})"
+        >
+          🗑️
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+  const total = cart.reduce(
+    (sum,i)=>sum + i.price*i.quantity,
+    0
+  );
+
+  document.getElementById("cartTotal").textContent = money(total);
 }
 
-function getCheckoutValues(){
+function calculateSale(){
 
-    const subtotal=cart.reduce((sum,item)=>{
-        return sum + item.price*item.quantity;
-    },0);
+  const subtotal = cart.reduce(
+    (sum,i)=>sum + i.price*i.quantity,
+    0
+  );
 
-    const type=document.getElementById("discountType").value;
-    const discountInput=Number(document.getElementById("discountInput").value || 0);
+  const discountType = document.getElementById("discountType")?.value || "amount";
+  const discountValue = Math.max(
+    0,
+    Number(document.getElementById("discountValue")?.value || 0)
+  );
 
-    let discount=0;
+  let discount = discountValue;
 
-    if(type==="percent"){
-        discount=subtotal*(discountInput/100);
-    }else{
-        discount=discountInput;
-    }
+  if(discountType === "percent"){
+    discount = subtotal * discountValue / 100;
+  }
 
-    if(discount<0) discount=0;
-    if(discount>subtotal) discount=subtotal;
+  discount = Math.min(discount,subtotal);
 
-    const total=subtotal-discount;
+  const total = Math.max(0,subtotal-discount);
 
-    const paymentMethod=document.getElementById("paymentMethod").value;
-    const paid=Number(document.getElementById("amountPaid").value || 0);
+  const method = document.getElementById("paymentMethod")?.value || "cash";
 
-    let change=0;
-    let due=0;
+  let paid = Number(document.getElementById("amountPaid")?.value || 0);
 
-    if(paymentMethod==="آجل"){
-        due=Math.max(0,total-paid);
-    }else{
-        change=Math.max(0,paid-total);
-    }
+  if(method !== "credit" && paid === 0 && cart.length){
+    paid = total;
+  }
 
-    return {subtotal,discount,total,paid,change,due};
+  if(method === "credit"){
+    paid = Math.min(paid,total);
+  }
+
+  const change = Math.max(0,paid-total);
+  const due = Math.max(0,total-paid);
+
+  return {
+    subtotal,
+    discount,
+    total,
+    paid,
+    change,
+    due
+  };
 }
 
-function updateCheckout(){
+function updateSaleSummary(){
 
-    const values=getCheckoutValues();
+  const c = calculateSale();
 
-    document.getElementById("checkoutSubtotal").textContent=money(values.subtotal);
-    document.getElementById("checkoutDiscount").textContent=money(values.discount);
-    document.getElementById("cartTotal").textContent=money(values.total);
-
-    document.getElementById("finalSubtotal").textContent=money(values.subtotal);
-    document.getElementById("finalDiscount").textContent=money(values.discount);
-    document.getElementById("finalTotal").textContent=money(values.total);
-
-    const method=document.getElementById("paymentMethod").value;
-
-    if(method==="آجل"){
-        document.getElementById("paidLabel").textContent="المتبقي";
-        document.getElementById("changeDue").textContent=money(values.due);
-    }else{
-        document.getElementById("paidLabel").textContent="الباقي";
-        document.getElementById("changeDue").textContent=money(values.change);
-    }
+  document.getElementById("saleSubtotal").textContent = money(c.subtotal);
+  document.getElementById("saleDiscount").textContent = money(c.discount);
+  document.getElementById("saleFinalTotal").textContent = money(c.total);
+  document.getElementById("saleChange").textContent = money(c.change);
+  document.getElementById("saleDue").textContent = money(c.due);
 }
 
-function populateCustomerSelect(){
+function handleBarcode(event){
 
-    const select=document.getElementById("checkoutCustomer");
+  if(event.key !== "Enter") return;
 
-    select.innerHTML=
-        `<option value="">زبون عادي</option>`+
-        customers.map(c=>`
-            <option value="${c.id}">
-                ${escapeHTML(c.name)}${c.phone ? " - "+escapeHTML(c.phone):""}
-            </option>
-        `).join("");
-}
+  const value = document.getElementById("barcodeInput").value.trim();
 
-function barcodeEnter(event){
+  if(!value) return;
 
-    if(event.key!=="Enter") return;
+  const product = products.find(
+    p=>String(p.barcode).toLowerCase()===value.toLowerCase()
+  );
 
-    const input=document.getElementById("barcodeInput");
-    const code=input.value.trim();
+  if(!product){
 
-    if(!code) return;
+    alert("❌ لم يتم العثور على المنتج.");
+    return;
+  }
 
-    const product=products.find(p=>String(p.barcode||"")===code);
+  addToCart(product.id);
 
-    if(!product){
-        alert("❌ لم يتم العثور على منتج بهذا الباركود");
-        input.value="";
-        return;
-    }
-
-    addToCart(product.id);
-    input.value="";
+  document.getElementById("barcodeInput").value="";
 }
 
 function completeSale(){
 
-    if(!cart.length){
-        alert("السلة فارغة");
-        return;
+  if(!cart.length){
+    alert("⚠️ السلة فارغة.");
+    return;
+  }
+
+  for(const item of cart){
+
+    const product = products.find(
+      p=>String(p.id)===String(item.productId)
+    );
+
+    if(!product){
+      alert("❌ أحد المنتجات لم يعد موجودًا.");
+      return;
     }
 
-    for(const item of cart){
-        const product=products.find(p=>p.id==item.productId);
-
-        if(!product || product.stock<item.quantity){
-            alert("❌ المخزون غير كافٍ للمنتج: "+item.name);
-            return;
-        }
+    if(item.quantity > product.stock){
+      alert(`⚠️ الكمية المطلوبة من "${product.name}" غير متوفرة.`);
+      return;
     }
+  }
 
-    const values=getCheckoutValues();
+  const calculation = calculateSale();
 
-    const customerId=document.getElementById("checkoutCustomer").value;
-    const paymentMethod=document.getElementById("paymentMethod").value;
+  const customerId = document.getElementById("saleCustomer").value;
+  const customer = customers.find(
+    c=>String(c.id)===String(customerId)
+  );
 
-    const customer=customers.find(c=>c.id==customerId);
+  const paymentMethod = document.getElementById("paymentMethod").value;
 
-    if(paymentMethod==="آجل" && !customer){
-        alert("❌ يجب اختيار زبون عند البيع بالآجل");
-        return;
-    }
+  const invoiceId = generateId();
+  const invoiceNumber = "INV-" + invoiceId;
 
-    if(paymentMethod!=="آجل" && values.paid<values.total){
-        alert("❌ المبلغ المدفوع أقل من المبلغ المطلوب");
-        return;
-    }
+  const invoiceItems = [];
+  let profit = 0;
 
-    if(paymentMethod==="آجل" && values.paid>values.total){
-        values.paid=values.total;
-        values.due=0;
-    }
+  for(const item of cart){
 
-    const saleId=Date.now()+Math.random();
+    const product = products.find(
+      p=>String(p.id)===String(item.productId)
+    );
 
-    const items=cart.map(item=>({
-        productId:item.productId,
-        name:item.name,
-        quantity:item.quantity,
-        price:item.price,
-        buy:item.buy,
-        total:item.price*item.quantity
-    }));
+    const beforeStock = Number(product.stock);
+    const afterStock = beforeStock - item.quantity;
 
-    const grossProfit=items.reduce((sum,item)=>{
-        return sum+(item.price-item.buy)*item.quantity;
-    },0);
+    product.stock = afterStock;
 
-    const profit=grossProfit-values.discount;
+    const itemTotal = item.price * item.quantity;
+    const itemProfit = (item.price - product.buy) * item.quantity;
 
-    const invoice={
-        id:saleId,
-        number:"INV-"+Math.floor(saleId),
-        customerId:customer ? customer.id : "",
-        customerName:customer ? customer.name : "زبون عادي",
-        items,
-        subtotal:values.subtotal,
-        discount:values.discount,
-        total:values.total,
-        paymentMethod,
-        paid:values.paid,
-        change:values.change,
-        due:values.due,
-        profit,
-        returnedTotal:0,
-        returnedProfit:0,
-        date:new Date().toISOString(),
-        createdAt:Date.now()
-    };
+    profit += itemProfit;
 
-    invoices.push(invoice);
-
-    items.forEach(item=>{
-        const product=products.find(p=>p.id==item.productId);
-        if(product) product.stock-=item.quantity;
-
-        sales.push({
-            id:Date.now()+Math.random(),
-            productId:item.productId,
-            name:item.name,
-            quantity:item.quantity,
-            price:item.price,
-            buy:item.buy,
-            invoiceId:invoice.id,
-            date:new Date().toISOString()
-        });
+    invoiceItems.push({
+      productId:product.id,
+      name:product.name,
+      quantity:item.quantity,
+      price:item.price,
+      buy:product.buy,
+      total:itemTotal
     });
 
-    saveData();
+    addStockMovement({
+      product,
+      type:"out",
+      quantity:item.quantity,
+      beforeStock,
+      afterStock,
+      reason:"بيع",
+      referenceId:invoiceId,
+      referenceNumber:invoiceNumber
+    });
 
-    const number=invoice.number;
+    sales.push({
+      id:generateId(),
+      invoiceId,
+      invoiceNumber,
+      productId:product.id,
+      name:product.name,
+      quantity:item.quantity,
+      price:item.price,
+      buy:product.buy,
+      customerId:customerId || "",
+      customerName:customer?.name || "",
+      date:new Date().toISOString()
+    });
+  }
 
-    cart=[];
+  const invoice = {
+    id:invoiceId,
+    number:invoiceNumber,
+    customerId:customerId || "",
+    customerName:customer?.name || "زبون عادي",
+    items:invoiceItems,
+    subtotal:calculation.subtotal,
+    discount:calculation.discount,
+    total:calculation.total,
+    paymentMethod,
+    paid:calculation.paid,
+    change:calculation.change,
+    due:calculation.due,
+    profit,
+    returnedTotal:0,
+    returnedProfit:0,
+    date:new Date().toISOString(),
+    createdAt:Date.now()
+  };
 
-    document.getElementById("discountInput").value=0;
-    document.getElementById("amountPaid").value=0;
-    document.getElementById("checkoutCustomer").value="";
+  invoices.unshift(invoice);
 
-    renderSaleProducts();
-    renderCart();
-    refresh();
+  saveData();
 
-    alert("✅ تمت عملية البيع\nرقم الفاتورة: "+number);
+  const customerSelect = document.getElementById("saleCustomer");
 
-    goTo("invoices");
+  cart = [];
+
+  document.getElementById("discountValue").value="0";
+  document.getElementById("amountPaid").value="0";
+
+  renderCart();
+  updateSaleSummary();
+  refresh();
+
+  alert("✅ تمت عملية البيع بنجاح\nرقم الفاتورة: " + invoiceNumber);
+
+  goTo("invoices");
+
+  if(customerSelect){
+    customerSelect.value="";
+  }
 }
 
 
-/* =========================
-   INVOICES
-========================= */
+/* ================= CUSTOMER SELECT ================= */
+
+function updateCustomerSelect(){
+
+  const select = document.getElementById("saleCustomer");
+
+  if(!select) return;
+
+  const current = select.value;
+
+  select.innerHTML =
+    `<option value="">زبون عادي</option>` +
+    customers.map(c=>
+      `<option value="${c.id}">${escapeHTML(c.name)}</option>`
+    ).join("");
+
+  select.value=current;
+}
+
+
+/* ================= INVOICES ================= */
 
 function getInvoiceReturnedQty(invoiceId,productId){
 
-    return returns
-        .filter(r=>r.invoiceId==invoiceId)
-        .reduce((sum,r)=>{
-            const item=r.items.find(i=>i.productId==productId);
-            return sum+(item ? Number(item.quantity||0):0);
-        },0);
+  return returns
+    .filter(r=>String(r.invoiceId)===String(invoiceId))
+    .reduce((sum,r)=>{
+
+      const item = r.items.find(
+        i=>String(i.productId)===String(productId)
+      );
+
+      return sum + Number(item?.quantity || 0);
+
+    },0);
 }
 
 function getInvoiceReturnedTotal(invoiceId){
 
-    return returns
-        .filter(r=>r.invoiceId==invoiceId)
-        .reduce((sum,r)=>sum+Number(r.total||0),0);
+  return returns
+    .filter(r=>String(r.invoiceId)===String(invoiceId))
+    .reduce(
+      (sum,r)=>sum+Number(r.total||0),
+      0
+    );
 }
 
 function renderInvoices(){
 
-    const box=document.getElementById("invoicesList");
-    const search=(document.getElementById("invoiceSearch")?.value || "").trim().toLowerCase();
+  const list = document.getElementById("invoicesList");
 
-    const filtered=invoices.filter(inv=>{
-        return !search ||
-            String(inv.number||"").toLowerCase().includes(search) ||
-            String(inv.customerName||"").toLowerCase().includes(search);
-    }).slice().reverse();
+  if(!list) return;
 
-    if(!filtered.length){
-        box.innerHTML='<div class="empty">لا توجد فواتير بعد</div>';
-        return;
-    }
+  const search = (document.getElementById("invoiceSearch")?.value || "")
+    .trim()
+    .toLowerCase();
 
-    box.innerHTML=filtered.map(inv=>{
+  const data = invoices.filter(i=>{
 
-        const returnedTotal=getInvoiceReturnedTotal(inv.id);
-        const netTotal=Math.max(0,inv.total-returnedTotal);
+    const text = [
+      i.number,
+      i.customerName,
+      i.paymentMethod
+    ].join(" ").toLowerCase();
 
-        let paymentBadge="";
+    return !search || text.includes(search);
+  });
 
-        if(inv.paymentMethod==="آجل"){
-            paymentBadge=inv.due>0
-                ? `<span class="badge orange">آجل • متبقي ${money(inv.due)}</span>`
-                : `<span class="badge green">آجل • مسدد</span>`;
-        }else{
-            paymentBadge=`<span class="badge green">${escapeHTML(inv.paymentMethod)}</span>`;
-        }
+  if(!data.length){
 
-        return `
-            <div class="invoice">
-
-                <div class="invoice-head">
-                    <div>
-                        <div class="invoice-number">${escapeHTML(inv.number)}</div>
-                        <div style="font-size:13px;color:#64748b">
-                            ${formatDate(inv.date)}
-                        </div>
-                    </div>
-
-                    <div>${paymentBadge}</div>
-                </div>
-
-                <div style="margin-top:10px">
-                    👤 ${escapeHTML(inv.customerName || "زبون عادي")}
-                </div>
-
-                <div style="margin-top:7px">
-                    المنتجات: ${inv.items?.length || 0}
-                </div>
-
-                <div style="margin-top:8px">
-                    الإجمالي الأصلي:
-                    <strong>${money(inv.total)}</strong>
-                </div>
-
-                ${returnedTotal>0 ? `
-                    <div class="danger-box" style="margin-top:8px">
-                        🔄 المرتجع: ${money(returnedTotal)}
-                        <br>
-                        الصافي بعد المرتجع: <strong>${money(netTotal)}</strong>
-                    </div>
-                ` : ""}
-
-                <div style="margin-top:8px">
-                    الربح:
-                    <strong>${money((inv.profit||0)-(inv.returnedProfit||0))}</strong>
-                </div>
-
-                <div class="actions" style="margin-top:12px">
-                    <button class="btn primary" onclick="viewInvoice(${inv.id})">
-                        👁️ عرض
-                    </button>
-
-                    <button class="btn warning" onclick="openReturnModal(${inv.id})">
-                        🔄 إرجاع
-                    </button>
-                </div>
-            </div>
-        `;
-    }).join("");
-}
-
-function viewInvoice(id){
-
-    const inv=invoices.find(i=>i.id==id);
-
-    if(!inv) return;
-
-    const returnedTotal=getInvoiceReturnedTotal(inv.id);
-    const netTotal=Math.max(0,inv.total-returnedTotal);
-
-    const items=(inv.items||[]).map(item=>`
-        <tr>
-            <td>${escapeHTML(item.name)}</td>
-            <td>${item.quantity}</td>
-            <td>${money(item.price)}</td>
-            <td>${money(item.total)}</td>
-        </tr>
-    `).join("");
-
-    const html=`
-        <!DOCTYPE html>
-        <html lang="ar" dir="rtl">
-        <head>
-            <meta charset="UTF-8">
-            <title>${escapeHTML(inv.number)}</title>
-            <style>
-                body{
-                    font-family:Arial,sans-serif;
-                    padding:20px;
-                    max-width:700px;
-                    margin:auto;
-                }
-                h1{text-align:center}
-                table{
-                    width:100%;
-                    border-collapse:collapse;
-                    margin-top:20px;
-                }
-                th,td{
-                    border:1px solid #ddd;
-                    padding:8px;
-                    text-align:right;
-                }
-                .total{
-                    margin-top:20px;
-                    font-size:18px;
-                }
-                button{
-                    padding:10px 15px;
-                    margin-top:15px;
-                }
-                @media print{
-                    button{display:none}
-                }
-            </style>
-        </head>
-        <body>
-
-            <h1>🛍️ TijaraPro</h1>
-            <h2>${escapeHTML(inv.number)}</h2>
-
-            <p>الزبون: ${escapeHTML(inv.customerName)}</p>
-            <p>التاريخ: ${formatDate(inv.date)}</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>المنتج</th>
-                        <th>الكمية</th>
-                        <th>السعر</th>
-                        <th>الإجمالي</th>
-                    </tr>
-                </thead>
-                <tbody>${items}</tbody>
-            </table>
-
-            <div class="total">
-                المجموع: <strong>${money(inv.subtotal)}</strong><br>
-                الخصم: <strong>${money(inv.discount)}</strong><br>
-                الإجمالي: <strong>${money(inv.total)}</strong><br>
-                ${returnedTotal>0
-                    ? `المرتجع: <strong>${money(returnedTotal)}</strong><br>
-                       الصافي: <strong>${money(netTotal)}</strong>`
-                    : ""
-                }
-            </div>
-
-            <p>طريقة الدفع: ${escapeHTML(inv.paymentMethod)}</p>
-
-            <button onclick="window.print()">🖨️ طباعة</button>
-
-        </body>
-        </html>
+    list.innerHTML = `
+      <div class="card empty">
+        🧾 لا توجد فواتير.
+      </div>
     `;
 
-    const win=window.open("","_blank");
+    return;
+  }
 
-    if(!win){
-        alert("لم يتم فتح نافذة الفاتورة. اسمح بالنوافذ المنبثقة لهذا الموقع.");
-        return;
-    }
+  list.innerHTML = data.map(i=>{
 
-    win.document.write(html);
-    win.document.close();
+    const returned = Number(i.returnedTotal || getInvoiceReturnedTotal(i.id));
+    const net = Math.max(0,Number(i.total||0)-returned);
+
+    return `
+      <div class="invoice-card">
+
+        <div class="invoice-head">
+
+          <div>
+            <div style="font-weight:900;font-size:17px">
+              ${escapeHTML(i.number)}
+            </div>
+
+            <div style="color:#64748b;font-size:12px">
+              ${escapeHTML(i.customerName || "زبون عادي")}
+            </div>
+          </div>
+
+          <div class="badge badge-blue">
+            ${i.paymentMethod==="cash" ? "💵 نقدي" :
+              i.paymentMethod==="card" ? "💳 بطاقة" : "📒 آجل"}
+          </div>
+
+        </div>
+
+        <div class="summary-box">
+
+          <div class="summary-line">
+            <span>التاريخ</span>
+            <strong>${formatDate(i.date)}</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>المجموع</span>
+            <strong>${money(i.total)}</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>المرتجع</span>
+            <strong>${money(returned)}</strong>
+          </div>
+
+          <div class="summary-line total">
+            <span>الصافي</span>
+            <strong>${money(net)}</strong>
+          </div>
+
+          ${
+            i.due > 0
+            ?
+            `
+            <div class="summary-line">
+              <span>الدين</span>
+              <strong class="out-text">${money(i.due)}</strong>
+            </div>
+            `
+            :
+            ""
+          }
+
+          <div class="summary-line">
+            <span>الربح</span>
+            <strong class="in-text">${money((i.profit||0)-(i.returnedProfit||0))}</strong>
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="btn btn-primary btn-small"
+            onclick="printInvoice(${i.id})"
+          >
+            🖨️ طباعة
+          </button>
+
+          <button
+            class="btn btn-warning btn-small"
+            onclick="openReturnModal(${i.id})"
+          >
+            🔄 مرتجع
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+function printInvoice(invoiceId){
+
+  const invoice = invoices.find(
+    i=>String(i.id)===String(invoiceId)
+  );
+
+  if(!invoice) return;
+
+  const returned = Number(invoice.returnedTotal || 0);
+  const net = Math.max(0,invoice.total-returned);
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+      <meta charset="UTF-8">
+      <title>${escapeHTML(invoice.number)}</title>
+
+      <style>
+        body{
+          font-family:Arial,sans-serif;
+          padding:25px;
+          color:#111;
+        }
+
+        .center{text-align:center}
+
+        table{
+          width:100%;
+          border-collapse:collapse;
+          margin-top:20px;
+        }
+
+        th,td{
+          border-bottom:1px solid #ddd;
+          padding:8px;
+          text-align:right;
+        }
+
+        .total{
+          font-size:20px;
+          font-weight:bold;
+          margin-top:20px;
+        }
+      </style>
+    </head>
+
+    <body>
+
+      <div class="center">
+        <h1>TijaraPro</h1>
+        <h2>فاتورة بيع</h2>
+        <p>${escapeHTML(invoice.number)}</p>
+        <p>${formatDate(invoice.date)}</p>
+      </div>
+
+      <p>
+        <strong>الزبون:</strong>
+        ${escapeHTML(invoice.customerName || "زبون عادي")}
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>المنتج</th>
+            <th>الكمية</th>
+            <th>السعر</th>
+            <th>المجموع</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          ${invoice.items.map(item=>`
+
+            <tr>
+              <td>${escapeHTML(item.name)}</td>
+              <td>${item.quantity}</td>
+              <td>${money(item.price)}</td>
+              <td>${money(item.total)}</td>
+            </tr>
+
+          `).join("")}
+
+        </tbody>
+      </table>
+
+      <p>المجموع: <strong>${money(invoice.subtotal)}</strong></p>
+      <p>الخصم: <strong>${money(invoice.discount)}</strong></p>
+      <p>الإجمالي: <strong>${money(invoice.total)}</strong></p>
+
+      ${
+        returned > 0
+        ?
+        `
+        <p>المرتجعات: <strong>${money(returned)}</strong></p>
+        <p class="total">الصافي: ${money(net)}</p>
+        `
+        :
+        `
+        <p class="total">الصافي: ${money(invoice.total)}</p>
+        `
+      }
+
+      <p>طريقة الدفع:
+        <strong>
+          ${
+            invoice.paymentMethod==="cash"
+            ? "نقدي"
+            :
+            invoice.paymentMethod==="card"
+            ? "بطاقة"
+            :
+            "آجل"
+          }
+        </strong>
+      </p>
+
+      ${
+        invoice.due > 0
+        ?
+        `<p>الدين: <strong>${money(invoice.due)}</strong></p>`
+        :
+        ""
+      }
+
+      <div class="center" style="margin-top:40px">
+        شكراً لزيارتكم ❤️
+      </div>
+
+      <script>
+        window.onload=function(){
+          window.print();
+        };
+      <\/script>
+
+    </body>
+    </html>
+  `;
+
+  const win = window.open("","_blank");
+
+  if(!win){
+    alert("⚠️ لم يتم فتح نافذة الطباعة. اسمح بالنوافذ المنبثقة.");
+    return;
+  }
+
+  win.document.write(html);
+  win.document.close();
 }
 
 
-/* =========================
-   RETURNS
-========================= */
+/* ================= RETURNS ================= */
 
 function openReturnModal(invoiceId){
 
-    const invoice=invoices.find(i=>i.id==invoiceId);
+  const invoice = invoices.find(
+    i=>String(i.id)===String(invoiceId)
+  );
 
-    if(!invoice) return;
+  if(!invoice) return;
 
-    currentReturnInvoiceId=invoiceId;
+  currentReturnInvoiceId = invoice.id;
 
-    document.getElementById("returnInvoiceInfo").innerHTML=`
-        <div class="notice">
-            <strong>${escapeHTML(invoice.number)}</strong><br>
-            الزبون: ${escapeHTML(invoice.customerName || "زبون عادي")}<br>
-            قيمة الفاتورة: ${money(invoice.total)}
+  document.getElementById("returnInvoiceInfo").innerHTML = `
+    <div class="summary-box">
+      <div class="summary-line">
+        <span>الفاتورة</span>
+        <strong>${escapeHTML(invoice.number)}</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>الزبون</span>
+        <strong>${escapeHTML(invoice.customerName || "زبون عادي")}</strong>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("returnItemsList").innerHTML =
+    invoice.items.map((item,index)=>{
+
+      const returnedQty = getInvoiceReturnedQty(
+        invoice.id,
+        item.productId
+      );
+
+      const available = Math.max(
+        0,
+        Number(item.quantity)-returnedQty
+      );
+
+      return `
+        <div class="card">
+
+          <div style="font-weight:900">
+            ${escapeHTML(item.name)}
+          </div>
+
+          <div style="font-size:12px;color:#64748b;margin:5px 0">
+            المباع: ${item.quantity}
+            |
+            المرتجع سابقاً: ${returnedQty}
+            |
+            المتاح للمرتجع: ${available}
+          </div>
+
+          <div class="form-group">
+            <label>كمية الإرجاع</label>
+
+            <input
+              class="return-qty"
+              data-index="${index}"
+              data-max="${available}"
+              type="number"
+              min="0"
+              max="${available}"
+              value="0"
+              onchange="updateReturnTotal()"
+              oninput="updateReturnTotal()"
+            >
+          </div>
+
         </div>
-    `;
+      `;
 
-    const box=document.getElementById("returnItems");
-
-    box.innerHTML=(invoice.items||[]).map((item,index)=>{
-
-        const alreadyReturned=getInvoiceReturnedQty(invoice.id,item.productId);
-        const available=Math.max(0,item.quantity-alreadyReturned);
-
-        return `
-            <div class="return-item">
-
-                <div class="return-item-top">
-                    <strong>${escapeHTML(item.name)}</strong>
-                    <span>${money(item.price)}</span>
-                </div>
-
-                <div style="font-size:13px;color:#64748b;margin-top:5px">
-                    المباعة: ${item.quantity}
-                    ${alreadyReturned>0
-                        ? ` • تم إرجاع: ${alreadyReturned}`
-                        : ""
-                    }
-                    • المتبقي للإرجاع: ${available}
-                </div>
-
-                <div class="return-qty">
-
-                    <label>الكمية:</label>
-
-                    <input
-                        class="return-quantity"
-                        data-index="${index}"
-                        data-price="${item.price}"
-                        data-buy="${item.buy}"
-                        data-product-id="${item.productId}"
-                        data-max="${available}"
-                        type="number"
-                        min="0"
-                        max="${available}"
-                        value="0"
-                        oninput="updateReturnTotal()"
-                        ${available<=0 ? "disabled" : ""}
-                    >
-
-                </div>
-            </div>
-        `;
     }).join("");
 
-    updateReturnTotal();
+  updateReturnTotal();
 
-    document.getElementById("returnModal").classList.add("show");
+  document.getElementById("returnModal").classList.add("show");
 }
 
 function closeReturnModal(){
 
-    currentReturnInvoiceId=null;
-    document.getElementById("returnModal").classList.remove("show");
+  currentReturnInvoiceId = null;
+
+  document.getElementById("returnModal").classList.remove("show");
 }
 
 function updateReturnTotal(){
 
-    let total=0;
+  const invoice = invoices.find(
+    i=>String(i.id)===String(currentReturnInvoiceId)
+  );
 
-    document.querySelectorAll(".return-quantity").forEach(input=>{
+  if(!invoice) return;
 
-        let qty=Number(input.value || 0);
-        const max=Number(input.dataset.max || 0);
+  let total = 0;
 
-        if(qty<0) qty=0;
-        if(qty>max) qty=max;
+  document.querySelectorAll(".return-qty").forEach(input=>{
 
-        input.value=qty;
+    const index = Number(input.dataset.index);
+    const qty = Math.max(
+      0,
+      Math.min(
+        Number(input.value || 0),
+        Number(input.dataset.max || 0)
+      )
+    );
 
-        total+=qty*Number(input.dataset.price || 0);
-    });
+    total += qty * Number(invoice.items[index].price || 0);
+  });
 
-    document.getElementById("selectedReturnTotal").textContent=money(total);
+  document.getElementById("returnModalTotal").textContent = money(total);
 }
 
 function confirmReturn(){
 
-    const invoice=invoices.find(i=>i.id==currentReturnInvoiceId);
+  const invoice = invoices.find(
+    i=>String(i.id)===String(currentReturnInvoiceId)
+  );
 
-    if(!invoice){
-        alert("الفاتورة غير موجودة");
-        return;
-    }
+  if(!invoice) return;
 
-    const inputs=[...document.querySelectorAll(".return-quantity")];
+  const inputs = document.querySelectorAll(".return-qty");
 
-    const items=[];
+  const returnItems = [];
 
-    inputs.forEach(input=>{
+  let total = 0;
+  let returnedProfit = 0;
 
-        const qty=Number(input.value || 0);
+  inputs.forEach(input=>{
 
-        if(qty<=0) return;
+    const index = Number(input.dataset.index);
+    const item = invoice.items[index];
 
-        const index=Number(input.dataset.index);
-        const original=invoice.items[index];
-
-        if(!original) return;
-
-        const max=Number(input.dataset.max || 0);
-
-        if(qty>max){
-            alert("❌ كمية الإرجاع غير صحيحة");
-            return;
-        }
-
-        items.push({
-            productId:original.productId,
-            name:original.name,
-            quantity:qty,
-            price:Number(original.price||0),
-            buy:Number(original.buy||0),
-            total:qty*Number(original.price||0)
-        });
-    });
-
-    if(!items.length){
-        alert("اختر كمية واحدة على الأقل للإرجاع");
-        return;
-    }
-
-    const total=items.reduce((sum,item)=>sum+item.total,0);
-
-    const returnedProfit=items.reduce((sum,item)=>{
-        return sum+(item.price-item.buy)*item.quantity;
-    },0);
-
-    if(!confirm(
-        "تأكيد إرجاع بقيمة "+money(total)+"؟\n\nسيتم إعادة الكمية إلى المخزون."
-    )){
-        return;
-    }
-
-    /* إعادة الكمية إلى المخزون */
-
-    items.forEach(item=>{
-
-        const product=products.find(p=>p.id==item.productId);
-
-        if(product){
-            product.stock+=item.quantity;
-        }
-    });
-
-    const returnRecord={
-        id:Date.now()+Math.random(),
-        invoiceId:invoice.id,
-        invoiceNumber:invoice.number,
-        customerId:invoice.customerId || "",
-        customerName:invoice.customerName || "زبون عادي",
-        items,
-        total,
-        returnedProfit,
-        date:new Date().toISOString(),
-        createdAt:Date.now()
-    };
-
-    returns.push(returnRecord);
-
-    invoice.returnedTotal=Number(invoice.returnedTotal||0)+total;
-    invoice.returnedProfit=Number(invoice.returnedProfit||0)+returnedProfit;
-
-    /*
-       في الفواتير الآجلة:
-       نخفض الدين بقيمة المرتجع.
-    */
-    if(invoice.paymentMethod==="آجل"){
-
-        invoice.due=Math.max(
-            0,
-            Number(invoice.due||0)-total
-        );
-    }
-
-    saveData();
-
-    closeReturnModal();
-
-    renderInvoices();
-    renderReturns();
-    renderProducts();
-    renderSaleProducts();
-    refreshDashboard();
-    refreshCustomerStats();
-    renderCustomers();
-
-    alert(
-        "✅ تمت عملية الإرجاع بنجاح\n"+
-        "قيمة المرتجع: "+money(total)+"\n"+
-        "تمت إعادة الكمية إلى المخزون."
+    const returnedBefore = getInvoiceReturnedQty(
+      invoice.id,
+      item.productId
     );
+
+    const max = Math.max(
+      0,
+      Number(item.quantity)-returnedBefore
+    );
+
+    const quantity = Math.max(
+      0,
+      Math.min(
+        Number(input.value || 0),
+        max
+      )
+    );
+
+    if(quantity <= 0) return;
+
+    const itemTotal = quantity * Number(item.price || 0);
+    const itemProfit =
+      quantity *
+      (Number(item.price || 0)-Number(item.buy || 0));
+
+    total += itemTotal;
+    returnedProfit += itemProfit;
+
+    returnItems.push({
+      productId:item.productId,
+      name:item.name,
+      quantity,
+      price:Number(item.price || 0),
+      buy:Number(item.buy || 0),
+      total:itemTotal
+    });
+
+  });
+
+  if(!returnItems.length){
+
+    alert("⚠️ اختر كمية واحدة على الأقل.");
+    return;
+  }
+
+  const returnId = generateId();
+
+  for(const item of returnItems){
+
+    const product = products.find(
+      p=>String(p.id)===String(item.productId)
+    );
+
+    if(product){
+
+      const beforeStock = Number(product.stock || 0);
+      const afterStock = beforeStock + item.quantity;
+
+      product.stock = afterStock;
+
+      addStockMovement({
+        product,
+        type:"in",
+        quantity:item.quantity,
+        beforeStock,
+        afterStock,
+        reason:"مرتجع",
+        referenceId:returnId,
+        referenceNumber:invoice.number
+      });
+    }
+  }
+
+  const returnRecord = {
+    id:returnId,
+    invoiceId:invoice.id,
+    invoiceNumber:invoice.number,
+    customerId:invoice.customerId || "",
+    customerName:invoice.customerName || "",
+    items:returnItems,
+    total,
+    returnedProfit,
+    date:new Date().toISOString(),
+    createdAt:Date.now()
+  };
+
+  returns.unshift(returnRecord);
+
+  invoice.returnedTotal =
+    Number(invoice.returnedTotal || 0)+total;
+
+  invoice.returnedProfit =
+    Number(invoice.returnedProfit || 0)+returnedProfit;
+
+  if(invoice.paymentMethod === "credit"){
+    invoice.due = Math.max(
+      0,
+      Number(invoice.due || 0)-total
+    );
+  }
+
+  saveData();
+
+  closeReturnModal();
+  refresh();
+
+  alert("✅ تم تسجيل المرتجع وإرجاع الكمية إلى المخزون.");
 }
 
 function renderReturns(){
 
-    const box=document.getElementById("returnsList");
+  const list = document.getElementById("returnsList");
 
-    document.getElementById("returnCount").textContent=returns.length;
+  if(!list) return;
 
-    const total=returns.reduce((sum,r)=>sum+Number(r.total||0),0);
+  document.getElementById("returnCount").textContent =
+    returns.length.toLocaleString("ar-DZ");
 
-    document.getElementById("returnTotal").textContent=money(total);
+  const total = returns.reduce(
+    (sum,r)=>sum+Number(r.total||0),
+    0
+  );
 
-    if(!returns.length){
-        box.innerHTML='<div class="empty">لا توجد عمليات إرجاع بعد</div>';
-        return;
-    }
+  document.getElementById("returnTotal").textContent = money(total);
 
-    box.innerHTML=returns.slice().reverse().map(r=>`
+  if(!returns.length){
 
-        <div class="invoice">
+    list.innerHTML = `
+      <div class="card empty">
+        🔄 لا توجد مرتجعات.
+      </div>
+    `;
 
-            <div class="invoice-head">
-                <div>
-                    <div class="invoice-number">${escapeHTML(r.invoiceNumber)}</div>
-                    <div style="font-size:13px;color:#64748b">
-                        ${formatDate(r.date)}
-                    </div>
-                </div>
+    return;
+  }
 
-                <span class="badge red">
-                    مرتجع ${money(r.total)}
-                </span>
-            </div>
+  list.innerHTML = returns.map(r=>`
 
-            <div style="margin-top:8px">
-                👤 ${escapeHTML(r.customerName || "زبون عادي")}
-            </div>
+    <div class="return-card">
 
-            <div style="margin-top:8px">
-                ${r.items.map(item=>`
-                    <div style="padding:5px 0;border-bottom:1px solid #f1f5f9">
-                        ${escapeHTML(item.name)}
-                        × ${item.quantity}
-                        = <strong>${money(item.total)}</strong>
-                    </div>
-                `).join("")}
-            </div>
+      <div class="invoice-head">
 
-            <div style="margin-top:10px">
-                تأثير الربح:
-                <strong style="color:#dc2626">
-                    -${money(r.returnedProfit || 0)}
-                </strong>
-            </div>
+        <div>
+          <div style="font-weight:900">
+            ${escapeHTML(r.invoiceNumber)}
+          </div>
 
+          <div style="color:#64748b;font-size:12px">
+            ${escapeHTML(r.customerName || "زبون عادي")}
+          </div>
         </div>
 
-    `).join("");
+        <div class="badge badge-orange">
+          ${money(r.total)}
+        </div>
+
+      </div>
+
+      <div style="margin-top:12px">
+
+        ${r.items.map(item=>`
+          <div class="summary-line">
+            <span>
+              ${escapeHTML(item.name)}
+              × ${item.quantity}
+            </span>
+
+            <strong>
+              ${money(item.total)}
+            </strong>
+          </div>
+        `).join("")}
+
+      </div>
+
+      <div style="color:#64748b;font-size:12px;margin-top:8px">
+        🕒 ${formatDate(r.date)}
+      </div>
+
+    </div>
+
+  `).join("");
 }
 
 
-/* =========================
-   CUSTOMERS
-========================= */
+/* ================= CUSTOMERS ================= */
+
+function addCustomer(){
+
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const notes = document.getElementById("customerNotes").value.trim();
+
+  if(!name){
+
+    alert("⚠️ اكتب اسم الزبون.");
+    return;
+  }
+
+  customers.unshift({
+    id:generateId(),
+    name,
+    phone,
+    address,
+    notes,
+    payments:[]
+  });
+
+  saveData();
+
+  document.getElementById("customerName").value="";
+  document.getElementById("customerPhone").value="";
+  document.getElementById("customerAddress").value="";
+  document.getElementById("customerNotes").value="";
+
+  refresh();
+
+  alert("✅ تمت إضافة الزبون.");
+}
 
 function getCustomerInvoices(customerId){
-    return invoices.filter(i=>String(i.customerId)===String(customerId));
-}
 
-function getCustomerSales(customerId){
-
-    return getCustomerInvoices(customerId)
-        .reduce((sum,i)=>{
-            return sum+Number(i.total||0);
-        },0);
+  return invoices.filter(
+    i=>String(i.customerId)===String(customerId)
+  );
 }
 
 function getCustomerDebt(customerId){
 
-    return getCustomerInvoices(customerId)
-        .reduce((sum,i)=>{
-            return sum+Number(i.due||0);
-        },0);
+  return getCustomerInvoices(customerId)
+    .reduce(
+      (sum,i)=>sum+Number(i.due||0),
+      0
+    );
 }
 
 function getCustomerPaid(customerId){
 
-    const customer=customers.find(c=>String(c.id)===String(customerId));
+  const customer = customers.find(
+    c=>String(c.id)===String(customerId)
+  );
 
-    if(!customer) return 0;
+  if(!customer) return 0;
 
-    return (customer.payments||[])
-        .reduce((sum,p)=>sum+Number(p.amount||0),0);
+  return customer.payments.reduce(
+    (sum,p)=>sum+Number(p.amount||0),
+    0
+  );
 }
 
-function customerStatus(debt){
+function getCustomerPurchases(customerId){
 
-    if(debt<=0){
-        return `<span class="badge green">🟢 بدون دين</span>`;
-    }
-
-    if(debt>=50000){
-        return `<span class="badge red">🔴 دين مرتفع</span>`;
-    }
-
-    return `<span class="badge orange">🟠 عليه دين</span>`;
-}
-
-function refreshCustomerStats(){
-
-    document.getElementById("customerCount").textContent=customers.length;
-
-    const salesTotal=customers.reduce((sum,c)=>{
-        return sum+getCustomerSales(c.id);
-    },0);
-
-    const debtTotal=customers.reduce((sum,c)=>{
-        return sum+getCustomerDebt(c.id);
-    },0);
-
-    const paymentTotal=customers.reduce((sum,c)=>{
-        return sum+getCustomerPaid(c.id);
-    },0);
-
-    document.getElementById("customerSalesTotal").textContent=money(salesTotal);
-    document.getElementById("customerDebtTotal").textContent=money(debtTotal);
-    document.getElementById("customerPaymentsTotal").textContent=money(paymentTotal);
+  return getCustomerInvoices(customerId)
+    .reduce(
+      (sum,i)=>sum+Math.max(
+        0,
+        Number(i.total||0)-Number(i.returnedTotal||0)
+      ),
+      0
+    );
 }
 
 function renderCustomers(){
 
-    const box=document.getElementById("customersList");
+  const list = document.getElementById("customersList");
 
-    const search=(document.getElementById("customerSearch")?.value || "")
-        .trim()
-        .toLowerCase();
+  if(!list) return;
 
-    const filtered=customers.filter(c=>{
-        return !search ||
-            c.name.toLowerCase().includes(search) ||
-            String(c.phone||"").toLowerCase().includes(search);
-    });
+  const search = (document.getElementById("customerSearch")?.value || "")
+    .trim()
+    .toLowerCase();
 
-    if(!filtered.length){
-        box.innerHTML='<div class="empty">لا يوجد زبائن</div>';
-        return;
-    }
+  const data = customers.filter(c=>{
 
-    box.innerHTML=filtered.map(c=>{
+    const text = [
+      c.name,
+      c.phone,
+      c.address
+    ].join(" ").toLowerCase();
 
-        const salesTotal=getCustomerSales(c.id);
-        const debt=getCustomerDebt(c.id);
+    return !search || text.includes(search);
+  });
 
-        return `
-            <div class="customer-card">
+  if(!data.length){
 
-                <div class="customer-top">
-                    <div>
-                        <strong>${escapeHTML(c.name)}</strong>
-                        ${c.phone
-                            ? `<div style="font-size:13px;color:#64748b">${escapeHTML(c.phone)}</div>`
-                            : ""
-                        }
-                    </div>
-
-                    <div>${customerStatus(debt)}</div>
-                </div>
-
-                <div style="margin-top:10px">
-                    المشتريات: <strong>${money(salesTotal)}</strong>
-                </div>
-
-                <div style="margin-top:5px">
-                    الدين: <strong>${money(debt)}</strong>
-                </div>
-
-                <div class="actions" style="margin-top:10px">
-
-                    <button class="btn primary"
-                            onclick="openCustomerProfile(${c.id})">
-                        👤 الملف
-                    </button>
-
-                    ${debt>0 ? `
-                        <button class="btn success"
-                                onclick="openPaymentModal(${c.id})">
-                            💵 تسديد
-                        </button>
-                    ` : ""}
-
-                    <button class="btn gray"
-                            onclick="editCustomer(${c.id})">
-                        ✏️ تعديل
-                    </button>
-
-                    <button class="btn danger"
-                            onclick="deleteCustomer(${c.id})">
-                        🗑️ حذف
-                    </button>
-
-                </div>
-
-            </div>
-        `;
-    }).join("");
-}
-
-function saveCustomer(){
-
-    const name=document.getElementById("customerName").value.trim();
-    const phone=document.getElementById("customerPhone").value.trim();
-    const address=document.getElementById("customerAddress").value.trim();
-    const notes=document.getElementById("customerNotes").value.trim();
-
-    if(!name){
-        alert("اكتب اسم الزبون");
-        return;
-    }
-
-    if(editingCustomerId){
-
-        const customer=customers.find(c=>c.id==editingCustomerId);
-
-        if(customer){
-            customer.name=name;
-            customer.phone=phone;
-            customer.address=address;
-            customer.notes=notes;
-        }
-
-        alert("✅ تم تعديل الزبون");
-
-    }else{
-
-        customers.push({
-            id:Date.now()+Math.random(),
-            name,
-            phone,
-            address,
-            notes,
-            payments:[]
-        });
-
-        alert("✅ تمت إضافة الزبون");
-    }
-
-    saveData();
-
-    clearCustomerForm();
-    renderCustomers();
-    refreshCustomerStats();
-    populateCustomerSelect();
-}
-
-function editCustomer(id){
-
-    const c=customers.find(x=>x.id==id);
-
-    if(!c) return;
-
-    editingCustomerId=id;
-
-    document.getElementById("customerName").value=c.name;
-    document.getElementById("customerPhone").value=c.phone;
-    document.getElementById("customerAddress").value=c.address;
-    document.getElementById("customerNotes").value=c.notes;
-
-    document.getElementById("customerFormTitle").textContent="✏️ تعديل الزبون";
-    document.getElementById("cancelCustomerEdit").style.display="block";
-
-    window.scrollTo({
-        top:document.getElementById("customers").offsetTop,
-        behavior:"smooth"
-    });
-}
-
-function cancelCustomerEdit(){
-    clearCustomerForm();
-}
-
-function clearCustomerForm(){
-
-    editingCustomerId=null;
-
-    document.getElementById("customerName").value="";
-    document.getElementById("customerPhone").value="";
-    document.getElementById("customerAddress").value="";
-    document.getElementById("customerNotes").value="";
-
-    document.getElementById("customerFormTitle").textContent="➕ إضافة زبون";
-    document.getElementById("cancelCustomerEdit").style.display="none";
-}
-
-function deleteCustomer(id){
-
-    const debt=getCustomerDebt(id);
-
-    if(debt>0){
-        alert(
-            "❌ لا يمكن حذف الزبون\n"+
-            "عليه دين قدره "+money(debt)
-        );
-        return;
-    }
-
-    if(!confirm("هل تريد حذف هذا الزبون؟")) return;
-
-    customers=customers.filter(c=>c.id!=id);
-
-    saveData();
-
-    renderCustomers();
-    refreshCustomerStats();
-    populateCustomerSelect();
-}
-
-function openCustomerProfile(id){
-
-    const c=customers.find(x=>x.id==id);
-
-    if(!c) return;
-
-    const customerInvoices=getCustomerInvoices(id);
-    const salesTotal=getCustomerSales(id);
-    const debt=getCustomerDebt(id);
-    const paid=getCustomerPaid(id);
-
-    const lastPurchase=customerInvoices
-        .slice()
-        .sort((a,b)=>new Date(b.date)-new Date(a.date))[0];
-
-    document.getElementById("customerProfile").innerHTML=`
-
-        <div class="success-box">
-            <strong>${escapeHTML(c.name)}</strong>
-            ${c.phone ? `<br>📞 ${escapeHTML(c.phone)}` : ""}
-            ${c.address ? `<br>📍 ${escapeHTML(c.address)}` : ""}
-        </div>
-
-        <div class="stats">
-
-            <div class="stat">
-                <small>المشتريات</small>
-                <strong>${money(salesTotal)}</strong>
-            </div>
-
-            <div class="stat">
-                <small>الفواتير</small>
-                <strong>${customerInvoices.length}</strong>
-            </div>
-
-            <div class="stat">
-                <small>الدين</small>
-                <strong>${money(debt)}</strong>
-            </div>
-
-            <div class="stat">
-                <small>المدفوعات</small>
-                <strong>${money(paid)}</strong>
-            </div>
-
-        </div>
-
-        <div class="card" style="margin-top:12px;background:#f8fafc">
-            <strong>آخر شراء</strong>
-            <div style="margin-top:5px;color:#64748b">
-                ${lastPurchase
-                    ? formatDate(lastPurchase.date)
-                    : "لا يوجد"
-                }
-            </div>
-        </div>
-
-        <div class="card">
-            <h3>🧾 فواتير الزبون</h3>
-
-            ${customerInvoices.length
-                ? customerInvoices.slice().reverse().map(inv=>`
-                    <div class="invoice">
-                        <strong>${escapeHTML(inv.number)}</strong>
-                        <br>
-                        ${formatDate(inv.date)}
-                        <br>
-                        الإجمالي: <strong>${money(inv.total)}</strong>
-                        <br>
-                        الدين الحالي: <strong>${money(inv.due)}</strong>
-
-                        <div class="actions" style="margin-top:8px">
-                            <button class="btn primary"
-                                    onclick="viewInvoice(${inv.id})">
-                                👁️ عرض
-                            </button>
-
-                            <button class="btn warning"
-                                    onclick="openReturnModal(${inv.id});closeCustomerModal()">
-                                🔄 إرجاع
-                            </button>
-                        </div>
-                    </div>
-                `).join("")
-                : '<div class="empty">لا توجد فواتير</div>'
-            }
-        </div>
-
-        <div class="card">
-            <h3>💵 سجل المدفوعات</h3>
-
-            ${(c.payments||[]).length
-                ? c.payments.slice().reverse().map(p=>`
-                    <div style="padding:9px 0;border-bottom:1px solid #e2e8f0">
-                        ${formatDate(p.date)}
-                        <strong style="float:left">${money(p.amount)}</strong>
-                    </div>
-                `).join("")
-                : '<div class="empty">لا توجد مدفوعات</div>'
-            }
-        </div>
-
-        ${debt>0 ? `
-            <button class="btn success full"
-                    onclick="closeCustomerModal();openPaymentModal(${c.id})">
-                💵 تسديد الدين
-            </button>
-        ` : ""}
-
+    list.innerHTML = `
+      <div class="card empty">
+        لا توجد نتائج.
+      </div>
     `;
 
-    document.getElementById("customerModal").classList.add("show");
+    return;
+  }
+
+  list.innerHTML = data.map(c=>{
+
+    const debt = getCustomerDebt(c.id);
+    const purchases = getCustomerPurchases(c.id);
+    const paid = getCustomerPaid(c.id);
+
+    let statusClass = "badge-green";
+    let status = "🟢 بدون دين";
+
+    if(debt > 0 && debt < 50000){
+
+      statusClass = "badge-orange";
+      status = "🟠 عليه دين";
+
+    }else if(debt >= 50000){
+
+      statusClass = "badge-red";
+      status = "🔴 دين مرتفع";
+    }
+
+    return `
+      <div class="customer-card">
+
+        <div class="customer-head">
+
+          <div>
+            <div style="font-weight:900;font-size:18px">
+              ${escapeHTML(c.name)}
+            </div>
+
+            ${
+              c.phone
+              ?
+              `<div style="font-size:12px;color:#64748b">${escapeHTML(c.phone)}</div>`
+              :
+              ""
+            }
+          </div>
+
+          <span class="badge ${statusClass}">
+            ${status}
+          </span>
+
+        </div>
+
+        <div class="summary-box">
+
+          <div class="summary-line">
+            <span>المشتريات</span>
+            <strong>${money(purchases)}</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>المدفوعات</span>
+            <strong>${money(paid)}</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>الدين الحالي</span>
+            <strong>${money(debt)}</strong>
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="btn btn-primary btn-small"
+            onclick="openCustomerModal(${c.id})"
+          >
+            👤 الملف
+          </button>
+
+          <button
+            class="btn btn-success btn-small"
+            onclick="openPaymentModal(${c.id})"
+          >
+            💰 دفعة
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+function openCustomerModal(customerId){
+
+  const customer = customers.find(
+    c=>String(c.id)===String(customerId)
+  );
+
+  if(!customer) return;
+
+  currentCustomerId = customer.id;
+
+  const customerInvoices = getCustomerInvoices(customer.id);
+  const debt = getCustomerDebt(customer.id);
+  const paid = getCustomerPaid(customer.id);
+  const purchases = getCustomerPurchases(customer.id);
+
+  document.getElementById("customerModalContent").innerHTML = `
+
+    <div class="summary-box">
+
+      <div class="summary-line">
+        <span>الاسم</span>
+        <strong>${escapeHTML(customer.name)}</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>الهاتف</span>
+        <strong>${escapeHTML(customer.phone || "-")}</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>العنوان</span>
+        <strong>${escapeHTML(customer.address || "-")}</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>إجمالي المشتريات</span>
+        <strong>${money(purchases)}</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>إجمالي المدفوع</span>
+        <strong>${money(paid)}</strong>
+      </div>
+
+      <div class="summary-line total">
+        <span>الدين الحالي</span>
+        <strong>${money(debt)}</strong>
+      </div>
+
+    </div>
+
+    <h3 style="margin:18px 0 10px">
+      🧾 فواتير الزبون
+    </h3>
+
+    ${
+      customerInvoices.length
+      ?
+      customerInvoices.map(i=>`
+
+        <div class="invoice-card">
+
+          <div class="invoice-head">
+            <strong>${escapeHTML(i.number)}</strong>
+            <strong>${money(i.total)}</strong>
+          </div>
+
+          <div style="font-size:12px;color:#64748b;margin-top:6px">
+            ${formatDate(i.date)}
+          </div>
+
+          ${
+            i.due > 0
+            ?
+            `<div class="badge badge-red" style="margin-top:8px">
+              الدين: ${money(i.due)}
+            </div>`
+            :
+            ""
+          }
+
+        </div>
+
+      `).join("")
+      :
+      `<div class="empty">لا توجد فواتير.</div>`
+    }
+
+    ${
+      customer.payments.length
+      ?
+      `
+      <h3 style="margin:18px 0 10px">
+        💰 المدفوعات
+      </h3>
+
+      ${customer.payments.map(p=>`
+
+        <div class="summary-box">
+
+          <div class="summary-line">
+            <span>${formatDate(p.date)}</span>
+            <strong>${money(p.amount)}</strong>
+          </div>
+
+          ${
+            p.note
+            ?
+            `<div style="font-size:12px;color:#64748b">
+              ${escapeHTML(p.note)}
+            </div>`
+            :
+            ""
+          }
+
+        </div>
+
+      `).join("")}
+      `
+      :
+      ""
+    }
+
+  `;
+
+  document.getElementById("customerModal").classList.add("show");
 }
 
 function closeCustomerModal(){
-    document.getElementById("customerModal").classList.remove("show");
+
+  currentCustomerId = null;
+
+  document.getElementById("customerModal").classList.remove("show");
 }
 
+function openPaymentModal(customerId){
 
-/* =========================
-   CUSTOMER PAYMENTS
-========================= */
+  const customer = customers.find(
+    c=>String(c.id)===String(customerId)
+  );
 
-function openPaymentModal(id){
+  if(!customer) return;
 
-    const customer=customers.find(c=>c.id==id);
+  currentCustomerId = customer.id;
 
-    if(!customer) return;
+  const debt = getCustomerDebt(customer.id);
 
-    const debt=getCustomerDebt(id);
+  if(debt <= 0){
 
-    if(debt<=0){
-        alert("هذا الزبون ليس عليه دين");
-        return;
-    }
+    alert("ℹ️ هذا الزبون لا يملك دينًا حاليًا.");
+    return;
+  }
 
-    paymentCustomerId=id;
+  document.getElementById("paymentCustomerInfo").innerHTML = `
+    <div class="summary-box">
+      <div class="summary-line">
+        <span>الزبون</span>
+        <strong>${escapeHTML(customer.name)}</strong>
+      </div>
 
-    document.getElementById("paymentInfo").innerHTML=`
-        <div class="notice">
-            الزبون: <strong>${escapeHTML(customer.name)}</strong><br>
-            الدين الحالي: <strong>${money(debt)}</strong>
-        </div>
-    `;
+      <div class="summary-line">
+        <span>الدين الحالي</span>
+        <strong class="out-text">${money(debt)}</strong>
+      </div>
+    </div>
+  `;
 
-    document.getElementById("paymentAmount").value="";
+  document.getElementById("paymentAmount").value="";
+  document.getElementById("paymentNote").value="";
 
-    document.getElementById("paymentModal").classList.add("show");
+  document.getElementById("paymentModal").classList.add("show");
 }
 
 function closePaymentModal(){
-    paymentCustomerId=null;
-    document.getElementById("paymentModal").classList.remove("show");
+
+  currentCustomerId = null;
+
+  document.getElementById("paymentModal").classList.remove("show");
 }
 
 function saveCustomerPayment(){
 
-    const customer=customers.find(c=>c.id==paymentCustomerId);
+  const customer = customers.find(
+    c=>String(c.id)===String(currentCustomerId)
+  );
 
-    if(!customer) return;
+  if(!customer) return;
 
-    const amount=Number(document.getElementById("paymentAmount").value || 0);
-    const debt=getCustomerDebt(customer.id);
+  const amount = Number(
+    document.getElementById("paymentAmount").value || 0
+  );
 
-    if(amount<=0){
-        alert("أدخل مبلغًا صحيحًا");
-        return;
-    }
+  const note = document.getElementById("paymentNote").value.trim();
 
-    if(amount>debt){
-        alert("❌ المبلغ أكبر من الدين الحالي");
-        return;
-    }
+  if(amount <= 0){
 
-    if(!Array.isArray(customer.payments)){
-        customer.payments=[];
-    }
+    alert("⚠️ أدخل مبلغًا صحيحًا.");
+    return;
+  }
 
-    customer.payments.push({
-        id:Date.now()+Math.random(),
-        amount,
-        date:new Date().toISOString()
-    });
+  const debt = getCustomerDebt(customer.id);
 
-    let remaining=amount;
+  if(debt <= 0){
 
-    const customerInvoices=getCustomerInvoices(customer.id)
-        .filter(inv=>Number(inv.due||0)>0)
-        .sort((a,b)=>new Date(a.date)-new Date(b.date));
-
-    for(const invoice of customerInvoices){
-
-        if(remaining<=0) break;
-
-        const apply=Math.min(
-            remaining,
-            Number(invoice.due||0)
-        );
-
-        invoice.due=Math.max(
-            0,
-            Number(invoice.due||0)-apply
-        );
-
-        remaining-=apply;
-    }
-
-    saveData();
-
+    alert("ℹ️ لا يوجد دين.");
     closePaymentModal();
+    return;
+  }
 
-    renderCustomers();
-    refreshCustomerStats();
-    renderInvoices();
+  const actualAmount = Math.min(amount,debt);
 
-    alert("✅ تم تسجيل التسديد\nالمبلغ: "+money(amount));
+  customer.payments.push({
+    id:generateId(),
+    amount:actualAmount,
+    note,
+    date:new Date().toISOString()
+  });
+
+  let remaining = actualAmount;
+
+  const customerInvoices = invoices
+    .filter(i=>
+      String(i.customerId)===String(customer.id) &&
+      Number(i.due||0)>0
+    )
+    .sort((a,b)=>
+      new Date(a.date)-new Date(b.date)
+    );
+
+  for(const invoice of customerInvoices){
+
+    if(remaining <= 0) break;
+
+    const applied = Math.min(
+      remaining,
+      Number(invoice.due||0)
+    );
+
+    invoice.due =
+      Math.max(
+        0,
+        Number(invoice.due||0)-applied
+      );
+
+    invoice.paid =
+      Number(invoice.paid||0)+applied;
+
+    remaining -= applied;
+  }
+
+  saveData();
+
+  closePaymentModal();
+  refresh();
+
+  alert("✅ تم تسجيل الدفعة بنجاح.");
 }
 
 
-/* =========================
-   HOME SEARCH
-========================= */
+/* ================= DASHBOARD ================= */
 
-function homeSearch(){
+function updateDashboard(){
 
-    const box=document.getElementById("homeSearchResults");
-    const search=document.getElementById("homeProductSearch").value
-        .trim()
-        .toLowerCase();
+  const todayInvoices = invoices.filter(i=>isToday(i.date));
 
-    if(!search){
-        box.innerHTML="";
-        return;
-    }
+  const todaySales = todayInvoices.reduce(
+    (sum,i)=>sum+Math.max(
+      0,
+      Number(i.total||0)-Number(i.returnedTotal||0)
+    ),
+    0
+  );
 
-    const found=products.filter(p=>
-        p.name.toLowerCase().includes(search) ||
-        String(p.barcode||"").includes(search)
-    ).slice(0,10);
+  const todayProfit = todayInvoices.reduce(
+    (sum,i)=>sum+
+      Number(i.profit||0)-
+      Number(i.returnedProfit||0),
+    0
+  );
 
-    if(!found.length){
-        box.innerHTML='<div class="empty">لا يوجد منتج</div>';
-        return;
-    }
-
-    box.innerHTML=found.map(p=>`
-        <div class="cart-item">
-            <div>
-                <strong>${escapeHTML(p.name)}</strong>
-                <div style="color:#64748b">
-                    ${money(p.sell)} • المخزون ${p.stock}
-                </div>
-            </div>
-
-            <button class="btn primary"
-                    onclick="goTo('sales');setTimeout(()=>addToCart(${p.id}),100)">
-                🛒 بيع
-            </button>
-        </div>
-    `).join("");
+  document.getElementById("todaySales").textContent = money(todaySales);
+  document.getElementById("productCount").textContent = products.length.toLocaleString("ar-DZ");
+  document.getElementById("salesCount").textContent = todayInvoices.length.toLocaleString("ar-DZ");
+  document.getElementById("todayProfit").textContent = money(todayProfit);
 }
 
 
-/* =========================
-   REFRESH
-========================= */
+/* ================= REFRESH ================= */
 
 function refresh(){
 
-    refreshDashboard();
-    refreshCustomerStats();
+  updateDashboard();
 
-    renderProducts();
-    renderSaleProducts();
-    renderCart();
-    renderInvoices();
-    renderReturns();
-    renderCustomers();
-    populateCustomerSelect();
+  updateCategoryFilter();
+
+  updateCustomerSelect();
+
+  renderProducts();
+  renderHomeProducts();
+
+  renderSaleProducts();
+  renderCart();
+  updateSaleSummary();
+
+  renderInvoices();
+
+  renderReturns();
+
+  renderCustomers();
+
+  renderStockMovements();
+  updateStockStats();
 }
 
+
+/* ================= INITIALIZATION ================= */
+
+normalizeData();
 refresh();
 
-
-/* =========================
-   MODAL BACKGROUND CLOSE
-========================= */
-
-document.querySelectorAll(".modal").forEach(modal=>{
-
-    modal.addEventListener("click",function(e){
-
-        if(e.target===modal){
-            modal.classList.remove("show");
-        }
-    });
-});
 </script>
 
 </body>
