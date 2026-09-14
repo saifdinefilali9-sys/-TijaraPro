@@ -6,799 +6,691 @@
 <title>TijaraPro</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,Tahoma,sans-serif;
-  background:#f4f7fb;
-  color:#172033;
-  min-height:100vh;
+font-family:Arial,Tahoma,sans-serif;
+background:#f4f7fb;
+color:#172033;
+min-height:100vh
 }
 
 header{
-  background:linear-gradient(135deg,#2563eb,#1d4ed8);
-  color:white;
-  padding:24px 15px;
-  text-align:center;
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+color:white;
+padding:24px 15px;
+text-align:center
 }
 
-.logo{
-  font-size:30px;
-  font-weight:bold;
-}
+.logo{font-size:30px;font-weight:bold}
 
-.subtitle{
-  margin-top:7px;
-  opacity:.92;
-}
+.subtitle{margin-top:7px;opacity:.92}
 
 .version{
-  display:inline-block;
-  margin-top:10px;
-  padding:6px 12px;
-  border-radius:20px;
-  background:rgba(255,255,255,.18);
-  font-size:13px;
+display:inline-block;
+margin-top:10px;
+padding:6px 12px;
+border-radius:20px;
+background:rgba(255,255,255,.18);
+font-size:13px
 }
 
 nav{
-  background:white;
-  display:flex;
-  gap:8px;
-  padding:10px;
-  overflow-x:auto;
-  position:sticky;
-  top:0;
-  z-index:50;
-  box-shadow:0 2px 10px rgba(0,0,0,.07);
+background:white;
+display:flex;
+gap:8px;
+padding:10px;
+overflow-x:auto;
+position:sticky;
+top:0;
+z-index:50;
+box-shadow:0 2px 10px rgba(0,0,0,.07)
 }
 
 nav button{
-  border:0;
-  background:#eef3ff;
-  color:#1d4ed8;
-  padding:11px 15px;
-  border-radius:12px;
-  white-space:nowrap;
-  font-size:14px;
-  cursor:pointer;
+border:0;
+background:#eef3ff;
+color:#1d4ed8;
+padding:11px 15px;
+border-radius:12px;
+white-space:nowrap;
+font-size:14px;
+cursor:pointer
 }
 
 nav button.active{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:white
 }
 
 .container{
-  max-width:1000px;
-  margin:auto;
-  padding:16px;
+max-width:1000px;
+margin:auto;
+padding:16px
 }
 
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
+.section{display:none}
+.section.active{display:block}
 
 .card{
-  background:white;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 4px 18px rgba(0,0,0,.06);
+background:white;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 4px 18px rgba(0,0,0,.06)
 }
 
-h2{
-  margin-bottom:15px;
-  font-size:21px;
-}
-
-h3{
-  margin-bottom:7px;
-}
+h2{margin-bottom:15px;font-size:21px}
+h3{margin-bottom:7px}
 
 .welcome{
-  background:linear-gradient(135deg,#eff6ff,#fff);
+background:linear-gradient(135deg,#eff6ff,#fff)
 }
 
 .stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px
 }
 
 .stat{
-  background:white;
-  padding:17px 10px;
-  border-radius:16px;
-  text-align:center;
-  box-shadow:0 3px 15px rgba(0,0,0,.05);
+background:white;
+padding:17px 10px;
+border-radius:16px;
+text-align:center;
+box-shadow:0 3px 15px rgba(0,0,0,.05)
 }
 
-.stat .icon{
-  font-size:25px;
-}
+.stat .icon{font-size:25px}
 
 .stat strong{
-  display:block;
-  margin-top:7px;
-  font-size:18px;
+display:block;
+margin-top:7px;
+font-size:18px
 }
 
 .stat span{
-  font-size:13px;
-  color:#667085;
+font-size:13px;
+color:#667085
 }
 
 .actions{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px
 }
 
 .actions button{
-  border:0;
-  background:#eef3ff;
-  color:#1d4ed8;
-  padding:15px 8px;
-  border-radius:14px;
-  font-size:14px;
-  cursor:pointer;
+border:0;
+background:#eef3ff;
+color:#1d4ed8;
+padding:15px 8px;
+border-radius:14px;
+font-size:14px;
+cursor:pointer
 }
 
 .form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px
 }
 
 .field label{
-  display:block;
-  margin-bottom:6px;
-  font-size:14px;
-  font-weight:bold;
+display:block;
+margin-bottom:6px;
+font-size:14px;
+font-weight:bold
 }
 
 input,select{
-  width:100%;
-  padding:13px;
-  border:1px solid #d8dee9;
-  border-radius:12px;
-  font-size:15px;
-  outline:none;
-  background:white;
+width:100%;
+padding:13px;
+border:1px solid #d8dee9;
+border-radius:12px;
+font-size:15px;
+outline:none;
+background:white
 }
 
 input:focus,select:focus{
-  border-color:#2563eb;
+border-color:#2563eb
 }
 
 .primary{
-  width:100%;
-  border:0;
-  background:#2563eb;
-  color:white;
-  padding:14px;
-  border-radius:12px;
-  font-size:16px;
-  margin-top:12px;
-  cursor:pointer;
+width:100%;
+border:0;
+background:#2563eb;
+color:white;
+padding:14px;
+border-radius:12px;
+font-size:16px;
+margin-top:12px;
+cursor:pointer
 }
 
 .secondary{
-  border:0;
-  background:#eef2f7;
-  color:#344054;
-  padding:11px 14px;
-  border-radius:10px;
-  cursor:pointer;
+border:0;
+background:#eef2f7;
+color:#344054;
+padding:11px 14px;
+border-radius:10px;
+cursor:pointer
 }
 
-.danger{
-  background:#fee2e2;
-  color:#b42318;
-}
-
-.search{
-  margin-bottom:15px;
-}
-
-/* ================= منتجات الرئيسية ================= */
+.search{margin-bottom:15px}
 
 .home-products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px
 }
 
 .home-product{
-  background:white;
-  border-radius:16px;
-  padding:10px;
-  box-shadow:0 3px 15px rgba(0,0,0,.06);
-  cursor:pointer;
-  border:2px solid transparent;
-  position:relative;
-  transition:.18s;
-}
-
-.home-product:hover{
-  border-color:#2563eb;
+background:white;
+border-radius:16px;
+padding:10px;
+box-shadow:0 3px 15px rgba(0,0,0,.06);
+cursor:pointer;
+border:2px solid transparent;
+position:relative;
+transition:.18s
 }
 
 .home-product.added{
-  border-color:#22c55e;
-  background:#f0fdf4;
-  transform:scale(.98);
-}
-
-.home-product.flash{
-  animation:productFlash .45s ease;
+border-color:#22c55e;
+background:#f0fdf4
 }
 
 .home-product img,
 .home-product .emoji{
-  width:100%;
-  height:110px;
-  object-fit:cover;
-  border-radius:11px;
+width:100%;
+height:110px;
+object-fit:cover;
+border-radius:11px
 }
 
 .home-product .emoji{
-  background:#eef2f7;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:40px;
+background:#eef2f7;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:40px
 }
 
 .home-product h3{
-  font-size:15px;
-  margin-top:8px;
+font-size:15px;
+margin-top:8px
 }
 
 .home-price{
-  color:#2563eb;
-  font-weight:bold;
+color:#2563eb;
+font-weight:bold
 }
 
 .home-stock{
-  color:#667085;
-  font-size:12px;
-  margin-top:4px;
+color:#667085;
+font-size:12px;
+margin-top:4px
 }
 
-/* ================= المنتجات ================= */
-
 .products-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:13px
 }
 
 .product-card{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 3px 15px rgba(0,0,0,.06);
+background:white;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 3px 15px rgba(0,0,0,.06)
 }
 
 .product-image{
-  width:100%;
-  height:140px;
-  object-fit:cover;
-  background:#eef2f7;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:45px;
+width:100%;
+height:140px;
+object-fit:cover;
+background:#eef2f7;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:45px
 }
 
-.product-info{
-  padding:12px;
-}
+.product-info{padding:12px}
 
-.product-info h3{
-  font-size:16px;
-}
+.product-info h3{font-size:16px}
 
 .product-details{
-  font-size:12px;
-  color:#667085;
-  line-height:1.8;
+font-size:12px;
+color:#667085;
+line-height:1.8
 }
 
 .price{
-  color:#2563eb;
-  font-weight:bold;
-  margin:6px 0;
+color:#2563eb;
+font-weight:bold;
+margin:6px 0
 }
 
 .stock{
-  font-size:13px;
-  color:#667085;
+font-size:13px;
+color:#667085
 }
 
 .low{
-  color:#d97706;
-  font-weight:bold;
+color:#d97706;
+font-weight:bold
 }
 
 .out{
-  color:#dc2626;
-  font-weight:bold;
+color:#dc2626;
+font-weight:bold
 }
 
 .barcode{
-  font-family:monospace;
-  direction:ltr;
-  display:inline-block;
+font-family:monospace;
+direction:ltr;
+display:inline-block
 }
 
 .product-buttons{
-  display:flex;
-  gap:6px;
-  margin-top:10px;
+display:flex;
+gap:6px;
+margin-top:10px
 }
 
 .product-buttons button{
-  flex:1;
-  border:0;
-  padding:9px 4px;
-  border-radius:9px;
-  cursor:pointer;
-  font-size:12px;
+flex:1;
+border:0;
+padding:9px 4px;
+border-radius:9px;
+cursor:pointer;
+font-size:12px
 }
 
 .sell-btn{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:white
 }
 
 .edit-btn{
-  background:#eef2ff;
-  color:#1d4ed8;
+background:#eef2ff;
+color:#1d4ed8
 }
 
 .delete-btn{
-  background:#fee2e2;
-  color:#b42318;
+background:#fee2e2;
+color:#b42318
 }
 
-/* ================= البيع ================= */
+/* البيع */
 
 .sale-layout{
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:15px;
+display:grid;
+grid-template-columns:1.5fr 1fr;
+gap:15px
 }
 
 .sale-products{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px
 }
 
 .sale-product{
-  background:white;
-  border:2px solid transparent;
-  border-radius:14px;
-  padding:10px;
-  cursor:pointer;
-  position:relative;
-  transition:.18s;
+background:white;
+border:2px solid transparent;
+border-radius:14px;
+padding:10px;
+cursor:pointer;
+position:relative;
+transition:.18s
 }
 
 .sale-product:hover{
-  border-color:#2563eb;
+border-color:#2563eb
 }
 
 .sale-product.added{
-  border-color:#22c55e;
-  background:#f0fdf4;
-  transform:scale(.98);
-}
-
-.sale-product.flash{
-  animation:productFlash .45s ease;
+border-color:#22c55e;
+background:#f0fdf4
 }
 
 .sale-product img,
 .sale-product .emoji{
-  width:100%;
-  height:100px;
-  object-fit:cover;
-  border-radius:10px;
+width:100%;
+height:100px;
+object-fit:cover;
+border-radius:10px
 }
 
 .sale-product .emoji{
-  background:#eef2f7;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:38px;
+background:#eef2f7;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:38px
 }
 
 .sale-product small{
-  color:#667085;
+color:#667085
 }
-
-/* كمية المنتج */
 
 .cart-badge{
-  position:absolute;
-  top:8px;
-  left:8px;
-  background:#22c55e;
-  color:white;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
-  box-shadow:0 3px 8px rgba(0,0,0,.15);
+position:absolute;
+top:8px;
+left:8px;
+background:#22c55e;
+color:white;
+padding:5px 9px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+box-shadow:0 3px 8px rgba(0,0,0,.15)
 }
 
-.add-success{
-  position:absolute;
-  bottom:8px;
-  right:8px;
-  background:#16a34a;
-  color:white;
-  padding:4px 8px;
-  border-radius:8px;
-  font-size:11px;
-  font-weight:bold;
-  animation:successFade .8s ease forwards;
+.scan-button{
+width:100%;
+border:0;
+background:#111827;
+color:white;
+padding:13px;
+border-radius:12px;
+font-size:15px;
+cursor:pointer;
+margin-bottom:10px
 }
 
-/* رسالة نجاح */
-
-.sale-toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  transform:translateX(-50%);
-  background:#172033;
-  color:white;
-  padding:12px 18px;
-  border-radius:12px;
-  z-index:9999;
-  box-shadow:0 5px 20px rgba(0,0,0,.2);
-  font-size:14px;
-  animation:toastIn .25s ease;
+.scan-info{
+background:#eff6ff;
+border:1px solid #bfdbfe;
+color:#1e40af;
+padding:12px;
+border-radius:12px;
+font-size:13px;
+margin-bottom:15px
 }
-
-@keyframes productFlash{
-  0%{
-    transform:scale(1);
-  }
-  50%{
-    transform:scale(.95);
-    border-color:#16a34a;
-  }
-  100%{
-    transform:scale(1);
-    border-color:#22c55e;
-  }
-}
-
-@keyframes successFade{
-  0%{
-    opacity:0;
-    transform:translateY(5px);
-  }
-  30%{
-    opacity:1;
-    transform:translateY(0);
-  }
-  100%{
-    opacity:0;
-  }
-}
-
-@keyframes toastIn{
-  from{
-    opacity:0;
-    transform:translate(-50%,10px);
-  }
-  to{
-    opacity:1;
-    transform:translate(-50%,0);
-  }
-}
-
-/* ================= السلة ================= */
 
 .cart{
-  background:white;
-  border-radius:18px;
-  padding:16px;
-  box-shadow:0 3px 15px rgba(0,0,0,.06);
-  height:max-content;
-  position:sticky;
-  top:70px;
+background:white;
+border-radius:18px;
+padding:16px;
+box-shadow:0 3px 15px rgba(0,0,0,.06);
+height:max-content;
+position:sticky;
+top:70px
 }
 
 .cart-item{
-  padding:12px 0;
-  border-bottom:1px solid #edf0f4;
+padding:12px 0;
+border-bottom:1px solid #edf0f4
 }
 
 .cart-top{
-  display:flex;
-  justify-content:space-between;
-  gap:8px;
+display:flex;
+justify-content:space-between;
+gap:8px
 }
 
 .cart-controls{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-top:8px;
-  flex-wrap:wrap;
+display:flex;
+align-items:center;
+gap:6px;
+margin-top:8px;
+flex-wrap:wrap
 }
 
 .cart-controls button{
-  border:0;
-  min-width:30px;
-  height:30px;
-  border-radius:8px;
-  cursor:pointer;
+border:0;
+min-width:30px;
+height:30px;
+border-radius:8px;
+cursor:pointer
 }
 
 .edit-cart{
-  background:#eef2ff;
-  color:#1d4ed8;
+background:#eef2ff;
+color:#1d4ed8;
+padding:5px 8px
 }
 
 .remove-cart{
-  background:#fee2e2;
-  color:#b42318;
+background:#fee2e2;
+color:#b42318
 }
 
 .cart-quantity{
-  min-width:35px;
-  text-align:center;
-  font-weight:bold;
-  background:#f2f4f7;
-  padding:6px 8px;
-  border-radius:8px;
+min-width:35px;
+text-align:center;
+font-weight:bold;
+background:#f2f4f7;
+padding:6px 8px;
+border-radius:8px
 }
 
 .cart-price-edit{
-  margin-top:8px;
-  background:#f8fafc;
-  border-radius:10px;
-  padding:8px;
-  font-size:12px;
-}
-
-.cart-price-edit button{
-  margin-top:6px;
-  border:0;
-  background:#eef2ff;
-  color:#1d4ed8;
-  padding:7px 10px;
-  border-radius:8px;
-  cursor:pointer;
+margin-top:8px;
+background:#f8fafc;
+border-radius:10px;
+padding:8px;
+font-size:12px
 }
 
 .cart-total{
-  display:flex;
-  justify-content:space-between;
-  margin-top:15px;
-  font-size:18px;
-  font-weight:bold;
+display:flex;
+justify-content:space-between;
+margin-top:15px;
+font-size:18px;
+font-weight:bold
 }
 
-/* ================= الفواتير ================= */
+.sale-toast{
+position:fixed;
+left:50%;
+bottom:25px;
+transform:translateX(-50%);
+background:#172033;
+color:white;
+padding:12px 18px;
+border-radius:12px;
+z-index:9999;
+box-shadow:0 5px 20px rgba(0,0,0,.2);
+font-size:14px
+}
+
+/* الفواتير */
 
 .invoice-card{
-  background:white;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:12px;
-  box-shadow:0 3px 15px rgba(0,0,0,.05);
+background:white;
+border-radius:16px;
+padding:16px;
+margin-bottom:12px;
+box-shadow:0 3px 15px rgba(0,0,0,.05)
 }
 
 .invoice-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-bottom:10px
 }
 
 .invoice-number{
-  color:#2563eb;
-  font-weight:bold;
+color:#2563eb;
+font-weight:bold
 }
 
 .invoice-total{
-  font-size:18px;
-  font-weight:bold;
-  margin:10px 0;
+font-size:18px;
+font-weight:bold;
+margin:10px 0
 }
 
 .invoice-buttons{
-  display:flex;
-  gap:8px;
+display:flex;
+gap:8px
 }
 
 .invoice-buttons button{
-  flex:1;
-  border:0;
-  padding:10px;
-  border-radius:10px;
-  cursor:pointer;
+flex:1;
+border:0;
+padding:10px;
+border-radius:10px;
+cursor:pointer
 }
 
 .view-invoice{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:white
 }
 
 .delete-invoice{
-  background:#fee2e2;
-  color:#b42318;
+background:#fee2e2;
+color:#b42318
 }
 
 .empty{
-  text-align:center;
-  color:#667085;
-  padding:30px 10px;
+text-align:center;
+color:#667085;
+padding:30px 10px
 }
 
-#invoicePrint{
-  display:none;
-}
+#invoicePrint{display:none}
 
 .invoice-paper{
-  max-width:700px;
-  margin:auto;
-  background:white;
-  padding:30px;
+max-width:700px;
+margin:auto;
+background:white;
+padding:30px
 }
 
 .invoice-paper-header{
-  text-align:center;
-  border-bottom:2px solid #222;
-  padding-bottom:15px;
-  margin-bottom:18px;
-}
-
-.invoice-paper-header h1{
-  margin-bottom:8px;
+text-align:center;
+border-bottom:2px solid #222;
+padding-bottom:15px;
+margin-bottom:18px
 }
 
 .invoice-meta{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:20px;
-  font-size:14px;
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+font-size:14px
 }
 
 .invoice-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-bottom:20px;
+width:100%;
+border-collapse:collapse;
+margin-bottom:20px
 }
 
 .invoice-table th,
 .invoice-table td{
-  border-bottom:1px solid #ddd;
-  padding:10px 5px;
-  text-align:right;
+border-bottom:1px solid #ddd;
+padding:10px 5px;
+text-align:right
 }
 
 .invoice-table th{
-  background:#f3f4f6;
+background:#f3f4f6
 }
 
 .invoice-final{
-  text-align:left;
-  font-size:20px;
-  font-weight:bold;
-  border-top:2px solid #222;
-  padding-top:12px;
+text-align:left;
+font-size:20px;
+font-weight:bold;
+border-top:2px solid #222;
+padding-top:12px
 }
 
 .print-actions{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
+display:flex;
+gap:10px;
+margin-top:20px
 }
 
 .print-actions button{
-  flex:1;
-  border:0;
-  padding:13px;
-  border-radius:10px;
-  cursor:pointer;
+flex:1;
+border:0;
+padding:13px;
+border-radius:10px;
+cursor:pointer
 }
 
 .print-btn{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:white
 }
 
 .close-btn{
-  background:#eef2f7;
+background:#eef2f7
 }
-
-/* ================= الهاتف ================= */
 
 @media(max-width:800px){
 
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
+.stats{
+grid-template-columns:repeat(2,1fr)
+}
 
-  .actions{
-    grid-template-columns:repeat(2,1fr);
-  }
+.actions{
+grid-template-columns:repeat(2,1fr)
+}
 
-  .home-products{
-    grid-template-columns:repeat(2,1fr);
-  }
+.home-products{
+grid-template-columns:repeat(2,1fr)
+}
 
-  .products-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.products-grid{
+grid-template-columns:repeat(2,1fr)
+}
 
-  .sale-layout{
-    grid-template-columns:1fr;
-  }
+.sale-layout{
+grid-template-columns:1fr
+}
 
-  .cart{
-    position:static;
-  }
+.cart{
+position:static
+}
 
 }
 
 @media(max-width:600px){
 
-  .form-grid{
-    grid-template-columns:1fr;
-  }
+.form-grid{
+grid-template-columns:1fr
+}
 
-  .sale-products{
-    grid-template-columns:repeat(2,1fr);
-  }
+.sale-products{
+grid-template-columns:repeat(2,1fr)
+}
 
 }
 
-/* ================= الطباعة ================= */
-
 @media print{
 
-  body{
-    background:white;
-  }
+body{
+background:white
+}
 
-  body > *{
-    display:none !important;
-  }
+body > *{
+display:none!important
+}
 
-  #invoicePrint{
-    display:block !important;
-  }
+#invoicePrint{
+display:block!important
+}
 
-  .print-actions{
-    display:none !important;
-  }
+.print-actions{
+display:none!important
+}
 
-  .invoice-paper{
-    max-width:none;
-    width:100%;
-    box-shadow:none;
-  }
+.invoice-paper{
+max-width:none;
+width:100%;
+box-shadow:none
+}
 
 }
 </style>
@@ -807,340 +699,320 @@ input:focus,select:focus{
 <body>
 
 <header>
-  <div class="logo">TijaraPro</div>
-  <div class="subtitle">نظام البيع وإدارة المحل</div>
-  <div class="version">الإصدار 1.4</div>
+
+<div class="logo">
+TijaraPro
+</div>
+
+<div class="subtitle">
+نظام البيع وإدارة المحل
+</div>
+
+<div class="version">
+الإصدار 1.5
+</div>
+
 </header>
 
 <nav>
 
-  <button class="nav-btn active"
-    onclick="showSection('dashboard',this)">
-    🏠 الرئيسية
-  </button>
+<button class="nav-btn active"
+onclick="showSection('dashboard',this)">
+🏠 الرئيسية
+</button>
 
-  <button class="nav-btn"
-    onclick="showSection('sales',this)">
-    🛒 البيع السريع
-  </button>
+<button class="nav-btn"
+onclick="showSection('sales',this)">
+🛒 البيع السريع
+</button>
 
-  <button class="nav-btn"
-    onclick="showSection('products',this)">
-    📦 المنتجات
-  </button>
+<button class="nav-btn"
+onclick="showSection('products',this)">
+📦 المنتجات
+</button>
 
-  <button class="nav-btn"
-    onclick="showSection('invoices',this)">
-    🧾 الفواتير
-  </button>
+<button class="nav-btn"
+onclick="showSection('invoices',this)">
+🧾 الفواتير
+</button>
 
 </nav>
 
 <div class="container">
 
-<!-- ================= الرئيسية ================= -->
+<!-- الرئيسية -->
 
 <section id="dashboard" class="section active">
 
-  <div class="card welcome">
+<div class="card welcome">
 
-    <h2>مرحبًا بك في TijaraPro 👋</h2>
+<h2>مرحبًا بك في TijaraPro 👋</h2>
 
-    <p>
-      نظام البيع وإدارة المنتجات والمخزون والفواتير.
-    </p>
+<p>
+نظام البيع وإدارة المنتجات والمخزون والفواتير.
+</p>
 
-  </div>
+</div>
 
-  <div class="stats">
+<div class="stats">
 
-    <div class="stat">
-      <div class="icon">💰</div>
-      <strong id="todaySales">0 دج</strong>
-      <span>مبيعات اليوم</span>
-    </div>
+<div class="stat">
+<div class="icon">💰</div>
+<strong id="todaySales">0 دج</strong>
+<span>مبيعات اليوم</span>
+</div>
 
-    <div class="stat">
-      <div class="icon">📦</div>
-      <strong id="productCount">0</strong>
-      <span>المنتجات</span>
-    </div>
+<div class="stat">
+<div class="icon">📦</div>
+<strong id="productCount">0</strong>
+<span>المنتجات</span>
+</div>
 
-    <div class="stat">
-      <div class="icon">🛒</div>
-      <strong id="salesCount">0</strong>
-      <span>المبيعات</span>
-    </div>
+<div class="stat">
+<div class="icon">🛒</div>
+<strong id="salesCount">0</strong>
+<span>المبيعات</span>
+</div>
 
-    <div class="stat">
-      <div class="icon">📈</div>
-      <strong id="todayProfit">0 دج</strong>
-      <span>أرباح اليوم</span>
-    </div>
+<div class="stat">
+<div class="icon">📈</div>
+<strong id="todayProfit">0 دج</strong>
+<span>أرباح اليوم</span>
+</div>
 
-  </div>
+</div>
 
-  <div class="card" style="margin-top:16px">
+<div class="card">
 
-    <h2>⚡ إجراءات سريعة</h2>
+<h2>⚡ إجراءات سريعة</h2>
 
-    <div class="actions">
+<div class="actions">
 
-      <button onclick="goTo('sales')">
-        🛒 بيع منتج
-      </button>
+<button onclick="goTo('sales')">
+🛒 بيع منتج
+</button>
 
-      <button onclick="goTo('products')">
-        📦 المنتجات
-      </button>
+<button onclick="goTo('products')">
+📦 المنتجات
+</button>
 
-      <button onclick="newProduct()">
-        ➕ إضافة منتج
-      </button>
+<button onclick="newProduct()">
+➕ إضافة منتج
+</button>
 
-      <button onclick="goTo('invoices')">
-        🧾 الفواتير
-      </button>
+<button onclick="goTo('invoices')">
+🧾 الفواتير
+</button>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
-  <div class="card">
+<div class="card">
 
-    <h2>🛒 المنتجات</h2>
+<h2>🛒 المنتجات</h2>
 
-    <input
-      class="search"
-      id="homeSearch"
-      placeholder="🔎 ابحث باسم المنتج أو الباركود..."
-      oninput="renderHomeProducts()">
+<input
+class="search"
+id="homeSearch"
+placeholder="🔎 ابحث باسم المنتج أو الباركود..."
+oninput="renderHomeProducts">
 
-    <div id="homeProducts"
-         class="home-products"></div>
+<div id="homeProducts"
+class="home-products"></div>
 
-  </div>
+</div>
 
 </section>
 
-
-<!-- ================= المنتجات ================= -->
+<!-- المنتجات -->
 
 <section id="products" class="section">
 
-  <div class="card">
+<div class="card">
 
-    <h2 id="productFormTitle">
-      ➕ إضافة منتج
-    </h2>
+<h2 id="productFormTitle">
+➕ إضافة منتج
+</h2>
 
-    <div class="form-grid">
+<div class="form-grid">
 
-      <div class="field">
-        <label>اسم المنتج</label>
-        <input
-          id="productName"
-          placeholder="مثال: زيت">
-      </div>
+<div class="field">
+<label>اسم المنتج</label>
+<input id="productName" placeholder="مثال: زيت">
+</div>
 
-      <div class="field">
-        <label>التصنيف</label>
-        <input
-          id="category"
-          placeholder="مثال: مواد غذائية">
-      </div>
+<div class="field">
+<label>التصنيف</label>
+<input id="category" placeholder="مثال: مواد غذائية">
+</div>
 
-      <div class="field">
-        <label>الحجم / المقاس</label>
-        <input
-          id="size"
-          placeholder="مثال: 2L أو 1kg">
-      </div>
+<div class="field">
+<label>الحجم / المقاس</label>
+<input id="size" placeholder="مثال: 2L أو 1kg">
+</div>
 
-      <div class="field">
-        <label>وحدة القياس</label>
+<div class="field">
+<label>وحدة القياس</label>
 
-        <select id="unit">
+<select id="unit">
+<option value="قطعة">قطعة</option>
+<option value="كغ">كغ</option>
+<option value="غ">غ</option>
+<option value="لتر">لتر</option>
+<option value="مل">مل</option>
+<option value="علبة">علبة</option>
+<option value="كرتون">كرتون</option>
+</select>
 
-          <option value="قطعة">قطعة</option>
-          <option value="كغ">كغ</option>
-          <option value="غ">غ</option>
-          <option value="لتر">لتر</option>
-          <option value="مل">مل</option>
-          <option value="علبة">علبة</option>
-          <option value="كرتون">كرتون</option>
+</div>
 
-        </select>
+<div class="field">
+<label>سعر الشراء</label>
+<input id="buyPrice" type="number" min="0">
+</div>
 
-      </div>
+<div class="field">
+<label>سعر البيع</label>
+<input id="sellPrice" type="number" min="0">
+</div>
 
-      <div class="field">
-        <label>سعر الشراء</label>
-        <input
-          id="buyPrice"
-          type="number"
-          min="0"
-          placeholder="1000">
-      </div>
+<div class="field">
+<label>الكمية في المخزون</label>
+<input id="stock" type="number" min="0">
+</div>
 
-      <div class="field">
-        <label>سعر البيع</label>
-        <input
-          id="sellPrice"
-          type="number"
-          min="0"
-          placeholder="1500">
-      </div>
+<div class="field">
+<label>الباركود</label>
+<input id="barcode" inputmode="numeric">
+</div>
 
-      <div class="field">
-        <label>الكمية في المخزون</label>
-        <input
-          id="stock"
-          type="number"
-          min="0"
-          placeholder="10">
-      </div>
+<div class="field">
+<label>صورة المنتج</label>
+<input id="productImage" type="file" accept="image/*">
+</div>
 
-      <div class="field">
-        <label>الباركود</label>
-        <input
-          id="barcode"
-          inputmode="numeric"
-          placeholder="مثال: 6131234567890">
-      </div>
+</div>
 
-      <div class="field">
-        <label>صورة المنتج</label>
-        <input
-          id="productImage"
-          type="file"
-          accept="image/*">
-      </div>
+<button
+class="primary"
+onclick="saveProduct()"
+id="saveProductButton">
+إضافة المنتج
+</button>
 
-    </div>
+<button
+class="secondary"
+onclick="cancelEdit()"
+id="cancelEditButton"
+style="display:none;width:100%;margin-top:8px">
+إلغاء التعديل
+</button>
 
-    <button
-      class="primary"
-      onclick="saveProduct()"
-      id="saveProductButton">
-      إضافة المنتج
-    </button>
+</div>
 
-    <button
-      class="secondary"
-      onclick="cancelEdit()"
-      id="cancelEditButton"
-      style="display:none;width:100%;margin-top:8px">
-      إلغاء التعديل
-    </button>
+<div class="card">
 
-  </div>
+<h2>📦 المنتجات</h2>
 
-  <div class="card">
+<input
+class="search"
+id="productSearch"
+placeholder="🔎 ابحث بالاسم أو الباركود..."
+oninput="renderProducts()">
 
-    <h2>📦 المنتجات</h2>
+<div id="productsGrid"
+class="products-grid"></div>
 
-    <input
-      class="search"
-      id="productSearch"
-      placeholder="🔎 ابحث بالاسم أو الباركود..."
-      oninput="renderProducts()">
-
-    <div
-      id="productsGrid"
-      class="products-grid">
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-
-<!-- ================= البيع ================= -->
+<!-- البيع -->
 
 <section id="sales" class="section">
 
-  <div class="card">
+<div class="card">
 
-    <h2>🛒 البيع السريع</h2>
+<h2>🛒 البيع السريع</h2>
 
-    <input
-      class="search"
-      id="saleSearch"
-      placeholder="🔎 ابحث بالاسم أو مرر الباركود..."
-      autocomplete="off"
-      oninput="renderSaleProducts()">
+<div class="scan-info">
 
-    <div style="
-      font-size:13px;
-      color:#667085;
-      margin-top:-7px;
-      margin-bottom:15px">
+📷 <strong>ماسح الباركود:</strong>
+ضع المؤشر في خانة الباركود، ثم مرر المنتج.
+إذا كان الماسح يرسل Enter بعد القراءة، سيضاف المنتج تلقائيًا.
 
-      📷 يمكنك كتابة الباركود أو تمريره بالماسح ثم الضغط على Enter
+</div>
 
-    </div>
+<input
+class="search"
+id="saleSearch"
+placeholder="🔎 ابحث بالاسم أو مرر الباركود..."
+autocomplete="off">
 
-    <div class="sale-layout">
+<button
+class="scan-button"
+onclick="focusBarcode()">
+📷 جاهز لمسح باركود
+</button>
 
-      <div>
+<div class="sale-layout">
 
-        <div
-          id="saleProductsGrid"
-          class="sale-products">
-        </div>
+<div>
 
-      </div>
+<div id="saleProductsGrid"
+class="sale-products"></div>
 
-      <div class="cart">
+</div>
 
-        <h3>🛍️ السلة</h3>
+<div class="cart">
 
-        <div id="cartList"></div>
+<h3>🛍️ السلة</h3>
 
-        <div class="cart-total">
+<div id="cartList"></div>
 
-          <span>المجموع</span>
+<div class="cart-total">
 
-          <span id="cartTotal">
-            0 دج
-          </span>
+<span>المجموع</span>
 
-        </div>
+<span id="cartTotal">
+0 دج
+</span>
 
-        <button
-          class="primary"
-          onclick="completeSale()">
-          ✅ إتمام البيع
-        </button>
+</div>
 
-        <button
-          class="secondary"
-          onclick="clearCart()"
-          style="width:100%;margin-top:8px">
-          🗑️ إفراغ السلة
-        </button>
+<button
+class="primary"
+onclick="completeSale()">
+✅ إتمام البيع
+</button>
 
-      </div>
+<button
+class="secondary"
+onclick="clearCart()"
+style="width:100%;margin-top:8px">
+🗑️ إفراغ السلة
+</button>
 
-    </div>
+</div>
 
-  </div>
+</div>
+
+</div>
 
 </section>
 
-
-<!-- ================= الفواتير ================= -->
+<!-- الفواتير -->
 
 <section id="invoices" class="section">
 
-  <div class="card">
+<div class="card">
 
-    <h2>🧾 الفواتير</h2>
+<h2>🧾 الفواتير</h2>
 
-    <div id="invoicesList"></div>
+<div id="invoicesList"></div>
 
-  </div>
+</div>
 
 </section>
 
@@ -1148,2251 +1020,1698 @@ input:focus,select:focus{
 
 <div id="invoicePrint"></div>
 
-
 <script>
 
-/* ==================================================
-   البيانات
-================================================== */
+let products=
+JSON.parse(localStorage.getItem("tijara_products"))||[];
 
-let products =
-  JSON.parse(
-    localStorage.getItem("tijara_products")
-  ) || [];
+let sales=
+JSON.parse(localStorage.getItem("tijara_sales"))||[];
 
-let sales =
-  JSON.parse(
-    localStorage.getItem("tijara_sales")
-  ) || [];
+let invoices=
+JSON.parse(localStorage.getItem("tijara_invoices"))||[];
 
-let invoices =
-  JSON.parse(
-    localStorage.getItem("tijara_invoices")
-  ) || [];
+let cart=[];
 
-let cart = [];
-
-let editingProductId = null;
+let editingProductId=null;
 
 
-/* ==================================================
-   حفظ البيانات
-================================================== */
+/* أدوات */
 
 function saveData(){
 
-  localStorage.setItem(
-    "tijara_products",
-    JSON.stringify(products)
-  );
+localStorage.setItem(
+"tijara_products",
+JSON.stringify(products)
+);
 
-  localStorage.setItem(
-    "tijara_sales",
-    JSON.stringify(sales)
-  );
+localStorage.setItem(
+"tijara_sales",
+JSON.stringify(sales)
+);
 
-  localStorage.setItem(
-    "tijara_invoices",
-    JSON.stringify(invoices)
-  );
+localStorage.setItem(
+"tijara_invoices",
+JSON.stringify(invoices)
+);
 
 }
-
-
-/* ==================================================
-   أدوات
-================================================== */
 
 function money(value){
 
-  return Number(value || 0)
-    .toLocaleString("ar-DZ") +
-    " دج";
+return Number(value||0)
+.toLocaleString("ar-DZ")+" دج";
 
 }
-
 
 function escapeHTML(text){
 
-  return String(text || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return String(text||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
-
 
 function productLabel(product){
 
-  let text = product.name;
+let text=product.name;
 
-  if(product.size){
-    text += " - " + product.size;
-  }
+if(product.size)
+text+=" - "+product.size;
 
-  if(product.unit){
-    text += " / " + product.unit;
-  }
+if(product.unit)
+text+=" / "+product.unit;
 
-  return text;
+return text;
 
 }
-
-
-/* ==================================================
-   رسالة نجاح
-================================================== */
 
 function showToast(message){
 
-  const old =
-    document.querySelector(".sale-toast");
+const old=document.querySelector(".sale-toast");
 
-  if(old){
-    old.remove();
-  }
+if(old)old.remove();
 
-  const toast =
-    document.createElement("div");
+const toast=document.createElement("div");
 
-  toast.className="sale-toast";
+toast.className="sale-toast";
+toast.innerText=message;
 
-  toast.innerText=message;
+document.body.appendChild(toast);
 
-  document.body.appendChild(toast);
-
-  setTimeout(()=>{
-    toast.remove();
-  },1300);
+setTimeout(()=>{
+toast.remove();
+},1300);
 
 }
 
 
-/* ==================================================
-   تأثير المنتج
-================================================== */
-
-function flashProduct(id){
-
-  const elements =
-    document.querySelectorAll(
-      '[data-product-id="' + id + '"]'
-    );
-
-  elements.forEach(element=>{
-
-    element.classList.add("flash");
-
-    setTimeout(()=>{
-      element.classList.remove("flash");
-    },500);
-
-  });
-
-}
-
-
-/* ==================================================
-   التنقل
-================================================== */
+/* التنقل */
 
 function showSection(id,button){
 
-  document
-    .querySelectorAll(".section")
-    .forEach(section=>{
-      section.classList.remove("active");
-    });
+document.querySelectorAll(".section")
+.forEach(section=>{
+section.classList.remove("active");
+});
 
-  const section =
-    document.getElementById(id);
+document.getElementById(id)
+.classList.add("active");
 
-  if(section){
-    section.classList.add("active");
-  }
+document.querySelectorAll(".nav-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
+if(button)
+button.classList.add("active");
 
-  if(button){
-    button.classList.add("active");
-  }
+if(id==="dashboard")
+renderHomeProducts();
 
-  if(id==="dashboard"){
-    renderHomeProducts();
-  }
+if(id==="products")
+renderProducts();
 
-  if(id==="products"){
-    renderProducts();
-  }
-
-  if(id==="sales"){
-    renderSaleProducts();
-    renderCart();
-  }
-
-  if(id==="invoices"){
-    renderInvoices();
-  }
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
+if(id==="sales"){
+renderSaleProducts();
+renderCart();
 }
 
+if(id==="invoices")
+renderInvoices();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
 
 function goTo(id){
 
-  let button = null;
+let button=null;
 
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>{
+document.querySelectorAll(".nav-btn")
+.forEach(btn=>{
 
-      if(
-        (id==="dashboard" &&
-        btn.innerText.includes("الرئيسية")) ||
+if(
+(id==="dashboard"&&btn.innerText.includes("الرئيسية"))||
+(id==="sales"&&btn.innerText.includes("البيع"))||
+(id==="products"&&btn.innerText.includes("المنتجات"))||
+(id==="invoices"&&btn.innerText.includes("الفواتير"))
+){
+button=btn;
+}
 
-        (id==="sales" &&
-        btn.innerText.includes("البيع")) ||
+});
 
-        (id==="products" &&
-        btn.innerText.includes("المنتجات")) ||
-
-        (id==="invoices" &&
-        btn.innerText.includes("الفواتير"))
-      ){
-        button = btn;
-      }
-
-    });
-
-  showSection(id,button);
+showSection(id,button);
 
 }
 
 
-/* ==================================================
-   نموذج المنتج
-================================================== */
+/* المنتجات */
 
 function newProduct(){
 
-  goTo("products");
+goTo("products");
 
-  setTimeout(()=>{
-    document
-      .getElementById("productName")
-      .focus();
-  },100);
+setTimeout(()=>{
+document.getElementById("productName").focus();
+},100);
 
 }
-
 
 function saveProduct(){
 
-  const name =
-    document
-      .getElementById("productName")
-      .value
-      .trim();
+const name=
+document.getElementById("productName").value.trim();
 
-  const category =
-    document
-      .getElementById("category")
-      .value
-      .trim();
+const category=
+document.getElementById("category").value.trim();
 
-  const size =
-    document
-      .getElementById("size")
-      .value
-      .trim();
+const size=
+document.getElementById("size").value.trim();
 
-  const unit =
-    document
-      .getElementById("unit")
-      .value;
+const unit=
+document.getElementById("unit").value;
 
-  const buy =
-    Number(
-      document
-        .getElementById("buyPrice")
-        .value
-    );
+const buy=
+Number(document.getElementById("buyPrice").value);
 
-  const sell =
-    Number(
-      document
-        .getElementById("sellPrice")
-        .value
-    );
+const sell=
+Number(document.getElementById("sellPrice").value);
 
-  const stock =
-    Number(
-      document
-        .getElementById("stock")
-        .value
-    );
+const stock=
+Number(document.getElementById("stock").value);
 
-  const barcode =
-    document
-      .getElementById("barcode")
-      .value
-      .trim();
+const barcode=
+document.getElementById("barcode").value.trim();
 
-  const imageInput =
-    document.getElementById("productImage");
+const imageInput=
+document.getElementById("productImage");
 
-  if(!name){
+if(!name){
 
-    alert("أدخل اسم المنتج");
-
-    return;
-
-  }
-
-  if(buy<0 || sell<0 || stock<0){
-
-    alert("تحقق من الأسعار والكمية");
-
-    return;
-
-  }
-
-  if(barcode){
-
-    const duplicate =
-      products.find(p=>
-        p.barcode===barcode &&
-        p.id!==editingProductId
-      );
-
-    if(duplicate){
-
-      alert(
-        "⚠️ هذا الباركود مرتبط بمنتج آخر"
-      );
-
-      return;
-
-    }
-
-  }
-
-  const data = {
-
-    name:name,
-    category:category,
-    size:size,
-    unit:unit,
-    buy:buy,
-    sell:sell,
-    stock:stock,
-    barcode:barcode
-
-  };
-
-  if(editingProductId){
-
-    updateProduct(
-      editingProductId,
-      data,
-      imageInput
-    );
-
-  }else{
-
-    createProduct(
-      data,
-      imageInput
-    );
-
-  }
+alert("أدخل اسم المنتج");
+return;
 
 }
 
+if(buy<0||sell<0||stock<0){
+
+alert("تحقق من الأسعار والكمية");
+return;
+
+}
+
+if(barcode){
+
+const duplicate=
+products.find(p=>
+p.barcode===barcode &&
+p.id!==editingProductId
+);
+
+if(duplicate){
+
+alert("⚠️ هذا الباركود مرتبط بمنتج آخر");
+return;
+
+}
+
+}
+
+const data={
+name,
+category,
+size,
+unit,
+buy,
+sell,
+stock,
+barcode
+};
+
+if(editingProductId){
+
+updateProduct(
+editingProductId,
+data,
+imageInput
+);
+
+}else{
+
+createProduct(
+data,
+imageInput
+);
+
+}
+
+}
 
 function createProduct(data,imageInput){
 
-  const finish = image=>{
+const finish=image=>{
 
-    products.push({
+products.push({
+id:Date.now(),
+...data,
+image:image||""
+});
 
-      id:Date.now(),
+saveData();
 
-      ...data,
+resetProductForm();
 
-      image:image || ""
+renderProducts();
+renderHomeProducts();
+renderSaleProducts();
+refresh();
 
-    });
+alert("✅ تمت إضافة المنتج");
 
-    saveData();
+};
 
-    resetProductForm();
+if(imageInput.files.length){
 
-    renderProducts();
+const reader=new FileReader();
 
-    renderHomeProducts();
+reader.onload=function(){
+finish(reader.result);
+};
 
-    renderSaleProducts();
+reader.readAsDataURL(
+imageInput.files[0]
+);
 
-    refresh();
+}else{
 
-    alert("✅ تمت إضافة المنتج");
-
-  };
-
-  if(imageInput.files.length){
-
-    const reader =
-      new FileReader();
-
-    reader.onload = function(){
-
-      finish(reader.result);
-
-    };
-
-    reader.readAsDataURL(
-      imageInput.files[0]
-    );
-
-  }else{
-
-    finish("");
-
-  }
+finish("");
 
 }
 
+}
 
-function updateProduct(
-  id,
-  data,
-  imageInput
-){
+function updateProduct(id,data,imageInput){
 
-  const product =
-    products.find(p=>p.id===id);
+const product=
+products.find(p=>p.id===id);
 
-  if(!product) return;
+if(!product)return;
 
-  const finish = image=>{
+const finish=image=>{
 
-    product.name=data.name;
-    product.category=data.category;
-    product.size=data.size;
-    product.unit=data.unit;
-    product.buy=data.buy;
-    product.sell=data.sell;
-    product.stock=data.stock;
-    product.barcode=data.barcode;
+product.name=data.name;
+product.category=data.category;
+product.size=data.size;
+product.unit=data.unit;
+product.buy=data.buy;
+product.sell=data.sell;
+product.stock=data.stock;
+product.barcode=data.barcode;
 
-    if(image){
-      product.image=image;
-    }
+if(image)
+product.image=image;
 
-    saveData();
+saveData();
 
-    resetProductForm();
+resetProductForm();
 
-    renderProducts();
+renderProducts();
+renderHomeProducts();
+renderSaleProducts();
+refresh();
 
-    renderHomeProducts();
+alert("✅ تم تعديل المنتج");
 
-    renderSaleProducts();
+};
 
-    refresh();
+if(imageInput.files.length){
 
-    alert("✅ تم تعديل المنتج");
+const reader=new FileReader();
 
-  };
+reader.onload=function(){
+finish(reader.result);
+};
 
-  if(imageInput.files.length){
+reader.readAsDataURL(
+imageInput.files[0]
+);
 
-    const reader =
-      new FileReader();
+}else{
 
-    reader.onload=function(){
-
-      finish(reader.result);
-
-    };
-
-    reader.readAsDataURL(
-      imageInput.files[0]
-    );
-
-  }else{
-
-    finish(product.image);
-
-  }
+finish(product.image);
 
 }
 
+}
 
 function editProduct(id){
 
-  const product =
-    products.find(p=>p.id===id);
+const product=
+products.find(p=>p.id===id);
 
-  if(!product) return;
+if(!product)return;
 
-  editingProductId=id;
+editingProductId=id;
 
-  document
-    .getElementById("productName")
-    .value=product.name || "";
+document.getElementById("productName").value=product.name||"";
+document.getElementById("category").value=product.category||"";
+document.getElementById("size").value=product.size||"";
+document.getElementById("unit").value=product.unit||"قطعة";
+document.getElementById("buyPrice").value=product.buy||0;
+document.getElementById("sellPrice").value=product.sell||0;
+document.getElementById("stock").value=product.stock||0;
+document.getElementById("barcode").value=product.barcode||"";
 
-  document
-    .getElementById("category")
-    .value=product.category || "";
+document.getElementById("productFormTitle").innerText="✏️ تعديل المنتج";
 
-  document
-    .getElementById("size")
-    .value=product.size || "";
+document.getElementById("saveProductButton").innerText="💾 حفظ التعديل";
 
-  document
-    .getElementById("unit")
-    .value=product.unit || "قطعة";
+document.getElementById("cancelEditButton").style.display="block";
 
-  document
-    .getElementById("buyPrice")
-    .value=product.buy || 0;
-
-  document
-    .getElementById("sellPrice")
-    .value=product.sell || 0;
-
-  document
-    .getElementById("stock")
-    .value=product.stock || 0;
-
-  document
-    .getElementById("barcode")
-    .value=product.barcode || "";
-
-  document
-    .getElementById("productFormTitle")
-    .innerText="✏️ تعديل المنتج";
-
-  document
-    .getElementById("saveProductButton")
-    .innerText="💾 حفظ التعديل";
-
-  document
-    .getElementById("cancelEditButton")
-    .style.display="block";
-
-  goTo("products");
+goTo("products");
 
 }
-
 
 function cancelEdit(){
-
-  resetProductForm();
-
+resetProductForm();
 }
-
 
 function resetProductForm(){
 
-  editingProductId=null;
+editingProductId=null;
 
-  document
-    .getElementById("productName")
-    .value="";
+document.getElementById("productName").value="";
+document.getElementById("category").value="";
+document.getElementById("size").value="";
+document.getElementById("unit").value="قطعة";
+document.getElementById("buyPrice").value="";
+document.getElementById("sellPrice").value="";
+document.getElementById("stock").value="";
+document.getElementById("barcode").value="";
+document.getElementById("productImage").value="";
 
-  document
-    .getElementById("category")
-    .value="";
+document.getElementById("productFormTitle").innerText="➕ إضافة منتج";
 
-  document
-    .getElementById("size")
-    .value="";
+document.getElementById("saveProductButton").innerText="إضافة المنتج";
 
-  document
-    .getElementById("unit")
-    .value="قطعة";
-
-  document
-    .getElementById("buyPrice")
-    .value="";
-
-  document
-    .getElementById("sellPrice")
-    .value="";
-
-  document
-    .getElementById("stock")
-    .value="";
-
-  document
-    .getElementById("barcode")
-    .value="";
-
-  document
-    .getElementById("productImage")
-    .value="";
-
-  document
-    .getElementById("productFormTitle")
-    .innerText="➕ إضافة منتج";
-
-  document
-    .getElementById("saveProductButton")
-    .innerText="إضافة المنتج";
-
-  document
-    .getElementById("cancelEditButton")
-    .style.display="none";
+document.getElementById("cancelEditButton").style.display="none";
 
 }
-
 
 function deleteProduct(id){
 
-  const product =
-    products.find(p=>p.id===id);
+const product=
+products.find(p=>p.id===id);
 
-  if(!product) return;
+if(!product)return;
 
-  if(
-    !confirm(
-      "هل تريد حذف المنتج:\n" +
-      productLabel(product) +
-      " ؟"
-    )
-  ){
-    return;
-  }
+if(!confirm(
+"هل تريد حذف المنتج:\n"+
+productLabel(product)+" ؟"
+))
+return;
 
-  products =
-    products.filter(p=>p.id!==id);
+products=
+products.filter(p=>p.id!==id);
 
-  saveData();
+saveData();
 
-  renderProducts();
-  renderHomeProducts();
-  renderSaleProducts();
-  refresh();
+renderProducts();
+renderHomeProducts();
+renderSaleProducts();
+refresh();
 
 }
 
 
-/* ==================================================
-   البحث
-================================================== */
+/* البحث */
 
 function matchesSearch(product,search){
 
-  if(!search) return true;
+if(!search)return true;
 
-  const text=(
+const text=(
+(product.name||"")+" "+
+(product.category||"")+" "+
+(product.size||"")+" "+
+(product.unit||"")+" "+
+(product.barcode||"")
+).toLowerCase();
 
-    (product.name || "")+" "+
-    (product.category || "")+" "+
-    (product.size || "")+" "+
-    (product.unit || "")+" "+
-    (product.barcode || "")
-
-  ).toLowerCase();
-
-  return text.includes(search);
+return text.includes(search);
 
 }
 
 
-/* ==================================================
-   الرئيسية
-================================================== */
+/* الرئيسية */
 
 function renderHomeProducts(){
 
-  const box =
-    document.getElementById(
-      "homeProducts"
-    );
+const box=
+document.getElementById("homeProducts");
 
-  const search =
-    document
-      .getElementById("homeSearch")
-      .value
-      .toLowerCase()
-      .trim();
+const input=
+document.getElementById("homeSearch");
 
-  const filtered =
-    products.filter(p=>
-      matchesSearch(p,search)
-    );
+const search=
+input ? input.value.toLowerCase().trim():"";
 
-  if(!filtered.length){
+const filtered=
+products.filter(p=>matchesSearch(p,search));
 
-    box.innerHTML=
-      `<div class="empty">
-        لا توجد منتجات
-      </div>`;
+if(!filtered.length){
 
-    return;
+box.innerHTML=
+`<div class="empty">لا توجد منتجات</div>`;
 
-  }
+return;
 
-  box.innerHTML=
-    filtered.map(product=>{
+}
 
-      const cartItem =
-        cart.find(
-          i=>i.productId===product.id
-        );
+box.innerHTML=
+filtered.map(product=>{
 
-      const quantity =
-        cartItem
-        ? cartItem.quantity
-        : 0;
+const cartItem=
+cart.find(i=>i.productId===product.id);
 
-      const image =
-        product.image
-        ?
-        `<img src="${product.image}" alt="">`
-        :
-        `<div class="emoji">📦</div>`;
+const quantity=
+cartItem?cartItem.quantity:0;
 
-      return `
+const image=
+product.image
+?
+`<img src="${product.image}" alt="">`
+:
+`<div class="emoji">📦</div>`;
 
-        <div
-          class="home-product ${quantity>0 ? "added":""}"
-          data-product-id="${product.id}"
-          onclick="addToCart(${product.id})">
+return `
 
-          ${
-            quantity>0
-            ?
-            `<div class="cart-badge">
-              🛒 × ${quantity}
-            </div>`
-            :
-            ""
-          }
+<div
+class="home-product ${quantity>0?"added":""}"
+onclick="addToCart(${product.id})">
 
-          ${image}
+${
+quantity>0
+?
+`<div class="cart-badge">
+🛒 × ${quantity}
+</div>`
+:
+""
+}
 
-          <h3>
-            ${escapeHTML(
-              productLabel(product)
-            )}
-          </h3>
+${image}
 
-          <div class="home-price">
-            ${money(product.sell)}
-          </div>
+<h3>
+${escapeHTML(productLabel(product))}
+</h3>
 
-          <div class="home-stock">
-            المخزون: ${product.stock}
-          </div>
+<div class="home-price">
+${money(product.sell)}
+</div>
 
-        </div>
+<div class="home-stock">
+المخزون: ${product.stock}
+</div>
 
-      `;
+</div>
 
-    }).join("");
+`;
+
+}).join("");
 
 }
 
 
-/* ==================================================
-   قائمة المنتجات
-================================================== */
+/* المنتجات */
 
 function renderProducts(){
 
-  const grid =
-    document.getElementById(
-      "productsGrid"
-    );
+const grid=
+document.getElementById("productsGrid");
 
-  const search =
-    document
-      .getElementById("productSearch")
-      .value
-      .toLowerCase()
-      .trim();
+const search=
+document.getElementById("productSearch")
+.value.toLowerCase().trim();
 
-  const filtered =
-    products.filter(p=>
-      matchesSearch(p,search)
-    );
+const filtered=
+products.filter(p=>matchesSearch(p,search));
 
-  if(!filtered.length){
+if(!filtered.length){
 
-    grid.innerHTML=
-      `<div class="empty">
-        لا توجد منتجات
-      </div>`;
+grid.innerHTML=
+`<div class="empty">لا توجد منتجات</div>`;
 
-    return;
+return;
 
-  }
+}
 
-  grid.innerHTML=
-    filtered.map(product=>{
+grid.innerHTML=
+filtered.map(product=>{
 
-      let stockClass="";
-      let stockText=
-        "المخزون: "+product.stock;
+let stockClass="";
+let stockText="المخزون: "+product.stock;
 
-      if(product.stock<=0){
+if(product.stock<=0){
 
-        stockClass="out";
-        stockText="نفد المخزون";
+stockClass="out";
+stockText="نفد المخزون";
 
-      }else if(product.stock<=5){
+}else if(product.stock<=5){
 
-        stockClass="low";
-        stockText=
-          "مخزون منخفض: "+
-          product.stock;
+stockClass="low";
+stockText="مخزون منخفض: "+product.stock;
 
-      }
+}
 
-      const image =
-        product.image
-        ?
-        `<img
-          class="product-image"
-          src="${product.image}"
-          alt="">`
-        :
-        `<div class="product-image">
-          📦
-        </div>`;
+const image=
+product.image
+?
+`<img class="product-image" src="${product.image}" alt="">`
+:
+`<div class="product-image">📦</div>`;
 
-      return `
+return `
 
-        <div class="product-card">
+<div class="product-card">
 
-          ${image}
+${image}
 
-          <div class="product-info">
+<div class="product-info">
 
-            <h3>
-              ${escapeHTML(product.name)}
-            </h3>
+<h3>
+${escapeHTML(product.name)}
+</h3>
 
-            <div class="product-details">
+<div class="product-details">
 
-              ${product.category
-                ? "التصنيف: "+
-                  escapeHTML(product.category)
-                : ""}
+${product.category?
+"التصنيف: "+escapeHTML(product.category):""}
 
-              <br>
+<br>
 
-              ${product.size
-                ? "الحجم: "+
-                  escapeHTML(product.size)
-                : ""}
+${product.size?
+"الحجم: "+escapeHTML(product.size):""}
 
-              ${
-                product.unit
-                ? " "+
-                  escapeHTML(product.unit)
-                : ""
-              }
+${product.unit?
+" "+escapeHTML(product.unit):""}
 
-              <br>
+<br>
 
-              ${
-                product.barcode
-                ?
-                "الباركود: "+
-                `<span class="barcode">
-                  ${escapeHTML(product.barcode)}
-                </span>`
-                :
-                "بدون باركود"
-              }
+${
+product.barcode
+?
+"الباركود: "+
+`<span class="barcode">
+${escapeHTML(product.barcode)}
+</span>`
+:
+"بدون باركود"
+}
 
-            </div>
+</div>
 
-            <div class="price">
-              ${money(product.sell)}
-            </div>
+<div class="price">
+${money(product.sell)}
+</div>
 
-            <div class="stock ${stockClass}">
-              ${stockText}
-            </div>
+<div class="stock ${stockClass}">
+${stockText}
+</div>
 
-            <div class="product-buttons">
+<div class="product-buttons">
 
-              <button
-                class="sell-btn"
-                onclick="quickSell(${product.id})">
-                بيع
-              </button>
+<button
+class="sell-btn"
+onclick="quickSell(${product.id})">
+بيع
+</button>
 
-              <button
-                class="edit-btn"
-                onclick="editProduct(${product.id})">
-                تعديل
-              </button>
+<button
+class="edit-btn"
+onclick="editProduct(${product.id})">
+تعديل
+</button>
 
-              <button
-                class="delete-btn"
-                onclick="deleteProduct(${product.id})">
-                حذف
-              </button>
+<button
+class="delete-btn"
+onclick="deleteProduct(${product.id})">
+حذف
+</button>
 
-            </div>
+</div>
 
-          </div>
+</div>
 
-        </div>
+</div>
 
-      `;
+`;
 
-    }).join("");
+}).join("");
 
 }
 
 
-/* ==================================================
-   البيع السريع
-================================================== */
+/* البيع */
 
 function quickSell(id){
 
-  goTo("sales");
+goTo("sales");
 
-  setTimeout(()=>{
-    addToCart(id);
-  },50);
+setTimeout(()=>{
+addToCart(id);
+},50);
 
 }
 
 
-/* ==================================================
-   إضافة للسلة
-================================================== */
+/* إضافة للسلة */
 
 function addToCart(id){
 
-  const product =
-    products.find(p=>p.id===id);
+const product=
+products.find(p=>p.id===id);
 
-  if(!product) return;
+if(!product)return;
 
-  if(product.stock<=0){
+if(product.stock<=0){
 
-    alert(
-      "❌ المنتج غير متوفر في المخزون"
-    );
+alert("❌ المنتج غير متوفر في المخزون");
+return;
 
-    return;
+}
 
-  }
+const item=
+cart.find(i=>i.productId===id);
 
-  const item =
-    cart.find(
-      item=>item.productId===id
-    );
+const quantity=
+item?item.quantity:0;
 
-  const quantity =
-    item
-    ? item.quantity
-    : 0;
+if(quantity>=product.stock){
 
-  if(quantity>=product.stock){
+alert("❌ لا توجد كمية كافية في المخزون");
+return;
 
-    alert(
-      "❌ لا توجد كمية كافية في المخزون"
-    );
+}
 
-    return;
+if(item){
 
-  }
+item.quantity++;
 
-  if(item){
+}else{
 
-    item.quantity++;
+cart.push({
 
-  }else{
+productId:product.id,
+name:product.name,
+category:product.category,
+size:product.size,
+unit:product.unit,
+price:product.sell,
+buy:product.buy,
+barcode:product.barcode,
+image:product.image,
+quantity:1
 
-    cart.push({
+});
 
-      productId:product.id,
+}
 
-      name:product.name,
+renderCart();
+renderSaleProducts();
+renderHomeProducts();
 
-      category:product.category,
+const current=
+cart.find(i=>i.productId===id);
 
-      size:product.size,
-
-      unit:product.unit,
-
-      /*
-        السعر الافتراضي الحقيقي للمنتج
-      */
-      price:product.sell,
-
-      /*
-        سعر التكلفة
-      */
-      buy:product.buy,
-
-      barcode:product.barcode,
-
-      image:product.image,
-
-      quantity:1
-
-    });
-
-  }
-
-  renderCart();
-
-  renderSaleProducts();
-
-  renderHomeProducts();
-
-  flashProduct(id);
-
-  const currentItem =
-    cart.find(
-      i=>i.productId===id
-    );
-
-  showToast(
-    "✅ تمت إضافة " +
-    productLabel(product) +
-    " × " +
-    currentItem.quantity
-  );
+showToast(
+"✅ "+
+productLabel(product)+
+" × "+
+current.quantity
+);
 
 }
 
 
-/* ==================================================
-   تعديل كمية السلة
-================================================== */
+/* تعديل الكمية */
 
 function editCartItem(id){
 
-  const item =
-    cart.find(
-      i=>i.productId===id
-    );
+const item=
+cart.find(i=>i.productId===id);
 
-  if(!item) return;
+if(!item)return;
 
-  const product =
-    products.find(
-      p=>p.id===id
-    );
+const product=
+products.find(p=>p.id===id);
 
-  if(!product) return;
+if(!product)return;
 
-  const value =
-    prompt(
-      "أدخل الكمية المطلوبة لـ:\n"+
-      productLabel(product),
-      item.quantity
-    );
+const value=
+prompt(
+"أدخل الكمية المطلوبة لـ:\n"+
+productLabel(product),
+item.quantity
+);
 
-  if(value===null) return;
+if(value===null)return;
 
-  const quantity =
-    Number(value);
+const quantity=Number(value);
 
-  if(
-    !Number.isInteger(quantity) ||
-    quantity<1
-  ){
+if(!Number.isInteger(quantity)||quantity<1){
 
-    alert(
-      "❌ أدخل كمية صحيحة"
-    );
+alert("❌ أدخل كمية صحيحة");
+return;
 
-    return;
+}
 
-  }
+if(quantity>product.stock){
 
-  if(quantity>product.stock){
+alert("❌ الكمية أكبر من المخزون المتوفر");
+return;
 
-    alert(
-      "❌ الكمية أكبر من المخزون المتوفر"
-    );
+}
 
-    return;
+item.quantity=quantity;
 
-  }
-
-  item.quantity=quantity;
-
-  renderCart();
-  renderSaleProducts();
-  renderHomeProducts();
+renderCart();
+renderSaleProducts();
+renderHomeProducts();
 
 }
 
 
-/* ==================================================
-   تعديل سعر هذه الفاتورة فقط
-================================================== */
+/* تعديل السعر */
 
 function editCartPrice(id){
 
-  const item =
-    cart.find(
-      i=>i.productId===id
-    );
+const item=
+cart.find(i=>i.productId===id);
 
-  if(!item) return;
+if(!item)return;
 
-  const product =
-    products.find(
-      p=>p.id===id
-    );
+const product=
+products.find(p=>p.id===id);
 
-  if(!product) return;
+if(!product)return;
 
-  const value =
-    prompt(
-      "السعر الخاص بهذا البيع فقط لـ:\n"+
-      productLabel(product)+
-      "\n\nالسعر الأصلي: "+
-      money(product.sell)+
-      "\n\nأدخل السعر الجديد:",
-      item.price
-    );
+const value=
+prompt(
+"السعر الخاص بهذا البيع فقط لـ:\n"+
+productLabel(product)+
+"\n\nالسعر الأصلي: "+
+money(product.sell)+
+"\n\nأدخل السعر الجديد:",
+item.price
+);
 
-  if(value===null) return;
+if(value===null)return;
 
-  const newPrice =
-    Number(value);
+const newPrice=Number(value);
 
-  if(
-    !Number.isFinite(newPrice) ||
-    newPrice<0
-  ){
+if(!Number.isFinite(newPrice)||newPrice<0){
 
-    alert(
-      "❌ أدخل سعرًا صحيحًا"
-    );
+alert("❌ أدخل سعرًا صحيحًا");
+return;
 
-    return;
+}
 
-  }
+item.price=newPrice;
 
-  /*
-    مهم:
-    نغير سعر item داخل السلة فقط.
-    لا نغير product.sell.
-  */
+renderCart();
 
-  item.price=newPrice;
-
-  renderCart();
-
-  showToast(
-    "💰 تم تغيير السعر لهذه الفاتورة فقط"
-  );
+showToast(
+"💰 تم تغيير السعر لهذه الفاتورة فقط"
+);
 
 }
 
 
-/* ==================================================
-   إنقاص الكمية
-================================================== */
+/* إنقاص */
 
 function decreaseCart(id){
 
-  const item =
-    cart.find(
-      i=>i.productId===id
-    );
+const item=
+cart.find(i=>i.productId===id);
 
-  if(!item) return;
+if(!item)return;
 
-  item.quantity--;
+item.quantity--;
 
-  if(item.quantity<=0){
+if(item.quantity<=0){
 
-    cart =
-      cart.filter(
-        i=>i.productId!==id
-      );
+cart=
+cart.filter(i=>i.productId!==id);
 
-  }
+}
 
-  renderCart();
-  renderSaleProducts();
-  renderHomeProducts();
+renderCart();
+renderSaleProducts();
+renderHomeProducts();
 
 }
 
 
-/* ==================================================
-   حذف من السلة
-================================================== */
+/* حذف */
 
 function removeFromCart(id){
 
-  cart =
-    cart.filter(
-      i=>i.productId!==id
-    );
+cart=
+cart.filter(i=>i.productId!==id);
 
-  renderCart();
-  renderSaleProducts();
-  renderHomeProducts();
+renderCart();
+renderSaleProducts();
+renderHomeProducts();
 
 }
-
 
 function clearCart(){
 
-  cart=[];
+cart=[];
 
-  renderCart();
-  renderSaleProducts();
-  renderHomeProducts();
+renderCart();
+renderSaleProducts();
+renderHomeProducts();
 
 }
 
 
-/* ==================================================
-   عرض منتجات البيع
-================================================== */
+/* عرض البيع */
 
 function renderSaleProducts(){
 
-  const grid =
-    document.getElementById(
-      "saleProductsGrid"
-    );
+const grid=
+document.getElementById("saleProductsGrid");
 
-  const search =
-    document
-      .getElementById("saleSearch")
-      .value
-      .toLowerCase()
-      .trim();
+const search=
+document.getElementById("saleSearch")
+.value.toLowerCase().trim();
 
-  const filtered =
-    products.filter(p=>
-      matchesSearch(p,search)
-    );
+const filtered=
+products.filter(p=>matchesSearch(p,search));
 
-  if(!filtered.length){
+if(!filtered.length){
 
-    grid.innerHTML=
-      `<div class="empty">
-        لا توجد منتجات
-      </div>`;
+grid.innerHTML=
+`<div class="empty">لا توجد منتجات</div>`;
 
-    return;
+return;
 
-  }
+}
 
-  grid.innerHTML=
-    filtered.map(product=>{
+grid.innerHTML=
+filtered.map(product=>{
 
-      const cartItem =
-        cart.find(
-          i=>i.productId===product.id
-        );
+const cartItem=
+cart.find(i=>i.productId===product.id);
 
-      const quantity =
-        cartItem
-        ? cartItem.quantity
-        : 0;
+const quantity=
+cartItem?cartItem.quantity:0;
 
-      const image =
-        product.image
-        ?
-        `<img src="${product.image}" alt="">`
-        :
-        `<div class="emoji">
-          📦
-        </div>`;
+const image=
+product.image
+?
+`<img src="${product.image}" alt="">`
+:
+`<div class="emoji">📦</div>`;
 
-      return `
+return `
 
-        <div
-          class="sale-product ${quantity>0 ? "added":""}"
-          data-product-id="${product.id}"
-          onclick="addToCart(${product.id})">
+<div
+class="sale-product ${quantity>0?"added":""}"
+onclick="addToCart(${product.id})">
 
-          ${
-            quantity>0
-            ?
-            `<div class="cart-badge">
-              🛒 × ${quantity}
-            </div>`
-            :
-            ""
-          }
+${
+quantity>0
+?
+`<div class="cart-badge">
+🛒 × ${quantity}
+</div>`
+:
+""
+}
 
-          ${image}
+${image}
 
-          <h3>
-            ${escapeHTML(
-              productLabel(product)
-            )}
-          </h3>
+<h3>
+${escapeHTML(productLabel(product))}
+</h3>
 
-          <div class="price">
-            ${money(product.sell)}
-          </div>
+<div class="price">
+${money(product.sell)}
+</div>
 
-          <small>
-            المخزون: ${product.stock}
-          </small>
+<small>
+المخزون: ${product.stock}
+</small>
 
-          ${
-            product.barcode
-            ?
-            `<br>
-             <small>
-               باركود:
-               ${escapeHTML(product.barcode)}
-             </small>`
-            :
-            ""
-          }
+${
+product.barcode
+?
+`<br>
+<small>
+باركود:
+${escapeHTML(product.barcode)}
+</small>`
+:
+""
+}
 
-          ${
-            quantity>0
-            ?
-            `<div class="add-success">
-              ✓ تمت الإضافة
-            </div>`
-            :
-            ""
-          }
+</div>
 
-        </div>
+`;
 
-      `;
-
-    }).join("");
+}).join("");
 
 }
 
 
-/* ==================================================
-   عرض السلة
-================================================== */
+/* السلة */
 
 function renderCart(){
 
-  const list =
-    document.getElementById(
-      "cartList"
-    );
+const list=
+document.getElementById("cartList");
 
-  const totalElement =
-    document.getElementById(
-      "cartTotal"
-    );
+const totalElement=
+document.getElementById("cartTotal");
 
-  if(!cart.length){
+if(!cart.length){
 
-    list.innerHTML=
-      `<div class="empty">
-        السلة فارغة
-      </div>`;
+list.innerHTML=
+`<div class="empty">السلة فارغة</div>`;
 
-    totalElement.innerText=
-      "0 دج";
+totalElement.innerText="0 دج";
 
-    return;
+return;
 
-  }
+}
 
-  let total=0;
+let total=0;
 
-  list.innerHTML=
-    cart.map(item=>{
+list.innerHTML=
+cart.map(item=>{
 
-      const itemTotal =
-        item.price *
-        item.quantity;
+const itemTotal=
+item.price*item.quantity;
 
-      total += itemTotal;
+total+=itemTotal;
 
-      return `
+const product=
+products.find(p=>p.id===item.productId);
 
-        <div class="cart-item">
+const originalPrice=
+product?product.sell:item.price;
 
-          <div class="cart-top">
+return `
 
-            <div>
+<div class="cart-item">
 
-              <strong>
-                ${escapeHTML(item.name)}
-              </strong>
+<div class="cart-top">
 
-              <div
-                style="font-size:12px;color:#667085">
+<div>
 
-                ${
-                  item.size
-                  ?
-                  escapeHTML(item.size)
-                  :
-                  ""
-                }
+<strong>
+${escapeHTML(item.name)}
+</strong>
 
-                ${
-                  item.unit
-                  ?
-                  " / "+
-                  escapeHTML(item.unit)
-                  :
-                  ""
-                }
+<div style="font-size:12px;color:#667085">
 
-              </div>
+${item.size?
+escapeHTML(item.size):""}
 
-              <div style="
-                margin-top:5px;
-                color:#2563eb;
-                font-weight:bold">
+${item.unit?
+" / "+escapeHTML(item.unit):""}
 
-                ${money(item.price)}
-                ×
-                ${item.quantity}
+</div>
 
-              </div>
+<div style="
+margin-top:5px;
+color:#2563eb;
+font-weight:bold">
 
-            </div>
+${money(item.price)}
+×
+${item.quantity}
 
-            <strong>
-              ${money(itemTotal)}
-            </strong>
+</div>
 
-          </div>
+</div>
 
-          <div class="cart-controls">
+<strong>
+${money(itemTotal)}
+</strong>
 
-            <button
-              onclick="decreaseCart(${item.productId})">
-              −
-            </button>
+</div>
 
-            <span class="cart-quantity">
-              ${item.quantity}
-            </span>
+<div class="cart-controls">
 
-            <button
-              onclick="addToCart(${item.productId})">
-              +
-            </button>
+<button
+onclick="decreaseCart(${item.productId})">
+−
+</button>
 
-            <button
-              class="edit-cart"
-              onclick="editCartItem(${item.productId})">
-              ✏️ تعديل الكمية
-            </button>
+<span class="cart-quantity">
+${item.quantity}
+</span>
 
-            <button
-              class="edit-cart"
-              onclick="editCartPrice(${item.productId})">
-              💰 تعديل السعر
-            </button>
+<button
+onclick="addToCart(${item.productId})">
++
+</button>
 
-            <button
-              class="remove-cart"
-              onclick="removeFromCart(${item.productId})">
-              ×
-            </button>
+<button
+class="edit-cart"
+onclick="editCartItem(${item.productId})">
+✏️ الكمية
+</button>
 
-          </div>
+<button
+class="edit-cart"
+onclick="editCartPrice(${item.productId})">
+💰 السعر
+</button>
 
-          ${
-            item.price !==
-            products.find(p=>p.id===item.productId)?.sell
-            ?
-            `<div class="cart-price-edit">
-              💰 السعر الخاص بهذه الفاتورة:
-              <strong>${money(item.price)}</strong>
-              <br>
-              السعر الأصلي للمنتج:
-              ${money(
-                products.find(
-                  p=>p.id===item.productId
-                )?.sell
-              )}
-            </div>`
-            :
-            ""
-          }
+<button
+class="remove-cart"
+onclick="removeFromCart(${item.productId})">
+×
+</button>
 
-        </div>
+</div>
 
-      `;
+${
+item.price!==originalPrice
+?
+`<div class="cart-price-edit">
+💰 سعر خاص لهذه الفاتورة:
+<strong>${money(item.price)}</strong>
+<br>
+السعر الأصلي:
+${money(originalPrice)}
+</div>`
+:
+""
+}
 
-    }).join("");
+</div>
 
-  totalElement.innerText=
-    money(total);
+`;
+
+}).join("");
+
+totalElement.innerText=money(total);
 
 }
 
 
-/* ==================================================
-   ماسح الباركود
-================================================== */
+/* التركيز على خانة الباركود */
+
+function focusBarcode(){
+
+const input=
+document.getElementById("saleSearch");
+
+input.focus();
+
+input.select();
+
+showToast(
+"📷 جاهز لمسح الباركود"
+);
+
+}
+
+
+/* الباركود */
 
 function handleBarcodeScan(){
 
-  const input =
-    document.getElementById(
-      "saleSearch"
-    );
+const input=
+document.getElementById("saleSearch");
 
-  if(!input) return;
+const code=
+input.value.trim();
 
-  const code =
-    input.value.trim();
+if(!code)return;
 
-  if(!code) return;
+const product=
+products.find(p=>
+String(p.barcode||"").trim()===code
+);
 
-  const exact =
-    products.find(
-      product=>
-        String(product.barcode || "").trim() === code
-    );
+if(!product){
 
-  if(!exact){
+showToast(
+"❌ لم يتم العثور على هذا الباركود"
+);
 
-    return;
+input.select();
 
-  }
+return;
 
-  addToCart(exact.id);
+}
 
-  /*
-    تفريغ البحث حتى يصبح الجهاز
-    جاهزًا للباركود التالي
-  */
+addToCart(product.id);
 
-  input.value="";
+input.value="";
 
-  renderSaleProducts();
-
-  setTimeout(()=>{
-    input.focus();
-  },50);
+setTimeout(()=>{
+input.focus();
+},50);
 
 }
 
 
-/* ==================================================
-   إتمام البيع
-================================================== */
+/* إتمام البيع */
 
 function completeSale(){
 
-  if(!cart.length){
+if(!cart.length){
 
-    alert(
-      "❌ السلة فارغة"
-    );
+alert("❌ السلة فارغة");
+return;
 
-    return;
+}
 
-  }
+for(const item of cart){
 
-  for(const item of cart){
+const product=
+products.find(p=>p.id===item.productId);
 
-    const product =
-      products.find(
-        p=>p.id===item.productId
-      );
+if(!product){
 
-    if(!product){
+alert("❌ أحد المنتجات لم يعد موجودًا");
+return;
 
-      alert(
-        "❌ أحد المنتجات لم يعد موجودًا"
-      );
+}
 
-      return;
+if(item.quantity>product.stock){
 
-    }
+alert(
+"❌ الكمية غير متوفرة للمنتج:\n"+
+productLabel(product)
+);
 
-    if(item.quantity>product.stock){
+return;
 
-      alert(
-        "❌ الكمية غير متوفرة للمنتج:\n"+
-        productLabel(product)
-      );
+}
 
-      return;
+}
 
-    }
+let confirmMessage="تأكيد البيع؟\n\n";
 
-  }
+let totalPreview=0;
 
-  let confirmMessage=
-    "تأكيد البيع؟\n\n";
+cart.forEach(item=>{
 
-  let totalPreview=0;
+const itemTotal=
+item.price*item.quantity;
 
-  cart.forEach(item=>{
+totalPreview+=itemTotal;
 
-    const itemTotal =
-      item.price *
-      item.quantity;
+confirmMessage+=
+"• "+
+productLabel(item)+
+" × "+
+item.quantity+
+" = "+
+money(itemTotal)+
+"\n";
 
-    totalPreview+=itemTotal;
+});
 
-    confirmMessage+=
-      "• "+
-      productLabel(item)+
-      " × "+
-      item.quantity+
-      " = "+
-      money(itemTotal)+
-      "\n";
+confirmMessage+=
+"\nالمجموع: "+
+money(totalPreview);
 
-  });
+if(!confirm(confirmMessage))
+return;
 
-  confirmMessage+=
-    "\nالمجموع: "+
-    money(totalPreview);
+let total=0;
+let profit=0;
+const items=[];
 
-  if(!confirm(confirmMessage)){
+cart.forEach(item=>{
 
-    return;
+const product=
+products.find(p=>p.id===item.productId);
 
-  }
+const itemTotal=
+item.price*item.quantity;
 
-  let total=0;
+const itemProfit=
+(item.price-product.buy)*
+item.quantity;
 
-  let profit=0;
+total+=itemTotal;
+profit+=itemProfit;
 
-  const items=[];
+items.push({
 
-  cart.forEach(item=>{
+productId:item.productId,
+name:item.name,
+category:item.category||"",
+size:item.size||"",
+unit:item.unit||"",
+barcode:item.barcode||"",
+quantity:item.quantity,
+price:item.price,
+buy:product.buy,
+total:itemTotal
 
-    const product =
-      products.find(
-        p=>p.id===item.productId
-      );
+});
 
-    const itemTotal =
-      item.price *
-      item.quantity;
+product.stock-=item.quantity;
 
-    const itemProfit =
-      (item.price-product.buy) *
-      item.quantity;
+});
 
-    total+=itemTotal;
+const saleId=Date.now();
 
-    profit+=itemProfit;
+const date=
+new Date().toLocaleString("ar-DZ");
 
-    items.push({
+const invoiceNumber=
+"INV-"+
+String(invoices.length+1)
+.padStart(4,"0");
 
-      productId:item.productId,
+const sale={
 
-      name:item.name,
+id:saleId,
+date:date,
+items:items,
+total:total,
+profit:profit
 
-      category:item.category || "",
+};
 
-      size:item.size || "",
+sales.push(sale);
 
-      unit:item.unit || "",
+const invoice={
 
-      barcode:item.barcode || "",
+id:saleId,
+number:invoiceNumber,
+date:date,
+items:items,
+total:total,
+profit:profit
 
-      quantity:item.quantity,
+};
 
-      /*
-        السعر النهائي لهذه الفاتورة
-      */
-      price:item.price,
+invoices.push(invoice);
 
-      /*
-        سعر التكلفة الحقيقي
-      */
-      buy:product.buy,
+saveData();
 
-      total:itemTotal
+cart=[];
 
-    });
+renderCart();
+renderProducts();
+renderHomeProducts();
+renderSaleProducts();
+renderInvoices();
+refresh();
 
-    product.stock -=
-      item.quantity;
-
-  });
-
-  const saleId =
-    Date.now();
-
-  const now =
-    new Date();
-
-  const date =
-    now.toLocaleString(
-      "ar-DZ"
-    );
-
-  const invoiceNumber=
-    "INV-"+
-    String(
-      invoices.length+1
-    ).padStart(4,"0");
-
-  const sale={
-
-    id:saleId,
-
-    date:date,
-
-    items:items,
-
-    total:total,
-
-    profit:profit
-
-  };
-
-  sales.push(sale);
-
-  const invoice={
-
-    id:saleId,
-
-    number:invoiceNumber,
-
-    date:date,
-
-    items:items,
-
-    total:total,
-
-    profit:profit
-
-  };
-
-  invoices.push(invoice);
-
-  saveData();
-
-  cart=[];
-
-  renderCart();
-
-  renderProducts();
-
-  renderHomeProducts();
-
-  renderSaleProducts();
-
-  renderInvoices();
-
-  refresh();
-
-  viewInvoice(
-    invoice.id,
-    true
-  );
+viewInvoice(invoice.id,true);
 
 }
 
 
-/* ==================================================
-   الفواتير
-================================================== */
+/* الفواتير */
 
 function renderInvoices(){
 
-  const list =
-    document.getElementById(
-      "invoicesList"
-    );
+const list=
+document.getElementById("invoicesList");
 
-  if(!invoices.length){
+if(!invoices.length){
 
-    list.innerHTML=
-      `<div class="empty">
-        لا توجد فواتير بعد
-      </div>`;
+list.innerHTML=
+`<div class="empty">لا توجد فواتير بعد</div>`;
 
-    return;
+return;
 
-  }
+}
 
-  const sorted =
-    [...invoices].reverse();
+const sorted=[...invoices].reverse();
 
-  list.innerHTML=
-    sorted.map(invoice=>{
+list.innerHTML=
+sorted.map(invoice=>{
 
-      return `
+return `
 
-        <div class="invoice-card">
+<div class="invoice-card">
 
-          <div class="invoice-head">
+<div class="invoice-head">
 
-            <div>
+<div>
 
-              <div class="invoice-number">
-                🧾 ${invoice.number}
-              </div>
+<div class="invoice-number">
+🧾 ${invoice.number}
+</div>
 
-            </div>
+</div>
 
-            <div>
-              ${escapeHTML(invoice.date)}
-            </div>
+<div>
+${escapeHTML(invoice.date)}
+</div>
 
-          </div>
+</div>
 
-          <div>
-            عدد الأصناف:
-            ${invoice.items.length}
-          </div>
+<div>
+عدد الأصناف:
+${invoice.items.length}
+</div>
 
-          <div class="invoice-total">
-            ${money(invoice.total)}
-          </div>
+<div class="invoice-total">
+${money(invoice.total)}
+</div>
 
-          <div class="invoice-buttons">
+<div class="invoice-buttons">
 
-            <button
-              class="view-invoice"
-              onclick="viewInvoice(${invoice.id})">
-              👁️ عرض / طباعة
-            </button>
+<button
+class="view-invoice"
+onclick="viewInvoice(${invoice.id})">
+👁️ عرض / طباعة
+</button>
 
-            <button
-              class="delete-invoice"
-              onclick="deleteInvoice(${invoice.id})">
-              🗑️ حذف
-            </button>
+<button
+class="delete-invoice"
+onclick="deleteInvoice(${invoice.id})">
+🗑️ حذف
+</button>
 
-          </div>
+</div>
 
-        </div>
+</div>
 
-      `;
+`;
 
-    }).join("");
+}).join("");
 
 }
 
 
 function viewInvoice(id,autoPrint=false){
 
-  const invoice =
-    invoices.find(
-      i=>i.id===id
-    );
+const invoice=
+invoices.find(i=>i.id===id);
 
-  if(!invoice) return;
+if(!invoice)return;
 
-  const rows =
-    invoice.items.map(item=>{
+const rows=
+invoice.items.map(item=>{
 
-      return `
+return `
 
-        <tr>
+<tr>
 
-          <td>
+<td>
 
-            ${escapeHTML(item.name)}
+${escapeHTML(item.name)}
 
-            ${
-              item.size
-              ?
-              `<br>
-               <small>
-                 ${escapeHTML(item.size)}
-                 ${
-                   item.unit
-                   ?
-                   " / "+
-                   escapeHTML(item.unit)
-                   :
-                   ""
-                 }
-               </small>`
-              :
-              ""
-            }
+${
+item.size
+?
+`<br>
+<small>
+${escapeHTML(item.size)}
+${item.unit?" / "+escapeHTML(item.unit):""}
+</small>`
+:
+""
+}
 
-          </td>
+</td>
 
-          <td>
-            ${item.quantity}
-          </td>
+<td>${item.quantity}</td>
 
-          <td>
-            ${money(item.price)}
-          </td>
+<td>${money(item.price)}</td>
 
-          <td>
-            ${money(item.total)}
-          </td>
+<td>${money(item.total)}</td>
 
-        </tr>
+</tr>
 
-      `;
+`;
 
-    }).join("");
+}).join("");
 
-  document
-    .getElementById("invoicePrint")
-    .innerHTML=`
+document.getElementById("invoicePrint")
+.innerHTML=`
 
-      <div class="invoice-paper">
+<div class="invoice-paper">
 
-        <div
-          class="invoice-paper-header">
+<div class="invoice-paper-header">
 
-          <h1>TijaraPro</h1>
+<h1>TijaraPro</h1>
 
-          <div>
-            فاتورة بيع
-          </div>
+<div>
+فاتورة بيع
+</div>
 
-        </div>
+</div>
 
-        <div class="invoice-meta">
+<div class="invoice-meta">
 
-          <div>
+<div>
+<strong>رقم الفاتورة:</strong>
+${invoice.number}
+</div>
 
-            <strong>
-              رقم الفاتورة:
-            </strong>
+<div>
+<strong>التاريخ:</strong>
+${escapeHTML(invoice.date)}
+</div>
 
-            ${invoice.number}
+</div>
 
-          </div>
+<table class="invoice-table">
 
-          <div>
+<thead>
 
-            <strong>
-              التاريخ:
-            </strong>
+<tr>
 
-            ${escapeHTML(invoice.date)}
+<th>المنتج</th>
+<th>الكمية</th>
+<th>السعر</th>
+<th>المجموع</th>
 
-          </div>
+</tr>
 
-        </div>
+</thead>
 
-        <table class="invoice-table">
+<tbody>
+${rows}
+</tbody>
 
-          <thead>
+</table>
 
-            <tr>
+<div class="invoice-final">
 
-              <th>المنتج</th>
+المجموع النهائي:
+${money(invoice.total)}
 
-              <th>الكمية</th>
+</div>
 
-              <th>السعر</th>
+<div style="margin-top:10px;text-align:left">
 
-              <th>المجموع</th>
+الربح:
+${money(invoice.profit)}
 
-            </tr>
+</div>
 
-          </thead>
+<div class="print-actions">
 
-          <tbody>
+<button
+class="print-btn"
+onclick="printInvoice()">
+🖨️ طباعة الفاتورة
+</button>
 
-            ${rows}
+<button
+class="close-btn"
+onclick="closeInvoice()">
+← العودة
+</button>
 
-          </tbody>
+</div>
 
-        </table>
+</div>
 
-        <div class="invoice-final">
+`;
 
-          المجموع النهائي:
-          ${money(invoice.total)}
+document.querySelectorAll(".section")
+.forEach(section=>{
+section.classList.remove("active");
+});
 
-        </div>
+document.getElementById("invoicePrint")
+.style.display="block";
 
-        <div
-          style="
-          margin-top:10px;
-          text-align:left">
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-          الربح:
-          ${money(invoice.profit)}
+if(autoPrint){
 
-        </div>
-
-        <div class="print-actions">
-
-          <button
-            class="print-btn"
-            onclick="printInvoice()">
-
-            🖨️ طباعة الفاتورة
-
-          </button>
-
-          <button
-            class="close-btn"
-            onclick="closeInvoice()">
-
-            ← العودة
-
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-  document
-    .querySelectorAll(".section")
-    .forEach(section=>{
-      section.classList.remove("active");
-    });
-
-  document
-    .getElementById("invoicePrint")
-    .style.display="block";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  if(autoPrint){
-
-    setTimeout(()=>{
-      printInvoice();
-    },500);
-
-  }
+setTimeout(()=>{
+printInvoice();
+},500);
 
 }
 
-
-/* ==================================================
-   الطباعة
-================================================== */
+}
 
 function printInvoice(){
 
-  if(
-    typeof window.print !==
-    "function"
-  ){
-
-    alert(
-      "⚠️ الطباعة غير متاحة على هذا الجهاز.\n"+
-      "الفاتورة محفوظة ويمكن فتحها لاحقًا."
-    );
-
-    return;
-
-  }
-
-  window.print();
+window.print();
 
 }
-
 
 function closeInvoice(){
 
-  document
-    .getElementById("invoicePrint")
-    .style.display="none";
+document.getElementById("invoicePrint")
+.style.display="none";
 
-  goTo("invoices");
+goTo("invoices");
 
 }
-
 
 function deleteInvoice(id){
 
-  if(
-    !confirm(
-      "هل تريد حذف هذه الفاتورة؟"
-    )
-  ){
+if(!confirm("هل تريد حذف هذه الفاتورة؟"))
+return;
 
-    return;
+invoices=
+invoices.filter(
+invoice=>invoice.id!==id
+);
 
-  }
+saveData();
 
-  invoices=
-    invoices.filter(
-      invoice=>invoice.id!==id
-    );
-
-  saveData();
-
-  renderInvoices();
+renderInvoices();
 
 }
 
 
-/* ==================================================
-   الإحصائيات
-================================================== */
+/* الإحصائيات */
 
 function refresh(){
 
-  const today =
-    new Date()
-      .toLocaleDateString(
-        "ar-DZ"
-      );
+const today=
+new Date().toLocaleDateString("ar-DZ");
 
-  let todaySales=0;
+let todaySales=0;
+let todayProfit=0;
 
-  let todayProfit=0;
+sales.forEach(sale=>{
 
-  sales.forEach(sale=>{
+const saleDate=
+new Date(sale.id)
+.toLocaleDateString("ar-DZ");
 
-    const saleDate =
-      new Date(sale.id)
-        .toLocaleDateString(
-          "ar-DZ"
-        );
+if(saleDate===today){
 
-    if(saleDate===today){
+todaySales+=Number(sale.total||0);
 
-      todaySales +=
-        Number(
-          sale.total || 0
-        );
+todayProfit+=Number(sale.profit||0);
 
-      todayProfit +=
-        Number(
-          sale.profit || 0
-        );
+}
 
-    }
+});
 
-  });
+document.getElementById("todaySales")
+.innerText=money(todaySales);
 
-  document
-    .getElementById("todaySales")
-    .innerText=
-    money(todaySales);
+document.getElementById("todayProfit")
+.innerText=money(todayProfit);
 
-  document
-    .getElementById("todayProfit")
-    .innerText=
-    money(todayProfit);
+document.getElementById("productCount")
+.innerText=products.length;
 
-  document
-    .getElementById("productCount")
-    .innerText=
-    products.length;
-
-  document
-    .getElementById("salesCount")
-    .innerText=
-    sales.length;
+document.getElementById("salesCount")
+.innerText=sales.length;
 
 }
 
 
-/* ==================================================
-   تشغيل النظام
-================================================== */
+/* تشغيل */
 
 function init(){
 
-  products=
-    products.map(product=>({
+products=
+products.map(product=>({
 
-      ...product,
+...product,
 
-      category:
-        product.category || "",
+category:product.category||"",
+size:product.size||"",
+unit:product.unit||"قطعة",
+barcode:product.barcode||""
 
-      size:
-        product.size || "",
+}));
 
-      unit:
-        product.unit || "قطعة",
+saveData();
 
-      barcode:
-        product.barcode || ""
-
-    }));
-
-  saveData();
-
-  renderHomeProducts();
-
-  renderProducts();
-
-  renderSaleProducts();
-
-  renderCart();
-
-  renderInvoices();
-
-  refresh();
+renderHomeProducts();
+renderProducts();
+renderSaleProducts();
+renderCart();
+renderInvoices();
+refresh();
 
 }
 
 
-/* ==================================================
-   استقبال الباركود من الماسح
-================================================== */
+/* استقبال الباركود */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  function(){
+"DOMContentLoaded",
+function(){
 
-    const input =
-      document.getElementById(
-        "saleSearch"
-      );
+const input=
+document.getElementById("saleSearch");
 
-    if(!input) return;
+if(!input)return;
 
-    input.addEventListener(
-      "keydown",
-      function(event){
+input.addEventListener(
+"keydown",
+function(event){
 
-        /*
-          معظم ماسحات الباركود
-          ترسل Enter بعد قراءة الباركود.
-        */
+if(event.key==="Enter"){
 
-        if(event.key==="Enter"){
+event.preventDefault();
 
-          event.preventDefault();
+handleBarcodeScan();
 
-          handleBarcodeScan();
+}
 
-        }
+});
 
-      }
-    );
+input.addEventListener(
+"input",
+function(){
 
-  }
-);
+/*
+  إذا كان الإدخال بحثًا عاديًا
+  تظهر المنتجات بشكل طبيعي.
+*/
 
+renderSaleProducts();
+
+});
+
+});
 
 init();
 
