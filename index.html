@@ -21,8 +21,7 @@ body{
     min-height:100vh;
 }
 
-button,
-input{
+button,input{
     font-family:inherit;
 }
 
@@ -37,7 +36,7 @@ button{
     padding-bottom:40px;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
     background:#111827;
@@ -90,7 +89,7 @@ button{
     color:#dbeafe;
 }
 
-/* ================= NAV ================= */
+/* NAV */
 
 .nav{
     display:flex;
@@ -120,7 +119,7 @@ button{
     color:white;
 }
 
-/* ================= CONTENT ================= */
+/* CONTENT */
 
 .content{
     padding:0 14px;
@@ -152,7 +151,7 @@ button{
     margin-top:4px;
 }
 
-/* ================= DASHBOARD ================= */
+/* DASHBOARD */
 
 .welcome{
     background:linear-gradient(135deg,#2563eb,#1d4ed8);
@@ -210,7 +209,7 @@ button{
     margin-top:5px;
 }
 
-/* ================= QUICK ACTIONS ================= */
+/* QUICK */
 
 .quick-actions{
     display:grid;
@@ -234,7 +233,7 @@ button{
     margin-bottom:8px;
 }
 
-/* ================= PRODUCTS ================= */
+/* SEARCH */
 
 .search-box{
     position:relative;
@@ -258,6 +257,8 @@ button{
     font-size:19px;
 }
 
+/* PRODUCTS */
+
 .products-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -269,6 +270,7 @@ button{
     border-radius:18px;
     overflow:hidden;
     box-shadow:0 3px 12px rgba(0,0,0,.06);
+    position:relative;
 }
 
 .product-image{
@@ -286,6 +288,23 @@ button{
     width:100%;
     height:100%;
     object-fit:cover;
+}
+
+.stock-warning{
+    position:absolute;
+    top:9px;
+    right:9px;
+    background:#fef3c7;
+    color:#92400e;
+    padding:5px 8px;
+    border-radius:8px;
+    font-size:10px;
+    font-weight:800;
+}
+
+.out-stock{
+    background:#fee2e2;
+    color:#b91c1c;
 }
 
 .product-info{
@@ -332,12 +351,17 @@ button{
     color:white;
 }
 
+.edit-btn{
+    background:#e0e7ff;
+    color:#3730a3;
+}
+
 .delete-btn{
     background:#fee2e2;
     color:#b91c1c;
 }
 
-/* ================= FORM ================= */
+/* FORM */
 
 .form-card{
     background:white;
@@ -394,7 +418,20 @@ button{
     font-weight:800;
 }
 
-/* ================= SALES ================= */
+.cancel-btn{
+    width:100%;
+    border:0;
+    background:#f3f4f6;
+    color:#374151;
+    padding:12px;
+    border-radius:13px;
+    font-size:14px;
+    font-weight:700;
+    margin-top:8px;
+    display:none;
+}
+
+/* SALES */
 
 .sales-layout{
     display:grid;
@@ -460,7 +497,7 @@ button{
     margin-top:3px;
 }
 
-/* ================= CART ================= */
+/* CART */
 
 .cart{
     background:white;
@@ -564,7 +601,7 @@ button{
     margin-top:8px;
 }
 
-/* ================= EMPTY ================= */
+/* EMPTY */
 
 .empty{
     background:white;
@@ -579,7 +616,7 @@ button{
     margin-bottom:10px;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 .footer{
     text-align:center;
@@ -589,7 +626,7 @@ button{
     padding:10px;
 }
 
-/* ================= DESKTOP ================= */
+/* DESKTOP */
 
 @media(min-width:700px){
 
@@ -630,8 +667,6 @@ button{
 
 <div class="app">
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
 
     <div class="header-top">
@@ -650,15 +685,13 @@ button{
         </div>
 
         <div class="shop-badge">
-            الإصدار 1.0
+            الإصدار 1.1
         </div>
 
     </div>
 
 </header>
 
-
-<!-- ================= NAV ================= -->
 
 <nav class="nav">
 
@@ -678,8 +711,6 @@ button{
 
 
 <div class="content">
-
-<!-- ================= DASHBOARD ================= -->
 
 <section id="dashboard" class="section active">
 
@@ -746,7 +777,7 @@ button{
             <div class="stat-icon">📈</div>
 
             <div class="label">
-                الأرباح
+                أرباح اليوم
             </div>
 
             <div class="value" id="todayProfit">
@@ -794,8 +825,6 @@ button{
 
 </section>
 
-
-<!-- ================= SALES ================= -->
 
 <section id="sales" class="section">
 
@@ -887,8 +916,6 @@ button{
 </section>
 
 
-<!-- ================= PRODUCTS ================= -->
-
 <section id="products" class="section">
 
     <div class="section-title">
@@ -904,16 +931,16 @@ button{
     </div>
 
 
-    <!-- ADD PRODUCT -->
-
     <div class="form-card">
 
         <div class="section-title">
+
             <div>
-                <h2 style="font-size:17px;">
+                <h2 style="font-size:17px;" id="formTitle">
                     ➕ إضافة منتج
                 </h2>
             </div>
+
         </div>
 
 
@@ -1001,15 +1028,23 @@ button{
 
         <button
             class="primary-btn"
-            onclick="addProduct()"
+            onclick="saveProduct()"
+            id="saveProductButton"
         >
             ➕ حفظ المنتج
         </button>
 
+
+        <button
+            class="cancel-btn"
+            onclick="cancelEdit()"
+            id="cancelEditButton"
+        >
+            إلغاء التعديل
+        </button>
+
     </div>
 
-
-    <!-- PRODUCT LIST -->
 
     <div class="search-box">
 
@@ -1029,7 +1064,6 @@ button{
 
 </section>
 
-
 </div>
 
 
@@ -1044,11 +1078,8 @@ button{
 
 /* =====================================================
    TijaraPro
-   الإصدار الأول
+   الإصدار 1.1
    ===================================================== */
-
-
-/* ================= DATA ================= */
 
 let products =
     JSON.parse(localStorage.getItem("tijara_products")) || [];
@@ -1057,6 +1088,8 @@ let sales =
     JSON.parse(localStorage.getItem("tijara_sales")) || [];
 
 let cart = [];
+
+let editingProductId = null;
 
 
 /* ================= HELPERS ================= */
@@ -1109,13 +1142,18 @@ function showSection(id,button){
 
 
     if(id === "sales"){
+
         renderSaleProducts();
+
         renderCart();
+
     }
 
 
     if(id === "products"){
+
         renderProducts();
+
     }
 
 }
@@ -1171,15 +1209,15 @@ function showInfo(){
     alert(
         "TijaraPro\n\n" +
         "نظام البيع وإدارة المحل\n\n" +
-        "الإصدار الأول"
+        "الإصدار 1.1"
     );
 
 }
 
 
-/* ================= PRODUCTS ================= */
+/* ================= ADD / EDIT PRODUCT ================= */
 
-function addProduct(){
+function saveProduct(){
 
     const name =
         document.getElementById("productName")
@@ -1231,22 +1269,39 @@ function addProduct(){
     }
 
 
+    if(editingProductId !== null){
+
+        updateProduct(
+            name,
+            buy,
+            sell,
+            stock,
+            imageInput
+        );
+
+        return;
+
+    }
+
+
     if(imageInput.files.length > 0){
 
-        const reader = new FileReader();
+        const reader =
+            new FileReader();
 
 
-        reader.onload = function(event){
+        reader.onload =
+            function(event){
 
-            createProduct(
-                name,
-                buy,
-                sell,
-                stock,
-                event.target.result
-            );
+                createProduct(
+                    name,
+                    buy,
+                    sell,
+                    stock,
+                    event.target.result
+                );
 
-        };
+            };
 
 
         reader.readAsDataURL(
@@ -1299,16 +1354,7 @@ function createProduct(
 
     saveData();
 
-    document.getElementById("productName").value = "";
-
-    document.getElementById("buyPrice").value = "";
-
-    document.getElementById("sellPrice").value = "";
-
-    document.getElementById("productStock").value = "";
-
-    document.getElementById("productImage").value = "";
-
+    resetProductForm();
 
     renderProducts();
 
@@ -1318,6 +1364,206 @@ function createProduct(
 
 
     alert("✅ تمت إضافة المنتج بنجاح");
+
+}
+
+
+/* ================= UPDATE PRODUCT ================= */
+
+function updateProduct(
+    name,
+    buy,
+    sell,
+    stock,
+    imageInput
+){
+
+    const product =
+        products.find(
+            p => p.id == editingProductId
+        );
+
+
+    if(!product){
+
+        cancelEdit();
+
+        return;
+
+    }
+
+
+    function finishUpdate(image){
+
+        product.name = name;
+
+        product.buy = buy;
+
+        product.sell = sell;
+
+        product.stock = stock;
+
+        if(image){
+            product.image = image;
+        }
+
+
+        saveData();
+
+        resetProductForm();
+
+        renderProducts();
+
+        renderSaleProducts();
+
+        renderCart();
+
+        updateDashboard();
+
+
+        alert("✅ تم تعديل المنتج بنجاح");
+
+    }
+
+
+    if(imageInput.files.length > 0){
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event){
+
+                finishUpdate(
+                    event.target.result
+                );
+
+            };
+
+
+        reader.readAsDataURL(
+            imageInput.files[0]
+        );
+
+    }else{
+
+        finishUpdate("");
+
+    }
+
+}
+
+
+/* ================= EDIT PRODUCT ================= */
+
+function editProduct(id){
+
+    const product =
+        products.find(
+            p => p.id == id
+        );
+
+
+    if(!product){
+        return;
+    }
+
+
+    editingProductId =
+        product.id;
+
+
+    document.getElementById("formTitle")
+        .textContent =
+        "✏️ تعديل المنتج";
+
+
+    document.getElementById("productName")
+        .value =
+        product.name;
+
+
+    document.getElementById("buyPrice")
+        .value =
+        product.buy;
+
+
+    document.getElementById("sellPrice")
+        .value =
+        product.sell;
+
+
+    document.getElementById("productStock")
+        .value =
+        product.stock;
+
+
+    document.getElementById("saveProductButton")
+        .textContent =
+        "💾 حفظ التعديلات";
+
+
+    document.getElementById("cancelEditButton")
+        .style.display =
+        "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ================= CANCEL EDIT ================= */
+
+function cancelEdit(){
+
+    resetProductForm();
+
+}
+
+
+function resetProductForm(){
+
+    editingProductId = null;
+
+
+    document.getElementById("formTitle")
+        .textContent =
+        "➕ إضافة منتج";
+
+
+    document.getElementById("saveProductButton")
+        .textContent =
+        "➕ حفظ المنتج";
+
+
+    document.getElementById("cancelEditButton")
+        .style.display =
+        "none";
+
+
+    document.getElementById("productName")
+        .value = "";
+
+
+    document.getElementById("buyPrice")
+        .value = "";
+
+
+    document.getElementById("sellPrice")
+        .value = "";
+
+
+    document.getElementById("productStock")
+        .value = "";
+
+
+    document.getElementById("productImage")
+        .value = "";
 
 }
 
@@ -1359,9 +1605,34 @@ function renderProducts(){
 
 
     grid.innerHTML =
-        filtered.map(product => `
+        filtered.map(product => {
+
+            let warning = "";
+
+            if(product.stock <= 0){
+
+                warning = `
+                    <div class="stock-warning out-stock">
+                        نفد المخزون
+                    </div>
+                `;
+
+            }else if(product.stock <= 5){
+
+                warning = `
+                    <div class="stock-warning">
+                        مخزون منخفض
+                    </div>
+                `;
+
+            }
+
+
+            return `
 
             <div class="product-card">
+
+                ${warning}
 
                 <div class="product-image">
 
@@ -1411,6 +1682,14 @@ function renderProducts(){
 
 
                         <button
+                            class="edit-btn"
+                            onclick="editProduct(${product.id})"
+                        >
+                            ✏️ تعديل
+                        </button>
+
+
+                        <button
                             class="delete-btn"
                             onclick="deleteProduct(${product.id})"
                         >
@@ -1423,7 +1702,9 @@ function renderProducts(){
 
             </div>
 
-        `).join("");
+            `;
+
+        }).join("");
 
 }
 
@@ -1433,7 +1714,10 @@ function renderProducts(){
 function deleteProduct(id){
 
     const product =
-        products.find(p => p.id == id);
+        products.find(
+            p => p.id == id
+        );
+
 
     if(!product){
         return;
@@ -1443,8 +1727,7 @@ function deleteProduct(id){
     const confirmed =
         confirm(
             "هل تريد حذف المنتج:\n\n" +
-            product.name +
-            "\n\nسيتم حذف المنتج من القائمة."
+            product.name
         );
 
 
@@ -1559,11 +1842,13 @@ function renderSaleProducts(){
 
 
                     <div class="sale-stock">
+
                         ${
                             product.stock > 0
                             ? "المتوفر: " + product.stock
                             : "نفد المخزون"
                         }
+
                     </div>
 
                 </div>
@@ -1592,7 +1877,9 @@ function addToCart(id){
 
     if(product.stock <= 0){
 
-        alert("⚠️ هذا المنتج غير متوفر في المخزون");
+        alert(
+            "⚠️ هذا المنتج غير متوفر في المخزون"
+        );
 
         return;
 
@@ -1609,7 +1896,9 @@ function addToCart(id){
 
         if(existing.quantity >= product.stock){
 
-            alert("⚠️ لا توجد كمية إضافية في المخزون");
+            alert(
+                "⚠️ لا توجد كمية إضافية في المخزون"
+            );
 
             return;
 
@@ -1663,7 +1952,9 @@ function increaseCart(id){
 
     if(item.quantity >= product.stock){
 
-        alert("⚠️ وصلت إلى الحد المتوفر في المخزون");
+        alert(
+            "⚠️ وصلت إلى الحد المتوفر في المخزون"
+        );
 
         return;
 
@@ -1764,6 +2055,7 @@ function renderCart(){
             const itemTotal =
                 item.price * item.quantity;
 
+
             total += itemTotal;
 
 
@@ -1849,7 +2141,6 @@ function completeSale(){
 
     let profit = 0;
 
-
     const items = [];
 
 
@@ -1863,7 +2154,9 @@ function completeSale(){
 
         if(!product){
 
-            alert("⚠️ أحد المنتجات لم يعد موجودًا");
+            alert(
+                "⚠️ أحد المنتجات لم يعد موجودًا"
+            );
 
             return;
 
@@ -1931,8 +2224,6 @@ function completeSale(){
     };
 
 
-    /* خصم المخزون */
-
     items.forEach(item => {
 
         const product =
@@ -1948,12 +2239,9 @@ function completeSale(){
 
     sales.push(sale);
 
-
     saveData();
 
-
     cart = [];
-
 
     renderCart();
 
@@ -1994,15 +2282,17 @@ function updateDashboard(){
 
 
     const todaySales =
-        sales.filter(sale =>
-            sale.date.slice(0,10) === today
+        sales.filter(
+            sale =>
+                sale.date.slice(0,10) === today
         );
 
 
     const totalSales =
         todaySales.reduce(
             (sum,sale) =>
-                sum + Number(sale.total || 0),
+                sum +
+                Number(sale.total || 0),
             0
         );
 
@@ -2010,7 +2300,8 @@ function updateDashboard(){
     const totalProfit =
         todaySales.reduce(
             (sum,sale) =>
-                sum + Number(sale.profit || 0),
+                sum +
+                Number(sale.profit || 0),
             0
         );
 
@@ -2027,7 +2318,7 @@ function updateDashboard(){
 }
 
 
-/* ================= SECURITY HELPER ================= */
+/* ================= SECURITY ================= */
 
 function escapeHTML(value){
 
