@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>TijaraPro</title>
 
 <style>
@@ -22,7 +22,7 @@ body{
 header{
   background:linear-gradient(135deg,#2563eb,#1d4ed8);
   color:white;
-  padding:25px 16px;
+  padding:24px 15px;
   text-align:center;
 }
 
@@ -33,15 +33,15 @@ header{
 
 .subtitle{
   margin-top:7px;
-  opacity:.9;
+  opacity:.92;
 }
 
 .version{
   display:inline-block;
-  margin-top:12px;
-  background:rgba(255,255,255,.18);
+  margin-top:10px;
   padding:6px 12px;
   border-radius:20px;
+  background:rgba(255,255,255,.18);
   font-size:13px;
 }
 
@@ -53,8 +53,8 @@ nav{
   overflow-x:auto;
   position:sticky;
   top:0;
-  z-index:20;
-  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  z-index:50;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
 }
 
 nav button{
@@ -74,7 +74,7 @@ nav button.active{
 }
 
 .container{
-  max-width:950px;
+  max-width:1000px;
   margin:auto;
   padding:16px;
 }
@@ -95,17 +95,17 @@ nav button.active{
   box-shadow:0 4px 18px rgba(0,0,0,.06);
 }
 
-.welcome{
-  background:linear-gradient(135deg,#eff6ff,#ffffff);
-}
-
 h2{
   margin-bottom:15px;
   font-size:21px;
 }
 
 h3{
-  margin-bottom:10px;
+  margin-bottom:7px;
+}
+
+.welcome{
+  background:linear-gradient(135deg,#eff6ff,#fff);
 }
 
 .stats{
@@ -129,7 +129,7 @@ h3{
 .stat strong{
   display:block;
   margin-top:7px;
-  font-size:19px;
+  font-size:18px;
 }
 
 .stat span{
@@ -159,16 +159,24 @@ h3{
   gap:12px;
 }
 
-input{
+.field label{
+  display:block;
+  margin-bottom:6px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+input,select{
   width:100%;
   padding:13px;
   border:1px solid #d8dee9;
   border-radius:12px;
   font-size:15px;
   outline:none;
+  background:white;
 }
 
-input:focus{
+input:focus,select:focus{
   border-color:#2563eb;
 }
 
@@ -188,7 +196,7 @@ input:focus{
   border:0;
   background:#eef2f7;
   color:#344054;
-  padding:10px 14px;
+  padding:11px 14px;
   border-radius:10px;
   cursor:pointer;
 }
@@ -202,6 +210,57 @@ input:focus{
   margin-bottom:15px;
 }
 
+.home-products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.home-product{
+  background:white;
+  border-radius:16px;
+  padding:10px;
+  box-shadow:0 3px 15px rgba(0,0,0,.06);
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.home-product:hover{
+  border-color:#2563eb;
+}
+
+.home-product img,
+.home-product .emoji{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+  border-radius:11px;
+}
+
+.home-product .emoji{
+  background:#eef2f7;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+}
+
+.home-product h3{
+  font-size:15px;
+  margin-top:8px;
+}
+
+.home-price{
+  color:#2563eb;
+  font-weight:bold;
+}
+
+.home-stock{
+  color:#667085;
+  font-size:12px;
+  margin-top:4px;
+}
+
 .products-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -213,7 +272,6 @@ input:focus{
   border-radius:16px;
   overflow:hidden;
   box-shadow:0 3px 15px rgba(0,0,0,.06);
-  border:2px solid transparent;
 }
 
 .product-image{
@@ -233,6 +291,12 @@ input:focus{
 
 .product-info h3{
   font-size:16px;
+}
+
+.product-details{
+  font-size:12px;
+  color:#667085;
+  line-height:1.8;
 }
 
 .price{
@@ -256,6 +320,12 @@ input:focus{
   font-weight:bold;
 }
 
+.barcode{
+  font-family:monospace;
+  direction:ltr;
+  display:inline-block;
+}
+
 .product-buttons{
   display:flex;
   gap:6px;
@@ -265,7 +335,7 @@ input:focus{
 .product-buttons button{
   flex:1;
   border:0;
-  padding:9px 5px;
+  padding:9px 4px;
   border-radius:9px;
   cursor:pointer;
   font-size:12px;
@@ -310,7 +380,8 @@ input:focus{
   border-color:#2563eb;
 }
 
-.sale-product img{
+.sale-product img,
+.sale-product .emoji{
   width:100%;
   height:100px;
   object-fit:cover;
@@ -318,13 +389,15 @@ input:focus{
 }
 
 .sale-product .emoji{
-  height:100px;
   background:#eef2f7;
-  border-radius:10px;
   display:flex;
   justify-content:center;
   align-items:center;
   font-size:38px;
+}
+
+.sale-product small{
+  color:#667085;
 }
 
 .cart{
@@ -338,26 +411,39 @@ input:focus{
 }
 
 .cart-item{
+  padding:12px 0;
+  border-bottom:1px solid #edf0f4;
+}
+
+.cart-top{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   gap:8px;
-  padding:10px 0;
-  border-bottom:1px solid #edf0f4;
 }
 
 .cart-controls{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:6px;
+  margin-top:8px;
 }
 
 .cart-controls button{
   border:0;
-  width:28px;
-  height:28px;
+  min-width:30px;
+  height:30px;
   border-radius:8px;
   cursor:pointer;
+}
+
+.edit-cart{
+  background:#eef2ff;
+  color:#1d4ed8;
+}
+
+.remove-cart{
+  background:#fee2e2;
+  color:#b42318;
 }
 
 .cart-total{
@@ -427,7 +513,6 @@ input:focus{
   display:none;
 }
 
-/* شاشة الفاتورة */
 .invoice-paper{
   max-width:700px;
   margin:auto;
@@ -490,7 +575,6 @@ input:focus{
   padding:13px;
   border-radius:10px;
   cursor:pointer;
-  font-size:15px;
 }
 
 .print-btn{
@@ -502,12 +586,16 @@ input:focus{
   background:#eef2f7;
 }
 
-@media(max-width:750px){
+@media(max-width:800px){
   .stats{
     grid-template-columns:repeat(2,1fr);
   }
 
   .actions{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .home-products{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -522,23 +610,11 @@ input:focus{
   .cart{
     position:static;
   }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
 }
 
-@media(max-width:430px){
-  .products-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .product-image{
-    height:115px;
-  }
-
-  .sale-products{
-    grid-template-columns:repeat(2,1fr);
+@media(max-width:600px){
+  .form-grid{
+    grid-template-columns:1fr;
   }
 }
 
@@ -560,9 +636,9 @@ input:focus{
   }
 
   .invoice-paper{
-    box-shadow:none;
     max-width:none;
     width:100%;
+    box-shadow:none;
   }
 }
 </style>
@@ -573,222 +649,369 @@ input:focus{
 <header>
   <div class="logo">TijaraPro</div>
   <div class="subtitle">نظام البيع وإدارة المحل</div>
-  <div class="version">الإصدار 1.2</div>
+  <div class="version">الإصدار 1.3</div>
 </header>
 
 <nav>
-  <button class="nav-btn active" onclick="showSection('dashboard',this)">🏠 الرئيسية</button>
-  <button class="nav-btn" onclick="showSection('sales',this)">🛒 البيع السريع</button>
-  <button class="nav-btn" onclick="showSection('products',this)">📦 المنتجات</button>
-  <button class="nav-btn" onclick="showSection('invoices',this)">🧾 الفواتير</button>
+
+  <button class="nav-btn active"
+    onclick="showSection('dashboard',this)">
+    🏠 الرئيسية
+  </button>
+
+  <button class="nav-btn"
+    onclick="showSection('sales',this)">
+    🛒 البيع السريع
+  </button>
+
+  <button class="nav-btn"
+    onclick="showSection('products',this)">
+    📦 المنتجات
+  </button>
+
+  <button class="nav-btn"
+    onclick="showSection('invoices',this)">
+    🧾 الفواتير
+  </button>
+
 </nav>
 
 <div class="container">
 
-  <!-- الرئيسية -->
-  <section id="dashboard" class="section active">
+<!-- ================= الرئيسية ================= -->
 
-    <div class="card welcome">
-      <h2>مرحبًا بك في TijaraPro 👋</h2>
-      <p>نظام بسيط وسريع لإدارة البيع والمخزون والفواتير.</p>
+<section id="dashboard" class="section active">
+
+  <div class="card welcome">
+
+    <h2>مرحبًا بك في TijaraPro 👋</h2>
+
+    <p>
+      نظام البيع وإدارة المنتجات والمخزون والفواتير.
+    </p>
+
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="icon">💰</div>
+      <strong id="todaySales">0 دج</strong>
+      <span>مبيعات اليوم</span>
     </div>
 
-    <div class="stats">
-
-      <div class="stat">
-        <div class="icon">💰</div>
-        <strong id="todaySales">0 دج</strong>
-        <span>مبيعات اليوم</span>
-      </div>
-
-      <div class="stat">
-        <div class="icon">📦</div>
-        <strong id="productCount">0</strong>
-        <span>المنتجات</span>
-      </div>
-
-      <div class="stat">
-        <div class="icon">🛒</div>
-        <strong id="salesCount">0</strong>
-        <span>المبيعات</span>
-      </div>
-
-      <div class="stat">
-        <div class="icon">📈</div>
-        <strong id="todayProfit">0 دج</strong>
-        <span>أرباح اليوم</span>
-      </div>
-
+    <div class="stat">
+      <div class="icon">📦</div>
+      <strong id="productCount">0</strong>
+      <span>المنتجات</span>
     </div>
 
-    <div class="card" style="margin-top:16px">
-      <h2>⚡ إجراءات سريعة</h2>
-
-      <div class="actions">
-        <button onclick="goTo('sales')">🛒 بيع منتج</button>
-        <button onclick="goTo('products')">📦 المنتجات</button>
-        <button onclick="goTo('products');setTimeout(()=>document.getElementById('productName').focus(),100)">➕ إضافة منتج</button>
-        <button onclick="goTo('invoices')">🧾 الفواتير</button>
-      </div>
+    <div class="stat">
+      <div class="icon">🛒</div>
+      <strong id="salesCount">0</strong>
+      <span>المبيعات</span>
     </div>
 
-  </section>
+    <div class="stat">
+      <div class="icon">📈</div>
+      <strong id="todayProfit">0 دج</strong>
+      <span>أرباح اليوم</span>
+    </div>
 
+  </div>
 
-  <!-- المنتجات -->
-  <section id="products" class="section">
+  <div class="card" style="margin-top:16px">
 
-    <div class="card">
+    <h2>⚡ إجراءات سريعة</h2>
 
-      <h2 id="productFormTitle">➕ إضافة منتج</h2>
+    <div class="actions">
 
-      <div class="form-grid">
-
-        <div>
-          <label>اسم المنتج</label>
-          <input id="productName" placeholder="مثال: قميص">
-        </div>
-
-        <div>
-          <label>سعر الشراء</label>
-          <input id="buyPrice" type="number" placeholder="1000">
-        </div>
-
-        <div>
-          <label>سعر البيع</label>
-          <input id="sellPrice" type="number" placeholder="1500">
-        </div>
-
-        <div>
-          <label>الكمية</label>
-          <input id="stock" type="number" placeholder="10">
-        </div>
-
-        <div>
-          <label>صورة المنتج</label>
-          <input id="productImage" type="file" accept="image/*">
-        </div>
-
-      </div>
-
-      <button class="primary" onclick="saveProduct()" id="saveProductButton">
-        إضافة المنتج
+      <button onclick="goTo('sales')">
+        🛒 بيع منتج
       </button>
 
-      <button class="secondary" onclick="cancelEdit()" id="cancelEditButton" style="display:none;width:100%;margin-top:8px">
-        إلغاء التعديل
+      <button onclick="goTo('products')">
+        📦 المنتجات
+      </button>
+
+      <button onclick="newProduct()">
+        ➕ إضافة منتج
+      </button>
+
+      <button onclick="goTo('invoices')">
+        🧾 الفواتير
       </button>
 
     </div>
 
+  </div>
 
-    <div class="card">
 
-      <h2>📦 المنتجات</h2>
+  <div class="card">
 
-      <input
-        class="search"
-        id="productSearch"
-        placeholder="🔎 ابحث عن منتج..."
-        oninput="renderProducts()"
-      >
+    <h2>🛒 المنتجات</h2>
 
-      <div id="productsGrid" class="products-grid"></div>
+    <input
+      class="search"
+      id="homeSearch"
+      placeholder="🔎 ابحث باسم المنتج أو الباركود..."
+      oninput="renderHomeProducts()"
+    >
+
+    <div id="homeProducts"
+         class="home-products"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= المنتجات ================= -->
+
+<section id="products" class="section">
+
+  <div class="card">
+
+    <h2 id="productFormTitle">
+      ➕ إضافة منتج
+    </h2>
+
+    <div class="form-grid">
+
+      <div class="field">
+        <label>اسم المنتج</label>
+        <input
+          id="productName"
+          placeholder="مثال: زيت">
+      </div>
+
+      <div class="field">
+        <label>التصنيف</label>
+        <input
+          id="category"
+          placeholder="مثال: مواد غذائية">
+      </div>
+
+      <div class="field">
+        <label>الحجم / المقاس</label>
+        <input
+          id="size"
+          placeholder="مثال: 2L أو 1kg">
+      </div>
+
+      <div class="field">
+        <label>وحدة القياس</label>
+
+        <select id="unit">
+
+          <option value="قطعة">قطعة</option>
+          <option value="كغ">كغ</option>
+          <option value="غ">غ</option>
+          <option value="لتر">لتر</option>
+          <option value="مل">مل</option>
+          <option value="علبة">علبة</option>
+          <option value="كرتون">كرتون</option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+        <label>سعر الشراء</label>
+        <input
+          id="buyPrice"
+          type="number"
+          min="0"
+          placeholder="1000">
+      </div>
+
+      <div class="field">
+        <label>سعر البيع</label>
+        <input
+          id="sellPrice"
+          type="number"
+          min="0"
+          placeholder="1500">
+      </div>
+
+      <div class="field">
+        <label>الكمية في المخزون</label>
+        <input
+          id="stock"
+          type="number"
+          min="0"
+          placeholder="10">
+      </div>
+
+      <div class="field">
+        <label>الباركود</label>
+        <input
+          id="barcode"
+          inputmode="numeric"
+          placeholder="مثال: 6131234567890">
+      </div>
+
+      <div class="field">
+        <label>صورة المنتج</label>
+        <input
+          id="productImage"
+          type="file"
+          accept="image/*">
+      </div>
 
     </div>
 
-  </section>
+    <button
+      class="primary"
+      onclick="saveProduct()"
+      id="saveProductButton">
+      إضافة المنتج
+    </button>
+
+    <button
+      class="secondary"
+      onclick="cancelEdit()"
+      id="cancelEditButton"
+      style="display:none;width:100%;margin-top:8px">
+      إلغاء التعديل
+    </button>
+
+  </div>
 
 
-  <!-- البيع -->
-  <section id="sales" class="section">
+  <div class="card">
 
-    <div class="card">
+    <h2>📦 المنتجات</h2>
 
-      <h2>🛒 البيع السريع</h2>
+    <input
+      class="search"
+      id="productSearch"
+      placeholder="🔎 ابحث بالاسم أو الباركود..."
+      oninput="renderProducts()">
 
-      <input
-        class="search"
-        id="saleSearch"
-        placeholder="🔎 ابحث عن منتج..."
-        oninput="renderSaleProducts()"
-      >
+    <div
+      id="productsGrid"
+      class="products-grid">
+    </div>
 
-      <div class="sale-layout">
+  </div>
 
-        <div>
-          <div id="saleProductsGrid" class="sale-products"></div>
+</section>
+
+
+<!-- ================= البيع ================= -->
+
+<section id="sales" class="section">
+
+  <div class="card">
+
+    <h2>🛒 البيع السريع</h2>
+
+    <input
+      class="search"
+      id="saleSearch"
+      placeholder="🔎 اسم المنتج أو الباركود..."
+      oninput="renderSaleProducts()">
+
+    <div class="sale-layout">
+
+      <div>
+
+        <div
+          id="saleProductsGrid"
+          class="sale-products">
         </div>
 
-        <div class="cart">
+      </div>
 
-          <h3>🛍️ السلة</h3>
 
-          <div id="cartList"></div>
+      <div class="cart">
 
-          <div class="cart-total">
-            <span>المجموع</span>
-            <span id="cartTotal">0 دج</span>
-          </div>
+        <h3>🛍️ السلة</h3>
 
-          <button class="primary" onclick="completeSale()">
-            ✅ إتمام البيع
-          </button>
+        <div id="cartList"></div>
 
-          <button
-            class="secondary"
-            onclick="clearCart()"
-            style="width:100%;margin-top:8px"
-          >
-            🗑️ إفراغ السلة
-          </button>
+        <div class="cart-total">
+
+          <span>المجموع</span>
+
+          <span id="cartTotal">
+            0 دج
+          </span>
 
         </div>
+
+        <button
+          class="primary"
+          onclick="completeSale()">
+          ✅ إتمام البيع
+        </button>
+
+        <button
+          class="secondary"
+          onclick="clearCart()"
+          style="width:100%;margin-top:8px">
+          🗑️ إفراغ السلة
+        </button>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- الفواتير -->
-  <section id="invoices" class="section">
+<!-- ================= الفواتير ================= -->
 
-    <div class="card">
+<section id="invoices" class="section">
 
-      <h2>🧾 الفواتير</h2>
+  <div class="card">
 
-      <div id="invoicesList"></div>
+    <h2>🧾 الفواتير</h2>
 
-    </div>
+    <div id="invoicesList"></div>
 
-  </section>
+  </div>
+
+</section>
 
 </div>
 
 
-<!-- شاشة طباعة الفاتورة -->
 <div id="invoicePrint"></div>
 
 
 <script>
 
+/* ==================================================
+   البيانات
+================================================== */
+
 let products =
-  JSON.parse(localStorage.getItem("tijara_products")) || [];
+  JSON.parse(
+    localStorage.getItem("tijara_products")
+  ) || [];
 
 let sales =
-  JSON.parse(localStorage.getItem("tijara_sales")) || [];
+  JSON.parse(
+    localStorage.getItem("tijara_sales")
+  ) || [];
 
 let invoices =
-  JSON.parse(localStorage.getItem("tijara_invoices")) || [];
+  JSON.parse(
+    localStorage.getItem("tijara_invoices")
+  ) || [];
 
 let cart = [];
 
 let editingProductId = null;
 
 
-/* ---------------- البيانات ---------------- */
+/* ==================================================
+   حفظ البيانات
+================================================== */
 
 function saveData(){
 
@@ -806,13 +1029,20 @@ function saveData(){
     "tijara_invoices",
     JSON.stringify(invoices)
   );
+
 }
 
+
+/* ==================================================
+   أدوات
+================================================== */
 
 function money(value){
 
   return Number(value || 0)
-    .toLocaleString("ar-DZ") + " دج";
+    .toLocaleString("ar-DZ") +
+    " دج";
+
 }
 
 
@@ -824,28 +1054,61 @@ function escapeHTML(text){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
 }
 
 
-/* ---------------- التنقل ---------------- */
+function productLabel(product){
+
+  let text = product.name;
+
+  if(product.size){
+    text += " - " + product.size;
+  }
+
+  if(product.unit){
+    text += " / " + product.unit;
+  }
+
+  return text;
+
+}
+
+
+/* ==================================================
+   التنقل
+================================================== */
 
 function showSection(id,button){
 
-  document.querySelectorAll(".section")
+  document
+    .querySelectorAll(".section")
     .forEach(section=>{
       section.classList.remove("active");
     });
 
-  document.getElementById(id)
-    .classList.add("active");
+  const section =
+    document.getElementById(id);
 
-  document.querySelectorAll(".nav-btn")
+  if(section){
+    section.classList.add("active");
+  }
+
+
+  document
+    .querySelectorAll(".nav-btn")
     .forEach(btn=>{
       btn.classList.remove("active");
     });
 
+
   if(button){
     button.classList.add("active");
+  }
+
+
+  if(id==="dashboard"){
+    renderHomeProducts();
   }
 
   if(id==="products"){
@@ -860,90 +1123,195 @@ function showSection(id,button){
   if(id==="invoices"){
     renderInvoices();
   }
-}
 
-
-function goTo(id){
-
-  const buttons =
-    document.querySelectorAll(".nav-btn");
-
-  let button = null;
-
-  buttons.forEach(btn=>{
-
-    if(
-      (id==="dashboard" && btn.innerText.includes("الرئيسية")) ||
-      (id==="sales" && btn.innerText.includes("البيع")) ||
-      (id==="products" && btn.innerText.includes("المنتجات")) ||
-      (id==="invoices" && btn.innerText.includes("الفواتير"))
-    ){
-      button = btn;
-    }
-
-  });
-
-  showSection(id,button);
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 }
 
 
-/* ---------------- المنتجات ---------------- */
+function goTo(id){
+
+  let button = null;
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>{
+
+      if(
+        (id==="dashboard" &&
+        btn.innerText.includes("الرئيسية")) ||
+
+        (id==="sales" &&
+        btn.innerText.includes("البيع")) ||
+
+        (id==="products" &&
+        btn.innerText.includes("المنتجات")) ||
+
+        (id==="invoices" &&
+        btn.innerText.includes("الفواتير"))
+      ){
+        button = btn;
+      }
+
+    });
+
+
+  showSection(id,button);
+
+}
+
+
+/* ==================================================
+   نموذج المنتج
+================================================== */
+
+function newProduct(){
+
+  goTo("products");
+
+  setTimeout(()=>{
+    document
+      .getElementById("productName")
+      .focus();
+  },100);
+
+}
+
 
 function saveProduct(){
 
   const name =
-    document.getElementById("productName").value.trim();
+    document
+      .getElementById("productName")
+      .value
+      .trim();
+
+  const category =
+    document
+      .getElementById("category")
+      .value
+      .trim();
+
+  const size =
+    document
+      .getElementById("size")
+      .value
+      .trim();
+
+  const unit =
+    document
+      .getElementById("unit")
+      .value;
 
   const buy =
-    Number(document.getElementById("buyPrice").value);
+    Number(
+      document
+        .getElementById("buyPrice")
+        .value
+    );
 
   const sell =
-    Number(document.getElementById("sellPrice").value);
+    Number(
+      document
+        .getElementById("sellPrice")
+        .value
+    );
 
   const stock =
-    Number(document.getElementById("stock").value);
+    Number(
+      document
+        .getElementById("stock")
+        .value
+    );
+
+  const barcode =
+    document
+      .getElementById("barcode")
+      .value
+      .trim();
 
   const imageInput =
     document.getElementById("productImage");
+
 
   if(!name){
 
     alert("أدخل اسم المنتج");
 
     return;
+
   }
 
-  if(buy < 0 || sell < 0 || stock < 0){
+
+  if(buy<0 || sell<0 || stock<0){
 
     alert("تحقق من الأسعار والكمية");
 
     return;
+
   }
+
+
+  /* منع تكرار الباركود */
+
+  if(barcode){
+
+    const duplicate =
+      products.find(p=>
+        p.barcode===barcode &&
+        p.id!==editingProductId
+      );
+
+    if(duplicate){
+
+      alert(
+        "⚠️ هذا الباركود مرتبط بمنتج آخر"
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  const data = {
+
+    name:name,
+
+    category:category,
+
+    size:size,
+
+    unit:unit,
+
+    buy:buy,
+
+    sell:sell,
+
+    stock:stock,
+
+    barcode:barcode
+
+  };
 
 
   if(editingProductId){
 
     updateProduct(
       editingProductId,
-      name,
-      buy,
-      sell,
-      stock,
+      data,
       imageInput
     );
 
   }else{
 
     createProduct(
-      name,
-      buy,
-      sell,
-      stock,
+      data,
       imageInput
     );
 
@@ -952,31 +1320,20 @@ function saveProduct(){
 }
 
 
-function createProduct(
-  name,
-  buy,
-  sell,
-  stock,
-  imageInput
-){
+function createProduct(data,imageInput){
 
-  const finish = (image)=>{
+  const finish = image=>{
 
     products.push({
 
       id:Date.now(),
 
-      name:name,
-
-      buy:buy,
-
-      sell:sell,
-
-      stock:stock,
+      ...data,
 
       image:image || ""
 
     });
+
 
     saveData();
 
@@ -984,7 +1341,12 @@ function createProduct(
 
     renderProducts();
 
+    renderHomeProducts();
+
+    renderSaleProducts();
+
     refresh();
+
 
     alert("✅ تمت إضافة المنتج");
 
@@ -993,7 +1355,8 @@ function createProduct(
 
   if(imageInput.files.length){
 
-    const reader = new FileReader();
+    const reader =
+      new FileReader();
 
     reader.onload = function(){
 
@@ -1016,10 +1379,7 @@ function createProduct(
 
 function updateProduct(
   id,
-  name,
-  buy,
-  sell,
-  stock,
+  data,
   imageInput
 ){
 
@@ -1029,19 +1389,36 @@ function updateProduct(
   if(!product) return;
 
 
-  const finish = (image)=>{
+  const finish = image=>{
 
-    product.name = name;
+    product.name =
+      data.name;
 
-    product.buy = buy;
+    product.category =
+      data.category;
 
-    product.sell = sell;
+    product.size =
+      data.size;
 
-    product.stock = stock;
+    product.unit =
+      data.unit;
+
+    product.buy =
+      data.buy;
+
+    product.sell =
+      data.sell;
+
+    product.stock =
+      data.stock;
+
+    product.barcode =
+      data.barcode;
 
     if(image){
-      product.image = image;
+      product.image=image;
     }
+
 
     saveData();
 
@@ -1049,9 +1426,12 @@ function updateProduct(
 
     renderProducts();
 
+    renderHomeProducts();
+
     renderSaleProducts();
 
     refresh();
+
 
     alert("✅ تم تعديل المنتج");
 
@@ -1060,9 +1440,10 @@ function updateProduct(
 
   if(imageInput.files.length){
 
-    const reader = new FileReader();
+    const reader =
+      new FileReader();
 
-    reader.onload = function(){
+    reader.onload=function(){
 
       finish(reader.result);
 
@@ -1089,33 +1470,76 @@ function editProduct(id){
   if(!product) return;
 
 
-  editingProductId = id;
+  editingProductId=id;
 
-  document.getElementById("productName").value =
-    product.name;
 
-  document.getElementById("buyPrice").value =
-    product.buy;
+  document
+    .getElementById("productName")
+    .value =
+    product.name || "";
 
-  document.getElementById("sellPrice").value =
-    product.sell;
 
-  document.getElementById("stock").value =
-    product.stock;
+  document
+    .getElementById("category")
+    .value =
+    product.category || "";
 
-  document.getElementById("productFormTitle").innerText =
+
+  document
+    .getElementById("size")
+    .value =
+    product.size || "";
+
+
+  document
+    .getElementById("unit")
+    .value =
+    product.unit || "قطعة";
+
+
+  document
+    .getElementById("buyPrice")
+    .value =
+    product.buy || 0;
+
+
+  document
+    .getElementById("sellPrice")
+    .value =
+    product.sell || 0;
+
+
+  document
+    .getElementById("stock")
+    .value =
+    product.stock || 0;
+
+
+  document
+    .getElementById("barcode")
+    .value =
+    product.barcode || "";
+
+
+  document
+    .getElementById("productFormTitle")
+    .innerText =
     "✏️ تعديل المنتج";
 
-  document.getElementById("saveProductButton").innerText =
+
+  document
+    .getElementById("saveProductButton")
+    .innerText =
     "💾 حفظ التعديل";
 
-  document.getElementById("cancelEditButton").style.display =
+
+  document
+    .getElementById("cancelEditButton")
+    .style.display =
     "block";
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+
+  goTo("products");
 
 }
 
@@ -1129,25 +1553,69 @@ function cancelEdit(){
 
 function resetProductForm(){
 
-  editingProductId = null;
+  editingProductId=null;
 
-  document.getElementById("productName").value = "";
 
-  document.getElementById("buyPrice").value = "";
+  document
+    .getElementById("productName")
+    .value="";
 
-  document.getElementById("sellPrice").value = "";
 
-  document.getElementById("stock").value = "";
+  document
+    .getElementById("category")
+    .value="";
 
-  document.getElementById("productImage").value = "";
 
-  document.getElementById("productFormTitle").innerText =
+  document
+    .getElementById("size")
+    .value="";
+
+
+  document
+    .getElementById("unit")
+    .value="قطعة";
+
+
+  document
+    .getElementById("buyPrice")
+    .value="";
+
+
+  document
+    .getElementById("sellPrice")
+    .value="";
+
+
+  document
+    .getElementById("stock")
+    .value="";
+
+
+  document
+    .getElementById("barcode")
+    .value="";
+
+
+  document
+    .getElementById("productImage")
+    .value="";
+
+
+  document
+    .getElementById("productFormTitle")
+    .innerText =
     "➕ إضافة منتج";
 
-  document.getElementById("saveProductButton").innerText =
+
+  document
+    .getElementById("saveProductButton")
+    .innerText =
     "إضافة المنتج";
 
-  document.getElementById("cancelEditButton").style.display =
+
+  document
+    .getElementById("cancelEditButton")
+    .style.display =
     "none";
 
 }
@@ -1163,12 +1631,11 @@ function deleteProduct(id){
 
   if(
     !confirm(
-      "هل تريد حذف المنتج: " +
-      product.name +
+      "هل تريد حذف المنتج:\n" +
+      productLabel(product) +
       " ؟"
     )
   ){
-
     return;
   }
 
@@ -1176,9 +1643,12 @@ function deleteProduct(id){
   products =
     products.filter(p=>p.id!==id);
 
+
   saveData();
 
   renderProducts();
+
+  renderHomeProducts();
 
   renderSaleProducts();
 
@@ -1187,23 +1657,133 @@ function deleteProduct(id){
 }
 
 
-function renderProducts(){
+/* ==================================================
+   عرض المنتجات
+================================================== */
 
-  const grid =
-    document.getElementById("productsGrid");
+function matchesSearch(product,search){
+
+  if(!search) return true;
+
+  const text = (
+
+    (product.name || "") +
+    " " +
+    (product.category || "") +
+    " " +
+    (product.size || "") +
+    " " +
+    (product.unit || "") +
+    " " +
+    (product.barcode || "")
+
+  ).toLowerCase();
+
+
+  return text.includes(search);
+
+}
+
+
+function renderHomeProducts(){
+
+  const box =
+    document.getElementById("homeProducts");
 
   const search =
-    document.getElementById("productSearch")
+    document
+      .getElementById("homeSearch")
       .value
       .toLowerCase()
       .trim();
 
 
   const filtered =
-    products.filter(product=>
-      product.name
-        .toLowerCase()
-        .includes(search)
+    products.filter(p=>
+      matchesSearch(p,search)
+    );
+
+
+  if(!filtered.length){
+
+    box.innerHTML =
+      `<div class="empty">
+        لا توجد منتجات
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    filtered.map(product=>{
+
+      const image =
+        product.image
+
+        ?
+
+        `<img
+          src="${product.image}"
+          alt="">`
+
+        :
+
+        `<div class="emoji">
+          📦
+        </div>`;
+
+
+      return `
+
+        <div
+          class="home-product"
+          onclick="addToCart(${product.id})">
+
+          ${image}
+
+          <h3>
+            ${escapeHTML(
+              productLabel(product)
+            )}
+          </h3>
+
+          <div class="home-price">
+            ${money(product.sell)}
+          </div>
+
+          <div class="home-stock">
+            المخزون: ${product.stock}
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function renderProducts(){
+
+  const grid =
+    document.getElementById(
+      "productsGrid"
+    );
+
+  const search =
+    document
+      .getElementById("productSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    products.filter(p=>
+      matchesSearch(p,search)
     );
 
 
@@ -1215,13 +1795,14 @@ function renderProducts(){
       </div>`;
 
     return;
+
   }
 
 
   grid.innerHTML =
     filtered.map(product=>{
 
-      let stockClass = "";
+      let stockClass="";
 
       let stockText =
         "المخزون: " +
@@ -1238,7 +1819,7 @@ function renderProducts(){
 
         stockClass="low";
 
-        stockText=
+        stockText =
           "مخزون منخفض: " +
           product.stock;
 
@@ -1247,12 +1828,19 @@ function renderProducts(){
 
       const image =
         product.image
+
         ?
-        `<img class="product-image"
-              src="${product.image}"
-              alt="">`
+
+        `<img
+          class="product-image"
+          src="${product.image}"
+          alt="">`
+
         :
-        `<div class="product-image">📦</div>`;
+
+        `<div class="product-image">
+          📦
+        </div>`;
 
 
       return `
@@ -1266,6 +1854,36 @@ function renderProducts(){
             <h3>
               ${escapeHTML(product.name)}
             </h3>
+
+            <div class="product-details">
+
+              ${product.category
+                ? "التصنيف: " +
+                  escapeHTML(product.category)
+                : ""}
+
+              <br>
+
+              ${product.size
+                ? "الحجم: " +
+                  escapeHTML(product.size)
+                : ""}
+
+              ${product.unit
+                ? " " +
+                  escapeHTML(product.unit)
+                : ""}
+
+              <br>
+
+              ${product.barcode
+                ? "الباركود: " +
+                  `<span class="barcode">
+                    ${escapeHTML(product.barcode)}
+                   </span>`
+                : "بدون باركود"}
+
+            </div>
 
             <div class="price">
               ${money(product.sell)}
@@ -1308,7 +1926,9 @@ function renderProducts(){
 }
 
 
-/* ---------------- البيع ---------------- */
+/* ==================================================
+   البيع
+================================================== */
 
 function quickSell(id){
 
@@ -1329,25 +1949,33 @@ function addToCart(id){
 
   if(product.stock<=0){
 
-    alert("❌ المنتج غير متوفر في المخزون");
+    alert(
+      "❌ المنتج غير متوفر في المخزون"
+    );
 
     return;
+
   }
 
 
   const item =
-    cart.find(item=>item.productId===id);
+    cart.find(
+      item=>item.productId===id
+    );
 
 
-  const currentQuantity =
+  const quantity =
     item ? item.quantity : 0;
 
 
-  if(currentQuantity>=product.stock){
+  if(quantity>=product.stock){
 
-    alert("❌ لا توجد كمية كافية في المخزون");
+    alert(
+      "❌ لا توجد كمية كافية في المخزون"
+    );
 
     return;
+
   }
 
 
@@ -1363,9 +1991,17 @@ function addToCart(id){
 
       name:product.name,
 
+      category:product.category,
+
+      size:product.size,
+
+      unit:product.unit,
+
       price:product.sell,
 
       buy:product.buy,
+
+      barcode:product.barcode,
 
       image:product.image,
 
@@ -1381,10 +2017,78 @@ function addToCart(id){
 }
 
 
+function editCartItem(id){
+
+  const item =
+    cart.find(
+      i=>i.productId===id
+    );
+
+  if(!item) return;
+
+
+  const product =
+    products.find(
+      p=>p.id===id
+    );
+
+  if(!product) return;
+
+
+  const value =
+    prompt(
+      "أدخل الكمية المطلوبة لـ:\n" +
+      productLabel(product),
+
+      item.quantity
+    );
+
+
+  if(value===null) return;
+
+
+  const quantity =
+    Number(value);
+
+
+  if(
+    !Number.isInteger(quantity) ||
+    quantity<1
+  ){
+
+    alert(
+      "❌ أدخل كمية صحيحة"
+    );
+
+    return;
+
+  }
+
+
+  if(quantity>product.stock){
+
+    alert(
+      "❌ الكمية أكبر من المخزون المتوفر"
+    );
+
+    return;
+
+  }
+
+
+  item.quantity=quantity;
+
+  renderCart();
+
+}
+
+
 function decreaseCart(id){
 
   const item =
-    cart.find(item=>item.productId===id);
+    cart.find(
+      i=>i.productId===id
+    );
 
   if(!item) return;
 
@@ -1395,7 +2099,9 @@ function decreaseCart(id){
   if(item.quantity<=0){
 
     cart =
-      cart.filter(item=>item.productId!==id);
+      cart.filter(
+        i=>i.productId!==id
+      );
 
   }
 
@@ -1408,7 +2114,9 @@ function decreaseCart(id){
 function removeFromCart(id){
 
   cart =
-    cart.filter(item=>item.productId!==id);
+    cart.filter(
+      i=>i.productId!==id
+    );
 
   renderCart();
 
@@ -1417,7 +2125,7 @@ function removeFromCart(id){
 
 function clearCart(){
 
-  cart = [];
+  cart=[];
 
   renderCart();
 
@@ -1427,20 +2135,21 @@ function clearCart(){
 function renderSaleProducts(){
 
   const grid =
-    document.getElementById("saleProductsGrid");
+    document.getElementById(
+      "saleProductsGrid"
+    );
 
   const search =
-    document.getElementById("saleSearch")
+    document
+      .getElementById("saleSearch")
       .value
       .toLowerCase()
       .trim();
 
 
   const filtered =
-    products.filter(product=>
-      product.name
-        .toLowerCase()
-        .includes(search)
+    products.filter(p=>
+      matchesSearch(p,search)
     );
 
 
@@ -1452,6 +2161,7 @@ function renderSaleProducts(){
       </div>`;
 
     return;
+
   }
 
 
@@ -1460,10 +2170,18 @@ function renderSaleProducts(){
 
       const image =
         product.image
+
         ?
-        `<img src="${product.image}" alt="">`
+
+        `<img
+          src="${product.image}"
+          alt="">`
+
         :
-        `<div class="emoji">📦</div>`;
+
+        `<div class="emoji">
+          📦
+        </div>`;
 
 
       return `
@@ -1475,7 +2193,9 @@ function renderSaleProducts(){
           ${image}
 
           <h3>
-            ${escapeHTML(product.name)}
+            ${escapeHTML(
+              productLabel(product)
+            )}
           </h3>
 
           <div class="price">
@@ -1485,6 +2205,18 @@ function renderSaleProducts(){
           <small>
             المخزون: ${product.stock}
           </small>
+
+          ${
+            product.barcode
+            ?
+            `<br>
+             <small>
+               باركود:
+               ${escapeHTML(product.barcode)}
+             </small>`
+            :
+            ""
+          }
 
         </div>
 
@@ -1498,10 +2230,14 @@ function renderSaleProducts(){
 function renderCart(){
 
   const list =
-    document.getElementById("cartList");
+    document.getElementById(
+      "cartList"
+    );
 
   const totalElement =
-    document.getElementById("cartTotal");
+    document.getElementById(
+      "cartTotal"
+    );
 
 
   if(!cart.length){
@@ -1515,17 +2251,20 @@ function renderCart(){
       "0 دج";
 
     return;
+
   }
 
 
-  let total = 0;
+  let total=0;
 
 
   list.innerHTML =
     cart.map(item=>{
 
       const itemTotal =
-        item.price * item.quantity;
+        item.price *
+        item.quantity;
+
 
       total += itemTotal;
 
@@ -1534,15 +2273,48 @@ function renderCart(){
 
         <div class="cart-item">
 
-          <div>
-            <strong>
-              ${escapeHTML(item.name)}
-            </strong>
+          <div class="cart-top">
 
             <div>
-              ${money(item.price)}
+
+              <strong>
+                ${escapeHTML(
+                  item.name
+                )}
+              </strong>
+
+              <div
+                style="font-size:12px;color:#667085">
+
+                ${
+                  item.size
+                  ?
+                  escapeHTML(item.size)
+                  : ""
+                }
+
+                ${
+                  item.unit
+                  ?
+                  " / " +
+                  escapeHTML(item.unit)
+                  : ""
+                }
+
+              </div>
+
+              <div>
+                ${money(item.price)}
+              </div>
+
             </div>
+
+            <strong>
+              ${money(itemTotal)}
+            </strong>
+
           </div>
+
 
           <div class="cart-controls">
 
@@ -1561,8 +2333,14 @@ function renderCart(){
             </button>
 
             <button
-              onclick="removeFromCart(${item.productId})"
-              style="background:#fee2e2;color:#b42318">
+              class="edit-cart"
+              onclick="editCartItem(${item.productId})">
+              ✏️ تعديل
+            </button>
+
+            <button
+              class="remove-cart"
+              onclick="removeFromCart(${item.productId})">
               ×
             </button>
 
@@ -1581,65 +2359,121 @@ function renderCart(){
 }
 
 
-/* ---------------- إتمام البيع ---------------- */
+/* ==================================================
+   إتمام البيع
+================================================== */
 
 function completeSale(){
 
   if(!cart.length){
 
-    alert("السلة فارغة");
+    alert(
+      "❌ السلة فارغة"
+    );
 
     return;
+
   }
 
 
-  /* التحقق من المخزون */
+  /* فحص المخزون */
 
   for(const item of cart){
 
     const product =
-      products.find(p=>p.id===item.productId);
+      products.find(
+        p=>p.id===item.productId
+      );
+
 
     if(!product){
 
-      alert("أحد المنتجات لم يعد موجودًا");
+      alert(
+        "❌ أحد المنتجات لم يعد موجودًا"
+      );
 
       return;
+
     }
 
 
     if(item.quantity>product.stock){
 
       alert(
-        "الكمية غير متوفرة للمنتج: " +
-        product.name
+        "❌ الكمية غير متوفرة للمنتج:\n" +
+        productLabel(product)
       );
 
       return;
+
     }
 
   }
 
 
-  let total = 0;
+  /* تأكيد أخير */
 
-  let profit = 0;
+  let confirmMessage =
+    "تأكيد البيع؟\n\n";
 
-  const items = [];
+  let totalPreview=0;
+
+
+  cart.forEach(item=>{
+
+    const itemTotal =
+      item.price *
+      item.quantity;
+
+    totalPreview += itemTotal;
+
+
+    confirmMessage +=
+      "• " +
+      productLabel(item) +
+      " × " +
+      item.quantity +
+      " = " +
+      money(itemTotal) +
+      "\n";
+
+  });
+
+
+  confirmMessage +=
+    "\nالمجموع: " +
+    money(totalPreview);
+
+
+  if(!confirm(confirmMessage)){
+
+    return;
+
+  }
+
+
+  let total=0;
+
+  let profit=0;
+
+  const items=[];
 
 
   cart.forEach(item=>{
 
     const product =
-      products.find(p=>p.id===item.productId);
+      products.find(
+        p=>p.id===item.productId
+      );
 
 
     const itemTotal =
-      item.price * item.quantity;
+      item.price *
+      item.quantity;
 
 
     const itemProfit =
-      (item.price - product.buy) *
+      (item.price-product.buy) *
       item.quantity;
 
 
@@ -1654,6 +2488,14 @@ function completeSale(){
 
       name:item.name,
 
+      category:item.category || "",
+
+      size:item.size || "",
+
+      unit:item.unit || "",
+
+      barcode:item.barcode || "",
+
       quantity:item.quantity,
 
       price:item.price,
@@ -1665,7 +2507,8 @@ function completeSale(){
     });
 
 
-    product.stock -= item.quantity;
+    product.stock -=
+      item.quantity;
 
   });
 
@@ -1679,17 +2522,19 @@ function completeSale(){
 
 
   const date =
-    now.toLocaleString("ar-DZ");
+    now.toLocaleString(
+      "ar-DZ"
+    );
 
 
   const invoiceNumber =
     "INV-" +
     String(
-      invoices.length + 1
+      invoices.length+1
     ).padStart(4,"0");
 
 
-  const sale = {
+  const sale={
 
     id:saleId,
 
@@ -1707,7 +2552,7 @@ function completeSale(){
   sales.push(sale);
 
 
-  const invoice = {
+  const invoice={
 
     id:saleId,
 
@@ -1730,12 +2575,14 @@ function completeSale(){
   saveData();
 
 
-  cart = [];
+  cart=[];
 
 
   renderCart();
 
   renderProducts();
+
+  renderHomeProducts();
 
   renderSaleProducts();
 
@@ -1744,24 +2591,26 @@ function completeSale(){
   refresh();
 
 
-  alert(
-    "✅ تمت عملية البيع\n\n" +
-    "رقم الفاتورة: " +
-    invoiceNumber
+  /* فتح الفاتورة */
+
+  viewInvoice(
+    invoice.id,
+    true
   );
-
-
-  goTo("invoices");
 
 }
 
 
-/* ---------------- الفواتير ---------------- */
+/* ==================================================
+   الفواتير
+================================================== */
 
 function renderInvoices(){
 
   const list =
-    document.getElementById("invoicesList");
+    document.getElementById(
+      "invoicesList"
+    );
 
 
   if(!invoices.length){
@@ -1772,6 +2621,7 @@ function renderInvoices(){
       </div>`;
 
     return;
+
   }
 
 
@@ -1789,9 +2639,14 @@ function renderInvoices(){
           <div class="invoice-head">
 
             <div>
-              <strong>
+
+              <div
+                class="invoice-number">
+
                 🧾 ${invoice.number}
-              </strong>
+
+              </div>
+
             </div>
 
             <div>
@@ -1802,7 +2657,7 @@ function renderInvoices(){
 
 
           <div>
-            عدد المنتجات:
+            عدد الأصناف:
             ${invoice.items.length}
           </div>
 
@@ -1817,7 +2672,7 @@ function renderInvoices(){
             <button
               class="view-invoice"
               onclick="viewInvoice(${invoice.id})">
-              👁️ عرض الفاتورة
+              👁️ عرض / طباعة
             </button>
 
             <button
@@ -1837,15 +2692,17 @@ function renderInvoices(){
 }
 
 
-function viewInvoice(id){
+function viewInvoice(id,autoPrint=false){
 
   const invoice =
-    invoices.find(i=>i.id===id);
+    invoices.find(
+      i=>i.id===id
+    );
 
   if(!invoice) return;
 
 
-  const itemsRows =
+  const rows =
     invoice.items.map(item=>{
 
       return `
@@ -1854,6 +2711,22 @@ function viewInvoice(id){
 
           <td>
             ${escapeHTML(item.name)}
+
+            ${
+              item.size
+              ?
+              `<br>
+               <small>
+                 ${escapeHTML(item.size)}
+                 ${item.unit
+                   ? " / " +
+                     escapeHTML(item.unit)
+                   : ""}
+               </small>`
+              :
+              ""
+            }
+
           </td>
 
           <td>
@@ -1875,103 +2748,131 @@ function viewInvoice(id){
     }).join("");
 
 
-  document.getElementById("invoicePrint").innerHTML = `
+  document
+    .getElementById("invoicePrint")
+    .innerHTML = `
 
-    <div class="invoice-paper">
+      <div class="invoice-paper">
 
-      <div class="invoice-paper-header">
+        <div
+          class="invoice-paper-header">
 
-        <h1>TijaraPro</h1>
+          <h1>TijaraPro</h1>
 
-        <div>
-          فاتورة بيع
+          <div>
+            فاتورة بيع
+          </div>
+
+        </div>
+
+
+        <div class="invoice-meta">
+
+          <div>
+
+            <strong>
+              رقم الفاتورة:
+            </strong>
+
+            ${invoice.number}
+
+          </div>
+
+          <div>
+
+            <strong>
+              التاريخ:
+            </strong>
+
+            ${escapeHTML(invoice.date)}
+
+          </div>
+
+        </div>
+
+
+        <table class="invoice-table">
+
+          <thead>
+
+            <tr>
+
+              <th>المنتج</th>
+
+              <th>الكمية</th>
+
+              <th>السعر</th>
+
+              <th>المجموع</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${rows}
+
+          </tbody>
+
+        </table>
+
+
+        <div class="invoice-final">
+
+          المجموع النهائي:
+          ${money(invoice.total)}
+
+        </div>
+
+
+        <div
+          style="
+          margin-top:10px;
+          text-align:left">
+
+          الربح:
+          ${money(invoice.profit)}
+
+        </div>
+
+
+        <div class="print-actions">
+
+          <button
+            class="print-btn"
+            onclick="printInvoice()">
+
+            🖨️ طباعة الفاتورة
+
+          </button>
+
+
+          <button
+            class="close-btn"
+            onclick="closeInvoice()">
+
+            ← العودة
+
+          </button>
+
         </div>
 
       </div>
 
-
-      <div class="invoice-meta">
-
-        <div>
-          <strong>رقم الفاتورة:</strong>
-          ${invoice.number}
-        </div>
-
-        <div>
-          <strong>التاريخ:</strong>
-          ${escapeHTML(invoice.date)}
-        </div>
-
-      </div>
+    `;
 
 
-      <table class="invoice-table">
-
-        <thead>
-
-          <tr>
-            <th>المنتج</th>
-            <th>الكمية</th>
-            <th>السعر</th>
-            <th>المجموع</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          ${itemsRows}
-
-        </tbody>
-
-      </table>
-
-
-      <div class="invoice-final">
-
-        المجموع النهائي:
-        ${money(invoice.total)}
-
-      </div>
-
-
-      <div style="margin-top:10px;text-align:left">
-
-        الربح:
-        ${money(invoice.profit)}
-
-      </div>
-
-
-      <div class="print-actions">
-
-        <button
-          class="print-btn"
-          onclick="window.print()">
-          🖨️ طباعة الفاتورة
-        </button>
-
-        <button
-          class="close-btn"
-          onclick="closeInvoice()">
-          ← العودة
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  document.querySelectorAll(".section")
+  document
+    .querySelectorAll(".section")
     .forEach(section=>{
       section.classList.remove("active");
     });
 
 
-  document.getElementById("invoicePrint")
-    .style.display = "block";
+  document
+    .getElementById("invoicePrint")
+    .style.display="block";
 
 
   window.scrollTo({
@@ -1979,13 +2880,50 @@ function viewInvoice(id){
     behavior:"smooth"
   });
 
+
+  if(autoPrint){
+
+    setTimeout(()=>{
+      printInvoice();
+    },500);
+
+  }
+
+}
+
+
+/* ==================================================
+   الطباعة
+================================================== */
+
+function printInvoice(){
+
+  if(
+    typeof window.print !==
+    "function"
+  ){
+
+    alert(
+      "⚠️ الطباعة غير متاحة على هذا الجهاز.\n" +
+      "الفاتورة محفوظة ويمكن فتحها لاحقًا."
+    );
+
+    return;
+
+  }
+
+
+  window.print();
+
 }
 
 
 function closeInvoice(){
 
-  document.getElementById("invoicePrint")
-    .style.display = "none";
+  document
+    .getElementById("invoicePrint")
+    .style.display="none";
+
 
   goTo("invoices");
 
@@ -1999,13 +2937,15 @@ function deleteInvoice(id){
       "هل تريد حذف هذه الفاتورة؟"
     )
   ){
-
     return;
   }
 
 
   invoices =
-    invoices.filter(invoice=>invoice.id!==id);
+    invoices.filter(
+      invoice=>invoice.id!==id
+    );
+
 
   saveData();
 
@@ -2014,62 +2954,107 @@ function deleteInvoice(id){
 }
 
 
-/* ---------------- الإحصائيات ---------------- */
+/* ==================================================
+   الإحصائيات
+================================================== */
 
 function refresh(){
 
   const today =
-    new Date().toLocaleDateString("ar-DZ");
+    new Date()
+      .toLocaleDateString(
+        "ar-DZ"
+      );
 
 
-  let todaySales = 0;
+  let todaySales=0;
 
-  let todayProfit = 0;
+  let todayProfit=0;
 
 
   sales.forEach(sale=>{
 
     const saleDate =
       new Date(sale.id)
-        .toLocaleDateString("ar-DZ");
+        .toLocaleDateString(
+          "ar-DZ"
+        );
 
 
     if(saleDate===today){
 
-      todaySales += sale.total;
+      todaySales +=
+        Number(sale.total || 0);
 
-      todayProfit += sale.profit;
+      todayProfit +=
+        Number(sale.profit || 0);
 
     }
 
   });
 
 
-  document.getElementById("todaySales")
+  document
+    .getElementById("todaySales")
     .innerText =
     money(todaySales);
 
 
-  document.getElementById("todayProfit")
+  document
+    .getElementById("todayProfit")
     .innerText =
     money(todayProfit);
 
 
-  document.getElementById("productCount")
+  document
+    .getElementById("productCount")
     .innerText =
     products.length;
 
 
-  document.getElementById("salesCount")
+  document
+    .getElementById("salesCount")
     .innerText =
     sales.length;
 
 }
 
 
-/* ---------------- تشغيل النظام ---------------- */
+/* ==================================================
+   التشغيل
+================================================== */
 
 function init(){
+
+  /*
+    دعم البيانات القديمة من v1.2
+    وإضافة القيم الجديدة تلقائيًا
+  */
+
+  products =
+    products.map(product=>({
+
+      ...product,
+
+      category:
+        product.category || "",
+
+      size:
+        product.size || "",
+
+      unit:
+        product.unit || "قطعة",
+
+      barcode:
+        product.barcode || ""
+
+    }));
+
+
+  saveData();
+
+
+  renderHomeProducts();
 
   renderProducts();
 
