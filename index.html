@@ -860,33 +860,105 @@ function deleteProduct(productId){
 
 function productCardHTML(p,clickable=false){
  const stockClass=p.stock<=0?"out":p.stock<=LOW_STOCK?"low":"";
+
+ const cartItem=cart.find(x=>String(x.productId)===String(p.id));
+ const cartQty=cartItem ? cartItem.quantity : 0;
+
  const image=p.image
   ? `<img src="${p.image}" alt="">`
   : `<div class="emoji">📦</div>`;
 
+ if(clickable){
+  return `
+   <div class="product"
+        onclick="addToCart('${p.id}')"
+        style="cursor:pointer;position:relative">
+
+    ${image}
+
+    <h3>${escapeHTML(p.name)}</h3>
+
+    ${p.category
+      ? `<div class="badge">${escapeHTML(p.category)}</div>`
+      : ""}
+
+    <div class="price">${money(p.sell)}</div>
+
+    <span class="stock ${stockClass}">
+     ${p.stock<=0 ? "نفد المخزون" : "المخزون: "+p.stock}
+    </span>
+
+    ${
+      cartQty>0
+      ? `<div style="
+          position:absolute;
+          top:10px;
+          left:10px;
+          background:#2563eb;
+          color:white;
+          min-width:34px;
+          height:34px;
+          border-radius:50%;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:16px;
+          font-weight:bold;
+          box-shadow:0 2px 8px #0003">
+          ${cartQty}
+         </div>`
+      : ""
+    }
+
+    <div style="
+      margin-top:9px;
+      text-align:center;
+      background:#eef5ff;
+      color:#2563eb;
+      padding:8px;
+      border-radius:10px;
+      font-size:13px;
+      font-weight:bold">
+      ${cartQty>0 ? "اضغط لإضافة قطعة أخرى" : "اضغط لإضافة"}
+    </div>
+
+   </div>`;
+ }
+
  return `
  <div class="product">
   ${image}
+
   <h3>${escapeHTML(p.name)}</h3>
-  ${p.category?`<div class="badge">${escapeHTML(p.category)}</div>`:""}
+
+  ${p.category
+    ? `<div class="badge">${escapeHTML(p.category)}</div>`
+    : ""}
+
   <div class="price">${money(p.sell)}</div>
+
   <span class="stock ${stockClass}">
-   ${p.stock<=0?"نفد المخزون":"المخزون: "+p.stock}
+   ${p.stock<=0 ? "نفد المخزون" : "المخزون: "+p.stock}
   </span>
 
-  ${clickable
-   ? `<button class="primary small" style="width:100%;margin-top:9px"
-       ${p.stock<=0?"disabled":""}
-       onclick="addToCart('${p.id}')">
-       🛒 إضافة
-      </button>`
-   : `
-   <div class="actions">
-    <button class="primary small" onclick="editProduct('${p.id}')">✏️ تعديل</button>
-    <button class="warning small" onclick="openStockModal('${p.id}')">📦 المخزون</button>
-    <button class="danger small" onclick="deleteProduct('${p.id}')">🗑️</button>
-   </div>`
-  }
+  <div class="actions">
+   <button class="primary small"
+           onclick="event.stopPropagation();editProduct('${p.id}')">
+    ✏️ تعديل
+   </button>
+
+   <button class="warning small"
+           onclick="event.stopPropagation();openStockModal('${p.id}')">
+    📦 المخزون
+   </button>
+
+   <button class="danger small"
+           onclick="event.stopPropagation();deleteProduct('${p.id}')">
+    🗑️
+   </button>
+  </div>
+ </div>`;
+}
  </div>`;
 }
 
@@ -956,15 +1028,42 @@ function renderSaleProducts(){
 
 function addToCart(productId){
  const p=products.find(x=>String(x.id)===String(productId));
+
  if(!p)return;
 
- const existing=cart.find(x=>String(x.productId)===String(productId));
- const qty=existing?existing.quantity:0;
+ const existing=cart.find(
+  x=>String(x.productId)===String(productId)
+ );
 
- if(qty+1>p.stock){
-  alert("⚠️ الكمية المطلوبة أكبر من المخزون");
+ const qty=existing ? existing.quantity : 0;
+
+ if(p.stock<=0){
+  alert("⚠️ هذا المنتج غير متوفر في المخزون");
   return;
  }
+
+ if(qty+1>p.stock){
+  alert("⚠️ لا توجد كمية إضافية في المخزون");
+  return;
+ }
+
+ if(existing){
+  existing.quantity++;
+ }else{
+  cart.push({
+   productId:p.id,
+   name:p.name,
+   price:p.sell,
+   buy:p.buy,
+   image:p.image,
+   quantity:1
+  });
+ }
+
+ renderSaleProducts();
+ renderHomeProducts();
+ renderCart();
+}
 
  if(existing){
   existing.quantity++;
