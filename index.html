@@ -53,6 +53,11 @@ nav{
  top:0;
  z-index:20;
  box-shadow:0 2px 8px rgba(0,0,0,.08);
+ scrollbar-width:none;
+}
+
+nav::-webkit-scrollbar{
+ display:none;
 }
 
 nav button{
@@ -91,6 +96,10 @@ h2{
  font-size:22px;
 }
 
+h3{
+ margin-top:0;
+}
+
 .card{
  background:white;
  border-radius:16px;
@@ -108,6 +117,14 @@ select{
  margin-bottom:10px;
  font-size:15px;
  background:white;
+ color:#172033;
+}
+
+input:focus,
+select:focus{
+ outline:none;
+ border-color:#2563eb;
+ box-shadow:0 0 0 3px rgba(37,99,235,.10);
 }
 
 button{
@@ -203,6 +220,7 @@ button{
  position:relative;
  cursor:pointer;
  transition:.15s;
+ user-select:none;
 }
 
 .product-card:hover{
@@ -243,6 +261,7 @@ button{
  color:#64748b;
  font-size:13px;
  margin-top:4px;
+ min-height:17px;
 }
 
 .price{
@@ -257,6 +276,11 @@ button{
 }
 
 .stock-low{
+ color:#dc2626;
+ font-weight:bold;
+}
+
+.stock-out{
  color:#dc2626;
  font-weight:bold;
 }
@@ -291,13 +315,20 @@ button{
  left:8px;
  background:#2563eb;
  color:white;
- min-width:28px;
- height:28px;
+ min-width:30px;
+ height:30px;
  padding:5px 7px;
  border-radius:20px;
  text-align:center;
  font-size:13px;
  font-weight:bold;
+ box-shadow:0 2px 5px rgba(0,0,0,.15);
+}
+
+.search-hint{
+ color:#64748b;
+ font-size:13px;
+ margin:-3px 0 10px;
 }
 
 .customer-search-results{
@@ -394,6 +425,7 @@ button{
 
 .cart-info{
  flex:1;
+ min-width:0;
 }
 
 .cart-name{
@@ -410,6 +442,7 @@ button{
  display:flex;
  align-items:center;
  gap:5px;
+ flex-shrink:0;
 }
 
 .qty-controls button{
@@ -432,6 +465,7 @@ button{
 .total-line{
  display:flex;
  justify-content:space-between;
+ gap:10px;
  margin:7px 0;
 }
 
@@ -480,6 +514,11 @@ button{
  color:#9a3412;
 }
 
+.badge-blue{
+ background:#dbeafe;
+ color:#1d4ed8;
+}
+
 .list-item{
  border-bottom:1px solid #edf0f4;
  padding:13px 0;
@@ -505,6 +544,31 @@ button{
  text-align:center;
  color:#64748b;
  padding:25px 10px;
+}
+
+.notice{
+ padding:11px 12px;
+ border-radius:10px;
+ margin-bottom:10px;
+ font-size:14px;
+}
+
+.notice-blue{
+ background:#eff6ff;
+ color:#1e40af;
+ border:1px solid #bfdbfe;
+}
+
+.notice-red{
+ background:#fef2f2;
+ color:#991b1b;
+ border:1px solid #fecaca;
+}
+
+.notice-green{
+ background:#f0fdf4;
+ color:#166534;
+ border:1px solid #bbf7d0;
 }
 
 .modal{
@@ -591,10 +655,33 @@ th{
 }
 
 .invoice-total{
- font-size:22px;
+ font-size:18px;
  font-weight:bold;
- text-align:left;
+ text-align:right;
  margin-top:15px;
+ line-height:1.9;
+}
+
+.invoice-total strong{
+ color:#1d4ed8;
+}
+
+.invoice-actions{
+ display:flex;
+ gap:8px;
+ margin-top:15px;
+}
+
+.invoice-actions button{
+ flex:1;
+}
+
+.quick-total{
+ background:#f8fafc;
+ border:1px solid #e2e8f0;
+ border-radius:12px;
+ padding:12px;
+ margin-bottom:12px;
 }
 
 @media(max-width:750px){
@@ -640,8 +727,33 @@ th{
   grid-template-columns:1fr;
  }
 
+ .stat{
+  padding:13px;
+ }
+
  .stat .value{
   font-size:17px;
+ }
+
+ .cart-item{
+  align-items:flex-start;
+ }
+
+ .qty-controls{
+  flex-wrap:wrap;
+  justify-content:flex-end;
+ }
+
+ .invoice{
+  padding:12px;
+ }
+
+ table{
+  font-size:11px;
+ }
+
+ th,td{
+  padding:7px 3px;
  }
 
 }
@@ -667,6 +779,7 @@ th{
  .invoice{
   box-shadow:none;
   border:0;
+  border-radius:0;
  }
 
 }
@@ -683,7 +796,7 @@ th{
  <p>نظام البيع وإدارة المحل</p>
 
  <div class="version">
-  الإصدار 2.4.1
+  الإصدار 2.5
  </div>
 
 </header>
@@ -801,9 +914,14 @@ th{
 
   <input
    id="saleSearch"
-   placeholder="🔎 ابحث عن منتج..."
+   placeholder="🔎 ابحث باسم المنتج أو الباركود أو الفئة..."
    oninput="renderSaleProducts()"
+   autocomplete="off"
   >
+
+  <div class="search-hint">
+   اضغط على المنتج لإضافة قطعة واحدة إلى السلة
+  </div>
 
   <div id="saleProductsGrid" class="product-grid"></div>
 
@@ -1644,6 +1762,12 @@ function normalizeProducts(){
 
   unit:p.unit||"قطعة",
 
+  buy:Number(p.buy||0),
+
+  sell:Number(p.sell||0),
+
+  stock:Number(p.stock||0),
+
   packEnabled:
    Boolean(p.packEnabled),
 
@@ -1742,24 +1866,33 @@ function addProduct(){
  }
 
  const buy=
-  Number(
-   document.getElementById(
-    "buyPrice"
-   ).value||0
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "buyPrice"
+    ).value||0
+   )
   );
 
  const sell=
-  Number(
-   document.getElementById(
-    "sellPrice"
-   ).value||0
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "sellPrice"
+    ).value||0
+   )
   );
 
  const stock=
-  Number(
-   document.getElementById(
-    "stock"
-   ).value||0
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "stock"
+    ).value||0
+   )
   );
 
  const packEnabled=
@@ -1778,11 +1911,14 @@ function addProduct(){
   );
 
  const packSell=
-  Number(
-   document.getElementById(
-    "packSell"
-   ).value||
-   sell*packSize
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "packSell"
+    ).value||
+    sell*packSize
+   )
   );
 
  const file=
@@ -2050,7 +2186,6 @@ function renderStockMovements(){
 
 /* =========================================================
    المنتجات في البيع
-   الضغط على البطاقة = بيع قطعة
 ========================================================= */
 
 function renderSaleProducts(){
@@ -2086,7 +2221,7 @@ function renderSaleProducts(){
 
   box.innerHTML=
    `<div class="empty">
-     لا توجد منتجات
+     لا توجد منتجات مطابقة
     </div>`;
 
   return;
@@ -2123,8 +2258,14 @@ function renderSaleProducts(){
    const totalSelected=
     pieceQty+packQty;
 
+   const stock=
+    Number(p.stock||0);
+
    const low=
-    Number(p.stock||0)<=5;
+    stock<=5;
+
+   const out=
+    stock<=0;
 
    return `
 
@@ -2146,7 +2287,7 @@ function renderSaleProducts(){
 
       ${
        p.image
-       ?`<img src="${p.image}" onclick="event.stopPropagation()">`
+       ?`<img src="${p.image}" alt="${escapeHtml(p.name)}" onclick="event.stopPropagation()">`
        :"📦"
       }
 
@@ -2177,12 +2318,26 @@ function renderSaleProducts(){
      </div>
 
      <div class="stock ${
-      low?"stock-low":""
+      out
+      ?"stock-out"
+      :low
+      ?"stock-low"
+      :""
      }">
 
-      المخزون:
-      ${Number(p.stock||0).toLocaleString("ar-DZ")}
-      ${escapeHtml(p.unit||"قطعة")}
+      ${out?"⚠️ نفد المخزون":"المخزون:"}
+
+      ${
+       !out
+       ?Number(p.stock||0).toLocaleString("ar-DZ")
+       :""
+      }
+
+      ${
+       !out
+       ?escapeHtml(p.unit||"قطعة")
+       :""
+      }
 
      </div>
 
@@ -2194,6 +2349,7 @@ function renderSaleProducts(){
         <button
          class="piece-btn"
          onclick="event.stopPropagation();addToCart('${p.id}','piece')"
+         ${stock<=0?"disabled":""}
         >
          ➕ قطعة
         </button>
@@ -2201,6 +2357,7 @@ function renderSaleProducts(){
         <button
          class="pack-btn"
          onclick="event.stopPropagation();addToCart('${p.id}','pack')"
+         ${stock<Number(p.packSize||1)?"disabled":""}
         >
          📦 ${escapeHtml(p.packName)}
         </button>
@@ -2210,9 +2367,11 @@ function renderSaleProducts(){
       :`
        <div
         class="btn btn-primary"
-        style="width:100%;margin-top:9px;text-align:center"
+        style="width:100%;margin-top:9px;text-align:center;opacity:${
+         stock<=0?.5:1
+        }"
        >
-        ➕ بيع ${escapeHtml(p.unit||"قطعة")}
+        ${stock<=0?"🚫 غير متوفر":"➕ بيع "+escapeHtml(p.unit||"قطعة")}
        </div>
       `
      }
@@ -2264,6 +2423,25 @@ function addToCart(
   unitType==="pack"
    ?Number(p.packSell||0)
    :Number(p.sell||0);
+
+ if(Number(p.stock||0)<=0){
+
+  alert("⚠️ هذا المنتج غير متوفر في المخزون");
+
+  return;
+
+ }
+
+ if(
+  unitType==="pack"&&
+  Number(p.stock||0)<packSize
+ ){
+
+  alert("⚠️ المخزون غير كافٍ لحزمة كاملة");
+
+  return;
+
+ }
 
  const existing=
   cart.find(i=>
@@ -2463,12 +2641,15 @@ function renderCart(){
  });
 
  const discount=
-  Math.max(
-   0,
-   Number(
-    document.getElementById(
-     "saleDiscount"
-    )?.value||0
+  Math.min(
+   subtotal,
+   Math.max(
+    0,
+    Number(
+     document.getElementById(
+      "saleDiscount"
+     )?.value||0
+    )
    )
   );
 
@@ -2516,7 +2697,7 @@ function renderCart(){
 
      ${
       item.image
-      ?`<img src="${item.image}">`
+      ?`<img src="${item.image}" alt="${escapeHtml(item.name)}">`
       :"📦"
      }
 
@@ -2541,6 +2722,16 @@ function renderCart(){
        Number(item.packSize||1)
       }
       وحدة أساسية
+     </div>
+
+     <div class="cart-sub">
+      المجموع:
+      <strong>
+       ${money(
+        Number(item.price||0)*
+        Number(item.quantity||0)
+       )}
+      </strong>
      </div>
 
     </div>
@@ -2652,12 +2843,15 @@ function updateCreditPreview(){
  });
 
  const discount=
-  Math.max(
-   0,
-   Number(
-    document.getElementById(
-     "saleDiscount"
-    )?.value||0
+  Math.min(
+   subtotal,
+   Math.max(
+    0,
+    Number(
+     document.getElementById(
+      "saleDiscount"
+     )?.value||0
+    )
    )
   );
 
@@ -2677,10 +2871,13 @@ function updateCreditPreview(){
    )
   );
 
+ const effectivePaid=
+  Math.min(paid,total);
+
  const due=
   Math.max(
    0,
-   total-paid
+   total-effectivePaid
   );
 
  const totalEl=
@@ -2703,7 +2900,7 @@ function updateCreditPreview(){
 
  if(paidEl)
   paidEl.textContent=money(
-   Math.min(paid,total)
+   effectivePaid
   );
 
  if(dueEl)
@@ -2823,7 +3020,7 @@ function renderSaleCustomerSearch(){
 
   results.innerHTML=
    `<div class="empty">
-     لا يوجد زبون بهذا الاسم
+     لا يوجد زبون بهذا الاسم أو الهاتف
     </div>`;
 
   results.classList.add("show");
@@ -3013,10 +3210,16 @@ function completeSale(){
 
  }
 
+ const safeDiscount=
+  Math.min(
+   subtotal,
+   discount
+  );
+
  const total=
   Math.max(
    0,
-   subtotal-discount
+   subtotal-safeDiscount
   );
 
  let paid=0;
@@ -3044,11 +3247,6 @@ function completeSale(){
   }
 
  }else{
-
-  /*
-   النقدي والبطاقة:
-   المبلغ يعتبر مدفوعًا بالكامل تلقائيًا.
-  */
 
   paid=total;
 
@@ -3115,7 +3313,11 @@ function completeSale(){
     item.buy||0
    ),
 
-   total:lineTotal
+   total:lineTotal,
+
+   returnedQuantity:0,
+
+   returnedBaseQuantity:0
 
   });
 
@@ -3182,11 +3384,14 @@ function completeSale(){
    customer?.name||
    "زبون نقدي",
 
+  customerPhone:
+   customer?.phone||"",
+
   items:invoiceItems,
 
   subtotal,
 
-  discount,
+  discount:safeDiscount,
 
   total,
 
@@ -3228,11 +3433,6 @@ function completeSale(){
 
  }
 
- /*
-  إذا كان البيع آجل ودفع الزبون جزءًا من المبلغ،
-  فإن الجزء المدفوع يدخل الصندوق.
- */
-
  if(
   paymentMethod==="credit"&&
   paid>0
@@ -3246,9 +3446,6 @@ function completeSale(){
   );
 
  }
-
-
- /* البطاقة لا تدخل النقدية */
 
  saveData();
 
@@ -3281,7 +3478,13 @@ function completeSale(){
  alert(
   "✅ تمت عملية البيع\n"+
   "رقم الفاتورة: "+invoiceNumber+
-  "\nالإجمالي: "+money(total)
+  "\nالإجمالي: "+money(total)+
+  (
+   paymentMethod==="credit"
+   ?"\nالمدفوع: "+money(paid)+
+    "\nالمتبقي: "+money(due)
+   :""
+  )
  );
 
  goTo("invoices");
@@ -3316,6 +3519,9 @@ function renderInvoices(){
     .includes(search)||
    String(inv.customerName||"")
     .toLowerCase()
+    .includes(search)||
+   String(inv.customerPhone||"")
+    .toLowerCase()
     .includes(search)
   );
 
@@ -3323,7 +3529,7 @@ function renderInvoices(){
 
   box.innerHTML=
    `<div class="empty">
-     لا توجد فواتير
+     لا توجد فواتير مطابقة
     </div>`;
 
   return;
@@ -3358,6 +3564,16 @@ function renderInvoices(){
      )}
 
     </div>
+
+    ${
+     inv.customerPhone
+     ?`
+      <div class="muted">
+       📞 ${escapeHtml(inv.customerPhone)}
+      </div>
+     `
+     :""
+    }
 
     <div style="margin-top:7px">
 
@@ -3464,6 +3680,7 @@ function viewInvoice(invoiceId){
      padding:20px;
      max-width:700px;
      margin:auto;
+     background:#fff;
     }
 
     table{
@@ -3475,6 +3692,26 @@ function viewInvoice(invoiceId){
      border-bottom:1px solid #ddd;
      padding:8px;
      text-align:right;
+    }
+
+    .invoice-header{
+     text-align:center;
+     border-bottom:1px solid #ddd;
+     padding-bottom:15px;
+     margin-bottom:15px;
+    }
+
+    .invoice-title{
+     font-size:24px;
+     font-weight:bold;
+     color:#2563eb;
+    }
+
+    .invoice-total{
+     margin-top:15px;
+     font-size:18px;
+     line-height:1.9;
+     font-weight:bold;
     }
 
    </style>
@@ -3523,7 +3760,7 @@ function invoiceHTML(inv){
 
    </div>
 
-   <div>
+   <div style="margin-bottom:10px">
 
     <strong>الزبون:</strong>
 
@@ -3533,6 +3770,16 @@ function invoiceHTML(inv){
     )}
 
    </div>
+
+   ${
+    inv.customerPhone
+    ?`
+     <div class="muted">
+      📞 ${escapeHtml(inv.customerPhone)}
+     </div>
+    `
+    :""
+   }
 
    <table>
 
@@ -3628,6 +3875,19 @@ function invoiceHTML(inv){
     }
 
    </div>
+
+   ${
+    Number(inv.returnedTotal||0)>0
+    ?`
+     <hr>
+
+     <div class="muted">
+      المرتجعات:
+      ${money(inv.returnedTotal)}
+     </div>
+    `
+    :""
+   }
 
   </div>
 
@@ -3744,7 +4004,19 @@ function renderReturnInvoice(){
    <hr>
 
    ${
-    inv.items.map((item,index)=>`
+    inv.items.map((item,index)=>{
+
+     const alreadyReturned=
+      Number(item.returnedQuantity||0);
+
+     const available=
+      Math.max(
+       0,
+       Number(item.quantity||0)-
+       alreadyReturned
+      );
+
+     return `
 
      <div class="list-item">
 
@@ -3770,30 +4042,51 @@ function renderReturnInvoice(){
 
       </div>
 
-      <div class="two"
-       style="margin-top:8px">
+      <div class="muted">
 
-       <input
-        id="returnQty_${index}"
-        type="number"
-        min="0"
-        max="${item.quantity}"
-        value="0"
-        placeholder="الكمية المرتجعة"
-       >
-
-       <button
-        class="btn btn-danger"
-        onclick="returnInvoiceItem('${inv.id}',${index})"
-       >
-        🔄 إرجاع
-       </button>
+       المتاح للإرجاع:
+       ${available}
 
       </div>
 
+      ${
+       available>0
+       ?`
+        <div class="two"
+         style="margin-top:8px">
+
+         <input
+          id="returnQty_${index}"
+          type="number"
+          min="0"
+          max="${available}"
+          value="0"
+          placeholder="الكمية المرتجعة"
+         >
+
+         <button
+          class="btn btn-danger"
+          onclick="returnInvoiceItem('${inv.id}',${index})"
+         >
+          🔄 إرجاع
+         </button>
+
+        </div>
+       `
+       :`
+        <div style="margin-top:8px">
+         <span class="badge badge-green">
+          ✅ تم إرجاع الكمية
+         </span>
+        </div>
+       `
+      }
+
      </div>
 
-    `).join("")
+    `;
+
+    }).join("")
    }
 
   </div>
@@ -3915,11 +4208,6 @@ function returnInvoiceItem(
  if(
   inv.paymentMethod==="credit"
  ){
-
-  /*
-   إذا كان البيع آجلًا،
-   نخفض الدين بالمبلغ المرتجع.
-  */
 
   inv.due=
    Math.max(
@@ -4926,8 +5214,14 @@ function renderStock(){
  box.innerHTML=
   products.map(p=>{
 
+   const stock=
+    Number(p.stock||0);
+
    const lowStock=
-    Number(p.stock||0)<=5;
+    stock<=5;
+
+   const out=
+    stock<=0;
 
    return `
 
@@ -4940,13 +5234,22 @@ function renderStock(){
       </strong>
 
       <span class="${
-       lowStock
+       out||lowStock
        ?"badge badge-red"
        :"badge badge-green"
       }">
 
-       ${Number(p.stock||0)}
-       ${escapeHtml(p.unit||"قطعة")}
+       ${
+        out
+        ?"نفد"
+        :Number(p.stock||0)
+       }
+
+       ${
+        !out
+        ?escapeHtml(p.unit||"قطعة")
+        :""
+       }
 
       </span>
 
@@ -5313,8 +5616,11 @@ function renderDashboard(){
 
      <span class="badge badge-red">
 
-      ${Number(p.stock||0)}
-      ${escapeHtml(p.unit||"قطعة")}
+      ${
+       Number(p.stock||0)<=0
+       ?"نفد المخزون"
+       :Number(p.stock||0)+" "+escapeHtml(p.unit||"قطعة")
+      }
 
      </span>
 
