@@ -201,10 +201,17 @@ button{
  box-shadow:0 3px 10px rgba(0,0,0,.07);
  min-height:210px;
  position:relative;
+ cursor:pointer;
+ transition:.15s;
 }
 
 .product-card:hover{
  border-color:#2563eb;
+ transform:translateY(-1px);
+}
+
+.product-card:active{
+ transform:scale(.98);
 }
 
 .product-image{
@@ -291,6 +298,66 @@ button{
  text-align:center;
  font-size:13px;
  font-weight:bold;
+}
+
+.customer-search-results{
+ display:none;
+ border:1px solid #d9e0ea;
+ border-radius:12px;
+ background:white;
+ margin-top:-5px;
+ margin-bottom:10px;
+ max-height:220px;
+ overflow:auto;
+ box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.customer-search-results.show{
+ display:block;
+}
+
+.customer-result{
+ padding:11px 12px;
+ border-bottom:1px solid #edf0f4;
+ cursor:pointer;
+}
+
+.customer-result:last-child{
+ border-bottom:0;
+}
+
+.customer-result:hover{
+ background:#f8fafc;
+}
+
+.selected-customer-box{
+ display:none;
+ background:#eff6ff;
+ border:1px solid #bfdbfe;
+ border-radius:12px;
+ padding:11px 12px;
+ margin-bottom:10px;
+}
+
+.selected-customer-box.show{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+}
+
+.payment-box{
+ background:#fff7ed;
+ border:1px solid #fed7aa;
+ border-radius:12px;
+ padding:12px;
+ margin-bottom:10px;
+}
+
+.payment-box-title{
+ font-weight:bold;
+ margin-bottom:8px;
+ color:#9a3412;
 }
 
 .cart-item{
@@ -579,8 +646,6 @@ th{
 
 }
 
-/* الطباعة */
-
 @media print{
 
  body{
@@ -618,7 +683,7 @@ th{
  <p>نظام البيع وإدارة المحل</p>
 
  <div class="version">
-  الإصدار 2.4
+  الإصدار 2.4.1
  </div>
 
 </header>
@@ -660,8 +725,6 @@ th{
 </nav>
 
 <div class="container">
-
-<!-- ================= الرئيسية ================= -->
 
 <section id="dashboard" class="section active">
 
@@ -730,8 +793,6 @@ th{
 </section>
 
 
-<!-- ================= البيع ================= -->
-
 <section id="sales" class="section">
 
  <h2>🛒 البيع السريع</h2>
@@ -783,20 +844,57 @@ th{
 
   <h3>👤 معلومات البيع</h3>
 
-  <select id="saleCustomer">
-   <option value="">بدون زبون محدد</option>
-  </select>
+  <label>الزبون</label>
 
-  <select id="paymentMethod" onchange="paymentMethodChanged()">
-   <option value="cash">💵 نقدي</option>
-   <option value="card">💳 بطاقة</option>
-   <option value="credit">📝 آجل</option>
+  <input
+   id="saleCustomerSearch"
+   placeholder="🔎 ابحث باسم الزبون أو الهاتف..."
+   oninput="renderSaleCustomerSearch()"
+   autocomplete="off"
+  >
+
+  <input
+   id="saleCustomer"
+   type="hidden"
+   value=""
+  >
+
+  <div
+   id="saleCustomerResults"
+   class="customer-search-results"
+  ></div>
+
+  <div
+   id="selectedCustomerBox"
+   class="selected-customer-box"
+  ></div>
+
+  <label>طريقة الدفع</label>
+
+  <select
+   id="paymentMethod"
+   onchange="paymentMethodChanged()"
+  >
+
+   <option value="cash">
+    💵 نقدي
+   </option>
+
+   <option value="card">
+    💳 بطاقة
+   </option>
+
+   <option value="credit">
+    📝 آجل / بدين
+   </option>
+
   </select>
 
   <div class="two">
 
    <div>
     <label>الخصم</label>
+
     <input
      id="saleDiscount"
      type="number"
@@ -806,14 +904,48 @@ th{
     >
    </div>
 
-   <div>
+   <div
+    id="amountPaidBox"
+    style="display:none"
+   >
+
     <label>المبلغ المدفوع</label>
+
     <input
      id="amountPaid"
      type="number"
      min="0"
      value="0"
+     oninput="updateCreditPreview()"
     >
+
+   </div>
+
+  </div>
+
+  <div
+   id="creditPreview"
+   class="payment-box"
+   style="display:none"
+  >
+
+   <div class="payment-box-title">
+    📝 تفاصيل البيع الآجل
+   </div>
+
+   <div class="total-line">
+    <span>الإجمالي</span>
+    <strong id="creditTotalPreview">0 دج</strong>
+   </div>
+
+   <div class="total-line">
+    <span>المدفوع</span>
+    <strong id="creditPaidPreview">0 دج</strong>
+   </div>
+
+   <div class="total-line final">
+    <span>المتبقي كدين</span>
+    <strong id="creditDuePreview">0 دج</strong>
    </div>
 
   </div>
@@ -848,8 +980,6 @@ th{
 
 </section>
 
-
-<!-- ================= المنتجات ================= -->
 
 <section id="products" class="section">
 
@@ -913,10 +1043,7 @@ th{
 
   </label>
 
-  <div
-   id="packFields"
-   style="display:none"
-  >
+  <div id="packFields" style="display:none">
 
    <div class="three">
 
@@ -979,8 +1106,6 @@ th{
 </section>
 
 
-<!-- ================= المخزون ================= -->
-
 <section id="stock" class="section">
 
  <h2>📊 المخزون</h2>
@@ -1022,8 +1147,6 @@ th{
 </section>
 
 
-<!-- ================= الفواتير ================= -->
-
 <section id="invoices" class="section">
 
  <h2>🧾 الفواتير</h2>
@@ -1042,8 +1165,6 @@ th{
 
 </section>
 
-
-<!-- ================= المرتجعات ================= -->
 
 <section id="returns" class="section">
 
@@ -1077,8 +1198,6 @@ th{
 
 </section>
 
-
-<!-- ================= الزبائن ================= -->
 
 <section id="customers" class="section">
 
@@ -1137,8 +1256,6 @@ th{
 </section>
 
 
-<!-- ================= الصندوق ================= -->
-
 <section id="cashbox" class="section">
 
  <h2>💰 الصندوق</h2>
@@ -1148,11 +1265,7 @@ th{
   <div class="stat">
    <div class="icon">💰</div>
    <div class="label">الرصيد الحالي</div>
-   <div
-    class="value"
-    id="cashBalance"
-    style="color:#16a34a"
-   >
+   <div class="value" id="cashBalance" style="color:#16a34a">
     0 دج
    </div>
   </div>
@@ -1237,8 +1350,6 @@ th{
 </section>
 
 
-<!-- ================= الإحصائيات ================= -->
-
 <section id="stats" class="section">
 
  <h2>📊 الإحصائيات</h2>
@@ -1280,8 +1391,6 @@ th{
 </section>
 
 
-<!-- ================= فاتورة الطباعة ================= -->
-
 <section id="invoicePrint" class="section">
 
  <div id="printInvoiceContent"></div>
@@ -1290,8 +1399,6 @@ th{
 
 </div>
 
-
-<!-- ================= نافذة الزبون ================= -->
 
 <div
  id="customerModal"
@@ -1318,8 +1425,6 @@ th{
 
 </div>
 
-
-<!-- ================= نافذة الدفعة ================= -->
 
 <div
  id="paymentModal"
@@ -1908,7 +2013,7 @@ function renderStockMovements(){
      <div class="list-head">
 
       <strong>
-       ${m.productName}
+       ${escapeHtml(m.productName)}
       </strong>
 
       <span class="${
@@ -1925,9 +2030,9 @@ function renderStockMovements(){
      </div>
 
      <div class="muted">
-      ${m.reason||""}
+      ${escapeHtml(m.reason||"")}
       ${m.invoiceNumber?
-       " • "+m.invoiceNumber:""}
+       " • "+escapeHtml(m.invoiceNumber):""}
      </div>
 
      <div class="muted">
@@ -1945,6 +2050,7 @@ function renderStockMovements(){
 
 /* =========================================================
    المنتجات في البيع
+   الضغط على البطاقة = بيع قطعة
 ========================================================= */
 
 function renderSaleProducts(){
@@ -1965,7 +2071,8 @@ function renderSaleProducts(){
 
  const list=
   products.filter(p=>
-   p.name.toLowerCase()
+   String(p.name||"")
+    .toLowerCase()
     .includes(search)||
    String(p.barcode||"")
     .toLowerCase()
@@ -2021,7 +2128,10 @@ function renderSaleProducts(){
 
    return `
 
-    <div class="product-card">
+    <div
+     class="product-card"
+     onclick="addToCart('${p.id}','piece')"
+    >
 
      ${
       totalSelected>0
@@ -2036,7 +2146,7 @@ function renderSaleProducts(){
 
       ${
        p.image
-       ?`<img src="${p.image}">`
+       ?`<img src="${p.image}" onclick="event.stopPropagation()">`
        :"📦"
       }
 
@@ -2047,16 +2157,19 @@ function renderSaleProducts(){
      </div>
 
      <div class="product-info">
+
       ${
        p.category
        ?escapeHtml(p.category)
        :""
       }
+
       ${
        p.size
        ?" • "+escapeHtml(p.size)
        :""
       }
+
      </div>
 
      <div class="price">
@@ -2080,14 +2193,14 @@ function renderSaleProducts(){
 
         <button
          class="piece-btn"
-         onclick="addToCart('${p.id}','piece')"
+         onclick="event.stopPropagation();addToCart('${p.id}','piece')"
         >
          ➕ قطعة
         </button>
 
         <button
          class="pack-btn"
-         onclick="addToCart('${p.id}','pack')"
+         onclick="event.stopPropagation();addToCart('${p.id}','pack')"
         >
          📦 ${escapeHtml(p.packName)}
         </button>
@@ -2095,13 +2208,12 @@ function renderSaleProducts(){
        </div>
       `
       :`
-       <button
+       <div
         class="btn btn-primary"
-        style="width:100%;margin-top:9px"
-        onclick="addToCart('${p.id}','piece')"
+        style="width:100%;margin-top:9px;text-align:center"
        >
         ➕ بيع ${escapeHtml(p.unit||"قطعة")}
-       </button>
+       </div>
       `
      }
 
@@ -2351,10 +2463,13 @@ function renderCart(){
  });
 
  const discount=
-  Number(
-   document.getElementById(
-    "saleDiscount"
-   )?.value||0
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "saleDiscount"
+    )?.value||0
+   )
   );
 
  const total=
@@ -2377,6 +2492,8 @@ function renderCart(){
   "cartTotal"
  ).textContent=
   money(total);
+
+ updateCreditPreview();
 
  if(!cart.length){
 
@@ -2479,15 +2596,316 @@ function paymentMethodChanged(){
    "creditNotice"
   );
 
+ const amountBox=
+  document.getElementById(
+   "amountPaidBox"
+  );
+
+ const creditPreview=
+  document.getElementById(
+   "creditPreview"
+  );
+
  if(method==="credit"){
 
   notice.style.display="block";
+
+  amountBox.style.display="block";
+
+  creditPreview.style.display="block";
+
+  updateCreditPreview();
 
  }else{
 
   notice.style.display="none";
 
+  amountBox.style.display="none";
+
+  creditPreview.style.display="none";
+
+  document.getElementById(
+   "amountPaid"
+  ).value="0";
+
  }
+
+}
+
+
+function updateCreditPreview(){
+
+ const method=
+  document.getElementById(
+   "paymentMethod"
+  )?.value;
+
+ if(method!=="credit")
+  return;
+
+ let subtotal=0;
+
+ cart.forEach(item=>{
+  subtotal+=
+   Number(item.price||0)*
+   Number(item.quantity||0);
+ });
+
+ const discount=
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "saleDiscount"
+    )?.value||0
+   )
+  );
+
+ const total=
+  Math.max(
+   0,
+   subtotal-discount
+  );
+
+ const paid=
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "amountPaid"
+    )?.value||0
+   )
+  );
+
+ const due=
+  Math.max(
+   0,
+   total-paid
+  );
+
+ const totalEl=
+  document.getElementById(
+   "creditTotalPreview"
+  );
+
+ const paidEl=
+  document.getElementById(
+   "creditPaidPreview"
+  );
+
+ const dueEl=
+  document.getElementById(
+   "creditDuePreview"
+  );
+
+ if(totalEl)
+  totalEl.textContent=money(total);
+
+ if(paidEl)
+  paidEl.textContent=money(
+   Math.min(paid,total)
+  );
+
+ if(dueEl)
+  dueEl.textContent=money(due);
+
+}
+
+
+/* =========================================================
+   البحث عن الزبون أثناء البيع
+========================================================= */
+
+function renderSaleCustomerSearch(){
+
+ const input=
+  document.getElementById(
+   "saleCustomerSearch"
+  );
+
+ const results=
+  document.getElementById(
+   "saleCustomerResults"
+  );
+
+ const hidden=
+  document.getElementById(
+   "saleCustomer"
+  );
+
+ const selectedBox=
+  document.getElementById(
+   "selectedCustomerBox"
+  );
+
+ if(
+  !input||
+  !results||
+  !hidden||
+  !selectedBox
+ )
+  return;
+
+ const currentId=
+  hidden.value;
+
+ const currentCustomer=
+  customers.find(c=>
+   String(c.id)===
+   String(currentId)
+  );
+
+ if(currentCustomer){
+
+  selectedBox.innerHTML=`
+
+   <div>
+
+    <strong>
+     👤 ${escapeHtml(currentCustomer.name)}
+    </strong>
+
+    ${
+     currentCustomer.phone
+     ?`
+      <div class="muted">
+       📞 ${escapeHtml(currentCustomer.phone)}
+      </div>
+     `
+     :""
+    }
+
+   </div>
+
+   <button
+    class="small-btn btn-light"
+    onclick="clearSaleCustomer()"
+   >
+    ✕ تغيير
+   </button>
+
+  `;
+
+  selectedBox.classList.add("show");
+
+ }else{
+
+  selectedBox.innerHTML="";
+
+  selectedBox.classList.remove("show");
+
+ }
+
+ const search=
+  input.value.trim().toLowerCase();
+
+ if(!search){
+
+  results.innerHTML="";
+
+  results.classList.remove("show");
+
+  return;
+
+ }
+
+ const list=
+  customers.filter(c=>
+   String(c.name||"")
+    .toLowerCase()
+    .includes(search)||
+   String(c.phone||"")
+    .toLowerCase()
+    .includes(search)
+  );
+
+ if(!list.length){
+
+  results.innerHTML=
+   `<div class="empty">
+     لا يوجد زبون بهذا الاسم
+    </div>`;
+
+  results.classList.add("show");
+
+  return;
+
+ }
+
+ results.innerHTML=
+  list.slice(0,30)
+  .map(c=>`
+
+   <div
+    class="customer-result"
+    onclick="selectSaleCustomer('${c.id}')"
+   >
+
+    <strong>
+     👤 ${escapeHtml(c.name)}
+    </strong>
+
+    ${
+     c.phone
+     ?`
+      <div class="muted">
+       📞 ${escapeHtml(c.phone)}
+      </div>
+     `
+     :""
+    }
+
+   </div>
+
+  `)
+  .join("");
+
+ results.classList.add("show");
+
+}
+
+
+function selectSaleCustomer(customerId){
+
+ const c=
+  customers.find(x=>
+   String(x.id)===
+   String(customerId)
+  );
+
+ if(!c) return;
+
+ document.getElementById(
+  "saleCustomer"
+ ).value=c.id;
+
+ document.getElementById(
+  "saleCustomerSearch"
+ ).value="";
+
+ renderSaleCustomerSearch();
+
+}
+
+
+function clearSaleCustomer(){
+
+ document.getElementById(
+  "saleCustomer"
+ ).value="";
+
+ document.getElementById(
+  "saleCustomerSearch"
+ ).value="";
+
+ renderSaleCustomerSearch();
+
+}
+
+
+function renderCustomerSelect(){
+
+ renderSaleCustomerSearch();
 
 }
 
@@ -2536,10 +2954,13 @@ function completeSale(){
  }
 
  const discount=
-  Number(
-   document.getElementById(
-    "saleDiscount"
-   ).value||0
+  Math.max(
+   0,
+   Number(
+    document.getElementById(
+     "saleDiscount"
+    ).value||0
+   )
   );
 
  let subtotal=0;
@@ -2598,40 +3019,49 @@ function completeSale(){
    subtotal-discount
   );
 
- let paid=
-  Number(
-   document.getElementById(
-    "amountPaid"
-   ).value||0
-  );
+ let paid=0;
 
- if(paymentMethod==="credit")
-  paid=0;
+ if(paymentMethod==="credit"){
 
- if(
-  paymentMethod!=="credit"&&
-  paid<total
- ){
+  paid=
+   Math.max(
+    0,
+    Number(
+     document.getElementById(
+      "amountPaid"
+     ).value||0
+    )
+   );
 
-  alert(
-   "⚠️ المبلغ المدفوع أقل من الإجمالي"
-  );
+  if(paid>total){
 
-  return;
+   alert(
+    "⚠️ المبلغ المدفوع لا يمكن أن يكون أكبر من الإجمالي"
+   );
+
+   return;
+
+  }
+
+ }else{
+
+  /*
+   النقدي والبطاقة:
+   المبلغ يعتبر مدفوعًا بالكامل تلقائيًا.
+  */
+
+  paid=total;
 
  }
 
- const change=
-  paymentMethod==="credit"
-   ?0
-   :Math.max(
-    0,
-    paid-total
-   );
+ const change=0;
 
  const due=
   paymentMethod==="credit"
-   ?total
+   ?Math.max(
+    0,
+    total-paid
+   )
    :0;
 
  const invoiceId=id();
@@ -2783,16 +3213,35 @@ function completeSale(){
  invoices.unshift(invoice);
 
 
- /* البيع النقدي يدخل الصندوق */
+ /* =====================================================
+    الصندوق
+ ===================================================== */
 
- if(
-  paymentMethod==="cash"
- ){
+ if(paymentMethod==="cash"){
 
   addCashMovementInternal(
    total,
    "in",
    "بيع نقدي - "+invoiceNumber,
+   invoiceId
+  );
+
+ }
+
+ /*
+  إذا كان البيع آجل ودفع الزبون جزءًا من المبلغ،
+  فإن الجزء المدفوع يدخل الصندوق.
+ */
+
+ if(
+  paymentMethod==="credit"&&
+  paid>0
+ ){
+
+  addCashMovementInternal(
+   paid,
+   "in",
+   "دفعة أولى - "+invoiceNumber,
    invoiceId
   );
 
@@ -2818,6 +3267,10 @@ function completeSale(){
  ).value="";
 
  document.getElementById(
+  "saleCustomerSearch"
+ ).value="";
+
+ document.getElementById(
   "paymentMethod"
  ).value="cash";
 
@@ -2826,8 +3279,9 @@ function completeSale(){
  refresh();
 
  alert(
-  "✅ تمت عملية البيع\nرقم الفاتورة: "+
-  invoiceNumber
+  "✅ تمت عملية البيع\n"+
+  "رقم الفاتورة: "+invoiceNumber+
+  "\nالإجمالي: "+money(total)
  );
 
  goTo("invoices");
@@ -2911,21 +3365,26 @@ function renderInvoices(){
       inv.paymentMethod==="credit"
       ?`
        <span class="badge badge-red">
+
         📝 آجل
+
         ${
          Number(inv.due||0)>0
          ?" • متبقي "+money(inv.due)
          :" • مسدد"
         }
+
        </span>
       `
       :`
        <span class="badge badge-green">
+
         ${
          inv.paymentMethod==="cash"
          ?"💵 نقدي"
          :"💳 بطاقة"
         }
+
        </span>
       `
      }
@@ -2990,32 +3449,42 @@ function viewInvoice(invoiceId){
   <!DOCTYPE html>
   <html lang="ar" dir="rtl">
   <head>
+
    <meta charset="UTF-8">
+
    <meta name="viewport"
     content="width=device-width,initial-scale=1">
-   <title>${inv.number}</title>
+
+   <title>${escapeHtml(inv.number)}</title>
 
    <style>
+
     body{
      font-family:Arial;
      padding:20px;
      max-width:700px;
      margin:auto;
     }
+
     table{
      width:100%;
      border-collapse:collapse;
     }
+
     th,td{
      border-bottom:1px solid #ddd;
      padding:8px;
      text-align:right;
     }
+
    </style>
+
   </head>
+
   <body>
    ${html}
   </body>
+
   </html>
  `);
 
@@ -3041,9 +3510,11 @@ function invoiceHTML(inv){
     </div>
 
     <div style="margin-top:10px">
+
      <strong>
       فاتورة رقم: ${escapeHtml(inv.number)}
      </strong>
+
     </div>
 
     <div>
@@ -3055,6 +3526,7 @@ function invoiceHTML(inv){
    <div>
 
     <strong>الزبون:</strong>
+
     ${escapeHtml(
      inv.customerName||
      "زبون نقدي"
@@ -3067,11 +3539,13 @@ function invoiceHTML(inv){
     <thead>
 
      <tr>
+
       <th>المنتج</th>
       <th>الوحدة</th>
       <th>الكمية</th>
       <th>السعر</th>
       <th>المجموع</th>
+
      </tr>
 
     </thead>
@@ -3122,15 +3596,17 @@ function invoiceHTML(inv){
 
     <br>
 
-    الإجمالي:
-    ${money(inv.total)}
+    <strong>
+     الإجمالي:
+     ${money(inv.total)}
+    </strong>
 
     <br>
 
     طريقة الدفع:
     ${
      inv.paymentMethod==="credit"
-     ?"آجل"
+     ?"آجل / بدين"
      :inv.paymentMethod==="cash"
      ?"نقدي"
      :"بطاقة"
@@ -3147,16 +3623,6 @@ function invoiceHTML(inv){
 
       المتبقي:
       ${money(inv.due)}
-     `
-     :""
-    }
-
-    ${
-     inv.change>0
-     ?`
-      <br>
-      الباقي:
-      ${money(inv.change)}
      `
      :""
     }
@@ -3269,8 +3735,10 @@ function renderReturnInvoice(){
    </h3>
 
    <div class="muted">
+
     الزبون:
     ${escapeHtml(inv.customerName)}
+
    </div>
 
    <hr>
@@ -3293,10 +3761,13 @@ function renderReturnInvoice(){
       </div>
 
       <div class="muted">
+
        الوحدة:
        ${escapeHtml(item.unitLabel||"قطعة")}
+
        • الكمية:
        ${item.quantity}
+
       </div>
 
       <div class="two"
@@ -3445,6 +3916,11 @@ function returnInvoiceItem(
   inv.paymentMethod==="credit"
  ){
 
+  /*
+   إذا كان البيع آجلًا،
+   نخفض الدين بالمبلغ المرتجع.
+  */
+
   inv.due=
    Math.max(
     0,
@@ -3452,8 +3928,6 @@ function returnInvoiceItem(
    );
 
  }else{
-
-  /* المرتجع المدفوع نقدًا يعيد المال للصندوق */
 
   if(
    inv.paymentMethod==="cash"
@@ -3604,41 +4078,6 @@ function totalCustomerDebt(){
 }
 
 
-function renderCustomerSelect(){
-
- const select=
-  document.getElementById(
-   "saleCustomer"
-  );
-
- if(!select) return;
-
- const current=
-  select.value;
-
- select.innerHTML=
-  `<option value="">
-   بدون زبون محدد
-  </option>`+
-  customers.map(c=>
-   `<option value="${c.id}">
-    ${escapeHtml(c.name)}
-   </option>`
-  ).join("");
-
- if(
-  customers.some(c=>
-   String(c.id)===String(current)
-  )
- ){
-
-  select.value=current;
-
- }
-
-}
-
-
 function renderCustomers(){
 
  const box=
@@ -3657,7 +4096,8 @@ function renderCustomers(){
 
  const list=
   customers.filter(c=>
-   c.name.toLowerCase()
+   String(c.name||"")
+    .toLowerCase()
     .includes(search)||
    String(c.phone||"")
     .includes(search)
@@ -4145,8 +4585,6 @@ function savePayment(){
  });
 
 
- /* دفعة الدين تدخل الصندوق */
-
  addCashMovementInternal(
   amount,
   "in",
@@ -4429,12 +4867,15 @@ function renderCashbox(){
     </div>
 
     <div class="muted">
+
      ${m.type==="in"
       ?"🟢 دخل"
       :"🔴 خرج"
      }
+
      •
      ${formatDate(m.date)}
+
     </div>
 
    </div>
@@ -4525,10 +4966,12 @@ function renderStock(){
       p.packEnabled
       ?`
        <div class="muted">
+
         📦 ${escapeHtml(p.packName)}
         =
         ${p.packSize}
         ${escapeHtml(p.unit||"قطعة")}
+
        </div>
       `
       :""
@@ -4566,7 +5009,8 @@ function renderProducts(){
 
  const list=
   products.filter(p=>
-   p.name.toLowerCase()
+   String(p.name||"")
+    .toLowerCase()
     .includes(search)||
    String(p.barcode||"")
     .includes(search)||
@@ -4640,12 +5084,14 @@ function renderProducts(){
      p.packEnabled
      ?`
       <div class="muted">
+
        📦 ${escapeHtml(p.packName)}
        =
        ${p.packSize}
        ${escapeHtml(p.unit)}
        •
        ${money(p.packSell)}
+
       </div>
      `
      :""
@@ -4660,7 +5106,7 @@ function renderProducts(){
 
 
 /* =========================================================
-   المرتجعات
+   سجل المرتجعات
 ========================================================= */
 
 function renderReturns(){
@@ -4882,7 +5328,7 @@ function renderDashboard(){
 
 
 /* =========================================================
-   حذف / أدوات
+   أدوات
 ========================================================= */
 
 function escapeHtml(text){
@@ -4977,6 +5423,8 @@ function refresh(){
  renderCashbox();
 
  renderStats();
+
+ paymentMethodChanged();
 
 }
 
