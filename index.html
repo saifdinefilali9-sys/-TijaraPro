@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 
 <head>
@@ -13,821 +12,591 @@
 <style>
 
 *{
-
  box-sizing:border-box;
-
 }
 
 body{
-
  margin:0;
-
  font-family:Arial,Tahoma,sans-serif;
-
  background:#f4f6f9;
-
  color:#172033;
-
 }
 
 header{
-
  background:#2563eb;
-
  color:white;
-
  padding:20px 15px;
-
  text-align:center;
-
  box-shadow:0 3px 12px #0002;
-
 }
 
 header h1{
-
  margin:0;
-
  font-size:25px;
-
 }
 
 header p{
-
  margin:7px 0 0;
-
  opacity:.9;
-
 }
 
 .version{
-
  display:inline-block;
-
  margin-top:8px;
-
  background:#ffffff22;
-
  padding:5px 10px;
-
  border-radius:20px;
-
  font-size:12px;
-
 }
 
 nav{
-
  display:grid;
-
  grid-template-columns:repeat(4,1fr);
-
  gap:7px;
-
  padding:10px;
-
  background:white;
-
  position:sticky;
-
  top:0;
-
  z-index:20;
-
  box-shadow:0 2px 8px #0001;
-
 }
 
 nav button{
-
  border:0;
-
  background:#eef2ff;
-
  color:#1e3a8a;
-
  padding:11px 5px;
-
  border-radius:10px;
-
  font-weight:bold;
-
  cursor:pointer;
-
  font-size:13px;
-
 }
 
 nav button.active{
-
  background:#2563eb;
-
  color:white;
-
 }
 
 main{
-
  max-width:1000px;
-
  margin:auto;
-
  padding:15px;
-
 }
 
 .section{
-
  display:none;
-
 }
 
 .section.active{
-
  display:block;
-
 }
 
 .card{
-
  background:white;
-
  border-radius:16px;
-
  padding:16px;
-
  margin-bottom:15px;
-
  box-shadow:0 3px 12px #0000000d;
-
 }
 
 h2{
-
  margin-top:0;
-
  font-size:21px;
+}
 
+h3{
+ margin-top:10px;
 }
 
 .stats{
-
  display:grid;
-
  grid-template-columns:repeat(2,1fr);
-
  gap:10px;
-
 }
 
 .stat{
-
  background:white;
-
  border-radius:15px;
-
  padding:15px;
-
  box-shadow:0 3px 12px #0001;
-
 }
 
 .stat strong{
-
  display:block;
-
  font-size:21px;
-
  margin-top:7px;
-
  color:#2563eb;
-
 }
 
 input,select{
-
  width:100%;
-
  padding:12px;
-
  border:1px solid #d7dce5;
-
  border-radius:10px;
-
  margin:5px 0 10px;
-
  font-size:15px;
-
  background:white;
-
 }
 
 button{
-
  font-family:inherit;
-
 }
 
 .btn{
-
  border:0;
-
  border-radius:10px;
-
  padding:11px 15px;
-
  cursor:pointer;
-
  font-weight:bold;
-
  margin:3px;
-
 }
 
 .btn-primary{
-
  background:#2563eb;
-
  color:white;
-
 }
 
 .btn-success{
-
  background:#16a34a;
-
  color:white;
-
 }
 
 .btn-danger{
-
  background:#dc2626;
-
  color:white;
-
 }
 
 .btn-warning{
-
  background:#f59e0b;
-
  color:white;
-
 }
 
 .btn-gray{
-
  background:#e5e7eb;
-
  color:#111827;
+}
 
+.btn-purple{
+ background:#7c3aed;
+ color:white;
 }
 
 .products{
-
  display:grid;
-
  grid-template-columns:repeat(2,1fr);
-
  gap:10px;
-
 }
 
 .product{
-
  position:relative;
-
  background:white;
-
  border:2px solid #e5e7eb;
-
  border-radius:15px;
-
  padding:10px;
-
  text-align:center;
-
  overflow:hidden;
-
 }
 
 .product.clickable{
-
  cursor:pointer;
-
 }
 
 .product:hover{
-
  border-color:#2563eb;
-
 }
 
 .product img{
-
  width:100%;
-
  height:120px;
-
  object-fit:cover;
-
  border-radius:10px;
-
 }
 
 .product .emoji{
-
  height:120px;
-
  display:flex;
-
  align-items:center;
-
  justify-content:center;
-
  font-size:55px;
-
  background:#f3f4f6;
-
  border-radius:10px;
-
 }
 
 .product h3{
-
  margin:9px 0 5px;
-
  font-size:16px;
-
 }
 
 .price{
-
  color:#16a34a;
-
  font-weight:bold;
-
  font-size:17px;
-
 }
 
 .stock{
-
  display:inline-block;
-
  margin-top:7px;
-
  padding:5px 8px;
-
  border-radius:20px;
-
  background:#dcfce7;
-
  color:#166534;
-
  font-size:12px;
-
 }
 
 .stock.low{
-
  background:#fef3c7;
-
  color:#92400e;
-
 }
 
 .stock.out{
-
  background:#fee2e2;
-
  color:#991b1b;
-
 }
 
 .badge{
-
  display:inline-block;
-
  background:#eef2ff;
-
  color:#3730a3;
-
  padding:4px 8px;
-
  border-radius:20px;
-
  font-size:11px;
-
  margin-top:4px;
-
 }
 
 .quantity-badge{
-
  position:absolute;
-
  top:7px;
-
  right:7px;
-
  background:#dc2626;
-
  color:white;
-
  min-width:29px;
-
  height:29px;
-
  border-radius:50%;
-
  display:flex;
-
  align-items:center;
-
  justify-content:center;
-
  font-weight:bold;
-
  z-index:3;
-
 }
 
 .unit-buttons{
-
  display:grid;
-
  grid-template-columns:1fr 1fr;
-
  gap:5px;
-
  margin-top:9px;
-
 }
 
 .unit-buttons button{
-
  border:0;
-
  border-radius:9px;
-
  padding:9px 3px;
-
  cursor:pointer;
-
  font-weight:bold;
-
 }
 
 .piece-btn{
-
  background:#2563eb;
-
  color:white;
-
 }
 
 .pack-btn{
-
  background:#7c3aed;
-
  color:white;
-
 }
 
 .piece-btn:disabled,
-
 .pack-btn:disabled{
-
  opacity:.4;
-
  cursor:not-allowed;
-
 }
 
 .cart-item{
-
  display:flex;
-
  gap:10px;
-
  align-items:center;
-
  border-bottom:1px solid #eee;
-
  padding:10px 0;
-
 }
 
 .cart-item:last-child{
-
  border-bottom:0;
-
 }
 
 .cart-img{
-
  width:55px;
-
  height:55px;
-
  border-radius:9px;
-
  object-fit:cover;
-
 }
 
 .cart-info{
-
  flex:1;
-
 }
 
 .cart-controls{
-
  display:flex;
-
  align-items:center;
-
  gap:5px;
-
  flex-wrap:wrap;
-
 }
 
 .cart-controls button{
-
  border:0;
-
  width:30px;
-
  height:30px;
-
  border-radius:7px;
-
  cursor:pointer;
-
 }
 
 .total-box{
-
  background:#eff6ff;
-
  border-radius:12px;
-
  padding:15px;
-
  margin-top:12px;
-
 }
 
 .total-box strong{
-
  font-size:22px;
-
  color:#2563eb;
-
 }
 
 .empty{
-
  text-align:center;
-
  padding:25px;
-
  color:#777;
-
 }
 
 .table-wrap{
-
  overflow-x:auto;
-
 }
 
 table{
-
  width:100%;
-
  border-collapse:collapse;
-
  background:white;
-
 }
 
 th,td{
-
  border-bottom:1px solid #eee;
-
  padding:9px;
-
  text-align:right;
-
  white-space:nowrap;
-
  font-size:13px;
-
 }
 
 th{
-
  background:#f8fafc;
-
 }
 
 .search{
-
  margin-bottom:12px;
-
 }
 
 .warning{
-
  background:#fff7ed;
-
  border:1px solid #fed7aa;
-
  color:#9a3412;
-
  padding:12px;
-
  border-radius:10px;
-
  margin-bottom:10px;
-
 }
 
 .success{
-
  background:#f0fdf4;
-
  border:1px solid #bbf7d0;
-
  color:#166534;
-
  padding:12px;
-
  border-radius:10px;
+}
 
+.info-box{
+ background:#eff6ff;
+ border:1px solid #bfdbfe;
+ color:#1e40af;
+ padding:12px;
+ border-radius:10px;
+ margin:10px 0;
+}
+
+.debt-box{
+ background:#fff7ed;
+ border:1px solid #fed7aa;
+ color:#9a3412;
+ padding:15px;
+ border-radius:12px;
+ margin-top:10px;
+}
+
+.paid-box{
+ background:#f0fdf4;
+ border:1px solid #bbf7d0;
+ color:#166534;
+ padding:15px;
+ border-radius:12px;
+ margin-top:10px;
+}
+
+.customer-summary{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px;
+ margin:12px 0;
+}
+
+.customer-summary-item{
+ background:#f8fafc;
+ border-radius:10px;
+ padding:10px;
+ text-align:center;
+}
+
+.customer-summary-item strong{
+ display:block;
+ margin-top:5px;
+ font-size:15px;
+}
+
+.payment-history{
+ border-top:1px solid #eee;
+ margin-top:15px;
+ padding-top:10px;
+}
+
+.payment-row{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ padding:10px 0;
+ border-bottom:1px solid #eee;
+}
+
+.payment-row:last-child{
+ border-bottom:0;
 }
 
 .modal{
-
  display:none;
-
  position:fixed;
-
  inset:0;
-
  background:#0008;
-
  z-index:100;
-
  align-items:center;
-
  justify-content:center;
-
  padding:15px;
-
 }
 
 .modal.show{
-
  display:flex;
-
 }
 
 .modal-content{
-
  background:white;
-
  width:100%;
-
  max-width:500px;
-
  max-height:90vh;
-
  overflow:auto;
-
  border-radius:17px;
-
  padding:18px;
-
 }
 
 .preview{
-
  background:#2563eb;
-
  color:white;
-
  border-radius:12px;
-
  padding:12px;
-
  text-align:center;
-
  margin:10px 0;
-
 }
 
 .checkbox-row{
-
  display:flex;
-
  align-items:center;
-
  gap:8px;
-
  margin:10px 0;
-
 }
 
 .checkbox-row input{
-
  width:auto;
-
  margin:0;
-
 }
 
 .pack-fields{
-
  background:#f5f3ff;
-
  border:1px solid #ddd6fe;
-
  border-radius:12px;
-
  padding:10px;
-
  margin:10px 0;
-
 }
 
 .return-item{
-
  border:1px solid #ddd;
-
  border-radius:10px;
-
  padding:10px;
-
  margin:7px 0;
+}
 
+.customer-actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:5px;
+ margin-top:10px;
+}
+
+.status-paid{
+ color:#166534;
+ background:#dcfce7;
+ padding:4px 8px;
+ border-radius:20px;
+ font-size:12px;
+ display:inline-block;
+}
+
+.status-credit{
+ color:#92400e;
+ background:#fef3c7;
+ padding:4px 8px;
+ border-radius:20px;
+ font-size:12px;
+ display:inline-block;
 }
 
 @media(max-width:600px){
 
  nav{
-
   grid-template-columns:repeat(4,1fr);
-
  }
 
  nav button{
-
   font-size:11px;
-
   padding:9px 3px;
-
  }
 
  .products{
-
   grid-template-columns:repeat(2,1fr);
-
  }
 
  .stats{
-
   grid-template-columns:repeat(2,1fr);
-
  }
 
  .product img,
-
  .product .emoji{
-
   height:105px;
-
  }
 
+ .customer-summary{
+  grid-template-columns:1fr;
+ }
 }
 
 @media(min-width:700px){
 
  .products{
-
   grid-template-columns:repeat(4,1fr);
-
  }
 
  .stats{
-
   grid-template-columns:repeat(4,1fr);
-
  }
 
 }
@@ -835,29 +604,19 @@ th{
 @media print{
 
  body *{
-
   visibility:hidden !important;
-
  }
 
  #invoicePrint,
-
  #invoicePrint *{
-
   visibility:visible !important;
-
  }
 
  #invoicePrint{
-
   position:absolute;
-
   left:0;
-
   top:0;
-
   width:100%;
-
  }
 
 }
@@ -874,25 +633,39 @@ th{
 
  <p>نظام البيع وإدارة المحل</p>
 
- <span class="version">الإصدار 2.2</span>
+ <span class="version">الإصدار 2.3</span>
 
 </header>
 
 <nav id="mainNav">
 
- <button class="active" onclick="showSection('dashboard',this)">🏠 الرئيسية</button>
+ <button class="active" onclick="showSection('dashboard',this)">
+  🏠 الرئيسية
+ </button>
 
- <button onclick="showSection('sales',this)">🛒 البيع السريع</button>
+ <button onclick="showSection('sales',this)">
+  🛒 البيع السريع
+ </button>
 
- <button onclick="showSection('products',this)">📦 المنتجات</button>
+ <button onclick="showSection('products',this)">
+  📦 المنتجات
+ </button>
 
- <button onclick="showSection('stock',this)">📊 المخزون</button>
+ <button onclick="showSection('stock',this)">
+  📊 المخزون
+ </button>
 
- <button onclick="showSection('invoices',this)">🧾 الفواتير</button>
+ <button onclick="showSection('invoices',this)">
+  🧾 الفواتير
+ </button>
 
- <button onclick="showSection('returns',this)">🔄 المرتجعات</button>
+ <button onclick="showSection('returns',this)">
+  🔄 المرتجعات
+ </button>
 
- <button onclick="showSection('customers',this)">👤 الزبائن</button>
+ <button onclick="showSection('customers',this)">
+  👤 الزبائن
+ </button>
 
 </nav>
 
@@ -907,35 +680,23 @@ th{
  <div class="stats">
 
   <div class="stat">
-
    💰 مبيعات اليوم
-
    <strong id="todaySales">0 دج</strong>
-
   </div>
 
   <div class="stat">
-
    📦 المنتجات
-
    <strong id="productCount">0</strong>
-
   </div>
 
   <div class="stat">
-
    🧾 فواتير اليوم
-
    <strong id="todayInvoices">0</strong>
-
   </div>
 
   <div class="stat">
-
    📈 ربح اليوم
-
    <strong id="todayProfit">0 دج</strong>
-
   </div>
 
  </div>
@@ -943,6 +704,7 @@ th{
  <div id="lowStockBox" style="margin-top:15px"></div>
 
 </section>
+
 
 <!-- SALES -->
 
@@ -953,25 +715,16 @@ th{
  <div class="card">
 
   <input
-
    id="saleSearch"
-
    class="search"
-
    placeholder="🔎 ابحث عن منتج..."
-
    oninput="renderSaleProducts()"
-
   >
 
   <input
-
    id="barcodeSearch"
-
    placeholder="🔢 امسح الباركود ثم اضغط Enter"
-
    onkeydown="barcodeEnter(event)"
-
   >
 
  </div>
@@ -1010,29 +763,44 @@ th{
 
   <label>🏷️ الخصم</label>
 
-  <input id="saleDiscount" type="number" min="0" value="0" oninput="renderCart()">
+  <input
+   id="saleDiscount"
+   type="number"
+   min="0"
+   value="0"
+   oninput="renderCart()"
+  >
 
   <label>💵 المبلغ المدفوع</label>
 
-  <input id="amountPaid" type="number" min="0" value="0" oninput="renderCart()">
+  <input
+   id="amountPaid"
+   type="number"
+   min="0"
+   value="0"
+   oninput="renderCart()"
+  >
 
   <div id="paymentInfo"></div>
 
-  <button class="btn btn-success" onclick="completeSale()">
-
+  <button
+   class="btn btn-success"
+   onclick="completeSale()"
+  >
    ✅ إتمام البيع
-
   </button>
 
-  <button class="btn btn-gray" onclick="clearCart()">
-
+  <button
+   class="btn btn-gray"
+   onclick="clearCart()"
+  >
    🗑️ تفريغ السلة
-
   </button>
 
  </div>
 
 </section>
+
 
 <!-- PRODUCTS -->
 
@@ -1045,46 +813,43 @@ th{
   <input type="hidden" id="productId">
 
   <label>اسم المنتج</label>
-
   <input id="productName" placeholder="مثال: منتج تجريبي">
 
   <label>الفئة</label>
-
   <input id="productCategory" placeholder="مثال: مواد غذائية">
 
   <label>الحجم / الوصف</label>
-
   <input id="productSize" placeholder="اختياري">
 
   <label>وحدة الأساس</label>
-
   <input id="productUnit" value="قطعة" placeholder="قطعة">
 
   <label>سعر الشراء للوحدة</label>
-
   <input id="buyPrice" type="number" min="0">
 
   <label>سعر البيع للوحدة</label>
-
   <input id="sellPrice" type="number" min="0">
 
   <label>المخزون بوحدة الأساس</label>
-
   <input id="productStock" type="number" min="0">
 
   <label>الباركود</label>
-
   <input id="productBarcode" placeholder="اختياري">
 
   <label>صورة المنتج</label>
-
   <input id="productImage" type="file" accept="image/*">
 
   <div class="checkbox-row">
 
-   <input type="checkbox" id="packEnabled" onchange="togglePackFields()">
+   <input
+    type="checkbox"
+    id="packEnabled"
+    onchange="togglePackFields()"
+   >
 
-   <label for="packEnabled">📦 تفعيل البيع بالعبوة</label>
+   <label for="packEnabled">
+    📦 تفعيل البيع بالعبوة
+   </label>
 
   </div>
 
@@ -1093,35 +858,26 @@ th{
    <strong>إعدادات العبوة</strong>
 
    <label>اسم العبوة</label>
-
    <input id="packName" value="علبة">
 
    <label>عدد الوحدات داخل العبوة</label>
-
    <input id="packSize" type="number" min="2" value="20">
 
    <label>سعر بيع العبوة</label>
-
    <input id="packSell" type="number" min="0">
 
    <div style="font-size:12px;color:#555">
-
     مثال: إذا كانت العبوة تحتوي على 20 قطعة، فاكتب 20.
-
    </div>
 
   </div>
 
   <button class="btn btn-primary" onclick="saveProduct()">
-
    💾 حفظ المنتج
-
   </button>
 
   <button class="btn btn-gray" onclick="resetProductForm()">
-
    إلغاء
-
   </button>
 
  </div>
@@ -1130,13 +886,18 @@ th{
 
   <h2>📋 المنتجات</h2>
 
-  <input placeholder="🔎 البحث في المنتجات..." oninput="renderProducts(this.value)" id="productsSearch">
+  <input
+   placeholder="🔎 البحث في المنتجات..."
+   oninput="renderProducts(this.value)"
+   id="productsSearch"
+  >
 
   <div id="productsList"></div>
 
  </div>
 
 </section>
+
 
 <!-- STOCK -->
 
@@ -1146,20 +907,21 @@ th{
 
  <div class="card">
 
-  <button class="btn btn-primary" onclick="openStockModal()">
-
+  <button
+   class="btn btn-primary"
+   onclick="openStockModal()"
+  >
    ➕ تعديل المخزون
-
   </button>
 
-  <select id="movementFilter" onchange="renderMovements()">
+  <select
+   id="movementFilter"
+   onchange="renderMovements()"
+  >
 
    <option value="all">كل الحركات</option>
-
    <option value="in">إدخال</option>
-
    <option value="out">إخراج</option>
-
    <option value="adjustment">تعديل</option>
 
   </select>
@@ -1167,9 +929,7 @@ th{
  </div>
 
  <div class="card">
-
   <div id="stockProducts"></div>
-
  </div>
 
  <div class="card">
@@ -1183,21 +943,13 @@ th{
     <thead>
 
      <tr>
-
       <th>التاريخ</th>
-
       <th>المنتج</th>
-
       <th>الحركة</th>
-
       <th>الكمية</th>
-
       <th>قبل</th>
-
       <th>بعد</th>
-
       <th>السبب</th>
-
      </tr>
 
     </thead>
@@ -1212,6 +964,7 @@ th{
 
 </section>
 
+
 <!-- INVOICES -->
 
 <section id="invoices" class="section">
@@ -1220,13 +973,18 @@ th{
 
  <div class="card">
 
-  <input id="invoiceSearch" placeholder="🔎 ابحث برقم الفاتورة أو اسم الزبون..." oninput="renderInvoices()">
+  <input
+   id="invoiceSearch"
+   placeholder="🔎 ابحث برقم الفاتورة أو اسم الزبون..."
+   oninput="renderInvoices()"
+  >
 
   <div id="invoicesList"></div>
 
  </div>
 
 </section>
+
 
 <!-- RETURNS -->
 
@@ -1237,9 +995,7 @@ th{
  <div class="card">
 
   <p>
-
    اختر فاتورة من قسم الفواتير ثم اضغط على زر المرتجع.
-
   </p>
 
   <div id="returnsList"></div>
@@ -1247,6 +1003,7 @@ th{
  </div>
 
 </section>
+
 
 <!-- CUSTOMERS -->
 
@@ -1260,17 +1017,22 @@ th{
 
   <input id="customerPhone" placeholder="رقم الهاتف">
 
-  <button class="btn btn-primary" onclick="addCustomer()">
-
+  <button
+   class="btn btn-primary"
+   onclick="addCustomer()"
+  >
    ➕ إضافة زبون
-
   </button>
 
  </div>
 
  <div class="card">
 
-  <input id="customerSearch" placeholder="🔎 البحث..." oninput="renderCustomers()">
+  <input
+   id="customerSearch"
+   placeholder="🔎 البحث..."
+   oninput="renderCustomers()"
+  >
 
   <div id="customersList"></div>
 
@@ -1279,6 +1041,7 @@ th{
 </section>
 
 </main>
+
 
 <!-- STOCK MODAL -->
 
@@ -1295,9 +1058,7 @@ th{
   <select id="stockType">
 
    <option value="in">إضافة إلى المخزون</option>
-
    <option value="out">إخراج من المخزون</option>
-
    <option value="adjustment">تعديل مباشر</option>
 
   </select>
@@ -1308,23 +1069,29 @@ th{
 
   <label>السبب</label>
 
-  <input id="stockReason" placeholder="مثال: شراء، تلف، جرد...">
+  <input
+   id="stockReason"
+   placeholder="مثال: شراء، تلف، جرد..."
+  >
 
-  <button class="btn btn-success" onclick="saveStockAdjustment()">
-
+  <button
+   class="btn btn-success"
+   onclick="saveStockAdjustment()"
+  >
    حفظ
-
   </button>
 
-  <button class="btn btn-gray" onclick="closeModal('stockModal')">
-
+  <button
+   class="btn btn-gray"
+   onclick="closeModal('stockModal')"
+  >
    إلغاء
-
   </button>
 
  </div>
 
 </div>
+
 
 <!-- RETURN MODAL -->
 
@@ -1336,21 +1103,24 @@ th{
 
   <div id="returnContent"></div>
 
-  <button class="btn btn-success" onclick="confirmReturn()">
-
+  <button
+   class="btn btn-success"
+   onclick="confirmReturn()"
+  >
    ✅ تأكيد المرتجع
-
   </button>
 
-  <button class="btn btn-gray" onclick="closeModal('returnModal')">
-
+  <button
+   class="btn btn-gray"
+   onclick="closeModal('returnModal')"
+  >
    إلغاء
-
   </button>
 
  </div>
 
 </div>
+
 
 <!-- CUSTOMER MODAL -->
 
@@ -1362,84 +1132,141 @@ th{
 
   <div id="customerProfile"></div>
 
-  <button class="btn btn-gray" onclick="closeModal('customerModal')">
-
+  <button
+   class="btn btn-gray"
+   onclick="closeModal('customerModal')"
+  >
    إغلاق
-
   </button>
 
  </div>
 
 </div>
 
+
+<!-- PAYMENT MODAL -->
+
+<div id="paymentModal" class="modal">
+
+ <div class="modal-content">
+
+  <h2>💵 تسجيل دفعة</h2>
+
+  <div id="paymentCustomerInfo"></div>
+
+  <label>💰 مبلغ الدفعة</label>
+
+  <input
+   id="paymentAmount"
+   type="number"
+   min="0"
+   placeholder="أدخل المبلغ"
+  >
+
+  <label>📝 ملاحظة</label>
+
+  <input
+   id="paymentNote"
+   placeholder="مثال: دفعة نقدية"
+  >
+
+  <button
+   class="btn btn-success"
+   onclick="saveCustomerPayment()"
+  >
+   ✅ حفظ الدفعة
+  </button>
+
+  <button
+   class="btn btn-gray"
+   onclick="closeModal('paymentModal')"
+  >
+   إلغاء
+  </button>
+
+ </div>
+
+</div>
+
+
 <div id="invoicePrint"></div>
+
 
 <script>
 
 /* =========================
-
    DATA
-
 ========================= */
 
 let products =
-
- JSON.parse(localStorage.getItem("tijara_products") || "[]");
+ JSON.parse(
+  localStorage.getItem("tijara_products") || "[]"
+ );
 
 let sales =
-
- JSON.parse(localStorage.getItem("tijara_sales") || "[]");
+ JSON.parse(
+  localStorage.getItem("tijara_sales") || "[]"
+ );
 
 let invoices =
-
- JSON.parse(localStorage.getItem("tijara_invoices") || "[]");
+ JSON.parse(
+  localStorage.getItem("tijara_invoices") || "[]"
+ );
 
 let customers =
-
- JSON.parse(localStorage.getItem("tijara_customers") || "[]");
+ JSON.parse(
+  localStorage.getItem("tijara_customers") || "[]"
+ );
 
 let returns =
-
- JSON.parse(localStorage.getItem("tijara_returns") || "[]");
+ JSON.parse(
+  localStorage.getItem("tijara_returns") || "[]"
+ );
 
 let movements =
+ JSON.parse(
+  localStorage.getItem("tijara_stock_movements") || "[]"
+ );
 
- JSON.parse(localStorage.getItem("tijara_stock_movements") || "[]");
+/* الجديد في v2.3 */
+
+let customerPayments =
+ JSON.parse(
+  localStorage.getItem("tijara_customer_payments") || "[]"
+ );
 
 let cart=[];
 
 let currentReturnInvoiceId=null;
 
+let currentPaymentCustomerId=null;
+
+
 /* =========================
-
    HELPERS
-
 ========================= */
 
 function id(){
 
- return Date.now()+"_"+Math.random().toString(36).slice(2,8);
+ return Date.now()+"_"+
+  Math.random().toString(36).slice(2,8);
 
 }
 
 function money(n){
 
- return Number(n||0).toLocaleString("ar-DZ")+" دج";
+ return Number(n||0)
+  .toLocaleString("ar-DZ")+" دج";
 
 }
 
 function escapeHTML(value){
 
  return String(value ?? "")
-
   .replace(/&/g,"&amp;")
-
   .replace(/</g,"&lt;")
-
   .replace(/>/g,"&gt;")
-
   .replace(/"/g,"&quot;")
-
   .replace(/'/g,"&#039;");
 
 }
@@ -1454,66 +1281,58 @@ function today(){
 
 function dateText(date){
 
- return new Date(date).toLocaleString("ar-DZ");
+ return new Date(date)
+  .toLocaleString("ar-DZ");
 
 }
+
+
+/* =========================
+   SAVE DATA
+========================= */
 
 function saveData(){
 
  localStorage.setItem(
-
   "tijara_products",
-
   JSON.stringify(products)
-
  );
 
  localStorage.setItem(
-
   "tijara_sales",
-
   JSON.stringify(sales)
-
  );
 
  localStorage.setItem(
-
   "tijara_invoices",
-
   JSON.stringify(invoices)
-
  );
 
  localStorage.setItem(
-
   "tijara_customers",
-
   JSON.stringify(customers)
-
  );
 
  localStorage.setItem(
-
   "tijara_returns",
-
   JSON.stringify(returns)
-
  );
 
  localStorage.setItem(
-
   "tijara_stock_movements",
-
   JSON.stringify(movements)
+ );
 
-);
+ localStorage.setItem(
+  "tijara_customer_payments",
+  JSON.stringify(customerPayments)
+ );
 
 }
 
+
 /* =========================
-
    NORMALIZE OLD PRODUCTS
-
 ========================= */
 
 function normalizeProducts(){
@@ -1521,31 +1340,23 @@ function normalizeProducts(){
  products.forEach(p=>{
 
   if(!p.unit)
-
    p.unit="قطعة";
 
   if(typeof p.packEnabled!=="boolean")
-
    p.packEnabled=false;
 
   if(!p.packName)
-
    p.packName="علبة";
 
   p.packSize=Math.max(
-
    1,
-
    Number(p.packSize||1)
-
   );
 
   if(!p.packSell){
 
    p.packSell=
-
     Number(p.sell||0)*
-
     p.packSize;
 
   }
@@ -1556,64 +1367,116 @@ function normalizeProducts(){
 
 }
 
+
 /* =========================
+   NORMALIZE OLD INVOICES
+========================= */
 
+function normalizeInvoices(){
+
+ invoices.forEach(inv=>{
+
+  if(!Array.isArray(inv.items))
+   inv.items=[];
+
+  if(!inv.customerName)
+   inv.customerName=
+    inv.customerId
+     ? "زبون"
+     : "زبون نقدي";
+
+  if(inv.returnedTotal===undefined)
+   inv.returnedTotal=0;
+
+  if(inv.returnedProfit===undefined)
+   inv.returnedProfit=0;
+
+  if(inv.profit===undefined)
+   inv.profit=0;
+
+  if(inv.due===undefined){
+
+   if(inv.paymentMethod==="credit")
+    inv.due=Number(inv.total||0);
+   else
+    inv.due=0;
+
+  }
+
+  inv.items.forEach(item=>{
+
+   if(!item.unitType)
+    item.unitType="piece";
+
+   if(!item.unitLabel)
+    item.unitLabel="قطعة";
+
+   if(!item.packSize)
+    item.packSize=1;
+
+   if(!item.baseQuantity)
+    item.baseQuantity=
+     Number(item.quantity||0)*
+     Number(item.packSize||1);
+
+  });
+
+ });
+
+}
+
+
+/* =========================
    NAVIGATION
-
 ========================= */
 
 function showSection(section,button){
 
  document.querySelectorAll(".section")
+  .forEach(x=>
+   x.classList.remove("active")
+  );
 
-  .forEach(x=>x.classList.remove("active"));
-
- const el=document.getElementById(section);
+ const el=
+  document.getElementById(section);
 
  if(el)
-
   el.classList.add("active");
 
  document.querySelectorAll("#mainNav button")
-
-  .forEach(x=>x.classList.remove("active"));
+  .forEach(x=>
+   x.classList.remove("active")
+  );
 
  if(button)
-
   button.classList.add("active");
 
  if(section==="sales"){
 
   renderSaleProducts();
-
   renderCart();
 
  }
 
  if(section==="products")
-
   renderProducts();
 
  if(section==="stock"){
 
   refreshStockStats();
-
   renderMovements();
 
  }
 
  if(section==="invoices")
-
   renderInvoices();
 
  if(section==="returns")
-
   renderReturns();
 
  if(section==="customers"){
 
   renderCustomers();
-
   updateCustomerSelect();
 
  }
@@ -1622,60 +1485,50 @@ function showSection(section,button){
 
 function goTo(section){
 
- const btn=[...document.querySelectorAll("#mainNav button")]
-
-  .find(x=>x.getAttribute("onclick")?.includes("'"+section+"'"));
+ const btn=
+  [...document.querySelectorAll("#mainNav button")]
+   .find(x=>
+    x.getAttribute("onclick")
+     ?.includes("'"+section+"'")
+   );
 
  showSection(section,btn);
 
 }
 
+
 /* =========================
-
    PRODUCT FORM
-
 ========================= */
 
 function togglePackFields(){
 
  const enabled=
+  document.getElementById("packEnabled")
+   .checked;
 
-  document.getElementById("packEnabled").checked;
-
- document.getElementById("packFields").style.display=
-
-  enabled ? "block" : "none";
+ document.getElementById("packFields")
+  .style.display=
+   enabled ? "block" : "none";
 
 }
 
 function resetProductForm(){
 
  document.getElementById("productId").value="";
-
  document.getElementById("productName").value="";
-
  document.getElementById("productCategory").value="";
-
  document.getElementById("productSize").value="";
-
  document.getElementById("productUnit").value="قطعة";
-
  document.getElementById("buyPrice").value="";
-
  document.getElementById("sellPrice").value="";
-
  document.getElementById("productStock").value="";
-
  document.getElementById("productBarcode").value="";
-
  document.getElementById("productImage").value="";
 
  document.getElementById("packEnabled").checked=false;
-
  document.getElementById("packName").value="علبة";
-
  document.getElementById("packSize").value=20;
-
  document.getElementById("packSell").value="";
 
  togglePackFields();
@@ -1685,61 +1538,64 @@ function resetProductForm(){
 function saveProduct(){
 
  const productId=
-
   document.getElementById("productId").value;
 
  const name=
-
-  document.getElementById("productName").value.trim();
+  document.getElementById("productName")
+   .value.trim();
 
  const category=
-
-  document.getElementById("productCategory").value.trim();
+  document.getElementById("productCategory")
+   .value.trim();
 
  const size=
-
-  document.getElementById("productSize").value.trim();
+  document.getElementById("productSize")
+   .value.trim();
 
  const unit=
-
-  document.getElementById("productUnit").value.trim() || "قطعة";
+  document.getElementById("productUnit")
+   .value.trim() || "قطعة";
 
  const buy=
-
-  Number(document.getElementById("buyPrice").value||0);
+  Number(
+   document.getElementById("buyPrice").value||0
+  );
 
  const sell=
-
-  Number(document.getElementById("sellPrice").value||0);
+  Number(
+   document.getElementById("sellPrice").value||0
+  );
 
  const stock=
-
-  Number(document.getElementById("productStock").value||0);
+  Number(
+   document.getElementById("productStock").value||0
+  );
 
  const barcode=
-
-  document.getElementById("productBarcode").value.trim();
+  document.getElementById("productBarcode")
+   .value.trim();
 
  const packEnabled=
-
-  document.getElementById("packEnabled").checked;
+  document.getElementById("packEnabled")
+   .checked;
 
  const packName=
-
-  document.getElementById("packName").value.trim() || "علبة";
+  document.getElementById("packName")
+   .value.trim() || "علبة";
 
  const packSize=
-
-  Number(document.getElementById("packSize").value||1);
+  Number(
+   document.getElementById("packSize").value||1
+  );
 
  let packSell=
-
-  Number(document.getElementById("packSell").value||0);
+  Number(
+   document.getElementById("packSell").value||0
+  );
 
  if(!name){
 
   alert("⚠️ اكتب اسم المنتج");
-
   return;
 
  }
@@ -1747,7 +1603,6 @@ function saveProduct(){
  if(buy<0 || sell<0 || stock<0){
 
   alert("⚠️ تحقق من الأسعار والمخزون");
-
   return;
 
  }
@@ -1756,58 +1611,45 @@ function saveProduct(){
 
   if(packSize<2){
 
-   alert("⚠️ عدد الوحدات داخل العبوة يجب أن يكون 2 أو أكثر");
+   alert(
+    "⚠️ عدد الوحدات داخل العبوة يجب أن يكون 2 أو أكثر"
+   );
 
    return;
 
   }
 
-  if(packSell<=0){
-
+  if(packSell<=0)
    packSell=sell*packSize;
-
-  }
 
  }
 
  const file=
-
-  document.getElementById("productImage").files[0];
+  document.getElementById("productImage")
+   .files[0];
 
  if(file){
 
-  const reader=new FileReader();
+  const reader=
+   new FileReader();
 
   reader.onload=function(e){
 
    finishProductSave({
 
     productId,
-
     name,
-
     category,
-
     size,
-
     unit,
-
     buy,
-
     sell,
-
     stock,
-
     barcode,
-
     image:e.target.result,
-
     packEnabled,
-
     packName,
-
     packSize,
-
     packSell
 
    });
@@ -1819,37 +1661,26 @@ function saveProduct(){
  }else{
 
   const old=
-
-   products.find(p=>String(p.id)===String(productId));
+   products.find(
+    p=>
+     String(p.id)===String(productId)
+   );
 
   finishProductSave({
 
    productId,
-
    name,
-
    category,
-
    size,
-
    unit,
-
    buy,
-
    sell,
-
    stock,
-
    barcode,
-
    image:old?.image||"",
-
    packEnabled,
-
    packName,
-
    packSize,
-
    packSell
 
   });
@@ -1863,51 +1694,38 @@ function finishProductSave(data){
  if(data.productId){
 
   const p=
-
-   products.find(x=>String(x.id)===String(data.productId));
+   products.find(
+    x=>
+     String(x.id)===String(data.productId)
+   );
 
   if(!p)return;
 
-  const oldStock=Number(p.stock||0);
+  const oldStock=
+   Number(p.stock||0);
 
   p.name=data.name;
-
   p.category=data.category;
-
   p.size=data.size;
-
   p.unit=data.unit;
-
   p.buy=data.buy;
-
   p.sell=data.sell;
-
   p.stock=data.stock;
-
   p.barcode=data.barcode;
-
   p.image=data.image;
 
   p.packEnabled=data.packEnabled;
-
   p.packName=data.packName;
-
   p.packSize=data.packSize;
-
   p.packSell=data.packSell;
 
   if(oldStock!==data.stock){
 
    addMovement(
-
     p,
-
     data.stock-oldStock,
-
     "adjustment",
-
     "تعديل بيانات المنتج"
-
    );
 
   }
@@ -1919,31 +1737,19 @@ function finishProductSave(data){
   const p={
 
    id:id(),
-
    name:data.name,
-
    category:data.category,
-
    size:data.size,
-
    unit:data.unit,
-
    buy:data.buy,
-
    sell:data.sell,
-
    stock:data.stock,
-
    barcode:data.barcode,
-
    image:data.image,
 
    packEnabled:data.packEnabled,
-
    packName:data.packName,
-
    packSize:data.packSize,
-
    packSell:data.packSell
 
   };
@@ -1953,15 +1759,10 @@ function finishProductSave(data){
   if(data.stock>0){
 
    addMovement(
-
     p,
-
     data.stock,
-
     "in",
-
     "رصيد أولي"
-
    );
 
   }
@@ -1978,52 +1779,40 @@ function finishProductSave(data){
 
 }
 
+
 /* =========================
-
    EDIT / DELETE PRODUCT
-
 ========================= */
 
 function editProduct(productId){
 
  const p=
-
-  products.find(x=>String(x.id)===String(productId));
+  products.find(
+   x=>String(x.id)===String(productId)
+  );
 
  if(!p)return;
 
  document.getElementById("productId").value=p.id;
-
  document.getElementById("productName").value=p.name||"";
-
  document.getElementById("productCategory").value=p.category||"";
-
  document.getElementById("productSize").value=p.size||"";
-
  document.getElementById("productUnit").value=p.unit||"قطعة";
-
  document.getElementById("buyPrice").value=p.buy||0;
-
  document.getElementById("sellPrice").value=p.sell||0;
-
  document.getElementById("productStock").value=p.stock||0;
-
  document.getElementById("productBarcode").value=p.barcode||"";
 
  document.getElementById("packEnabled").checked=
-
   Boolean(p.packEnabled);
 
  document.getElementById("packName").value=
-
   p.packName||"علبة";
 
  document.getElementById("packSize").value=
-
   p.packSize||20;
 
  document.getElementById("packSell").value=
-
   p.packSell||"";
 
  togglePackFields();
@@ -2031,11 +1820,8 @@ function editProduct(productId){
  goTo("products");
 
  window.scrollTo({
-
   top:0,
-
   behavior:"smooth"
-
  });
 
 }
@@ -2043,19 +1829,15 @@ function editProduct(productId){
 function deleteProduct(productId){
 
  const hasSales=
-
-  sales.some(x=>
-
-   String(x.productId)===String(productId)
-
+  sales.some(
+   x=>
+    String(x.productId)===String(productId)
   );
 
  if(hasSales){
 
   alert(
-
    "⚠️ لا يمكن حذف منتج لديه سجل مبيعات.\nيمكنك تعديل المنتج بدل حذفه."
-
   );
 
   return;
@@ -2063,15 +1845,12 @@ function deleteProduct(productId){
  }
 
  if(!confirm("هل تريد حذف هذا المنتج؟"))
-
   return;
 
  products=
-
-  products.filter(x=>
-
-   String(x.id)!==String(productId)
-
+  products.filter(
+   x=>
+    String(x.id)!==String(productId)
   );
 
  saveData();
@@ -2080,22 +1859,21 @@ function deleteProduct(productId){
 
 }
 
+
 /* =========================
-
    STOCK DISPLAY
-
 ========================= */
 
 function stockPackages(p){
 
  const size=
-
-  Math.max(1,Number(p.packSize||1));
+  Math.max(
+   1,
+   Number(p.packSize||1)
+  );
 
  return Math.floor(
-
   Number(p.stock||0)/size
-
  );
 
 }
@@ -2103,8 +1881,10 @@ function stockPackages(p){
 function stockRemainder(p){
 
  const size=
-
-  Math.max(1,Number(p.packSize||1));
+  Math.max(
+   1,
+   Number(p.packSize||1)
+  );
 
  return Number(p.stock||0)%size;
 
@@ -2114,29 +1894,32 @@ function stockText(p){
 
  if(!p.packEnabled)
 
-  return "المخزون: "+Number(p.stock||0)+" "+escapeHTML(p.unit||"قطعة");
+  return "المخزون: "+
+   Number(p.stock||0)+" "+
+   escapeHTML(p.unit||"قطعة");
 
- const packs=stockPackages(p);
+ const packs=
+  stockPackages(p);
 
- const rest=stockRemainder(p);
+ const rest=
+  stockRemainder(p);
 
  let text=
-
   "المخزون: "+
-
   Number(p.stock||0)+" "+
-
   escapeHTML(p.unit||"قطعة");
 
  text+=
-
   "<br><small>"+
-
-  packs+" "+escapeHTML(p.packName||"علبة");
+  packs+" "+
+  escapeHTML(p.packName||"علبة");
 
  if(rest>0)
 
-  text+=" + "+rest+" "+escapeHTML(p.unit||"قطعة");
+  text+=
+   " + "+
+   rest+" "+
+   escapeHTML(p.unit||"قطعة");
 
  text+="</small>";
 
@@ -2144,117 +1927,121 @@ function stockText(p){
 
 }
 
+
 /* =========================
-
    PRODUCT CARD
-
 ========================= */
 
 function productCard(p){
 
  const image=
-
   p.image
-
    ? `<img src="${p.image}" alt="">`
-
    : `<div class="emoji">📦</div>`;
 
  const stockClass=
-
   Number(p.stock)<=0
-
    ? "out"
-
    : Number(p.stock)<=5
-
     ? "low"
-
     : "";
 
  if(p.packEnabled){
 
   const pieceDisabled=
-
    Number(p.stock)<=0
-
     ? "disabled"
-
     : "";
 
   const packDisabled=
-
-   Number(p.stock)<Number(p.packSize||1)
-
+   Number(p.stock)<
+    Number(p.packSize||1)
     ? "disabled"
-
     : "";
+
+  const pieceCart=
+   cart.find(
+    x=>
+     String(x.productId)===String(p.id) &&
+     x.unitType==="piece"
+   );
+
+  const packCart=
+   cart.find(
+    x=>
+     String(x.productId)===String(p.id) &&
+     x.unitType==="pack"
+   );
+
+  const pieceQty=
+   pieceCart?.quantity||0;
+
+  const packQty=
+   packCart?.quantity||0;
+
+  const totalQty=
+   pieceQty+
+   packQty*Number(p.packSize||1);
 
   return `
 
   <div class="product">
+
+   ${
+    totalQty>0
+     ? `<div class="quantity-badge">${totalQty}</div>`
+     :""
+   }
 
    ${image}
 
    <h3>${escapeHTML(p.name)}</h3>
 
    ${
-
     p.category
-
      ? `<div class="badge">${escapeHTML(p.category)}</div>`
-
      :""
-
    }
 
    <div class="price">
 
-    ${money(p.sell)} / ${escapeHTML(p.unit||"قطعة")}
+    ${money(p.sell)} /
+    ${escapeHTML(p.unit||"قطعة")}
 
    </div>
 
    <span class="stock ${stockClass}">
-
     ${stockText(p)}
-
    </span>
 
    <div class="unit-buttons">
 
     <button
-
      class="piece-btn"
-
      ${pieceDisabled}
-
      onclick="addToCart('${p.id}','piece')"
-
     >
-
      ➕ ${escapeHTML(p.unit||"قطعة")}
-
+     ${pieceQty>0 ? "("+pieceQty+")" : ""}
     </button>
 
     <button
-
      class="pack-btn"
-
      ${packDisabled}
-
      onclick="addToCart('${p.id}','pack')"
-
     >
-
      📦 ${escapeHTML(p.packName||"علبة")}
-
+     ${packQty>0 ? "("+packQty+")" : ""}
     </button>
 
    </div>
 
    <div style="font-size:11px;margin-top:6px;color:#666">
 
-    ${p.packSize} ${escapeHTML(p.unit||"قطعة")} / ${escapeHTML(p.packName||"علبة")}
+    ${p.packSize}
+    ${escapeHTML(p.unit||"قطعة")}
+    /
+    ${escapeHTML(p.packName||"علبة")}
 
    </div>
 
@@ -2263,37 +2050,28 @@ function productCard(p){
  }
 
  const cartPiece=
-
-  cart.find(x=>
-
-   String(x.productId)===String(p.id) &&
-
-   x.unitType==="piece"
-
+  cart.find(
+   x=>
+    String(x.productId)===String(p.id) &&
+    x.unitType==="piece"
   );
 
  const qty=
-
-  cartPiece ? cartPiece.quantity : 0;
+  cartPiece
+   ? cartPiece.quantity
+   : 0;
 
  return `
 
  <div
-
   class="product clickable"
-
   onclick="addToCart('${p.id}','piece')"
-
  >
 
   ${
-
    qty>0
-
     ? `<div class="quantity-badge">${qty}</div>`
-
     :""
-
   }
 
   ${image}
@@ -2301,34 +2079,32 @@ function productCard(p){
   <h3>${escapeHTML(p.name)}</h3>
 
   ${
-
    p.category
-
     ? `<div class="badge">${escapeHTML(p.category)}</div>`
-
     :""
-
   }
 
-  <div class="price">${money(p.sell)}</div>
+  <div class="price">
+   ${money(p.sell)}
+  </div>
 
   <span class="stock ${stockClass}">
 
    ${
-
     Number(p.stock)<=0
-
      ? "نفد المخزون"
-
-     : "المخزون: "+Number(p.stock||0)+" "+escapeHTML(p.unit||"قطعة")
-
+     : "المخزون: "+
+       Number(p.stock||0)+" "+
+       escapeHTML(p.unit||"قطعة")
    }
 
   </span>
 
   <div style="font-size:12px;margin-top:8px;color:#555">
 
-   ${qty>0 ? "اضغط لإضافة أخرى" : "اضغط لإضافة"}
+   ${qty>0
+    ? "اضغط لإضافة أخرى"
+    : "اضغط لإضافة"}
 
   </div>
 
@@ -2336,160 +2112,147 @@ function productCard(p){
 
 }
 
+
 /* =========================
-
    PRODUCTS LIST
-
 ========================= */
 
 function renderProducts(search=""){
 
  const box=
-
   document.getElementById("productsList");
 
  const q=
-
   String(search||"").toLowerCase();
 
  const list=
-
-  products.filter(p=>
-
-   !q ||
-
-   String(p.name||"").toLowerCase().includes(q) ||
-
-   String(p.barcode||"").toLowerCase().includes(q) ||
-
-   String(p.category||"").toLowerCase().includes(q)
-
+  products.filter(
+   p=>
+    !q ||
+    String(p.name||"")
+     .toLowerCase()
+     .includes(q) ||
+    String(p.barcode||"")
+     .toLowerCase()
+     .includes(q) ||
+    String(p.category||"")
+     .toLowerCase()
+     .includes(q)
   );
 
  if(!list.length){
 
   box.innerHTML=
-
    `<div class="empty">لا توجد منتجات</div>`;
 
   return;
 
  }
 
- box.innerHTML=list.map(p=>{
+ box.innerHTML=
+  list.map(p=>{
 
-  return `
+   return `
 
-  <div class="card" style="border:1px solid #eee">
+   <div
+    class="card"
+    style="border:1px solid #eee"
+   >
 
-   <div style="display:flex;gap:12px;align-items:center">
+    <div
+     style="display:flex;gap:12px;align-items:center"
+    >
 
-    ${
+     ${
+      p.image
+       ? `<img
+           src="${p.image}"
+           style="width:65px;height:65px;object-fit:cover;border-radius:10px"
+          >`
+       : `<div style="font-size:40px">📦</div>`
+     }
 
-     p.image
+     <div style="flex:1">
 
-      ? `<img src="${p.image}" style="width:65px;height:65px;object-fit:cover;border-radius:10px">`
+      <strong>
+       ${escapeHTML(p.name)}
+      </strong>
 
-      : `<div style="font-size:40px">📦</div>`
+      <div
+       style="font-size:13px;color:#666;margin-top:4px"
+      >
+       ${escapeHTML(p.category||"")}
+      </div>
 
-    }
+      <div
+       style="color:#16a34a;font-weight:bold"
+      >
+       ${money(p.sell)}
+      </div>
 
-    <div style="flex:1">
-
-     <strong>${escapeHTML(p.name)}</strong>
-
-     <div style="font-size:13px;color:#666;margin-top:4px">
-
-      ${escapeHTML(p.category||"")}
-
-     </div>
-
-     <div style="color:#16a34a;font-weight:bold">
-
-      ${money(p.sell)}
-
-     </div>
-
-     <div style="font-size:13px;margin-top:4px">
-
-      ${stockText(p)}
+      <div style="font-size:13px;margin-top:4px">
+       ${stockText(p)}
+      </div>
 
      </div>
 
     </div>
 
-   </div>
+    <div style="margin-top:10px">
 
-   <div style="margin-top:10px">
+     <button
+      class="btn btn-primary"
+      onclick="editProduct('${p.id}')"
+     >
+      ✏️ تعديل
+     </button>
 
-    <button
+     <button
+      class="btn btn-danger"
+      onclick="deleteProduct('${p.id}')"
+     >
+      🗑️ حذف
+     </button>
 
-     class="btn btn-primary"
+    </div>
 
-     onclick="editProduct('${p.id}')"
+   </div>`;
 
-    >
-
-     ✏️ تعديل
-
-    </button>
-
-    <button
-
-     class="btn btn-danger"
-
-     onclick="deleteProduct('${p.id}')"
-
-    >
-
-     🗑️ حذف
-
-    </button>
-
-   </div>
-
-  </div>`;
-
- }).join("");
+  }).join("");
 
 }
 
+
 /* =========================
-
    CART
-
 ========================= */
 
 function addToCart(productId,unitType="piece"){
 
  const p=
-
-  products.find(x=>String(x.id)===String(productId));
+  products.find(
+   x=>String(x.id)===String(productId)
+  );
 
  if(!p)return;
 
  const packSize=
-
-  Math.max(1,Number(p.packSize||1));
+  Math.max(
+   1,
+   Number(p.packSize||1)
+  );
 
  const baseQty=
-
   unitType==="pack"
-
    ? packSize
-
    : 1;
 
  if(Number(p.stock)<baseQty){
 
   alert(
-
    unitType==="pack"
-
     ? "⚠️ لا توجد عبوة كاملة في المخزون"
-
     : "⚠️ هذا المنتج غير متوفر في المخزون"
-
   );
 
   return;
@@ -2497,63 +2260,56 @@ function addToCart(productId,unitType="piece"){
  }
 
  const sameProductBase=
-
   cart
-
-   .filter(x=>
-
-    String(x.productId)===String(productId)
-
+   .filter(
+    x=>
+     String(x.productId)===String(productId)
    )
-
-   .reduce((sum,x)=>
-
-    sum+Number(x.quantity||0)*Number(x.packSize||1),
-
+   .reduce(
+    (sum,x)=>
+     sum+
+     Number(x.quantity||0)*
+     Number(x.packSize||1),
     0
-
    );
 
- if(sameProductBase+baseQty>Number(p.stock)){
+ if(
+  sameProductBase+baseQty>
+  Number(p.stock)
+ ){
 
-  alert("⚠️ لا توجد كمية إضافية كافية في المخزون");
+  alert(
+   "⚠️ لا توجد كمية إضافية كافية في المخزون"
+  );
 
   return;
 
  }
 
  const existing=
-
-  cart.find(x=>
-
-   String(x.productId)===String(productId) &&
-
-   x.unitType===unitType
-
+  cart.find(
+   x=>
+    String(x.productId)===String(productId) &&
+    x.unitType===unitType
   );
 
  const unitLabel=
-
   unitType==="pack"
-
    ? p.packName||"علبة"
-
    : p.unit||"قطعة";
 
  const price=
-
   unitType==="pack"
-
-   ? Number(p.packSell||p.sell*packSize||0)
-
+   ? Number(
+      p.packSell||
+      p.sell*packSize||
+      0
+     )
    : Number(p.sell||0);
 
  const buy=
-
   unitType==="pack"
-
    ? Number(p.buy||0)*packSize
-
    : Number(p.buy||0);
 
  if(existing){
@@ -2565,27 +2321,20 @@ function addToCart(productId,unitType="piece"){
   cart.push({
 
    id:id(),
-
    productId:p.id,
-
    name:p.name,
 
    unitType,
-
    unitLabel,
 
    quantity:1,
 
    packSize:
-
     unitType==="pack"
-
      ? packSize
-
      : 1,
 
    price,
-
    buy,
 
    image:p.image||""
@@ -2595,22 +2344,21 @@ function addToCart(productId,unitType="piece"){
  }
 
  renderSaleProducts();
-
  renderCart();
 
 }
 
+
 /* =========================
-
    CART CONTROLS
-
 ========================= */
 
 function decreaseCart(cartId){
 
  const item=
-
-  cart.find(x=>String(x.id)===String(cartId));
+  cart.find(
+   x=>String(x.id)===String(cartId)
+  );
 
  if(!item)return;
 
@@ -2619,17 +2367,13 @@ function decreaseCart(cartId){
  if(item.quantity<=0){
 
   cart=
-
-   cart.filter(x=>
-
-    String(x.id)!==String(cartId)
-
+   cart.filter(
+    x=>String(x.id)!==String(cartId)
    );
 
  }
 
  renderSaleProducts();
-
  renderCart();
 
 }
@@ -2637,15 +2381,11 @@ function decreaseCart(cartId){
 function removeCart(cartId){
 
  cart=
-
-  cart.filter(x=>
-
-   String(x.id)!==String(cartId)
-
+  cart.filter(
+   x=>String(x.id)!==String(cartId)
   );
 
  renderSaleProducts();
-
  renderCart();
 
 }
@@ -2655,51 +2395,48 @@ function clearCart(){
  cart=[];
 
  renderSaleProducts();
-
  renderCart();
 
 }
 
+
 /* =========================
-
    SALE PRODUCTS
-
 ========================= */
 
 function renderSaleProducts(){
 
  const box=
-
-  document.getElementById("saleProductsGrid");
+  document.getElementById(
+   "saleProductsGrid"
+  );
 
  if(!box)return;
 
  const search=
-
-  document.getElementById("saleSearch")?.value
-
-  .trim()
-
-  .toLowerCase()||"";
+  document.getElementById("saleSearch")
+   ?.value
+   .trim()
+   .toLowerCase()||"";
 
  const list=
-
-  products.filter(p=>
-
-   !search ||
-
-   String(p.name||"").toLowerCase().includes(search) ||
-
-   String(p.barcode||"").toLowerCase().includes(search) ||
-
-   String(p.category||"").toLowerCase().includes(search)
-
+  products.filter(
+   p=>
+    !search ||
+    String(p.name||"")
+     .toLowerCase()
+     .includes(search) ||
+    String(p.barcode||"")
+     .toLowerCase()
+     .includes(search) ||
+    String(p.category||"")
+     .toLowerCase()
+     .includes(search)
   );
 
  if(!list.length){
 
   box.innerHTML=
-
    `<div class="empty">لا توجد منتجات</div>`;
 
   return;
@@ -2707,25 +2444,23 @@ function renderSaleProducts(){
  }
 
  box.innerHTML=
-
-  list.map(p=>productCard(p)).join("");
+  list
+   .map(p=>productCard(p))
+   .join("");
 
 }
 
+
 /* =========================
-
    CART RENDER
-
 ========================= */
 
 function renderCart(){
 
  const box=
-
   document.getElementById("cartList");
 
  const totalBox=
-
   document.getElementById("cartTotal");
 
  if(!box)return;
@@ -2733,7 +2468,6 @@ function renderCart(){
  if(!cart.length){
 
   box.innerHTML=
-
    `<div class="empty">السلة فارغة</div>`;
 
   totalBox.textContent="0 دج";
@@ -2747,69 +2481,61 @@ function renderCart(){
  let subtotal=0;
 
  box.innerHTML=
-
   cart.map(item=>{
 
    const total=
-
     Number(item.price||0)*
-
     Number(item.quantity||0);
 
    subtotal+=total;
-
-   const p=
-
-    products.find(x=>
-
-     String(x.id)===String(item.productId)
-
-    );
 
    return `
 
    <div class="cart-item">
 
     ${
-
      item.image
-
-      ? `<img class="cart-img" src="${item.image}">`
-
-      : `<div class="cart-img" style="background:#eee;display:flex;align-items:center;justify-content:center;font-size:25px">📦</div>`
-
+      ? `<img
+          class="cart-img"
+          src="${item.image}"
+         >`
+      : `<div
+          class="cart-img"
+          style="background:#eee;display:flex;align-items:center;justify-content:center;font-size:25px"
+        >📦</div>`
     }
 
     <div class="cart-info">
 
-     <strong>${escapeHTML(item.name)}</strong>
+     <strong>
+      ${escapeHTML(item.name)}
+     </strong>
 
-     <div style="font-size:12px;color:#666">
+     <div
+      style="font-size:12px;color:#666"
+     >
 
       ${escapeHTML(item.unitLabel)}
-
-      × ${item.quantity}
+      ×
+      ${item.quantity}
 
      </div>
 
      ${
-
       item.unitType==="pack"
-
-       ? `<div style="font-size:11px;color:#7c3aed">
-
-          ${item.quantity*item.packSize} وحدة أساس
-
+       ? `<div
+           style="font-size:11px;color:#7c3aed"
+         >
+          ${item.quantity*item.packSize}
+          وحدة أساس
          </div>`
-
        :""
-
      }
 
-     <div style="color:#16a34a;font-weight:bold">
-
+     <div
+      style="color:#16a34a;font-weight:bold"
+     >
       ${money(total)}
-
      </div>
 
     </div>
@@ -2817,37 +2543,26 @@ function renderCart(){
     <div class="cart-controls">
 
      <button
-
       onclick="decreaseCart('${item.id}')"
-
      >
-
       −
-
      </button>
 
-     <strong>${item.quantity}</strong>
+     <strong>
+      ${item.quantity}
+     </strong>
 
      <button
-
       onclick="increaseCart('${item.id}')"
-
      >
-
       +
-
      </button>
 
      <button
-
       onclick="removeCart('${item.id}')"
-
       style="background:#fee2e2;color:#991b1b"
-
      >
-
       ×
-
      </button>
 
     </div>
@@ -2857,64 +2572,68 @@ function renderCart(){
   }).join("");
 
  const discount=
-
-  Number(document.getElementById("saleDiscount")?.value||0);
+  Number(
+   document.getElementById(
+    "saleDiscount"
+   )?.value||0
+  );
 
  const total=
-
-  Math.max(0,subtotal-discount);
+  Math.max(
+   0,
+   subtotal-discount
+  );
 
  totalBox.textContent=
-
   money(total);
 
  updatePaymentInfo(total);
 
 }
 
+
 function increaseCart(cartId){
 
  const item=
-
-  cart.find(x=>String(x.id)===String(cartId));
+  cart.find(
+   x=>String(x.id)===String(cartId)
+  );
 
  if(!item)return;
 
  const p=
-
-  products.find(x=>
-
-   String(x.id)===String(item.productId)
-
+  products.find(
+   x=>
+    String(x.id)===String(item.productId)
   );
 
  if(!p)return;
 
  const currentBase=
-
   cart
-
-   .filter(x=>
-
-    String(x.productId)===String(item.productId)
-
+   .filter(
+    x=>
+     String(x.productId)===String(item.productId)
    )
-
-   .reduce((sum,x)=>
-
-    sum+Number(x.quantity||0)*Number(x.packSize||1),
-
+   .reduce(
+    (sum,x)=>
+     sum+
+     Number(x.quantity||0)*
+     Number(x.packSize||1),
     0
-
    );
 
  const needed=
-
   Number(item.packSize||1);
 
- if(currentBase+needed>Number(p.stock)){
+ if(
+  currentBase+needed>
+  Number(p.stock)
+ ){
 
-  alert("⚠️ لا توجد كمية إضافية كافية");
+  alert(
+   "⚠️ لا توجد كمية إضافية كافية"
+  );
 
   return;
 
@@ -2923,35 +2642,29 @@ function increaseCart(cartId){
  item.quantity++;
 
  renderSaleProducts();
-
  renderCart();
 
 }
 
+
 /* =========================
-
    BARCODE
-
 ========================= */
 
 function barcodeEnter(event){
 
  if(event.key!=="Enter")
-
   return;
 
  const code=
-
   event.target.value.trim();
 
  if(!code)return;
 
  const p=
-
-  products.find(x=>
-
-   String(x.barcode||"")===code
-
+  products.find(
+   x=>
+    String(x.barcode||"")===code
   );
 
  if(!p){
@@ -2970,36 +2683,38 @@ function barcodeEnter(event){
 
 }
 
+
 /* =========================
-
    PAYMENT
-
 ========================= */
 
 function updatePaymentInfo(total){
 
  const method=
-
-  document.getElementById("paymentMethod")?.value||"cash";
+  document.getElementById(
+   "paymentMethod"
+  )?.value||"cash";
 
  const paid=
-
-  Number(document.getElementById("amountPaid")?.value||0);
+  Number(
+   document.getElementById(
+    "amountPaid"
+   )?.value||0
+  );
 
  const box=
-
-  document.getElementById("paymentInfo");
+  document.getElementById(
+   "paymentInfo"
+  );
 
  if(!box)return;
 
  if(method==="credit"){
 
   box.innerHTML=
-
    `<div class="warning">
-
-    💳 المبلغ الآجل: <strong>${money(total)}</strong>
-
+    💳 المبلغ الآجل:
+    <strong>${money(total)}</strong>
    </div>`;
 
   return;
@@ -3007,51 +2722,50 @@ function updatePaymentInfo(total){
  }
 
  const change=
-
-  Math.max(0,paid-total);
+  Math.max(
+   0,
+   paid-total
+  );
 
  const remaining=
-
-  Math.max(0,total-paid);
+  Math.max(
+   0,
+   total-paid
+  );
 
  box.innerHTML=`
 
  <div style="margin-top:10px">
 
   ${
-
    paid>=total
 
     ? `<div class="success">
-
-       الباقي للزبون:
-
-       <strong>${money(change)}</strong>
-
-      </div>`
+        الباقي للزبون:
+        <strong>${money(change)}</strong>
+       </div>`
 
     : `<div class="warning">
-
-       المبلغ المتبقي:
-
-       <strong>${money(remaining)}</strong>
-
-      </div>`
-
+        المبلغ المتبقي:
+        <strong>${money(remaining)}</strong>
+       </div>`
   }
 
  </div>`;
 
 }
 
-document.getElementById("paymentMethod")
+document.getElementById(
+ "paymentMethod"
+)
+ ?.addEventListener(
+  "change",
+  renderCart
+);
 
- ?.addEventListener("change",renderCart);
 
 /* =========================
-
    COMPLETE SALE
-
 ========================= */
 
 function completeSale(){
@@ -3065,61 +2779,59 @@ function completeSale(){
  }
 
  const customerId=
-
-  document.getElementById("saleCustomer").value;
+  document.getElementById(
+   "saleCustomer"
+  ).value;
 
  const customer=
-
-  customers.find(x=>
-
-   String(x.id)===String(customerId)
-
+  customers.find(
+   x=>
+    String(x.id)===String(customerId)
   );
 
  const paymentMethod=
-
-  document.getElementById("paymentMethod").value;
+  document.getElementById(
+   "paymentMethod"
+  ).value;
 
  const discount=
-
-  Number(document.getElementById("saleDiscount").value||0);
+  Number(
+   document.getElementById(
+    "saleDiscount"
+   ).value||0
+  );
 
  let subtotal=0;
-
  let cost=0;
 
  for(const item of cart){
 
   const p=
-
-   products.find(x=>
-
-    String(x.id)===String(item.productId)
-
+   products.find(
+    x=>
+     String(x.id)===
+     String(item.productId)
    );
 
   if(!p){
 
-   alert("❌ أحد المنتجات لم يعد موجودًا");
+   alert(
+    "❌ أحد المنتجات لم يعد موجودًا"
+   );
 
    return;
 
   }
 
   const baseQty=
-
    Number(item.quantity||0)*
-
    Number(item.packSize||1);
 
   if(baseQty>Number(p.stock)){
 
    alert(
-
     "⚠️ المخزون غير كافٍ للمنتج: "+
-
     p.name
-
    );
 
    return;
@@ -3127,37 +2839,38 @@ function completeSale(){
   }
 
   subtotal+=
-
    Number(item.price||0)*
-
    Number(item.quantity||0);
 
   cost+=
-
    Number(item.buy||0)*
-
    Number(item.quantity||0);
 
  }
 
  const total=
-
-  Math.max(0,subtotal-discount);
+  Math.max(
+   0,
+   subtotal-discount
+  );
 
  let paid=
-
-  Number(document.getElementById("amountPaid").value||0);
+  Number(
+   document.getElementById(
+    "amountPaid"
+   ).value||0
+  );
 
  if(paymentMethod==="credit")
-
   paid=0;
 
- if(paymentMethod!=="credit" && paid<total){
+ if(
+  paymentMethod!=="credit" &&
+  paid<total
+ ){
 
   alert(
-
    "⚠️ المبلغ المدفوع أقل من الإجمالي"
-
   );
 
   return;
@@ -3165,25 +2878,34 @@ function completeSale(){
  }
 
  const change=
-
   paymentMethod==="credit"
-
    ? 0
-
-   : Math.max(0,paid-total);
+   : Math.max(
+      0,
+      paid-total
+     );
 
  const due=
-
   paymentMethod==="credit"
-
    ? total
-
    : 0;
+
+ if(
+  paymentMethod==="credit" &&
+  !customer
+ ){
+
+  alert(
+   "⚠️ البيع الآجل يحتاج إلى اختيار زبون"
+  );
+
+  return;
+
+ }
 
  const invoiceId=id();
 
  const invoiceNumber=
-
   "INV-"+Date.now();
 
  const invoiceItems=[];
@@ -3191,23 +2913,18 @@ function completeSale(){
  for(const item of cart){
 
   const p=
-
-   products.find(x=>
-
-    String(x.id)===String(item.productId)
-
+   products.find(
+    x=>
+     String(x.id)===
+     String(item.productId)
    );
 
   const baseQuantity=
-
    Number(item.quantity||0)*
-
    Number(item.packSize||1);
 
   const lineTotal=
-
    Number(item.price||0)*
-
    Number(item.quantity||0);
 
   invoiceItems.push({
@@ -3216,46 +2933,41 @@ function completeSale(){
 
    name:p.name,
 
-   quantity:Number(item.quantity||0),
+   quantity:
+    Number(item.quantity||0),
 
    unitType:item.unitType,
 
    unitLabel:item.unitLabel,
 
-   packSize:Number(item.packSize||1),
+   packSize:
+    Number(item.packSize||1),
 
    baseQuantity,
 
-   price:Number(item.price||0),
+   price:
+    Number(item.price||0),
 
-   buy:Number(item.buy||0),
+   buy:
+    Number(item.buy||0),
 
    total:lineTotal
 
   });
 
   const before=
-
    Number(p.stock||0);
 
   p.stock=
-
    before-baseQuantity;
 
   addMovement(
-
    p,
-
    -baseQuantity,
-
    "out",
-
    "بيع",
-
    invoiceId,
-
    invoiceNumber
-
   );
 
   sales.push({
@@ -3291,7 +3003,6 @@ function completeSale(){
  }
 
  const profit=
-
   total-cost;
 
  const invoice={
@@ -3300,9 +3011,11 @@ function completeSale(){
 
   number:invoiceNumber,
 
-  customerId:customer?.id||"",
+  customerId:
+   customer?.id||"",
 
-  customerName:customer?.name||"زبون نقدي",
+  customerName:
+   customer?.name||"زبون نقدي",
 
   items:invoiceItems,
 
@@ -3338,49 +3051,42 @@ function completeSale(){
 
  cart=[];
 
- document.getElementById("saleDiscount").value=0;
+ document.getElementById(
+  "saleDiscount"
+ ).value=0;
 
- document.getElementById("amountPaid").value=0;
+ document.getElementById(
+  "amountPaid"
+ ).value=0;
 
  refresh();
 
  alert(
-
   "✅ تمت عملية البيع\nرقم الفاتورة: "+
-
   invoiceNumber
-
  );
 
  goTo("invoices");
 
 }
 
+
 /* =========================
-
    MOVEMENTS
-
 ========================= */
 
 function addMovement(
-
  p,
-
  quantity,
-
  type,
-
  reason,
-
  referenceId="",
-
  referenceNumber=""
-
 ){
 
  const before=
-
-  Number(p.stock||0)-Number(quantity||0);
+  Number(p.stock||0)-
+  Number(quantity||0);
 
  movements.unshift({
 
@@ -3395,14 +3101,19 @@ function addMovement(
   type,
 
   direction:
+   quantity>=0
+    ? "in"
+    : "out",
 
-   quantity>=0 ? "in":"out",
-
-  quantity:Math.abs(Number(quantity||0)),
+  quantity:
+   Math.abs(
+    Number(quantity||0)
+   ),
 
   beforeStock:before,
 
-  afterStock:Number(p.stock||0),
+  afterStock:
+   Number(p.stock||0),
 
   reason,
 
@@ -3418,106 +3129,110 @@ function addMovement(
 
 }
 
+
 function openStockModal(){
 
  const select=
-
-  document.getElementById("stockProduct");
+  document.getElementById(
+   "stockProduct"
+  );
 
  select.innerHTML=
+  products
+   .map(
+    p=>
+     `<option value="${p.id}">
+      ${escapeHTML(p.name)} — ${p.stock}
+     </option>`
+   )
+   .join("");
 
-  products.map(p=>
+ document.getElementById(
+  "stockQuantity"
+ ).value="";
 
-   `<option value="${p.id}">
+ document.getElementById(
+  "stockReason"
+ ).value="";
 
-    ${escapeHTML(p.name)} — ${p.stock}
-
-   </option>`
-
-  ).join("");
-
- document.getElementById("stockQuantity").value="";
-
- document.getElementById("stockReason").value="";
-
- document.getElementById("stockModal")
-
-  .classList.add("show");
+ document.getElementById(
+  "stockModal"
+ ).classList.add("show");
 
 }
+
 
 function saveStockAdjustment(){
 
  const productId=
-
-  document.getElementById("stockProduct").value;
+  document.getElementById(
+   "stockProduct"
+  ).value;
 
  const p=
-
-  products.find(x=>
-
-   String(x.id)===String(productId)
-
+  products.find(
+   x=>
+    String(x.id)===String(productId)
   );
 
  if(!p)return;
 
  const type=
-
-  document.getElementById("stockType").value;
+  document.getElementById(
+   "stockType"
+  ).value;
 
  const quantity=
-
-  Number(document.getElementById("stockQuantity").value||0);
+  Number(
+   document.getElementById(
+    "stockQuantity"
+   ).value||0
+  );
 
  const reason=
-
-  document.getElementById("stockReason").value.trim()
-
+  document.getElementById(
+   "stockReason"
+  ).value.trim()
   ||"تعديل يدوي";
 
  if(quantity<0){
 
-  alert("⚠️ أدخل كمية صحيحة");
+  alert(
+   "⚠️ أدخل كمية صحيحة"
+  );
 
   return;
 
  }
 
  const before=
-
   Number(p.stock||0);
 
  let after=before;
 
  if(type==="in")
-
   after=before+quantity;
 
  if(type==="out")
-
-  after=Math.max(0,before-quantity);
+  after=
+   Math.max(
+    0,
+    before-quantity
+   );
 
  if(type==="adjustment")
-
   after=quantity;
 
  const difference=
-
   after-before;
 
  p.stock=after;
 
  addMovement(
-
   p,
-
   difference,
-
   type,
-
   reason
-
  );
 
  saveData();
@@ -3528,953 +3243,361 @@ function saveStockAdjustment(){
 
 }
 
+
 /* =========================
-
    MOVEMENTS RENDER
-
 ========================= */
 
 function renderMovements(){
 
  const tbody=
-
-  document.getElementById("movementsList");
+  document.getElementById(
+   "movementsList"
+  );
 
  const filter=
+  document.getElementById(
+   "movementFilter"
+  )?.value||"all";
 
-  document.getElementById("movementFilter")?.value||"all";
-
- let list=
-
-  movements;
+ let list=movements;
 
  if(filter!=="all")
-
-  list=list.filter(x=>x.type===filter);
+  list=
+   list.filter(
+    x=>x.type===filter
+   );
 
  if(!list.length){
 
   tbody.innerHTML=
-
-   `<tr><td colspan="7">لا توجد حركات</td></tr>`;
+   `<tr>
+    <td colspan="7">
+     لا توجد حركات
+    </td>
+   </tr>`;
 
   return;
 
  }
 
  tbody.innerHTML=
+  list
+   .slice(0,100)
+   .map(m=>{
 
-  list.slice(0,100).map(m=>{
+    const type=
+     m.direction==="in"
+      ? "دخول"
+      : m.type==="adjustment"
+       ? "تعديل"
+       : "خروج";
 
-   const type=
+    return `
 
-    m.direction==="in"
+    <tr>
 
-     ? "دخول"
+     <td>${dateText(m.date)}</td>
 
-     : m.type==="adjustment"
+     <td>
+      ${escapeHTML(m.productName)}
+     </td>
 
-      ? "تعديل"
+     <td>${type}</td>
 
-      : "خروج";
+     <td>${m.quantity}</td>
 
-   return `
+     <td>${m.beforeStock}</td>
 
-   <tr>
+     <td>${m.afterStock}</td>
 
-    <td>${dateText(m.date)}</td>
+     <td>
+      ${escapeHTML(m.reason||"")}
+     </td>
 
-    <td>${escapeHTML(m.productName)}</td>
+    </tr>`;
 
-    <td>${type}</td>
-
-    <td>${m.quantity}</td>
-
-    <td>${m.beforeStock}</td>
-
-    <td>${m.afterStock}</td>
-
-    <td>${escapeHTML(m.reason||"")}</td>
-
-   </tr>`;
-
-  }).join("");
+   })
+   .join("");
 
 }
+
 
 function refreshStockStats(){
 
  const box=
-
-  document.getElementById("stockProducts");
-
- box.innerHTML=
-
-  products.map(p=>`
-
-  <div style="padding:10px;border-bottom:1px solid #eee">
-
-   <strong>${escapeHTML(p.name)}</strong>
-
-   <div>
-
-    ${stockText(p)}
-
-   </div>
-
-  </div>
-
- `).join("");
-
-}
-
-/* =========================
-
-   INVOICES
-
-========================= */
-
-function renderInvoices(){
-
- const box=
-
-  document.getElementById("invoicesList");
-
- const q=
-
-  document.getElementById("invoiceSearch")?.value
-
-   .trim()
-
-   .toLowerCase()||"";
-
- const list=
-
-  invoices.filter(inv=>
-
-   !q ||
-
-   String(inv.number||"").toLowerCase().includes(q) ||
-
-   String(inv.customerName||"").toLowerCase().includes(q)
-
+  document.getElementById(
+   "stockProducts"
   );
 
- if(!list.length){
-
-  box.innerHTML=
-
-   `<div class="empty">لا توجد فواتير</div>`;
-
-  return;
-
- }
-
  box.innerHTML=
+  products
+   .map(
+    p=>
+     `
 
-  list.map(inv=>`
+     <div
+      style="padding:10px;border-bottom:1px solid #eee"
+     >
 
-  <div class="card" style="border:1px solid #eee">
-
-   <div style="display:flex;justify-content:space-between;gap:10px">
-
-    <div>
-
-     <strong>🧾 ${escapeHTML(inv.number)}</strong>
-
-     <div style="font-size:12px;color:#666">
-
-      ${dateText(inv.date)}
-
-     </div>
-
-     <div>
-
-      👤 ${escapeHTML(inv.customerName||"زبون نقدي")}
-
-     </div>
-
-    </div>
-
-    <strong style="color:#2563eb">
-
-     ${money(inv.total)}
-
-    </strong>
-
-   </div>
-
-   <div style="margin-top:8px;font-size:13px">
-
-    ${
-
-     inv.items.map(item=>`
+      <strong>
+       ${escapeHTML(p.name)}
+      </strong>
 
       <div>
-
-       ${escapeHTML(item.name)}
-
-       —
-
-       ${item.quantity} ${escapeHTML(item.unitLabel||"قطعة")}
-
-       =
-
-       ${money(item.total)}
-
+       ${stockText(p)}
       </div>
 
-     `).join("")
+     </div>
 
-    }
-
-   </div>
-
-   <div style="margin-top:10px">
-
-    <button
-
-     class="btn btn-primary"
-
-     onclick="printInvoice('${inv.id}')"
-
-    >
-
-     🖨️ طباعة
-
-    </button>
-
-    <button
-
-     class="btn btn-warning"
-
-     onclick="openReturnModal('${inv.id}')"
-
-    >
-
-     🔄 مرتجع
-
-    </button>
-
-   </div>
-
-  </div>
-
- `).join("");
+     `
+   )
+   .join("");
 
 }
 
+
 /* =========================
-
-   PRINT INVOICE
-
+   CUSTOMER PAYMENTS
 ========================= */
 
-function printInvoice(invoiceId){
+function getCustomerPaymentsTotal(customerId){
 
- const inv=
-
-  invoices.find(x=>
-
-   String(x.id)===String(invoiceId)
-
+ return customerPayments
+  .filter(
+   p=>
+    String(p.customerId)===
+    String(customerId)
+  )
+  .reduce(
+   (sum,p)=>
+    sum+Number(p.amount||0),
+   0
   );
 
- if(!inv)return;
+}
 
- const html=`
 
- <!DOCTYPE html>
+function getCustomerPurchasesTotal(customerId){
 
- <html lang="ar" dir="rtl">
+ return invoices
+  .filter(
+   inv=>
+    String(inv.customerId)===
+    String(customerId)
+  )
+  .reduce(
+   (sum,inv)=>
+    sum+
+    Number(inv.total||0),
+   0
+  );
 
- <head>
+}
 
-  <meta charset="UTF-8">
 
-  <title>${escapeHTML(inv.number)}</title>
+function getCustomerDebt(customerId){
 
-  <style>
+ const totalDebt=
+  invoices
+   .filter(
+    inv=>
+     String(inv.customerId)===
+     String(customerId)
+   )
+   .reduce(
+    (sum,inv)=>
+     sum+Number(inv.due||0),
+    0
+   );
 
-   body{
+ const payments=
+  getCustomerPaymentsTotal(
+   customerId
+  );
 
-    font-family:Arial;
+ return Math.max(
+  0,
+  totalDebt-payments
+ );
 
-    padding:20px;
+}
 
-    direction:rtl;
 
-   }
+function openPaymentModal(customerId){
 
-   h1,h2{
+ const c=
+  customers.find(
+   x=>
+    String(x.id)===
+    String(customerId)
+  );
 
-    text-align:center;
+ if(!c)return;
 
-   }
+ const debt=
+  getCustomerDebt(c.id);
 
-   table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-top:15px;
-
-   }
-
-   th,td{
-
-    border:1px solid #ddd;
-
-    padding:8px;
-
-    text-align:right;
-
-   }
-
-   .total{
-
-    margin-top:15px;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-   }
-
-  </style>
-
- </head>
-
- <body>
-
-  <h1>🛍️ TijaraPro</h1>
-
-  <h2>فاتورة بيع</h2>
-
-  <p>
-
-   <strong>رقم الفاتورة:</strong>
-
-   ${escapeHTML(inv.number)}
-
-  </p>
-
-  <p>
-
-   <strong>التاريخ:</strong>
-
-   ${dateText(inv.date)}
-
-  </p>
-
-  <p>
-
-   <strong>الزبون:</strong>
-
-   ${escapeHTML(inv.customerName||"زبون نقدي")}
-
-  </p>
-
-  <table>
-
-   <thead>
-
-    <tr>
-
-     <th>المنتج</th>
-
-     <th>الوحدة</th>
-
-     <th>الكمية</th>
-
-     <th>السعر</th>
-
-     <th>الإجمالي</th>
-
-    </tr>
-
-   </thead>
-
-   <tbody>
-
-    ${
-
-     inv.items.map(item=>`
-
-      <tr>
-
-       <td>${escapeHTML(item.name)}</td>
-
-       <td>${escapeHTML(item.unitLabel||"قطعة")}</td>
-
-       <td>${item.quantity}</td>
-
-       <td>${money(item.price)}</td>
-
-       <td>${money(item.total)}</td>
-
-      </tr>
-
-     `).join("")
-
-    }
-
-   </tbody>
-
-  </table>
-
-  <p>
-
-   المجموع الفرعي:
-
-   ${money(inv.subtotal)}
-
-  </p>
-
-  <p>
-
-   الخصم:
-
-   ${money(inv.discount)}
-
-  </p>
-
-  <div class="total">
-
-   الإجمالي:
-
-   ${money(inv.total)}
-
-  </div>
-
-  <p>
-
-   طريقة الدفع:
-
-   ${
-
-    inv.paymentMethod==="cash"
-
-     ? "نقدًا"
-
-     : inv.paymentMethod==="card"
-
-      ? "بطاقة"
-
-      : "آجل"
-
-   }
-
-  </p>
-
-  ${
-
-   inv.due>0
-
-    ? `<p>المبلغ الآجل: ${money(inv.due)}</p>`
-
-    :""
-
-  }
-
- </body>
-
- </html>
-
- `;
-
- const win=
-
-  window.open("","_blank");
-
- if(!win){
+ if(debt<=0){
 
   alert(
-
-   "⚠️ المتصفح منع نافذة الطباعة"
-
+   "✅ لا يوجد دين مستحق على هذا الزبون"
   );
 
   return;
 
  }
 
- win.document.write(html);
+ currentPaymentCustomerId=
+  customerId;
 
- win.document.close();
+ document.getElementById(
+  "paymentCustomerInfo"
+ ).innerHTML=`
 
- setTimeout(()=>{
+  <div class="info-box">
 
-  win.print();
+   👤 <strong>
+    ${escapeHTML(c.name)}
+   </strong>
 
- },300);
+   <br><br>
 
-}
+   💳 الدين الحالي:
+   <strong>${money(debt)}</strong>
 
-/* =========================
-
-   RETURNS
-
-========================= */
-
-function getReturnedQty(invoiceId,productId){
-
- let total=0;
-
- returns
-
-  .filter(r=>
-
-   String(r.invoiceId)===String(invoiceId)
-
-  )
-
-  .forEach(r=>{
-
-   r.items.forEach(item=>{
-
-    if(
-
-     String(item.productId)===String(productId)
-
-    ){
-
-     total+=
-
-      Number(item.quantity||0);
-
-    }
-
-   });
-
-  });
-
- return total;
-
-}
-
-function openReturnModal(invoiceId){
-
- const inv=
-
-  invoices.find(x=>
-
-   String(x.id)===String(invoiceId)
-
-  );
-
- if(!inv)return;
-
- currentReturnInvoiceId=invoiceId;
-
- const box=
-
-  document.getElementById("returnContent");
-
- box.innerHTML=`
-
-  <p>
-
-   <strong>${escapeHTML(inv.number)}</strong>
-
-  </p>
-
-  ${
-
-   inv.items.map((item,index)=>{
-
-    const returned=
-
-     getReturnedQty(
-
-      inv.id,
-
-      item.productId
-
-     );
-
-    const available=
-
-     Math.max(
-
-      0,
-
-      Number(item.quantity||0)-returned
-
-     );
-
-    return `
-
-    <div class="return-item">
-
-     <strong>${escapeHTML(item.name)}</strong>
-
-     <div>
-
-      المباع:
-
-      ${item.quantity}
-
-      ${escapeHTML(item.unitLabel||"قطعة")}
-
-     </div>
-
-     <div>
-
-      المتاح للمرتجع:
-
-      ${available}
-
-      ${escapeHTML(item.unitLabel||"قطعة")}
-
-     </div>
-
-     ${
-
-      available>0
-
-       ? `
-
-       <label>كمية المرتجع</label>
-
-       <input
-
-        class="return-qty"
-
-        data-index="${index}"
-
-        data-product="${item.productId}"
-
-        type="number"
-
-        min="0"
-
-        max="${available}"
-
-        value="0"
-
-       >
-
-       `
-
-       : `<div style="color:#dc2626">تم إرجاع كامل الكمية</div>`
-
-     }
-
-    </div>`;
-
-   }).join("")
-
-  }
+  </div>
 
  `;
 
- document.getElementById("returnModal")
+ document.getElementById(
+  "paymentAmount"
+ ).value="";
 
-  .classList.add("show");
+ document.getElementById(
+  "paymentNote"
+ ).value="";
+
+ document.getElementById(
+  "paymentModal"
+ ).classList.add("show");
 
 }
 
-function confirmReturn(){
 
- const inv=
+function saveCustomerPayment(){
 
-  invoices.find(x=>
+ if(!currentPaymentCustomerId){
 
-   String(x.id)===String(currentReturnInvoiceId)
-
+  alert(
+   "⚠️ لم يتم تحديد الزبون"
   );
-
- if(!inv)return;
-
- const inputs=
-
-  [...document.querySelectorAll(".return-qty")];
-
- const items=[];
-
- let total=0;
-
- let returnedProfit=0;
-
- inputs.forEach(input=>{
-
-  const quantity=
-
-   Number(input.value||0);
-
-  if(quantity<=0)return;
-
-  const index=
-
-   Number(input.dataset.index);
-
-  const original=
-
-   inv.items[index];
-
-  if(!original)return;
-
-  const already=
-
-   getReturnedQty(
-
-    inv.id,
-
-    original.productId
-
-   );
-
-  const available=
-
-   Number(original.quantity||0)-already;
-
-  if(quantity>available)
-
-   return;
-
-  const packSize=
-
-   Number(original.packSize||1);
-
-  const baseQuantity=
-
-   quantity*packSize;
-
-  const lineTotal=
-
-   Number(original.price||0)*quantity;
-
-  const lineProfit=
-
-   (
-
-    Number(original.price||0)-
-
-    Number(original.buy||0)
-
-   )*quantity;
-
-  items.push({
-
-   productId:original.productId,
-
-   name:original.name,
-
-   quantity,
-
-   unitType:original.unitType||"piece",
-
-   unitLabel:original.unitLabel||"قطعة",
-
-   packSize,
-
-   baseQuantity,
-
-   price:Number(original.price||0),
-
-   buy:Number(original.buy||0),
-
-   total:lineTotal
-
-  });
-
-  total+=lineTotal;
-
-  returnedProfit+=lineProfit;
-
- });
-
- if(!items.length){
-
-  alert("⚠️ لم تختر أي كمية للمرتجع");
 
   return;
 
  }
 
- items.forEach(item=>{
-
-  const p=
-
-   products.find(x=>
-
-    String(x.id)===String(item.productId)
-
-   );
-
-  if(!p)return;
-
-  const before=
-
-   Number(p.stock||0);
-
-  p.stock=
-
-   before+item.baseQuantity;
-
-  addMovement(
-
-   p,
-
-   item.baseQuantity,
-
-   "in",
-
-   "مرتجع",
-
-   inv.id,
-
-   inv.number
-
+ const c=
+  customers.find(
+   x=>
+    String(x.id)===
+    String(currentPaymentCustomerId)
   );
 
- });
+ if(!c)return;
 
- const ret={
+ const amount=
+  Number(
+   document.getElementById(
+    "paymentAmount"
+   ).value||0
+  );
+
+ const note=
+  document.getElementById(
+   "paymentNote"
+  ).value.trim()
+  ||"دفعة";
+
+ const debt=
+  getCustomerDebt(c.id);
+
+ if(amount<=0){
+
+  alert(
+   "⚠️ أدخل مبلغًا صحيحًا"
+  );
+
+  return;
+
+ }
+
+ if(amount>debt){
+
+  alert(
+   "⚠️ مبلغ الدفعة أكبر من الدين الحالي"
+  );
+
+  return;
+
+ }
+
+ customerPayments.unshift({
 
   id:id(),
 
-  invoiceId:inv.id,
+  customerId:c.id,
 
-  invoiceNumber:inv.number,
+  customerName:c.name,
 
-  customerId:inv.customerId||"",
+  amount,
 
-  customerName:inv.customerName||"",
-
-  items,
-
-  total,
-
-  returnedProfit,
+  note,
 
   date:new Date().toISOString(),
 
   createdAt:Date.now()
 
- };
-
- returns.unshift(ret);
-
- inv.returnedTotal=
-
-  Number(inv.returnedTotal||0)+total;
-
- inv.returnedProfit=
-
-  Number(inv.returnedProfit||0)+returnedProfit;
-
- inv.profit=
-
-  Number(inv.profit||0)-returnedProfit;
-
- if(inv.paymentMethod==="credit"){
-
-  inv.due=
-
-   Math.max(
-
-    0,
-
-    Number(inv.due||0)-total
-
-   );
-
- }
+ });
 
  saveData();
 
- closeModal("returnModal");
+ closeModal("paymentModal");
+
+ currentPaymentCustomerId=null;
 
  refresh();
 
- alert("✅ تم تسجيل المرتجع");
+ customerProfile(c.id);
+
+ alert(
+  "✅ تم تسجيل الدفعة بنجاح"
+ );
 
 }
 
-function renderReturns(){
-
- const box=
-
-  document.getElementById("returnsList");
-
- if(!returns.length){
-
-  box.innerHTML=
-
-   `<div class="empty">لا توجد مرتجعات</div>`;
-
-  return;
-
- }
-
- box.innerHTML=
-
-  returns.map(r=>`
-
-  <div class="card">
-
-   <strong>🔄 ${escapeHTML(r.invoiceNumber)}</strong>
-
-   <div>
-
-    ${dateText(r.date)}
-
-   </div>
-
-   <div>
-
-    قيمة المرتجع:
-
-    <strong>${money(r.total)}</strong>
-
-   </div>
-
-   <div style="margin-top:7px">
-
-    ${
-
-     r.items.map(i=>
-
-      `${escapeHTML(i.name)} — ${i.quantity} ${escapeHTML(i.unitLabel||"قطعة")}`
-
-     ).join("<br>")
-
-    }
-
-   </div>
-
-  </div>
-
- `).join("");
-
-}
 
 /* =========================
-
-   CUSTOMERS
-
+   CUSTOMER
 ========================= */
 
 function addCustomer(){
 
  const name=
-
-  document.getElementById("customerName")
-
-   .value.trim();
+  document.getElementById(
+   "customerName"
+  ).value.trim();
 
  const phone=
-
-  document.getElementById("customerPhone")
-
-   .value.trim();
+  document.getElementById(
+   "customerPhone"
+  ).value.trim();
 
  if(!name){
 
-  alert("⚠️ اكتب اسم الزبون");
+  alert(
+   "⚠️ اكتب اسم الزبون"
+  );
 
   return;
 
@@ -4494,206 +3617,1252 @@ function addCustomer(){
 
  saveData();
 
- document.getElementById("customerName").value="";
+ document.getElementById(
+  "customerName"
+ ).value="";
 
- document.getElementById("customerPhone").value="";
+ document.getElementById(
+  "customerPhone"
+ ).value="";
 
  refresh();
 
 }
 
-function getCustomerDebt(customerId){
 
- return invoices
-
-  .filter(inv=>
-
-   String(inv.customerId)===String(customerId)
-
-  )
-
-  .reduce((sum,inv)=>
-
-   sum+Number(inv.due||0),
-
-   0
-
-  );
-
-}
+/* =========================
+   CUSTOMER LIST
+========================= */
 
 function renderCustomers(){
 
  const box=
-
-  document.getElementById("customersList");
+  document.getElementById(
+   "customersList"
+  );
 
  const q=
-
-  document.getElementById("customerSearch")?.value
-
+  document.getElementById(
+   "customerSearch"
+  )?.value
    .trim()
-
    .toLowerCase()||"";
 
  const list=
-
-  customers.filter(c=>
-
-   !q ||
-
-   String(c.name||"").toLowerCase().includes(q) ||
-
-   String(c.phone||"").toLowerCase().includes(q)
-
+  customers.filter(
+   c=>
+    !q ||
+    String(c.name||"")
+     .toLowerCase()
+     .includes(q) ||
+    String(c.phone||"")
+     .toLowerCase()
+     .includes(q)
   );
 
  if(!list.length){
 
   box.innerHTML=
-
-   `<div class="empty">لا يوجد زبائن</div>`;
+   `<div class="empty">
+    لا يوجد زبائن
+   </div>`;
 
   return;
 
  }
 
  box.innerHTML=
+  list
+   .map(c=>{
 
-  list.map(c=>`
+    const purchases=
+     getCustomerPurchasesTotal(
+      c.id
+     );
 
-  <div class="card">
+    const payments=
+     getCustomerPaymentsTotal(
+      c.id
+     );
 
-   <strong>👤 ${escapeHTML(c.name)}</strong>
+    const debt=
+     getCustomerDebt(
+      c.id
+     );
 
-   <div>
+    return `
 
-    📱 ${escapeHTML(c.phone||"غير مسجل")}
+    <div class="card">
 
-   </div>
+     <strong>
+      👤 ${escapeHTML(c.name)}
+     </strong>
 
-   <div style="margin-top:5px">
+     <div>
+      📱 ${escapeHTML(
+       c.phone||"غير مسجل"
+      )}
+     </div>
 
-    💳 الدين:
+     <div
+      class="customer-summary"
+     >
 
-    <strong>${money(getCustomerDebt(c.id))}</strong>
+      <div class="customer-summary-item">
+       🛒 المشتريات
+       <strong>
+        ${money(purchases)}
+       </strong>
+      </div>
 
-   </div>
+      <div class="customer-summary-item">
+       💵 المدفوع
+       <strong>
+        ${money(payments)}
+       </strong>
+      </div>
 
-   <button
+      <div class="customer-summary-item">
+       💳 الدين
+       <strong>
+        ${money(debt)}
+       </strong>
+      </div>
 
-    class="btn btn-primary"
+     </div>
 
-    onclick="customerProfile('${c.id}')"
+     <div class="customer-actions">
 
-   >
+      <button
+       class="btn btn-primary"
+       onclick="customerProfile('${c.id}')"
+      >
+       👁️ الملف
+      </button>
 
-    👁️ الملف
+      ${
+       debt>0
+        ? `<button
+            class="btn btn-success"
+            onclick="openPaymentModal('${c.id}')"
+           >
+            💵 تسجيل دفعة
+           </button>`
+        :""
+      }
 
-   </button>
+     </div>
 
-  </div>
+    </div>`;
 
- `).join("");
+   })
+   .join("");
 
 }
+
 
 function updateCustomerSelect(){
 
  const select=
-
-  document.getElementById("saleCustomer");
+  document.getElementById(
+   "saleCustomer"
+  );
 
  if(!select)return;
 
  select.innerHTML=
+  `<option value="">
+    👤 زبون نقدي
+   </option>`+
 
-  `<option value="">👤 زبون نقدي</option>`+
-
-  customers.map(c=>
-
-   `<option value="${c.id}">
-
-    ${escapeHTML(c.name)}
-
-   </option>`
-
-  ).join("");
+  customers
+   .map(
+    c=>
+     `<option value="${c.id}">
+      ${escapeHTML(c.name)}
+     </option>`
+   )
+   .join("");
 
 }
+
+
+/* =========================
+   CUSTOMER PROFILE
+========================= */
 
 function customerProfile(customerId){
 
  const c=
-
-  customers.find(x=>
-
-   String(x.id)===String(customerId)
-
+  customers.find(
+   x=>
+    String(x.id)===
+    String(customerId)
   );
 
  if(!c)return;
 
  const customerInvoices=
-
-  invoices.filter(x=>
-
-   String(x.customerId)===String(customerId)
-
+  invoices.filter(
+   x=>
+    String(x.customerId)===
+    String(customerId)
   );
 
- document.getElementById("customerProfile")
+ const customerPaymentHistory=
+  customerPayments.filter(
+   p=>
+    String(p.customerId)===
+    String(customerId)
+  );
 
-  .innerHTML=`
+ const purchases=
+  getCustomerPurchasesTotal(
+   c.id
+  );
 
-  <h3>${escapeHTML(c.name)}</h3>
+ const payments=
+  getCustomerPaymentsTotal(
+   c.id
+  );
 
-  <p>📱 ${escapeHTML(c.phone||"غير مسجل")}</p>
+ const debt=
+  getCustomerDebt(
+   c.id
+  );
+
+ document.getElementById(
+  "customerProfile"
+ ).innerHTML=`
+
+  <h3>
+   👤 ${escapeHTML(c.name)}
+  </h3>
 
   <p>
-
-   💳 الدين:
-
-   <strong>${money(getCustomerDebt(c.id))}</strong>
-
+   📱 ${escapeHTML(
+    c.phone||"غير مسجل"
+   )}
   </p>
 
-  <h3>🧾 الفواتير</h3>
+  <div class="customer-summary">
+
+   <div class="customer-summary-item">
+
+    🛒 إجمالي المشتريات
+
+    <strong>
+     ${money(purchases)}
+    </strong>
+
+   </div>
+
+   <div class="customer-summary-item">
+
+    💵 إجمالي الدفعات
+
+    <strong>
+     ${money(payments)}
+    </strong>
+
+   </div>
+
+   <div class="customer-summary-item">
+
+    💳 الدين المتبقي
+
+    <strong>
+     ${money(debt)}
+    </strong>
+
+   </div>
+
+  </div>
 
   ${
+   debt>0
 
+    ? `<div class="debt-box">
+
+        💳 الدين الحالي:
+
+        <strong>
+         ${money(debt)}
+        </strong>
+
+        <br>
+
+        <button
+         class="btn btn-success"
+         onclick="closeModal('customerModal');openPaymentModal('${c.id}')"
+        >
+         💵 تسجيل دفعة
+        </button>
+
+       </div>`
+
+    : `<div class="paid-box">
+        ✅ لا يوجد دين مستحق حاليًا
+       </div>`
+  }
+
+  <h3>
+   🧾 فواتير الزبون
+  </h3>
+
+  ${
    customerInvoices.length
 
-    ? customerInvoices.map(inv=>`
+    ? customerInvoices
+       .map(inv=>`
 
-     <div style="border-bottom:1px solid #eee;padding:8px 0">
+        <div
+         style="border-bottom:1px solid #eee;padding:10px 0"
+        >
 
-      ${escapeHTML(inv.number)}
+         <div>
+          <strong>
+           ${escapeHTML(inv.number)}
+          </strong>
+         </div>
 
-      —
+         <div style="font-size:12px;color:#666">
+          ${dateText(inv.date)}
+         </div>
 
-      ${money(inv.total)}
+         <div>
+          الإجمالي:
+          <strong>
+           ${money(inv.total)}
+          </strong>
+         </div>
+
+         ${
+          inv.due>0
+           ? `<span class="status-credit">
+               آجل — متبقي ${money(inv.due)}
+              </span>`
+           : `<span class="status-paid">
+               مدفوعة
+              </span>`
+         }
+
+        </div>
+
+       `)
+       .join("")
+
+    : "<div>لا توجد فواتير</div>"
+  }
+
+  <div class="payment-history">
+
+   <h3>
+    💵 سجل الدفعات
+   </h3>
+
+   ${
+    customerPaymentHistory.length
+
+     ? customerPaymentHistory
+        .map(p=>`
+
+         <div class="payment-row">
+
+          <div>
+
+           <strong>
+            ${money(p.amount)}
+           </strong>
+
+           <div
+            style="font-size:12px;color:#666"
+           >
+            ${escapeHTML(
+             p.note||"دفعة"
+            )}
+           </div>
+
+          </div>
+
+          <div
+           style="font-size:12px;color:#777"
+          >
+           ${dateText(p.date)}
+          </div>
+
+         </div>
+
+        `)
+        .join("")
+
+     : `<div class="empty">
+         لا توجد دفعات مسجلة
+        </div>`
+   }
+
+  </div>
+
+ `;
+
+ document.getElementById(
+  "customerModal"
+ ).classList.add("show");
+
+}
+
+
+/* =========================
+   INVOICES
+========================= */
+
+function renderInvoices(){
+
+ const box=
+  document.getElementById(
+   "invoicesList"
+  );
+
+ const q=
+  document.getElementById(
+   "invoiceSearch"
+  )?.value
+   .trim()
+   .toLowerCase()||"";
+
+ const list=
+  invoices.filter(
+   inv=>
+    !q ||
+    String(inv.number||"")
+     .toLowerCase()
+     .includes(q) ||
+    String(inv.customerName||"")
+     .toLowerCase()
+     .includes(q)
+  );
+
+ if(!list.length){
+
+  box.innerHTML=
+   `<div class="empty">
+    لا توجد فواتير
+   </div>`;
+
+  return;
+
+ }
+
+ box.innerHTML=
+  list
+   .map(inv=>{
+
+    const paymentText=
+     inv.paymentMethod==="cash"
+      ? "نقدًا"
+      : inv.paymentMethod==="card"
+       ? "بطاقة"
+       : "آجل";
+
+    return `
+
+    <div
+     class="card"
+     style="border:1px solid #eee"
+    >
+
+     <div
+      style="display:flex;justify-content:space-between;gap:10px"
+     >
+
+      <div>
+
+       <strong>
+        🧾 ${escapeHTML(inv.number)}
+       </strong>
+
+       <div
+        style="font-size:12px;color:#666"
+       >
+        ${dateText(inv.date)}
+       </div>
+
+       <div>
+        👤 ${escapeHTML(
+         inv.customerName||
+         "زبون نقدي"
+        )}
+       </div>
+
+      </div>
+
+      <strong
+       style="color:#2563eb"
+      >
+       ${money(inv.total)}
+      </strong>
 
      </div>
 
-    `).join("")
+     <div
+      style="margin-top:8px;font-size:13px"
+     >
 
-    : "<div>لا توجد فواتير</div>"
+      ${
+       inv.items
+        .map(
+         item=>
+          `<div>
 
+           ${escapeHTML(item.name)}
+
+           —
+
+           ${item.quantity}
+           ${escapeHTML(
+            item.unitLabel||"قطعة"
+           )}
+
+           =
+
+           ${money(item.total)}
+
+          </div>`
+        )
+        .join("")
+      }
+
+     </div>
+
+     <div style="margin-top:10px">
+
+      <span
+       class="${
+        inv.due>0
+         ? "status-credit"
+         : "status-paid"
+       }"
+      >
+
+       ${
+        inv.due>0
+         ? "آجل — متبقي "+
+           money(inv.due)
+         : "مدفوعة — "+paymentText
+       }
+
+      </span>
+
+     </div>
+
+     <div style="margin-top:10px">
+
+      <button
+       class="btn btn-primary"
+       onclick="printInvoice('${inv.id}')"
+      >
+       🖨️ طباعة
+      </button>
+
+      <button
+       class="btn btn-warning"
+       onclick="openReturnModal('${inv.id}')"
+      >
+       🔄 مرتجع
+      </button>
+
+      ${
+       inv.customerId
+        ? `<button
+            class="btn btn-purple"
+            onclick="customerProfile('${inv.customerId}')"
+           >
+            👤 ملف الزبون
+           </button>`
+        :""
+      }
+
+     </div>
+
+    </div>`;
+
+   })
+   .join("");
+
+}
+
+
+/* =========================
+   PRINT INVOICE
+========================= */
+
+function printInvoice(invoiceId){
+
+ const inv=
+  invoices.find(
+   x=>
+    String(x.id)===
+    String(invoiceId)
+  );
+
+ if(!inv)return;
+
+ const html=`
+
+ <!DOCTYPE html>
+
+ <html lang="ar" dir="rtl">
+
+ <head>
+
+  <meta charset="UTF-8">
+
+  <title>
+   ${escapeHTML(inv.number)}
+  </title>
+
+  <style>
+
+   body{
+    font-family:Arial;
+    padding:20px;
+    direction:rtl;
+   }
+
+   h1,h2{
+    text-align:center;
+   }
+
+   table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+   }
+
+   th,td{
+    border:1px solid #ddd;
+    padding:8px;
+    text-align:right;
+   }
+
+   .total{
+    margin-top:15px;
+    font-size:20px;
+    font-weight:bold;
+   }
+
+  </style>
+
+ </head>
+
+ <body>
+
+  <h1>🛍️ TijaraPro</h1>
+
+  <h2>فاتورة بيع</h2>
+
+  <p>
+   <strong>رقم الفاتورة:</strong>
+   ${escapeHTML(inv.number)}
+  </p>
+
+  <p>
+   <strong>التاريخ:</strong>
+   ${dateText(inv.date)}
+  </p>
+
+  <p>
+   <strong>الزبون:</strong>
+   ${escapeHTML(
+    inv.customerName||
+    "زبون نقدي"
+   )}
+  </p>
+
+  <table>
+
+   <thead>
+
+    <tr>
+     <th>المنتج</th>
+     <th>الوحدة</th>
+     <th>الكمية</th>
+     <th>السعر</th>
+     <th>الإجمالي</th>
+    </tr>
+
+   </thead>
+
+   <tbody>
+
+    ${
+     inv.items
+      .map(
+       item=>
+        `<tr>
+
+         <td>
+          ${escapeHTML(item.name)}
+         </td>
+
+         <td>
+          ${escapeHTML(
+           item.unitLabel||"قطعة"
+          )}
+         </td>
+
+         <td>
+          ${item.quantity}
+         </td>
+
+         <td>
+          ${money(item.price)}
+         </td>
+
+         <td>
+          ${money(item.total)}
+         </td>
+
+        </tr>`
+      )
+      .join("")
+    }
+
+   </tbody>
+
+  </table>
+
+  <p>
+   المجموع الفرعي:
+   ${money(inv.subtotal)}
+  </p>
+
+  <p>
+   الخصم:
+   ${money(inv.discount)}
+  </p>
+
+  <div class="total">
+
+   الإجمالي:
+   ${money(inv.total)}
+
+  </div>
+
+  <p>
+
+   طريقة الدفع:
+
+   ${
+    inv.paymentMethod==="cash"
+     ? "نقدًا"
+     : inv.paymentMethod==="card"
+      ? "بطاقة"
+      : "آجل"
+   }
+
+  </p>
+
+  ${
+   inv.paid>0
+    ? `<p>
+        المدفوع:
+        ${money(inv.paid)}
+       </p>`
+    :""
+  }
+
+  ${
+   inv.change>0
+    ? `<p>
+        الباقي:
+        ${money(inv.change)}
+       </p>`
+    :""
+  }
+
+  ${
+   inv.due>0
+    ? `<p>
+        المبلغ الآجل المتبقي:
+        ${money(inv.due)}
+       </p>`
+    :""
+  }
+
+ </body>
+
+ </html>
+
+ `;
+
+ const win=
+  window.open("","_blank");
+
+ if(!win){
+
+  alert(
+   "⚠️ المتصفح منع نافذة الطباعة"
+  );
+
+  return;
+
+ }
+
+ win.document.write(html);
+
+ win.document.close();
+
+ setTimeout(
+  ()=>{
+   win.print();
+  },
+  300
+ );
+
+}
+
+
+/* =========================
+   RETURNS
+========================= */
+
+function getReturnedQty(
+ invoiceId,
+ productId
+){
+
+ let total=0;
+
+ returns
+  .filter(
+   r=>
+    String(r.invoiceId)===
+    String(invoiceId)
+  )
+  .forEach(
+   r=>{
+
+    r.items.forEach(
+     item=>{
+
+      if(
+       String(item.productId)===
+       String(productId)
+      ){
+
+       total+=
+        Number(item.quantity||0);
+
+      }
+
+     }
+    );
+
+   }
+  );
+
+ return total;
+
+}
+
+
+function openReturnModal(invoiceId){
+
+ const inv=
+  invoices.find(
+   x=>
+    String(x.id)===
+    String(invoiceId)
+  );
+
+ if(!inv)return;
+
+ currentReturnInvoiceId=
+  invoiceId;
+
+ const box=
+  document.getElementById(
+   "returnContent"
+  );
+
+ box.innerHTML=`
+
+  <p>
+   <strong>
+    ${escapeHTML(inv.number)}
+   </strong>
+  </p>
+
+  ${
+   inv.items
+    .map(
+     (item,index)=>{
+
+      const returned=
+       getReturnedQty(
+        inv.id,
+        item.productId
+       );
+
+      const available=
+       Math.max(
+        0,
+        Number(item.quantity||0)-
+        returned
+       );
+
+      return `
+
+      <div class="return-item">
+
+       <strong>
+        ${escapeHTML(item.name)}
+       </strong>
+
+       <div>
+        المباع:
+        ${item.quantity}
+        ${escapeHTML(
+         item.unitLabel||"قطعة"
+        )}
+       </div>
+
+       <div>
+        المتاح للمرتجع:
+        ${available}
+        ${escapeHTML(
+         item.unitLabel||"قطعة"
+        )}
+       </div>
+
+       ${
+        available>0
+
+         ? `
+
+          <label>
+           كمية المرتجع
+          </label>
+
+          <input
+           class="return-qty"
+           data-index="${index}"
+           data-product="${item.productId}"
+           type="number"
+           min="0"
+           max="${available}"
+           value="0"
+          >
+
+         `
+
+         : `<div
+              style="color:#dc2626"
+             >
+              تم إرجاع كامل الكمية
+            </div>`
+       }
+
+      </div>`;
+
+     }
+    )
+    .join("")
   }
 
  `;
 
- document.getElementById("customerModal")
-
-  .classList.add("show");
+ document.getElementById(
+  "returnModal"
+ ).classList.add("show");
 
 }
 
+
+function confirmReturn(){
+
+ const inv=
+  invoices.find(
+   x=>
+    String(x.id)===
+    String(currentReturnInvoiceId)
+  );
+
+ if(!inv)return;
+
+ const inputs=
+  [...document.querySelectorAll(
+   ".return-qty"
+  )];
+
+ const items=[];
+
+ let total=0;
+
+ let returnedProfit=0;
+
+ inputs.forEach(
+  input=>{
+
+   const quantity=
+    Number(input.value||0);
+
+   if(quantity<=0)return;
+
+   const index=
+    Number(input.dataset.index);
+
+   const original=
+    inv.items[index];
+
+   if(!original)return;
+
+   const already=
+    getReturnedQty(
+     inv.id,
+     original.productId
+    );
+
+   const available=
+    Number(original.quantity||0)-
+    already;
+
+   if(quantity>available)
+    return;
+
+   const packSize=
+    Number(original.packSize||1);
+
+   const baseQuantity=
+    quantity*packSize;
+
+   const lineTotal=
+    Number(original.price||0)*
+    quantity;
+
+   const lineProfit=
+    (
+     Number(original.price||0)-
+     Number(original.buy||0)
+    )*quantity;
+
+   items.push({
+
+    productId:
+     original.productId,
+
+    name:
+     original.name,
+
+    quantity,
+
+    unitType:
+     original.unitType||"piece",
+
+    unitLabel:
+     original.unitLabel||"قطعة",
+
+    packSize,
+
+    baseQuantity,
+
+    price:
+     Number(original.price||0),
+
+    buy:
+     Number(original.buy||0),
+
+    total:lineTotal
+
+   });
+
+   total+=lineTotal;
+
+   returnedProfit+=lineProfit;
+
+  }
+ );
+
+ if(!items.length){
+
+  alert(
+   "⚠️ لم تختر أي كمية للمرتجع"
+  );
+
+  return;
+
+ }
+
+ items.forEach(
+  item=>{
+
+   const p=
+    products.find(
+     x=>
+      String(x.id)===
+      String(item.productId)
+    );
+
+   if(!p)return;
+
+   const before=
+    Number(p.stock||0);
+
+   p.stock=
+    before+item.baseQuantity;
+
+   addMovement(
+    p,
+    item.baseQuantity,
+    "in",
+    "مرتجع",
+    inv.id,
+    inv.number
+   );
+
+  }
+ );
+
+ const ret={
+
+  id:id(),
+
+  invoiceId:inv.id,
+
+  invoiceNumber:
+   inv.number,
+
+  customerId:
+   inv.customerId||"",
+
+  customerName:
+   inv.customerName||"",
+
+  items,
+
+  total,
+
+  returnedProfit,
+
+  date:
+   new Date().toISOString(),
+
+  createdAt:
+   Date.now()
+
+ };
+
+ returns.unshift(ret);
+
+ inv.returnedTotal=
+  Number(inv.returnedTotal||0)+
+  total;
+
+ inv.returnedProfit=
+  Number(inv.returnedProfit||0)+
+  returnedProfit;
+
+ inv.profit=
+  Number(inv.profit||0)-
+  returnedProfit;
+
+ if(inv.paymentMethod==="credit"){
+
+  inv.due=
+   Math.max(
+    0,
+    Number(inv.due||0)-
+    total
+   );
+
+ }
+
+ saveData();
+
+ closeModal("returnModal");
+
+ refresh();
+
+ alert(
+  "✅ تم تسجيل المرتجع"
+ );
+
+}
+
+
+function renderReturns(){
+
+ const box=
+  document.getElementById(
+   "returnsList"
+  );
+
+ if(!returns.length){
+
+  box.innerHTML=
+   `<div class="empty">
+    لا توجد مرتجعات
+   </div>`;
+
+  return;
+
+ }
+
+ box.innerHTML=
+  returns
+   .map(
+    r=>
+     `
+
+     <div class="card">
+
+      <strong>
+       🔄 ${escapeHTML(
+        r.invoiceNumber
+       )}
+      </strong>
+
+      <div>
+       ${dateText(r.date)}
+      </div>
+
+      <div>
+       قيمة المرتجع:
+       <strong>
+        ${money(r.total)}
+       </strong>
+      </div>
+
+      <div style="margin-top:7px">
+
+       ${
+        r.items
+         .map(
+          i=>
+           `${escapeHTML(i.name)}
+            —
+            ${i.quantity}
+            ${escapeHTML(
+             i.unitLabel||"قطعة"
+            )}`
+         )
+         .join("<br>")
+       }
+
+      </div>
+
+     </div>
+
+     `
+   )
+   .join("");
+
+}
+
+
 /* =========================
-
    DASHBOARD
-
 ========================= */
 
 function refreshDashboard(){
@@ -4701,64 +4870,58 @@ function refreshDashboard(){
  const t=today();
 
  const todayInvoices=
-
-  invoices.filter(inv=>
-
-   String(inv.date||"").slice(0,10)===t
-
+  invoices.filter(
+   inv=>
+    String(inv.date||"")
+     .slice(0,10)===t
   );
 
  const salesTotal=
-
   todayInvoices.reduce(
-
-   (sum,inv)=>sum+Number(inv.total||0),
-
+   (sum,inv)=>
+    sum+
+    Number(inv.total||0),
    0
-
   );
 
  const profitTotal=
-
   todayInvoices.reduce(
-
    (sum,inv)=>
-
     sum+
-
     Number(inv.profit||0),
-
    0
-
   );
 
- document.getElementById("todaySales")
+ document.getElementById(
+  "todaySales"
+ ).textContent=
+  money(salesTotal);
 
-  .textContent=money(salesTotal);
+ document.getElementById(
+  "productCount"
+ ).textContent=
+  products.length;
 
- document.getElementById("productCount")
+ document.getElementById(
+  "todayInvoices"
+ ).textContent=
+  todayInvoices.length;
 
-  .textContent=products.length;
-
- document.getElementById("todayInvoices")
-
-  .textContent=todayInvoices.length;
-
- document.getElementById("todayProfit")
-
-  .textContent=money(profitTotal);
+ document.getElementById(
+  "todayProfit"
+ ).textContent=
+  money(profitTotal);
 
  const low=
-
-  products.filter(p=>
-
-   Number(p.stock||0)<=5
-
+  products.filter(
+   p=>
+    Number(p.stock||0)<=5
   );
 
  const box=
-
-  document.getElementById("lowStockBox");
+  document.getElementById(
+   "lowStockBox"
+  );
 
  if(low.length){
 
@@ -4771,15 +4934,17 @@ function refreshDashboard(){
     <br><br>
 
     ${
-
-     low.map(p=>
-
-      `• ${escapeHTML(p.name)}
-
-       — ${p.stock} ${escapeHTML(p.unit||"قطعة")}`
-
-     ).join("<br>")
-
+     low
+      .map(
+       p=>
+        `• ${escapeHTML(p.name)}
+         —
+         ${p.stock}
+         ${escapeHTML(
+          p.unit||"قطعة"
+         )}`
+      )
+      .join("<br>")
     }
 
    </div>`;
@@ -4787,35 +4952,29 @@ function refreshDashboard(){
  }else{
 
   box.innerHTML=
-
    `<div class="success">
-
     ✅ المخزون في وضع جيد
-
    </div>`;
 
  }
 
 }
 
+
 /* =========================
-
    MODAL
-
 ========================= */
 
 function closeModal(id){
 
  document.getElementById(id)
-
   ?.classList.remove("show");
 
 }
 
+
 /* =========================
-
    REFRESH
-
 ========================= */
 
 function refresh(){
@@ -4825,9 +4984,9 @@ function refresh(){
  renderCart();
 
  renderProducts(
-
-  document.getElementById("productsSearch")?.value||""
-
+  document.getElementById(
+   "productsSearch"
+  )?.value||""
  );
 
  refreshDashboard();
@@ -4846,28 +5005,25 @@ function refresh(){
 
 }
 
+
 /* =========================
-
    START
-
 ========================= */
 
 normalizeProducts();
 
+normalizeInvoices();
+
 document.addEventListener(
-
  "DOMContentLoaded",
-
  function(){
 
   refresh();
 
  }
-
 );
 
 </script>
 
 </body>
-
 </html>
