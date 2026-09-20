@@ -1,0 +1,13 @@
+{
+  "name": "TijaraPro",
+  "short_name": "TijaraPro",
+  "description": "نظام البيع وإدارة المحل",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#2563eb",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": []
+}
