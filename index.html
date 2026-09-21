@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
 <title>TijaraPro</title>
 
 <style>
@@ -12,7 +12,8 @@ body{
  margin:0;
  font-family:Arial,Tahoma,sans-serif;
  background:#f4f7fb;
- color:#172033;
+ color:#172033;touch-action:manipulation;
+-webkit-text-size-adjust:100%;
 }
 
 header{
@@ -2109,7 +2110,29 @@ function resetProductForm(){
  document.getElementById("productImage").value="";
 }
 
+function deleteProduct(index){
 
+ if(index<0 || index>=products.length){
+  return;
+ }
+
+ const product=products[index];
+
+ if(!confirm(
+  "هل أنت متأكد من حذف المنتج:\n\n"+
+  product.name+
+  "\n\nلا يمكن التراجع عن هذا الحذف."
+  )){
+  return;
+ }
+
+ products.splice(index,1);
+
+ saveData();
+ refresh();
+
+ alert("✅ تم حذف المنتج");
+}
 /* =====================================================
    حركة المخزون
 ===================================================== */
@@ -5120,7 +5143,16 @@ function renderProducts(){
        ${escapeHtml(p.unit)}
        •
        ${money(p.packSell)}
+   <div style="display:flex;gap:8px;margin-top:10px">
 
+    <button
+     class="btn btn-danger"
+     onclick="deleteProduct(${products.indexOf(p)})"
+    >
+     🗑️ حذف
+    </button>
+
+   </div>
       </div>
      `
      :""
